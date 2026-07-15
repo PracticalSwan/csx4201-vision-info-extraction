@@ -1,0 +1,83 @@
+# .gitignore — vision-info-extraction (CSX4201)
+# Repo is not yet `git init`-ed. Review every section before the first commit.
+
+# --- Privacy (CRITICAL) ---
+# All raw private Gmail documents and any private metadata must stay uncommitted.
+data/raw/
+data/private/
+data/raw/private/
+data/**/gmail/
+gmail_private_test/
+vision_info_extraction_data/gmail_private_test/
+
+# Private operational metadata (may map anonymous IDs to real Gmail files) —
+# never commit.
+data/metadata/private_file_inventory.csv
+data/metadata/private_*.csv
+data/metadata/private_*.json
+data/splits/private_test.csv
+
+# --- Rotation-stage generated data ---
+# These artifacts are rebuildable and/or bulk. `data/processed/` also contains
+# anonymized renderings of private documents and private feature caches.
+data/processed/
+
+# Large operational manifests are reproducible from the raw inventory and
+# config. Compact, public-safe reports under reports/ remain committable.
+data/metadata/page_manifest.csv
+data/metadata/split_manifest.csv
+data/metadata/rotation_manifest.csv
+data/metadata/feature_manifest.csv
+
+# Large derived inventories (excluded for size; reproducible from raw data +
+# config via scripts/inspect_data.py). file_inventory.csv anonymizes Gmail
+# filenames (gmail_<id>.<ext>) and may be re-added via Git LFS if needed.
+data/metadata/file_inventory.csv
+data/metadata/data_sources.csv
+
+# --- Archives (large; decide LFS vs download docs before committing) ---
+*.zip
+*.rar
+*.7z
+*.tar
+*.tar.gz
+*.gz
+
+# --- OS junk ---
+.DS_Store
+**/.DS_Store
+__MACOSX/
+**/__MACOSX/
+Thumbs.db
+ehthumbs.db
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.pytest_cache/
+.venv/
+venv/
+env/
+.coverage
+htmlcov/
+
+# --- Secrets / env ---
+.env
+.env.*
+!.env.example
+
+# --- IDE / editors ---
+.vscode/
+.idea/
+*.swp
+*.log
+
+# --- Out-of-scope generated outputs ---
+# Classical artifacts under models/kmeans_rotation/ are legitimate at this
+# stage. OCR and neural checkpoint outputs remain out of scope.
+ocr_output/
+ocr_outputs/
+outputs/
+checkpoints/

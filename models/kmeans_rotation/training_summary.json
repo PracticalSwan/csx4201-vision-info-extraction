@@ -1,0 +1,35 @@
+{
+  "model_version": "kmeans-rotation-v1",
+  "training_hash": "e734f8a8c396d292",
+  "preprocessing_hash": "ec5c4e99dff310d0",
+  "fit_splits": [
+    "train"
+  ],
+  "fit_private_sample_count": 0,
+  "fit_rotation_count": 5600,
+  "fit_rotation_id_hash": "d175574b1947e7d0e0f2cd00bc2bff9fb249412a7e1fcb730e26fafe00fa5a95",
+  "n_clusters": 4,
+  "random_state": 42,
+  "n_init": 20,
+  "max_iter": 300,
+  "tolerance": 0.0001,
+  "inertia": 6771246.5,
+  "n_iter": 16,
+  "cluster_sizes": {
+    "0": 1112,
+    "1": 1114,
+    "2": 1686,
+    "3": 1688
+  },
+  "cluster_to_zone": {
+    "0": 1,
+    "1": 2,
+    "2": 4,
+    "3": 3
+  },
+  "training_mapped_accuracy": 0.5,
+  "artifact_reload_verified": true,
+  "warnings": [],
+  "training_matrix_bytes": 2867200,
+  "elapsed_seconds": 3.219536100019468
+}

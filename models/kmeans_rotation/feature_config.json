@@ -1,0 +1,69 @@
+{
+  "feature_version": "orientation-v1",
+  "profile": "full",
+  "configuration": {
+    "strategy": "hog_hough",
+    "resize_width": 128,
+    "resize_height": 128,
+    "preserve_aspect_ratio": true,
+    "padding_value": 255,
+    "contrast_normalization": "equalize_hist",
+    "hog": {
+      "orientations": 9,
+      "pixels_per_cell": [
+        16,
+        16
+      ],
+      "cells_per_block": [
+        2,
+        2
+      ],
+      "block_norm": "L2-Hys"
+    },
+    "hough": {
+      "angle_bins": 36,
+      "canny_threshold_1": 50,
+      "canny_threshold_2": 150,
+      "threshold": 25,
+      "min_line_length": 20,
+      "max_line_gap": 8
+    },
+    "projection_profiles": {
+      "enabled": true,
+      "summary_bins": 64
+    },
+    "directional_edges": {
+      "enabled": true
+    },
+    "geometric_features": {
+      "enabled": true
+    },
+    "cache_enabled": true
+  },
+  "configuration_hash": "888fb4999c985ba0",
+  "rotation_manifest_hash": "38f202c1dd6bef6b07ecd30f580f0ac5030813c92ee2e15e50bcd620f749bf7b",
+  "feature_dimension": 1957,
+  "feature_group_slices": {
+    "hog": [
+      0,
+      1764
+    ],
+    "hough": [
+      1764,
+      1812
+    ],
+    "projection": [
+      1812,
+      1948
+    ],
+    "directional_edges": [
+      1948,
+      1952
+    ],
+    "geometry": [
+      1952,
+      1957
+    ]
+  },
+  "opencv_version": "4.13.0"
+}

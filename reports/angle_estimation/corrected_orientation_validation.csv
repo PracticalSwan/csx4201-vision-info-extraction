@@ -1,0 +1,3 @@
+project_split,sample_count,estimated_count,correction_direction_valid_count,correction_direction_valid_rate,mean_original_orientation_score,mean_corrected_orientation_score,mean_orientation_score_delta,corrected_within_5_degrees_rate
+test,944,928,928,1.0,0.7302195475860171,0.8438885043675011,0.11366895678148392,0.3329741379310345
+validation,976,976,976,1.0,0.7345115971120293,0.8529365435827835,0.11842494647075431,0.34938524590163933

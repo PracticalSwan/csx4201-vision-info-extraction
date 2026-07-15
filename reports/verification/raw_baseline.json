@@ -1,0 +1,709 @@
+{
+  "recorded_at": "2026-07-13T15:34:10Z",
+  "raw_file_count": 128793,
+  "raw_size_bytes": 35459126772,
+  "raw_size_human": "33.02 GiB",
+  "sample_count": 100,
+  "samples": [
+    {
+      "file_id": "coru_96e720b6cf58",
+      "dataset": "coru",
+      "private": false,
+      "safe_path": "coru/OCR Dataset/train/cc26f24e-5256-4006-b85b-8cdd6d0fb88b_line_3.txt",
+      "sha256": "e98f74cea30b90a6002ae1eee54e9f19b198dc9642f9b1a3e2948dab80d21162"
+    },
+    {
+      "file_id": "coru_4199119e8bcc",
+      "dataset": "coru",
+      "private": false,
+      "safe_path": "coru/Receipt Images & Key Information Detection/val/labels/1a2cdd49-bb7b-4b09-81b9-793f225b5cfb.txt",
+      "sha256": "a2de1d3dc92160fd8e17a1629e358408a28d5455366c69baae7704c32eefd0b2"
+    },
+    {
+      "file_id": "coru_77366c1a5252",
+      "dataset": "coru",
+      "private": false,
+      "safe_path": "coru/OCR Dataset/train/c2b5499e-eebb-41c8-b43c-46807ef61600_line_9.jpg",
+      "sha256": "51ccff89421fa19f66b76bd445d2919ce1f0dac1b4549457bdc934cc8ea1ccbe"
+    },
+    {
+      "file_id": "coru_35683eebb240",
+      "dataset": "coru",
+      "private": false,
+      "safe_path": "coru/Receipt Question Answering/test/b5ce8434-e23d-451f-af72-ef72a8f93b9b.jpg",
+      "sha256": "6de314045fb086ffff3a45b8d153219044e4c4f12220359e623c3c46cfc7db54"
+    },
+    {
+      "file_id": "coru_72f8dbfebaa5",
+      "dataset": "coru",
+      "private": false,
+      "safe_path": "coru/OCR Dataset/val/088483fa-2be6-4990-8cbd-636f4bc0ff0d_line_6.jpg",
+      "sha256": "f90a269dea9ba7cdb246108dfb5320ce562ea45a76fe5c92cb4e1987186736dc"
+    },
+    {
+      "file_id": "coru_195cba679efe",
+      "dataset": "coru",
+      "private": false,
+      "safe_path": "coru/OCR Dataset/test/b3c5eaa7-d606-4ef6-a453-684ffa316376_line_6.jpg",
+      "sha256": "a3489cd3e128b39c26a1fd2ec011dc4cba5e202dc4d2a3877d5262d19e9ebd13"
+    },
+    {
+      "file_id": "coru_1f1a8854dd1b",
+      "dataset": "coru",
+      "private": false,
+      "safe_path": "coru/Receipt Images & Key Information Detection/train/images/365ed0f1-cde1-4b6e-8381-78275a99bcbe.jpg",
+      "sha256": "298de022de0183493a608ce87e744e4eadcc9633eb57ba17ca7bbc447b26bcd3"
+    },
+    {
+      "file_id": "coru_e2f64e29c13d",
+      "dataset": "coru",
+      "private": false,
+      "safe_path": "coru/OCR Dataset/train/1b85bdea-51e0-4cea-8f15-3686b7277f31_no.jpg",
+      "sha256": "4e03ba31dca141cd110b09a6ed9f1cc5c138afe7af5e7b0b76eef98d8677e6de"
+    },
+    {
+      "file_id": "coru_8d62cabfa1c8",
+      "dataset": "coru",
+      "private": false,
+      "safe_path": "coru/Receipt Images & Key Information Detection/train/labels/212d2789-2339-45ae-a55e-f2a589662450.txt",
+      "sha256": "fef78be25bea07811531a93bb4ab129116eff7d9c71b391a466852f820aeaece"
+    },
+    {
+      "file_id": "coru_3a1675cc2246",
+      "dataset": "coru",
+      "private": false,
+      "safe_path": "coru/OCR Dataset/train/cab1038b-f2ea-40e6-88f9-913552c93d51_line_2.txt",
+      "sha256": "016ac596af43e4d6f763ef811b09fc47b1aa66a4705416adfc4e13c112fbf9fa"
+    },
+    {
+      "file_id": "coru_382cd6ff15cb",
+      "dataset": "coru",
+      "private": false,
+      "safe_path": "coru/Receipt Images & Key Information Detection/train/labels/05410f00-15b5-40ae-bc82-1c8efb342237.txt",
+      "sha256": "add072a16f4411af617f32091d33200c65f0bbbc35dbbc36e48da766d4078b3a"
+    },
+    {
+      "file_id": "coru_763ddf0c281b",
+      "dataset": "coru",
+      "private": false,
+      "safe_path": "coru/OCR Dataset/train/2e78ff28-1ba1-4b76-827a-7a4f2d674729_line_14.jpg",
+      "sha256": "dfea35e9330aa9831073c6a69a6674cede4267bc16e44a1112931d1730e4daf3"
+    },
+    {
+      "file_id": "coru_fe14cb7c78df",
+      "dataset": "coru",
+      "private": false,
+      "safe_path": "coru/Receipt Images & Key Information Detection/train/labels/39b5ef8e-de2b-4da1-9ff1-a917e100e124.txt",
+      "sha256": "20b9ace0884f77ff54e828bd814a3d3c5c60c8df764610842417ae66f8e80179"
+    },
+    {
+      "file_id": "coru_74d1537d013b",
+      "dataset": "coru",
+      "private": false,
+      "safe_path": "coru/OCR Dataset/train/1f53b173-1514-495a-954d-be0f26e0ded0_line_70.jpg",
+      "sha256": "1c75ad7aa7cd2ee94f37a399b97b2070ebb52399af980d664d3ce644bfc79974"
+    },
+    {
+      "file_id": "coru_ef43ac4d2881",
+      "dataset": "coru",
+      "private": false,
+      "safe_path": "coru/OCR Dataset/train/fe642c65-9299-4620-a488-9f0a9aacd83c_line_23.txt",
+      "sha256": "a971dc65d40ad82419832a9f3981e2e23f14bc1ab3d6f3e7e4143271d017acb7"
+    },
+    {
+      "file_id": "coru_cbf0e65b9cf3",
+      "dataset": "coru",
+      "private": false,
+      "safe_path": "coru/Receipt Images & Key Information Detection/train/images/2259e2ac-b58a-41cf-900e-21efef561801.jpg",
+      "sha256": "77671c42bd772e20eac56a6ef46c40132c12e284b1f23dfc60e61c66a74fe87a"
+    },
+    {
+      "file_id": "coru_f733e869508f",
+      "dataset": "coru",
+      "private": false,
+      "safe_path": "coru/Receipt Question Answering/test/3ad2bef2-5a4d-4936-854d-4b800b0bf4cc.json",
+      "sha256": "8d4719f6055763677d9a9737da761d7cc99d5e8845690b2e95b8fe7d533108a6"
+    },
+    {
+      "file_id": "coru_9d8a0e0a8a82",
+      "dataset": "coru",
+      "private": false,
+      "safe_path": "coru/OCR Dataset/train/c834e3df-dc9c-4064-afe5-cb1c6005290b_line_14.txt",
+      "sha256": "c3643657731af0be5003fdbd6c5b1eae00252dd69cf219120856ff625feb3e93"
+    },
+    {
+      "file_id": "coru_9bb575d84e73",
+      "dataset": "coru",
+      "private": false,
+      "safe_path": "coru/OCR Dataset/train/8463cd25-48ca-4bdc-83f7-d3a291ca4f71_date.jpg",
+      "sha256": "470ce380eab0ef92ec12c5248ef31e0cd82e91f7d32b1a3613849ef3852a4101"
+    },
+    {
+      "file_id": "coru_b16333ebec4f",
+      "dataset": "coru",
+      "private": false,
+      "safe_path": "coru/OCR Dataset/train/0bd8c28a-a0a3-4709-99e2-6edcd43b9210_line_00.txt",
+      "sha256": "1d759abc1ed1b5ac42d5bad7a4b6250dd8cb31fe2c0353b7f681aa7e917735ca"
+    },
+    {
+      "file_id": "fatura_0ab97f471501",
+      "dataset": "fatura",
+      "private": false,
+      "safe_path": "fatura/invoices_dataset_final/Annotations/COCO_compatible_format/Template17_Instance70_coco_train.json",
+      "sha256": "e280406c37db84aa408d312293eae501ad756f2d99df15dda87e59a22919443b"
+    },
+    {
+      "file_id": "fatura_b11c6587f4eb",
+      "dataset": "fatura",
+      "private": false,
+      "safe_path": "fatura/invoices_dataset_final/Annotations/Original_Format/Template42_Instance131.json",
+      "sha256": "8872c7b5298d6adf27eeed27a253d6f8f046a7fa48ef6969b2cb11e3e10914c7"
+    },
+    {
+      "file_id": "fatura_8754833e1f4c",
+      "dataset": "fatura",
+      "private": false,
+      "safe_path": "fatura/invoices_dataset_final/Annotations/COCO_compatible_format/Template16_Instance94_coco_train.json",
+      "sha256": "acaf33e563192ced0288395b4f84023382baed060ed5f844778889c9334ecaeb"
+    },
+    {
+      "file_id": "fatura_5957c86271a5",
+      "dataset": "fatura",
+      "private": false,
+      "safe_path": "fatura/invoices_dataset_final/Annotations/layoutlm_HF_format/Template40_Instance115_hugg_train.json",
+      "sha256": "e6548d392a9f72f01c06b92b7dc23753b8df7ad280fd37a1cc1b40d27acb7005"
+    },
+    {
+      "file_id": "fatura_6b5189fb9d88",
+      "dataset": "fatura",
+      "private": false,
+      "safe_path": "fatura/invoices_dataset_final/images/Template25_Instance176.jpg",
+      "sha256": "287c00da0bff7c3cc764d06d1f4335af40882fa1124c11fcf58b20afab234d7e"
+    },
+    {
+      "file_id": "fatura_bac5c5c4804a",
+      "dataset": "fatura",
+      "private": false,
+      "safe_path": "fatura/invoices_dataset_final/Annotations/COCO_compatible_format/Template45_Instance15_coco_train.json",
+      "sha256": "fe45ea1c24006d94ce13b814c7f9bb2f77dbf15d07cbf249b609fccf5bfe948d"
+    },
+    {
+      "file_id": "fatura_2e2175e59abc",
+      "dataset": "fatura",
+      "private": false,
+      "safe_path": "fatura/invoices_dataset_final/Annotations/Original_Format/Template23_Instance189.json",
+      "sha256": "b2f091d9e0676dcd39b7bdc776e1eac79452c6d2ab61338502a536493cd6262f"
+    },
+    {
+      "file_id": "fatura_f3e4811e464d",
+      "dataset": "fatura",
+      "private": false,
+      "safe_path": "fatura/invoices_dataset_final/Annotations/layoutlm_HF_format/Template36_Instance21_hugg_train.json",
+      "sha256": "394b475a50a80b0c5b5347b4bb79493e363eddb9b63c512d01cbd7b40dbb0af4"
+    },
+    {
+      "file_id": "fatura_3ee8f56993a2",
+      "dataset": "fatura",
+      "private": false,
+      "safe_path": "fatura/invoices_dataset_final/Annotations/layoutlm_HF_format/Template10_Instance62_hugg_test.json",
+      "sha256": "ab88aa2897bba9eeddf8ab47b070809fa1c84861c892ab6a108745ab3c76002c"
+    },
+    {
+      "file_id": "fatura_6d7b41012bfd",
+      "dataset": "fatura",
+      "private": false,
+      "safe_path": "fatura/invoices_dataset_final/Annotations/layoutlm_HF_format/Template25_Instance168_hugg_train.json",
+      "sha256": "21f8b1cf814dd42d76cec9884ecd93b1ad4e169c4640375bd76538fdcf6b686a"
+    },
+    {
+      "file_id": "fatura_fa99047bd6e4",
+      "dataset": "fatura",
+      "private": false,
+      "safe_path": "fatura/invoices_dataset_final/Annotations/COCO_compatible_format/Template25_Instance124_coco_train.json",
+      "sha256": "2cf833f6a23cd8529c5122f253a3e2173442d3db7c393450af23703e2fd963e2"
+    },
+    {
+      "file_id": "fatura_e0912d16a7ec",
+      "dataset": "fatura",
+      "private": false,
+      "safe_path": "fatura/invoices_dataset_final/Annotations/layoutlm_HF_format/Template49_Instance58_hugg_test.json",
+      "sha256": "88042336a69bd16ea5fc4dff66c4c3a3d9f212236f498ae80cc0ab908826fa6c"
+    },
+    {
+      "file_id": "fatura_fbaf5ceb6ccc",
+      "dataset": "fatura",
+      "private": false,
+      "safe_path": "fatura/invoices_dataset_final/Annotations/COCO_compatible_format/Template45_Instance17_coco_train.json",
+      "sha256": "1137c4741d166c2e3d4ea989dfaf78b51b776638a18ee7ef146da36dd5379bbb"
+    },
+    {
+      "file_id": "fatura_a972bad6acfd",
+      "dataset": "fatura",
+      "private": false,
+      "safe_path": "fatura/invoices_dataset_final/Annotations/Original_Format/Template48_Instance29.json",
+      "sha256": "e13f859186980ebf111eb85d6129cca077bade226e6ea4746cbb566a7b4b3b5b"
+    },
+    {
+      "file_id": "fatura_d7233a00980c",
+      "dataset": "fatura",
+      "private": false,
+      "safe_path": "fatura/invoices_dataset_final/Annotations/Original_Format/Template16_Instance56.json",
+      "sha256": "f00491d526bb9d816f3daadfe3534b9652cf4a27f4e80ff8cfe0b860041a974d"
+    },
+    {
+      "file_id": "fatura_3e62c8439a77",
+      "dataset": "fatura",
+      "private": false,
+      "safe_path": "fatura/invoices_dataset_final/Annotations/Original_Format/Template38_Instance112.json",
+      "sha256": "d17920000f3be424f2b307b1fe4c99b6e2028c578605030fdfdae633ee6b6b62"
+    },
+    {
+      "file_id": "fatura_a99beb0f2033",
+      "dataset": "fatura",
+      "private": false,
+      "safe_path": "fatura/invoices_dataset_final/Annotations/Original_Format/Template9_Instance67.json",
+      "sha256": "8c12800f7089e84008624e2996b077b15c838e52eb5692334f919a051e2b6575"
+    },
+    {
+      "file_id": "fatura_94b8ec7c11a9",
+      "dataset": "fatura",
+      "private": false,
+      "safe_path": "fatura/invoices_dataset_final/Annotations/COCO_compatible_format/Template23_Instance160_coco_test.json",
+      "sha256": "ea92db13ed440437066d248419e0e8cc531f2f8e4ad1a75ee63120ffbf212ff0"
+    },
+    {
+      "file_id": "fatura_fb30c2e75729",
+      "dataset": "fatura",
+      "private": false,
+      "safe_path": "fatura/invoices_dataset_final/Annotations/layoutlm_HF_format/Template1_Instance180_hugg_train.json",
+      "sha256": "ab2f61551b50256e7b902dc3907d932e21af3155cf812975b012d6514f347bbb"
+    },
+    {
+      "file_id": "fatura_bb0d9a31d600",
+      "dataset": "fatura",
+      "private": false,
+      "safe_path": "fatura/invoices_dataset_final/Annotations/layoutlm_HF_format/Template23_Instance125_hugg_test.json",
+      "sha256": "e03ef49cb7ad3e11c2b2aecd7b2f1ce3f0e89c71a1e018dfbc102e6a193578b2"
+    },
+    {
+      "file_id": "funsd_8330840801ce",
+      "dataset": "funsd",
+      "private": false,
+      "safe_path": "funsd/dataset/testing_data/annotations/82837252.json",
+      "sha256": "20b426a8a903a514240c1e3d9ba7d249c246dd2c6df4bb16a9a6f97d9eb08336"
+    },
+    {
+      "file_id": "funsd_5ff3640c0a54",
+      "dataset": "funsd",
+      "private": false,
+      "safe_path": "funsd/dataset/testing_data/images/83553333_3334.png",
+      "sha256": "5811f1bc34e499edd7d6cf9fc7e1473b4bdb71005ec35ff5f6ba25ba1a6326c7"
+    },
+    {
+      "file_id": "funsd_bb1df37c070a",
+      "dataset": "funsd",
+      "private": false,
+      "safe_path": "funsd/__MACOSX/dataset/training_data/images/._89368010.png",
+      "sha256": "3c75c29522b679b42f98f5771322c67ad11f579e530821a3854bbcca97beb234"
+    },
+    {
+      "file_id": "funsd_f86a8c718da1",
+      "dataset": "funsd",
+      "private": false,
+      "safe_path": "funsd/dataset/training_data/annotations/91372360.json",
+      "sha256": "d79db27bbd6ba5465fee995e56b1ab6a6d524d364b7005a48c3f7ad9f09c5a8f"
+    },
+    {
+      "file_id": "funsd_3bd0bc213bbb",
+      "dataset": "funsd",
+      "private": false,
+      "safe_path": "funsd/dataset/training_data/images/71190280.png",
+      "sha256": "22e9982072a194f559c5690757c077b7b49a5a06e057535aeff1b1968fe9e4d1"
+    },
+    {
+      "file_id": "funsd_b0590833bc4c",
+      "dataset": "funsd",
+      "private": false,
+      "safe_path": "funsd/__MACOSX/dataset/training_data/annotations/._0060270727.json",
+      "sha256": "3c75c29522b679b42f98f5771322c67ad11f579e530821a3854bbcca97beb234"
+    },
+    {
+      "file_id": "funsd_084f37792305",
+      "dataset": "funsd",
+      "private": false,
+      "safe_path": "funsd/dataset/training_data/images/91355841.png",
+      "sha256": "d5da9fbc2f409cabcf29c1deb7deabe4ad7297db01fa42d3d7a408709415217f"
+    },
+    {
+      "file_id": "funsd_3f0c7f8bcd10",
+      "dataset": "funsd",
+      "private": false,
+      "safe_path": "funsd/__MACOSX/dataset/training_data/annotations/._0030031163.json",
+      "sha256": "3c75c29522b679b42f98f5771322c67ad11f579e530821a3854bbcca97beb234"
+    },
+    {
+      "file_id": "funsd_a43eac10e9ce",
+      "dataset": "funsd",
+      "private": false,
+      "safe_path": "funsd/__MACOSX/dataset/training_data/annotations/._01073843.json",
+      "sha256": "3c75c29522b679b42f98f5771322c67ad11f579e530821a3854bbcca97beb234"
+    },
+    {
+      "file_id": "funsd_ae43ceb542c4",
+      "dataset": "funsd",
+      "private": false,
+      "safe_path": "funsd/__MACOSX/dataset/training_data/images/._92327794.png",
+      "sha256": "3c75c29522b679b42f98f5771322c67ad11f579e530821a3854bbcca97beb234"
+    },
+    {
+      "file_id": "funsd_6305a6b24484",
+      "dataset": "funsd",
+      "private": false,
+      "safe_path": "funsd/__MACOSX/dataset/training_data/annotations/._71341634.json",
+      "sha256": "3c75c29522b679b42f98f5771322c67ad11f579e530821a3854bbcca97beb234"
+    },
+    {
+      "file_id": "funsd_de64e44079bc",
+      "dataset": "funsd",
+      "private": false,
+      "safe_path": "funsd/__MACOSX/dataset/training_data/annotations/._00920222.json",
+      "sha256": "3c75c29522b679b42f98f5771322c67ad11f579e530821a3854bbcca97beb234"
+    },
+    {
+      "file_id": "funsd_60340770b883",
+      "dataset": "funsd",
+      "private": false,
+      "safe_path": "funsd/__MACOSX/dataset/training_data/annotations/._92094746.json",
+      "sha256": "31c11af5b1063f32fcfdb8a954768ee0adc36c5e71e396013425aa799d7ff1fa"
+    },
+    {
+      "file_id": "funsd_ada3d2eb45ca",
+      "dataset": "funsd",
+      "private": false,
+      "safe_path": "funsd/__MACOSX/dataset/training_data/annotations/._0000990274.json",
+      "sha256": "3c75c29522b679b42f98f5771322c67ad11f579e530821a3854bbcca97beb234"
+    },
+    {
+      "file_id": "funsd_53a98b084e91",
+      "dataset": "funsd",
+      "private": false,
+      "safe_path": "funsd/dataset/training_data/annotations/0071032807.json",
+      "sha256": "4d84e5b77b1cc5753f4c6bb24ca5a1138be732df0e633f0c29fdf3bf5c882fec"
+    },
+    {
+      "file_id": "funsd_e6359e5cee35",
+      "dataset": "funsd",
+      "private": false,
+      "safe_path": "funsd/__MACOSX/dataset/training_data/annotations/._91903177.json",
+      "sha256": "3c75c29522b679b42f98f5771322c67ad11f579e530821a3854bbcca97beb234"
+    },
+    {
+      "file_id": "funsd_3422f437fb04",
+      "dataset": "funsd",
+      "private": false,
+      "safe_path": "funsd/__MACOSX/dataset/training_data/annotations/._91161344_91161347.json",
+      "sha256": "3c75c29522b679b42f98f5771322c67ad11f579e530821a3854bbcca97beb234"
+    },
+    {
+      "file_id": "funsd_4c54e9c51ba1",
+      "dataset": "funsd",
+      "private": false,
+      "safe_path": "funsd/__MACOSX/dataset/training_data/images/._00922237.png",
+      "sha256": "3c75c29522b679b42f98f5771322c67ad11f579e530821a3854bbcca97beb234"
+    },
+    {
+      "file_id": "funsd_7910efc7e8f5",
+      "dataset": "funsd",
+      "private": false,
+      "safe_path": "funsd/dataset/training_data/annotations/71206427.json",
+      "sha256": "898b3ec0592c1bd9233a6afcad1f7463fe1a714c6684be86c8deda01a4a74241"
+    },
+    {
+      "file_id": "funsd_51c2fbf187db",
+      "dataset": "funsd",
+      "private": false,
+      "safe_path": "funsd/dataset/training_data/images/92586242.png",
+      "sha256": "204ce28795fd60e6cf33e655c63d051b7fe09107e0bdc3ca9ecbac53228196a6"
+    },
+    {
+      "file_id": "gmail_91c962b082c0",
+      "dataset": "gmail",
+      "private": true,
+      "safe_path": "<private>",
+      "sha256": "c76d19f21adbbbde3d9fe39ca692ce3afba94f38a6d92cf26194baf7b4159732"
+    },
+    {
+      "file_id": "gmail_d6e7e735ded7",
+      "dataset": "gmail",
+      "private": true,
+      "safe_path": "<private>",
+      "sha256": "4f21ecaed51f09ff29bcb0b3cfcc79c92301bf92074665b2aab799b993075a6d"
+    },
+    {
+      "file_id": "gmail_73c19a25c91a",
+      "dataset": "gmail",
+      "private": true,
+      "safe_path": "<private>",
+      "sha256": "080492afb51ec124ace118bcfb47c2e78a5e4c8fd66af277791991c8953a9b85"
+    },
+    {
+      "file_id": "gmail_3edab2aa21c3",
+      "dataset": "gmail",
+      "private": true,
+      "safe_path": "<private>",
+      "sha256": "4de51d380f4ca6ddd88163dd7631b786afcfe023e52b7dfd6d5c27edbe5b47ce"
+    },
+    {
+      "file_id": "gmail_643038177303",
+      "dataset": "gmail",
+      "private": true,
+      "safe_path": "<private>",
+      "sha256": "589a866ce21b927f2a6e28659ba8053efa1e9b88fd8fd8471d7dda13f4248113"
+    },
+    {
+      "file_id": "gmail_27d89436bdf0",
+      "dataset": "gmail",
+      "private": true,
+      "safe_path": "<private>",
+      "sha256": "5f86583687bf285dd0935e9a175b1e2aebdda7920f7b8e04d9b63ca5fb872518"
+    },
+    {
+      "file_id": "gmail_fabb70187253",
+      "dataset": "gmail",
+      "private": true,
+      "safe_path": "<private>",
+      "sha256": "71b34916f19412ea90d9f46b728e056564ff65f8cf80c1cf266726e9bcb7cbb0"
+    },
+    {
+      "file_id": "gmail_c5e9859c56f3",
+      "dataset": "gmail",
+      "private": true,
+      "safe_path": "<private>",
+      "sha256": "6835a1959a1e7bb437d1c6411b83428d2d8b338df5c1276bfb13cf69bdd6ab08"
+    },
+    {
+      "file_id": "gmail_5fa8b789c803",
+      "dataset": "gmail",
+      "private": true,
+      "safe_path": "<private>",
+      "sha256": "02e1a6d7e946ced30cd12c9f6dd4a056b40b6e504cc985b062100096181c6e08"
+    },
+    {
+      "file_id": "gmail_313e52a406e2",
+      "dataset": "gmail",
+      "private": true,
+      "safe_path": "<private>",
+      "sha256": "475fe665dba39e39c383df64982ab2d0d7664621798b72335b070ea382bb20d7"
+    },
+    {
+      "file_id": "gmail_239e37a8e257",
+      "dataset": "gmail",
+      "private": true,
+      "safe_path": "<private>",
+      "sha256": "b2754e5ace94b62fff6cb77e779dc0f647dd56a421a23b8386969378ab42ff0d"
+    },
+    {
+      "file_id": "gmail_ad178b13cede",
+      "dataset": "gmail",
+      "private": true,
+      "safe_path": "<private>",
+      "sha256": "8ce8153098597db89024e70df31be50e29f28038e607e964b9fa84b7c1e5ea75"
+    },
+    {
+      "file_id": "gmail_e43230bcc7c4",
+      "dataset": "gmail",
+      "private": true,
+      "safe_path": "<private>",
+      "sha256": "df9f8edeeabd50247d18265b2399c1f830283c7f672c083fd8a8a066f1c72ccf"
+    },
+    {
+      "file_id": "gmail_63856d443f1c",
+      "dataset": "gmail",
+      "private": true,
+      "safe_path": "<private>",
+      "sha256": "719258968fb83c8b62d5d625a2b39bd7a21b49b18e4a72b4cb94830eb83c96b8"
+    },
+    {
+      "file_id": "gmail_89d7423b15f5",
+      "dataset": "gmail",
+      "private": true,
+      "safe_path": "<private>",
+      "sha256": "6905d6c416a3afbe6fbd1e688e0cad4642291d08ca5e8168c0f04aa6842aa8d6"
+    },
+    {
+      "file_id": "gmail_6b03788bd5ad",
+      "dataset": "gmail",
+      "private": true,
+      "safe_path": "<private>",
+      "sha256": "b1324c29b50323b9c1e9bcd88c0deb890859774ee1860c1f75da4a26efad9673"
+    },
+    {
+      "file_id": "gmail_00a07409f702",
+      "dataset": "gmail",
+      "private": true,
+      "safe_path": "<private>",
+      "sha256": "72cb6305ace4c6e107fe71930c6f9d6ad678c9b929e707f7501f31991d1f0d65"
+    },
+    {
+      "file_id": "gmail_283131f066fe",
+      "dataset": "gmail",
+      "private": true,
+      "safe_path": "<private>",
+      "sha256": "efda8d0d34beaa2d2245e21a92c56daef87d7b5578f35f4d5f3b395b49a8091e"
+    },
+    {
+      "file_id": "gmail_ae3861189a8a",
+      "dataset": "gmail",
+      "private": true,
+      "safe_path": "<private>",
+      "sha256": "19e78e77ef05de86995b77ddce61dd63452e005419ad50b5263dc57a9b767f23"
+    },
+    {
+      "file_id": "gmail_4fe103a6d068",
+      "dataset": "gmail",
+      "private": true,
+      "safe_path": "<private>",
+      "sha256": "1aadd2e22811b03b43e446b8c8e21baaf8920799a66f3355da4629af17655a44"
+    },
+    {
+      "file_id": "sroie_b6175b86f10b",
+      "dataset": "sroie",
+      "private": false,
+      "safe_path": "sroie/SROIE2019/train/entities/X51008142059.txt",
+      "sha256": "1d2e6db44c733d5f3731176597f366946ab268f1f55f2810eb3bf1a6ba004321"
+    },
+    {
+      "file_id": "sroie_7616c57e303b",
+      "dataset": "sroie",
+      "private": false,
+      "safe_path": "sroie/SROIE2019/test/img/X510056849111.jpg",
+      "sha256": "895f71a999ffab734aae955ca8e7609f76626466031d2fd8213074081e743cb5"
+    },
+    {
+      "file_id": "sroie_57755f162b02",
+      "dataset": "sroie",
+      "private": false,
+      "safe_path": "sroie/SROIE2019/test/box/X51006328967.txt",
+      "sha256": "6903c9bb28981c04f987b1fb03043e8518e6e1a5aa312dd9aee32a27e7f9f03a"
+    },
+    {
+      "file_id": "sroie_179e43c0ea13",
+      "dataset": "sroie",
+      "private": false,
+      "safe_path": "sroie/SROIE2019/train/box/X51005757304.txt",
+      "sha256": "fb1dd1328d2dce9830b828d7a09d85f0fd12bed459e2d3519c547c5d3a3deed4"
+    },
+    {
+      "file_id": "sroie_852104413ed4",
+      "dataset": "sroie",
+      "private": false,
+      "safe_path": "sroie/SROIE2019/test/box/X51008099090.txt",
+      "sha256": "47d089bbb8ed7803716139f7470fb8ba9f045d9632086bc497d749deb9187633"
+    },
+    {
+      "file_id": "sroie_d49dc632c432",
+      "dataset": "sroie",
+      "private": false,
+      "safe_path": "sroie/SROIE2019/train/img/X51006913028.jpg",
+      "sha256": "23bce1860ba9276ba87ef930fa510d0332bb4476c2b944a8a5e6f5f47220b75e"
+    },
+    {
+      "file_id": "sroie_bbe917f4ff0e",
+      "dataset": "sroie",
+      "private": false,
+      "safe_path": "sroie/SROIE2019/train/box/X51005453729.txt",
+      "sha256": "60d04815a50bed5ffc297055e11072dec972673350a94d5b518580ee1e122a9b"
+    },
+    {
+      "file_id": "sroie_4c5da64d90ec",
+      "dataset": "sroie",
+      "private": false,
+      "safe_path": "sroie/SROIE2019/test/entities/X51007231372.txt",
+      "sha256": "cabb8e1b1307f987491af5d86bedc97d51b18dd87dd5cbc3dab623c07c784937"
+    },
+    {
+      "file_id": "sroie_9fb89c24bf64",
+      "dataset": "sroie",
+      "private": false,
+      "safe_path": "sroie/SROIE2019/test/box/X51006311714.txt",
+      "sha256": "1c0dac056e213f53b3c83a9435065a95c109ea904abd0d8712b89fa821530577"
+    },
+    {
+      "file_id": "sroie_a0731e55d945",
+      "dataset": "sroie",
+      "private": false,
+      "safe_path": "sroie/SROIE2019/train/img/X51008142068.jpg",
+      "sha256": "d2ef017f87305806ee78d8a8bfd316e5e9a2d0f74a1b976e15df4634b05a32d8"
+    },
+    {
+      "file_id": "sroie_6fcc1edaf190",
+      "dataset": "sroie",
+      "private": false,
+      "safe_path": "sroie/SROIE2019/train/box/X51005806685.txt",
+      "sha256": "e3335a48b2a621110639012cb53ef318b4284264c902eba4e56871f5de12034c"
+    },
+    {
+      "file_id": "sroie_6dea02944a78",
+      "dataset": "sroie",
+      "private": false,
+      "safe_path": "sroie/SROIE2019/train/box/X51005568891.txt",
+      "sha256": "6438ef00ee5823c2d88a92ac98c62e0814d1ac94e8e285ac5a05835c7fe1bb47"
+    },
+    {
+      "file_id": "sroie_54cc9348dc98",
+      "dataset": "sroie",
+      "private": false,
+      "safe_path": "sroie/SROIE2019/test/img/X51005442375.jpg",
+      "sha256": "8f9969494b155daeb3b1be8fd988c133e1ac0a28c37c70ee7542918ad0803fa5"
+    },
+    {
+      "file_id": "sroie_37eb848fcb41",
+      "dataset": "sroie",
+      "private": false,
+      "safe_path": "sroie/SROIE2019/train/box/X51007846388.txt",
+      "sha256": "71b20055df2a95b7b792abf29a0e64352b0f476c6214ab56bce37b2bc24a1eae"
+    },
+    {
+      "file_id": "sroie_5ae3a972ec5d",
+      "dataset": "sroie",
+      "private": false,
+      "safe_path": "sroie/SROIE2019/train/img/X51006414636.jpg",
+      "sha256": "60a8d5029b38629f525ecc4c0f52005990139cc5dde6f9842678226bfbe52af3"
+    },
+    {
+      "file_id": "sroie_e4a2221b4bc5",
+      "dataset": "sroie",
+      "private": false,
+      "safe_path": "sroie/SROIE2019/test/box/X51005200931.txt",
+      "sha256": "e4738d6acd436164b291d53a03c81765f8558b838fe66cf75b148fb8d086cd6f"
+    },
+    {
+      "file_id": "sroie_421542b021c5",
+      "dataset": "sroie",
+      "private": false,
+      "safe_path": "sroie/SROIE2019/test/entities/X51006387931.txt",
+      "sha256": "c70cb340755441246a8f6a15ccd2523ed68a489c7dbb9a212f254178f97d9d5b"
+    },
+    {
+      "file_id": "sroie_86f6dc462ba6",
+      "dataset": "sroie",
+      "private": false,
+      "safe_path": "sroie/SROIE2019/train/entities/X51005677328.txt",
+      "sha256": "8509cb9a51aa3b409d0da08b92b804eb397d773513107b009a872678cd7b59e0"
+    },
+    {
+      "file_id": "sroie_ed82b4aca413",
+      "dataset": "sroie",
+      "private": false,
+      "safe_path": "sroie/SROIE2019/train/img/X51006556824.jpg",
+      "sha256": "e0dee2557ea9ebb23b7f9892c68ee9c1efd9b492cd9e442a7c2155336dba88db"
+    },
+    {
+      "file_id": "sroie_a7fb184c5c67",
+      "dataset": "sroie",
+      "private": false,
+      "safe_path": "sroie/SROIE2019/train/img/X51005712021.jpg",
+      "sha256": "d9ca1bf91702c10135691bda4787837648496d5236fc16a25f803bb769c581a2"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "version": "zone-guided-angle-v1",
+  "evaluation_hash": "b6736bbe25d7bbfc",
+  "profile": "full",
+  "angle_configuration": {
+    "methods": [
+      "hough",
+      "projection_profile",
+      "min_area_rect"
+    ],
+    "coarse_step_degrees": 2.0,
+    "fine_step_degrees": 0.25,
+    "fine_window_degrees": 3.0,
+    "scoring_size": 128,
+    "reliability_threshold": 0.5,
+    "minimum_ink_fraction": 0.005,
+    "minimum_edge_fraction": 0.002
+  },
+  "zone_model_version": "kmeans-rotation-v1",
+  "zone_training_hash": "e734f8a8c396d292",
+  "zone_mapping": {
+    "0": 1,
+    "1": 2,
+    "2": 4,
+    "3": 3
+  },
+  "search_scope": "mapped K-Means zone only",
+  "method": "combined_hough_projection_gradient_min_area_rect",
+  "fallback_policy": "continue with remaining geometric evidence and mark fallback_used",
+  "rotation_direction": "counterclockwise",
+  "correction_semantics": "correction_angle = -estimated_angle",
+  "private_row_outputs": false
+}

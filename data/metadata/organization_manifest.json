@@ -1,0 +1,41 @@
+{
+  "mode": "move",
+  "generated_at": "2026-07-12T19:14:38.045422+00:00",
+  "actions": [
+    {
+      "dataset": "sroie",
+      "current": "C:\\Assumption University\\CSX4201\\Project\\vision_info_extraction_data\\public_train\\sroie_receipts",
+      "target": "C:\\Assumption University\\CSX4201\\Project\\data\\raw\\public\\sroie",
+      "action": "moved",
+      "note": "files 2926->2926 hashes-ok"
+    },
+    {
+      "dataset": "funsd",
+      "current": "C:\\Assumption University\\CSX4201\\Project\\vision_info_extraction_data\\public_train\\funsd_forms",
+      "target": "C:\\Assumption University\\CSX4201\\Project\\data\\raw\\public\\funsd",
+      "action": "moved",
+      "note": "files 810->810 hashes-ok"
+    },
+    {
+      "dataset": "fatura",
+      "current": "C:\\Assumption University\\CSX4201\\Project\\vision_info_extraction_data\\public_train\\fatura_invoices",
+      "target": "C:\\Assumption University\\CSX4201\\Project\\data\\raw\\public\\fatura",
+      "action": "moved",
+      "note": "files 40005->40005 hashes-ok"
+    },
+    {
+      "dataset": "coru",
+      "current": "C:\\Assumption University\\CSX4201\\Project\\vision_info_extraction_data\\public_train\\coru_receipts",
+      "target": "C:\\Assumption University\\CSX4201\\Project\\data\\raw\\public\\coru",
+      "action": "moved",
+      "note": "files 85026->85026 hashes-ok"
+    },
+    {
+      "dataset": "gmail",
+      "current": "C:\\Assumption University\\CSX4201\\Project\\vision_info_extraction_data\\gmail_private_test",
+      "target": "C:\\Assumption University\\CSX4201\\Project\\data\\raw\\private\\gmail",
+      "action": "moved",
+      "note": "files 26->26 hashes-ok"
+    }
+  ]
+}

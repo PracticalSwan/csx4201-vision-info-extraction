@@ -1,0 +1,36 @@
+{
+  "stage": "page_preparation",
+  "rotation_direction": "counterclockwise",
+  "full_profile_scope": "bounded_selected_corpus",
+  "candidate_page_rows": 52636,
+  "selected_pages": 603,
+  "selected_by_dataset": {
+    "coru": 100,
+    "fatura": 100,
+    "funsd": 100,
+    "gmail": 203,
+    "sroie": 100
+  },
+  "selected_by_component": {
+    "coru:Receipt Images & Key Information Detection": 50,
+    "coru:Receipt Question Answering": 50,
+    "fatura:invoices_dataset_final": 100,
+    "funsd:dataset": 100,
+    "gmail:legal_financial_docs": 190,
+    "gmail:receipts": 4,
+    "gmail:invoices": 9,
+    "sroie:SROIE2019": 100
+  },
+  "private_documents": 26,
+  "private_pages": 203,
+  "excluded_pages": 52033,
+  "exclusion_reasons": {
+    "deterministic bounded-corpus cap": 21686,
+    "line crops are not full document pages": 30148,
+    "source image is unreadable, invalid, or empty": 199
+  },
+  "preparation_errors": 0,
+  "elapsed_seconds": 22.78932189999614,
+  "public_existing_images_materialized": false,
+  "pdf_dpi": 200
+}

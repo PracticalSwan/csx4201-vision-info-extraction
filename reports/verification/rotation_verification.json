@@ -1,0 +1,107 @@
+{
+  "all_passed": true,
+  "profile": "full",
+  "checks": [
+    {
+      "name": "raw-integrity",
+      "passed": true,
+      "detail": "raw counts, size, and sampled hashes are unchanged"
+    },
+    {
+      "name": "page-manifest-exists",
+      "passed": true,
+      "detail": "C:\\Assumption University\\CSX4201\\Project\\data\\metadata\\page_manifest.csv"
+    },
+    {
+      "name": "split-manifest-exists",
+      "passed": true,
+      "detail": "C:\\Assumption University\\CSX4201\\Project\\data\\metadata\\split_manifest.csv"
+    },
+    {
+      "name": "rotation-manifest-exists",
+      "passed": true,
+      "detail": "C:\\Assumption University\\CSX4201\\Project\\data\\metadata\\rotation_manifest.csv"
+    },
+    {
+      "name": "selected-page-paths-readable",
+      "passed": true,
+      "detail": "603/603 readable"
+    },
+    {
+      "name": "prepared-page-provenance",
+      "passed": true,
+      "detail": "603/603 provenance-valid"
+    },
+    {
+      "name": "split-leakage",
+      "passed": true,
+      "detail": "documents, pages, groups, and privacy are isolated"
+    },
+    {
+      "name": "rotation-ids-unique",
+      "passed": true,
+      "detail": "duplicate IDs=0"
+    },
+    {
+      "name": "rotation-artifacts-valid",
+      "passed": true,
+      "detail": "8332/8332 valid"
+    },
+    {
+      "name": "manifest-matches-files",
+      "passed": true,
+      "detail": "manifest=8332 physical=8332"
+    },
+    {
+      "name": "all-zones-represented",
+      "passed": true,
+      "detail": "{1: 2083, 4: 2083, 2: 2083, 3: 2083}"
+    },
+    {
+      "name": "zone-balance",
+      "passed": true,
+      "detail": "{1: 2083, 4: 2083, 2: 2083, 3: 2083}"
+    },
+    {
+      "name": "boundary-angles",
+      "passed": true,
+      "detail": "{'validation': 16, 'test': 16}"
+    },
+    {
+      "name": "private-name-leaks",
+      "passed": true,
+      "detail": "no private filenames in committable code, tests, docs, config, or public artifacts"
+    },
+    {
+      "name": "no-generated-files-under-raw",
+      "passed": true,
+      "detail": "hits=0"
+    },
+    {
+      "name": "complete-pipeline-artifacts",
+      "passed": true,
+      "detail": "all required feature/model/evaluation artifacts exist"
+    },
+    {
+      "name": "feature-caches-valid",
+      "passed": true,
+      "detail": "four splits, dimension=1957, finite and hash-matched"
+    },
+    {
+      "name": "train-only-fit-provenance",
+      "passed": true,
+      "detail": "scaler, PCA, and K-Means provenance is public train-only"
+    },
+    {
+      "name": "model-artifacts-compatible",
+      "passed": true,
+      "detail": "typed artifacts reload; k=4 and one-to-one mapping verified"
+    },
+    {
+      "name": "evaluation-outputs-valid",
+      "passed": true,
+      "detail": "mapped, clustering, boundary, private aggregate, and exact-angle outputs validated"
+    }
+  ],
+  "checked_at": "2026-07-13T17:24:40Z"
+}

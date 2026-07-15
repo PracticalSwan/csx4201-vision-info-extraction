@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-07-13T15:07:36.467Z",
+  "includeContent": false,
+  "summary": {
+    "ok": false,
+    "status": "partial",
+    "warnings": [
+      "[redacted:182 chars]",
+      "[redacted:99 chars]",
+      "[redacted:99 chars]"
+    ],
+    "error": {
+      "name": "[redacted:11 chars]",
+      "message": "[redacted:50 chars]",
+      "recoverable": true
+    },
+    "context": {
+      "timestamp": "2026-07-13T15:07:36.284Z",
+      "url": "[redacted:58 chars]",
+      "title": "[redacted:26 chars]",
+      "turnCount": 1,
+      "assistantTurnCount": 0,
+      "conversationId": "[redacted:36 chars]"
+    }
+  },
+  "steps": [
+    {
+      "id": "bootstrap",
+      "command": "session.bootstrap",
+      "status": "ok",
+      "ok": true,
+      "startedAt": "2026-07-13T15:05:24.311Z",
+      "endedAt": "2026-07-13T15:05:24.494Z",
+      "warnings": [],
+      "dataPreview": {
+        "browserName": "[redacted:6 chars]",
+        "tabId": "[redacted:9 chars]",
+        "url": "[redacted:20 chars]",
+        "loggedIn": true
+      }
+    },
+    {
+      "id": "new",
+      "command": "threads.new",
+      "status": "ok",
+      "ok": true,
+      "startedAt": "2026-07-13T15:05:24.495Z",
+      "endedAt": "2026-07-13T15:05:29.263Z",
+      "warnings": [],
+      "dataPreview": {
+        "url": "[redacted:20 chars]",
+        "title": "[redacted:7 chars]"
+      }
+    },
+    {
+      "id": "mode",
+      "command": "modes.set",
+      "status": "ok",
+      "ok": true,
+      "startedAt": "2026-07-13T15:05:29.263Z",
+      "endedAt": "2026-07-13T15:05:33.146Z",
+      "warnings": [
+        "Mode selection is unverified: requested \"GPT-5.6 Sol\" is not reflected by the visible mode controls (High). Use modes.get or inspect modeStep before treating this as a verified mode."
+      ],
+      "dataPreview": {
+        "selected": [
+          "[redacted:11 chars]",
+          "[redacted:4 chars]"
+        ],
+        "candidates": [
+          "[redacted:11 chars]",
+          "[redacted:6 chars]",
+          "[redacted:4 chars]",
+          "[redacted:11 chars]"
+        ]
+      }
+    },
+    {
+      "id": "ask",
+      "command": "messages.ask",
+      "status": "timeout",
+      "ok": false,
+      "startedAt": "2026-07-13T15:05:33.146Z",
+      "endedAt": "2026-07-13T15:07:36.467Z",
+      "warnings": [
+        "Partial assistant text (8 chars) was observed during polling but could not be re-read at wait exit."
+      ]
+    }
+  ],
+  "data": {
+    "bootstrap": {
+      "browserName": "[redacted:6 chars]",
+      "tabId": "[redacted:9 chars]",
+      "url": "[redacted:20 chars]",
+      "loggedIn": true
+    },
+    "new": {
+      "url": "[redacted:20 chars]",
+      "title": "[redacted:7 chars]"
+    },
+    "mode": {
+      "selected": [
+        "[redacted:11 chars]",
+        "[redacted:4 chars]"
+      ],
+      "candidates": [
+        "[redacted:11 chars]",
+        "[redacted:6 chars]",
+        "[redacted:4 chars]",
+        "[redacted:11 chars]"
+      ]
+    }
+  }
+}

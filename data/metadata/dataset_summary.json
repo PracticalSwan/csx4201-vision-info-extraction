@@ -1,0 +1,263 @@
+{
+  "sroie": {
+    "root_path": "C:\\Assumption University\\CSX4201\\Project\\data\\raw\\public\\sroie",
+    "target_path": "C:\\Assumption University\\CSX4201\\Project\\data\\raw\\public\\sroie",
+    "identification_confidence": "high",
+    "evidence": [
+      "located at canonical target",
+      "marker:SROIE2019",
+      "marker:layoutlm-base-uncased",
+      "extensions:50",
+      "name-hint:sroie"
+    ],
+    "total_files": 2926,
+    "total_size_bytes": 1891107439,
+    "images": 973,
+    "pdfs": 0,
+    "annotations": 1949,
+    "json_count": 3,
+    "csv_count": 0,
+    "txt_count": 1947,
+    "xml_count": 0,
+    "unreadable_files": 0,
+    "empty_files": 0,
+    "exact_duplicate_groups": 30,
+    "near_duplicate_groups": 32,
+    "unmatched_images": 0,
+    "unmatched_annotations": 0,
+    "private_file_count": 0,
+    "document_categories": [
+      "receipt"
+    ],
+    "image_extensions": [
+      ".jpg"
+    ],
+    "annotation_formats": [
+      ".json",
+      ".txt"
+    ],
+    "extension_counts": {
+      ".json": 3,
+      ".bin": 2,
+      ".txt": 1947,
+      ".jpg": 973,
+      ".zip": 1
+    },
+    "internal_structure": [
+      "SROIE2019",
+      "archive.zip"
+    ],
+    "issues": [
+      "30 exact duplicate groups",
+      "32 near-duplicate groups",
+      "2 pretrained-model artifact(s) preserved (out of scope)"
+    ]
+  },
+  "funsd": {
+    "root_path": "C:\\Assumption University\\CSX4201\\Project\\data\\raw\\public\\funsd",
+    "target_path": "C:\\Assumption University\\CSX4201\\Project\\data\\raw\\public\\funsd",
+    "identification_confidence": "high",
+    "evidence": [
+      "located at canonical target",
+      "extensions:50",
+      "name-hint:funsd"
+    ],
+    "total_files": 810,
+    "total_size_bytes": 44718596,
+    "images": 398,
+    "pdfs": 0,
+    "annotations": 398,
+    "json_count": 398,
+    "csv_count": 0,
+    "txt_count": 0,
+    "xml_count": 0,
+    "unreadable_files": 398,
+    "empty_files": 0,
+    "exact_duplicate_groups": 2,
+    "near_duplicate_groups": 2,
+    "unmatched_images": 0,
+    "unmatched_annotations": 0,
+    "private_file_count": 0,
+    "document_categories": [
+      "form"
+    ],
+    "image_extensions": [
+      ".png"
+    ],
+    "annotation_formats": [
+      ".json"
+    ],
+    "extension_counts": {
+      "": 10,
+      ".ds_store": 3,
+      ".json": 398,
+      ".png": 398,
+      ".zip": 1
+    },
+    "internal_structure": [
+      "__MACOSX",
+      "dataset",
+      "dataset.zip"
+    ],
+    "issues": [
+      "398 unreadable/invalid files",
+      "2 exact duplicate groups",
+      "2 near-duplicate groups"
+    ]
+  },
+  "fatura": {
+    "root_path": "C:\\Assumption University\\CSX4201\\Project\\data\\raw\\public\\fatura",
+    "target_path": "C:\\Assumption University\\CSX4201\\Project\\data\\raw\\public\\fatura",
+    "identification_confidence": "high",
+    "evidence": [
+      "located at canonical target",
+      "marker:invoices_dataset_final",
+      "extensions:50",
+      "name-hint:fatura"
+    ],
+    "total_files": 40005,
+    "total_size_bytes": 837181064,
+    "images": 10000,
+    "pdfs": 0,
+    "annotations": 30003,
+    "json_count": 30000,
+    "csv_count": 3,
+    "txt_count": 1,
+    "xml_count": 0,
+    "unreadable_files": 0,
+    "empty_files": 0,
+    "exact_duplicate_groups": 0,
+    "near_duplicate_groups": 8,
+    "unmatched_images": 0,
+    "unmatched_annotations": 0,
+    "private_file_count": 0,
+    "document_categories": [
+      "invoice"
+    ],
+    "image_extensions": [
+      ".jpg"
+    ],
+    "annotation_formats": [
+      ".csv",
+      ".json"
+    ],
+    "extension_counts": {
+      ".zip": 1,
+      ".json": 30000,
+      ".txt": 1,
+      ".jpg": 10000,
+      ".csv": 3
+    },
+    "internal_structure": [
+      "FATURA.zip",
+      "invoices_dataset_final"
+    ],
+    "issues": [
+      "8 near-duplicate groups"
+    ]
+  },
+  "coru": {
+    "root_path": "C:\\Assumption University\\CSX4201\\Project\\data\\raw\\public\\coru",
+    "target_path": "C:\\Assumption University\\CSX4201\\Project\\data\\raw\\public\\coru",
+    "identification_confidence": "high",
+    "evidence": [
+      "located at canonical target",
+      "marker:Item Information Extraction",
+      "marker:OCR Dataset",
+      "marker:Receipt Images & Key Information Detection",
+      "marker:Receipt Question Answering",
+      "extensions:50",
+      "name-hint:coru"
+    ],
+    "total_files": 85026,
+    "total_size_bytes": 32679782808,
+    "images": 41062,
+    "pdfs": 0,
+    "annotations": 13807,
+    "json_count": 1265,
+    "csv_count": 3,
+    "txt_count": 42687,
+    "xml_count": 0,
+    "unreadable_files": 10,
+    "empty_files": 6,
+    "exact_duplicate_groups": 3228,
+    "near_duplicate_groups": 0,
+    "unmatched_images": 1212,
+    "unmatched_annotations": 4103,
+    "private_file_count": 0,
+    "document_categories": [
+      "OCR_annotation",
+      "field_annotation",
+      "question_answer",
+      "receipt"
+    ],
+    "image_extensions": [
+      ".bmp",
+      ".jpg"
+    ],
+    "annotation_formats": [
+      ".csv",
+      ".json",
+      ".txt"
+    ],
+    "extension_counts": {
+      ".csv": 3,
+      ".zip": 7,
+      ".jpg": 41061,
+      ".txt": 42687,
+      ".bat": 2,
+      ".bmp": 1,
+      ".json": 1265
+    },
+    "internal_structure": [
+      "Item Information Extraction",
+      "OCR Dataset",
+      "Receipt Images & Key Information Detection",
+      "Receipt Question Answering"
+    ],
+    "issues": [
+      "10 unreadable/invalid files",
+      "6 empty files",
+      "3228 exact duplicate groups",
+      "1212 unmatched images, 4103 unmatched annotations"
+    ]
+  },
+  "gmail": {
+    "root_path": "C:\\Assumption University\\CSX4201\\Project\\data\\raw\\private\\gmail",
+    "target_path": "C:\\Assumption University\\CSX4201\\Project\\data\\raw\\private\\gmail",
+    "identification_confidence": "high",
+    "evidence": [
+      "gmail pdfs at canonical target"
+    ],
+    "total_files": 26,
+    "total_size_bytes": 6336865,
+    "images": 0,
+    "pdfs": 26,
+    "annotations": 0,
+    "json_count": 0,
+    "csv_count": 0,
+    "txt_count": 0,
+    "xml_count": 0,
+    "unreadable_files": 0,
+    "empty_files": 0,
+    "exact_duplicate_groups": 0,
+    "near_duplicate_groups": 0,
+    "unmatched_images": 0,
+    "unmatched_annotations": 0,
+    "private_file_count": 26,
+    "document_categories": [
+      "unknown"
+    ],
+    "image_extensions": [],
+    "annotation_formats": [],
+    "extension_counts": {
+      ".pdf": 26
+    },
+    "internal_structure": [
+      "invoices",
+      "legal_financial_docs",
+      "receipts"
+    ],
+    "issues": []
+  }
+}

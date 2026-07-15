@@ -1,0 +1,112 @@
+{
+  "stage": "rotation_generation",
+  "profile": "full",
+  "profile_scope": "bounded_selected_corpus_full_angles",
+  "rotation_direction": "counterclockwise",
+  "configuration_hash": "76541436d6ee6430",
+  "expected_rows": 8332,
+  "successful_rows": 8332,
+  "failed_rows": 0,
+  "error_records": 0,
+  "counts_by_split": {
+    "private_test": 812,
+    "train": 5600,
+    "validation": 976,
+    "test": 944
+  },
+  "counts_by_zone": {
+    "1": 2083,
+    "4": 2083,
+    "2": 2083,
+    "3": 2083
+  },
+  "counts_by_angle": {
+    "45.0": 603,
+    "300.0": 280,
+    "135.0": 603,
+    "15.0": 280,
+    "150.0": 280,
+    "105.0": 280,
+    "0.0": 120,
+    "181.0": 120,
+    "240.0": 280,
+    "120.0": 280,
+    "225.0": 603,
+    "315.0": 603,
+    "285.0": 280,
+    "75.0": 280,
+    "30.0": 280,
+    "255.0": 280,
+    "180.0": 120,
+    "210.0": 280,
+    "195.0": 280,
+    "60.0": 280,
+    "359.0": 120,
+    "165.0": 280,
+    "179.0": 120,
+    "345.0": 280,
+    "91.0": 120,
+    "89.0": 120,
+    "90.0": 120,
+    "270.0": 120,
+    "330.0": 280,
+    "1.0": 120,
+    "269.0": 120,
+    "271.0": 120
+  },
+  "counts_by_dataset": {
+    "gmail": 812,
+    "coru": 1880,
+    "sroie": 1880,
+    "funsd": 1880,
+    "fatura": 1880
+  },
+  "resource_estimate": {
+    "safe_to_run": true,
+    "expected_rotation_count": 8332,
+    "average_bytes_per_rotation": 406980,
+    "estimated_rotation_bytes": 4577792436,
+    "estimated_feature_working_bytes": 133312000,
+    "estimated_total_new_bytes": 4711104436,
+    "free_bytes_before": 17311465472,
+    "reserve_bytes": 10737418240,
+    "predicted_disk_usage_fraction": 0.9752799458680215,
+    "estimate_source": "empirical_smoke",
+    "detail": "estimated new bytes=4.39 GiB, free=16.12 GiB, reserve=10.00 GiB, source=empirical_smoke, predicted usage=0.975"
+  },
+  "elapsed_seconds": 590.3370147999958,
+  "unbounded_full_corpus_estimate": {
+    "scope": "all_usable_full_document_pages_before_bounded_selection",
+    "usable_public_pages": 22086,
+    "usable_private_pages": 203,
+    "estimated_public_pages_by_split": {
+      "train": 15460,
+      "validation": 3313,
+      "test": 3313
+    },
+    "train_angles_per_page": 20,
+    "evaluation_angles_per_page": 16,
+    "private_angles_per_page": 4,
+    "expected_public_rotations": 415216,
+    "expected_private_rotations": 812,
+    "expected_total_rotations": 416028,
+    "resource_estimate": {
+      "safe_to_run": false,
+      "expected_rotation_count": 416028,
+      "average_bytes_per_rotation": 406980,
+      "estimated_rotation_bytes": 228575351844,
+      "estimated_feature_working_bytes": 6656448000,
+      "estimated_total_new_bytes": 235231799844,
+      "free_bytes_before": 17311465472,
+      "reserve_bytes": 10737418240,
+      "predicted_disk_usage_fraction": 1.4275276277198494,
+      "estimate_source": "empirical_smoke",
+      "detail": "insufficient disk for safe materialization: estimated new bytes=219.08 GiB, free=16.12 GiB, reserve=10.00 GiB, source=empirical_smoke, predicted usage=1.428"
+    },
+    "safe_on_current_disk": false,
+    "active_reduced_configuration": {
+      "max_pages_per_public_dataset": 100,
+      "reason": "preserve the configured free-space reserve on the current machine"
+    }
+  }
+}

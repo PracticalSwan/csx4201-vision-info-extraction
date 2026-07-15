@@ -1,0 +1,192 @@
+# config.yaml — vision-info-extraction (CSX4201)
+# Dataset organization, audit, and validation configuration.
+# Paths are relative to project_root unless absolute. Use POSIX separators;
+# src/config.py resolves them with pathlib (Windows-safe).
+
+project:
+  name: "vision-info-extraction"
+  seed: 42
+
+paths:
+  project_root: "."
+  # Canonical (target) public dataset locations.
+  sroie: "data/raw/public/sroie"
+  funsd: "data/raw/public/funsd"
+  fatura: "data/raw/public/fatura"
+  coru: "data/raw/public/coru"
+  # Canonical (target) private Gmail locations.
+  gmail_receipts: "data/raw/private/gmail/receipts"
+  gmail_invoices: "data/raw/private/gmail/invoices"
+  gmail_legal_financial: "data/raw/private/gmail/legal_financial_docs"
+  gmail_unclassified: "data/raw/private/gmail/unclassified"
+  # Metadata output directory (safe to commit; private inventory is gitignored).
+  metadata: "data/metadata"
+  processed: "data/processed"
+  page_images: "data/processed/page_images"
+  private_page_images: "data/processed/private/page_images"
+  rotated_images: "data/processed/rotated_images"
+  features: "data/processed/features"
+  splits: "data/splits"
+  rotation_models: "models/kmeans_rotation"
+  reports: "reports"
+
+# Where dataset_discovery looks for datasets. The target layout (data/raw) is
+# searched first so discovery is idempotent after organization; the legacy
+# vision_info_extraction_data/ layout is searched as a fallback.
+discovery:
+  candidate_roots:
+    - "data/raw"
+    - "vision_info_extraction_data"
+
+organization:
+  default_mode: "reference"          # reference | move | copy
+  preserve_internal_structure: true  # never flatten public datasets
+  overwrite_existing: false
+  verify_after_move: true            # count + sample-hash check after move
+
+audit:
+  calculate_sha256: true
+  inspect_images: true
+  inspect_pdfs: true
+  inspect_annotations: true
+  continue_on_error: true
+  sha256_chunk_size: 1048576         # 1 MiB read chunks
+
+duplicates:
+  exact_enabled: true
+  perceptual_enabled: true
+  perceptual_threshold: 5            # max Hamming distance for phash near-dups
+  max_images_for_full_near_duplicate_scan: 10000
+
+privacy:
+  gmail_is_private: true
+  include_private_filenames_in_public_reports: false
+  include_private_contents_in_reports: false
+  include_private_images_in_reports: false
+  private_split_name: "private_test"
+
+# Public existing images are referenced read-only. Private PDFs are rendered to
+# anonymized PNG page IDs because the rotation pipeline operates on page images.
+page_preparation:
+  output_format: "png"
+  pdf_dpi: 200
+  materialize_existing_images: false
+  normalize_exif: true
+  output_color_mode: "RGB"
+  overwrite_existing: false
+  supported_image_extensions: [".jpg", ".jpeg", ".png", ".tif", ".tiff", ".bmp", ".webp"]
+
+# The machine currently cannot safely materialize all ~22k candidate public
+# pages at every required angle. "full" therefore means the complete angle
+# profile over this deterministic, documented corpus cap, not the full corpus.
+page_selection:
+  max_pages_per_public_dataset: 100
+  include_datasets: ["sroie", "funsd", "fatura", "coru"]
+  coru_components:
+    - "Receipt Images & Key Information Detection"
+    - "Receipt Question Answering"
+  exclude_coru_components:
+    "OCR Dataset": "line crops are not full document pages"
+    "Item Information Extraction": "CSV-only component has no document images"
+  group_fatura_template_families: true
+  group_coru_shared_stems: true
+
+rotation_splits:
+  train: 0.70
+  validation: 0.15
+  test: 0.15
+  seed: 42
+  group_by_document: true
+  keep_duplicate_groups_together: true
+  keep_reliable_near_duplicates_together: true
+
+rotation_generation:
+  default_profile: "full"
+  full_profile_scope: "bounded_selected_corpus"
+  direction: "counterclockwise"
+  expand_canvas: true
+  background_fill: "white"
+  interpolation: "bicubic"
+  output_max_dimension: 1024
+  max_variants_per_page: 20
+  smoke_pages_per_dataset_per_split: 1
+  smoke_angles:
+    zone_1: [45]
+    zone_2: [135]
+    zone_3: [225]
+    zone_4: [315]
+  train_angles:
+    zone_1: [15, 30, 45, 60, 75]
+    zone_2: [105, 120, 135, 150, 165]
+    zone_3: [195, 210, 225, 240, 255]
+    zone_4: [285, 300, 315, 330, 345]
+  boundary_angles: [0, 1, 45, 89, 90, 91, 135, 179, 180, 181, 225, 269, 270, 271, 315, 359]
+  private_test_angles: [45, 135, 225, 315]
+
+rotation_features:
+  strategy: "hog_hough"
+  resize_width: 128
+  resize_height: 128
+  preserve_aspect_ratio: true
+  padding_value: 255
+  contrast_normalization: "equalize_hist"
+  hog:
+    orientations: 9
+    pixels_per_cell: [16, 16]
+    cells_per_block: [2, 2]
+    block_norm: "L2-Hys"
+  hough:
+    angle_bins: 36
+    canny_threshold_1: 50
+    canny_threshold_2: 150
+    threshold: 25
+    min_line_length: 20
+    max_line_gap: 8
+  projection_profiles:
+    enabled: true
+    summary_bins: 64
+  directional_edges:
+    enabled: true
+  geometric_features:
+    enabled: true
+  cache_enabled: true
+
+feature_preprocessing:
+  scaler: "standard"
+
+pca:
+  enabled: true
+  n_components: 128
+  random_state: 42
+  solver: "randomized"
+
+kmeans:
+  n_clusters: 4
+  random_state: 42
+  n_init: 20
+  max_iter: 300
+  tolerance: 0.0001
+  small_cluster_fraction_warning: 0.01
+
+evaluation:
+  silhouette_max_samples: 2000
+  save_public_predictions: true
+  save_private_predictions: false
+
+angle_estimation:
+  methods: ["hough", "projection_profile", "min_area_rect"]
+  coarse_step_degrees: 2.0
+  fine_step_degrees: 0.25
+  fine_window_degrees: 3.0
+  scoring_size: 128
+  reliability_threshold: 0.50
+  minimum_ink_fraction: 0.005
+  minimum_edge_fraction: 0.002
+
+runtime:
+  workers: 2
+  minimum_free_space_gb: 10
+  disk_estimate_safety_multiplier: 1.35
+  maximum_disk_usage_fraction: 0.98
+  random_seed: 42
+  log_level: "INFO"

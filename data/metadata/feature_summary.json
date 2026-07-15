@@ -1,0 +1,49 @@
+{
+  "feature_strategy": "hog_hough",
+  "feature_version": "orientation-v1",
+  "profile": "full",
+  "configuration_hash": "888fb4999c985ba0",
+  "rotation_manifest_hash": "38f202c1dd6bef6b07ecd30f580f0ac5030813c92ee2e15e50bcd620f749bf7b",
+  "feature_dimension": 1957,
+  "feature_group_slices": {
+    "hog": [
+      0,
+      1764
+    ],
+    "hough": [
+      1764,
+      1812
+    ],
+    "projection": [
+      1812,
+      1948
+    ],
+    "directional_edges": [
+      1948,
+      1952
+    ],
+    "geometry": [
+      1952,
+      1957
+    ]
+  },
+  "counts_per_split": {
+    "private_test": 812,
+    "test": 944,
+    "train": 5600,
+    "validation": 976
+  },
+  "counts_per_zone": {
+    "1": 2083,
+    "4": 2083,
+    "2": 2083,
+    "3": 2083
+  },
+  "missing_vectors": 0,
+  "invalid_vectors": 0,
+  "nan_count": 0,
+  "infinity_count": 0,
+  "extraction_time_seconds": 128.1705823999946,
+  "storage_size_bytes": 41272169,
+  "cache_root": "data/processed/features/full/888fb4999c985ba0"
+}

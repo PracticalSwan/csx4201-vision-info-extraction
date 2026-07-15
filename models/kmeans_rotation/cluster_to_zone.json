@@ -1,0 +1,12 @@
+{
+  "model_version": "kmeans-rotation-v1",
+  "training_hash": "e734f8a8c396d292",
+  "mapping": {
+    "0": 1,
+    "1": 2,
+    "2": 4,
+    "3": 3
+  },
+  "learned_from_split": "train",
+  "private_samples_used": 0
+}

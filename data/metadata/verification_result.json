@@ -1,0 +1,105 @@
+{
+  "all_passed": true,
+  "checks": [
+    {
+      "name": "datasets-discovered",
+      "passed": true,
+      "detail": "5 datasets (need >=4)"
+    },
+    {
+      "name": "dataset-path:sroie",
+      "passed": true,
+      "detail": "C:\\Assumption University\\CSX4201\\Project\\data\\raw\\public\\sroie exists=True"
+    },
+    {
+      "name": "dataset-path:funsd",
+      "passed": true,
+      "detail": "C:\\Assumption University\\CSX4201\\Project\\data\\raw\\public\\funsd exists=True"
+    },
+    {
+      "name": "dataset-path:fatura",
+      "passed": true,
+      "detail": "C:\\Assumption University\\CSX4201\\Project\\data\\raw\\public\\fatura exists=True"
+    },
+    {
+      "name": "dataset-path:coru",
+      "passed": true,
+      "detail": "C:\\Assumption University\\CSX4201\\Project\\data\\raw\\public\\coru exists=True"
+    },
+    {
+      "name": "dataset-path:gmail",
+      "passed": true,
+      "detail": "C:\\Assumption University\\CSX4201\\Project\\data\\raw\\private\\gmail exists=True"
+    },
+    {
+      "name": "public-private-separation",
+      "passed": true,
+      "detail": "no private file under public tree"
+    },
+    {
+      "name": "gmail-is-private",
+      "passed": true,
+      "detail": "gmail root=C:\\Assumption University\\CSX4201\\Project\\data\\raw\\private\\gmail"
+    },
+    {
+      "name": "metadata-exists:file_inventory.csv",
+      "passed": true,
+      "detail": "C:\\Assumption University\\CSX4201\\Project\\data\\metadata\\file_inventory.csv"
+    },
+    {
+      "name": "metadata-exists:private_file_inventory.csv",
+      "passed": true,
+      "detail": "C:\\Assumption University\\CSX4201\\Project\\data\\metadata\\private_file_inventory.csv"
+    },
+    {
+      "name": "metadata-exists:data_sources.csv",
+      "passed": true,
+      "detail": "C:\\Assumption University\\CSX4201\\Project\\data\\metadata\\data_sources.csv"
+    },
+    {
+      "name": "metadata-exists:dataset_summary.json",
+      "passed": true,
+      "detail": "C:\\Assumption University\\CSX4201\\Project\\data\\metadata\\dataset_summary.json"
+    },
+    {
+      "name": "metadata-exists:processing_errors.csv",
+      "passed": true,
+      "detail": "C:\\Assumption University\\CSX4201\\Project\\data\\metadata\\processing_errors.csv"
+    },
+    {
+      "name": "metadata-exists:duplicate_report.csv",
+      "passed": true,
+      "detail": "C:\\Assumption University\\CSX4201\\Project\\data\\metadata\\duplicate_report.csv"
+    },
+    {
+      "name": "metadata-exists:unmatched_files.csv",
+      "passed": true,
+      "detail": "C:\\Assumption University\\CSX4201\\Project\\data\\metadata\\unmatched_files.csv"
+    },
+    {
+      "name": "inventory-paths-resolve",
+      "passed": true,
+      "detail": "128767/128767 resolved"
+    },
+    {
+      "name": "no-files-lost",
+      "passed": true,
+      "detail": "all dataset counts match summary"
+    },
+    {
+      "name": "raw-bytes-unchanged",
+      "passed": true,
+      "detail": "100 sample hashes stable across move"
+    },
+    {
+      "name": "duplicate-report-consistent",
+      "passed": true,
+      "detail": "3302 duplicate groups well-formed"
+    },
+    {
+      "name": "no-disallowed-neural-or-ocr-outputs",
+      "passed": true,
+      "detail": "no OCR outputs or neural checkpoints outside data/raw; classical rotation artifacts allowed"
+    }
+  ]
+}

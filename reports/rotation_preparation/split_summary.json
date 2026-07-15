@@ -1,0 +1,41 @@
+{
+  "seed": 42,
+  "selected_pages": 603,
+  "counts_by_split": {
+    "validation": 61,
+    "train": 280,
+    "test": 59,
+    "private_test": 203
+  },
+  "counts_by_dataset_and_split": {
+    "coru": {
+      "validation": 15,
+      "train": 70,
+      "test": 15
+    },
+    "fatura": {
+      "train": 70,
+      "validation": 16,
+      "test": 14
+    },
+    "funsd": {
+      "train": 70,
+      "validation": 15,
+      "test": 15
+    },
+    "gmail": {
+      "private_test": 203
+    },
+    "sroie": {
+      "train": 70,
+      "test": 15,
+      "validation": 15
+    }
+  },
+  "split_group_count": 371,
+  "document_count": 426,
+  "page_leakage": 0,
+  "document_leakage": 0,
+  "split_group_leakage": 0,
+  "private_public_leakage": 0
+}

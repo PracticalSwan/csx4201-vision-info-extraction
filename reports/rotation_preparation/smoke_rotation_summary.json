@@ -1,0 +1,84 @@
+{
+  "stage": "rotation_generation",
+  "profile": "smoke",
+  "profile_scope": "smoke",
+  "rotation_direction": "counterclockwise",
+  "configuration_hash": "3d350ed7d175ee15",
+  "expected_rows": 52,
+  "successful_rows": 52,
+  "failed_rows": 0,
+  "error_records": 0,
+  "counts_by_split": {
+    "test": 16,
+    "train": 16,
+    "private_test": 4,
+    "validation": 16
+  },
+  "counts_by_zone": {
+    "1": 13,
+    "4": 13,
+    "3": 13,
+    "2": 13
+  },
+  "counts_by_angle": {
+    "45.0": 13,
+    "315.0": 13,
+    "225.0": 13,
+    "135.0": 13
+  },
+  "counts_by_dataset": {
+    "coru": 12,
+    "funsd": 12,
+    "sroie": 12,
+    "gmail": 4,
+    "fatura": 12
+  },
+  "resource_estimate": {
+    "safe_to_run": true,
+    "expected_rotation_count": 52,
+    "average_bytes_per_rotation": 406743,
+    "estimated_rotation_bytes": 28553358,
+    "estimated_feature_working_bytes": 832000,
+    "estimated_total_new_bytes": 29385358,
+    "free_bytes_before": 32618848256,
+    "reserve_bytes": 10737418240,
+    "predicted_disk_usage_fraction": 0.9360642695341046,
+    "estimate_source": "empirical_smoke",
+    "detail": "estimated new bytes=28.02 MiB, free=30.38 GiB, reserve=10.00 GiB, source=empirical_smoke, predicted usage=0.936"
+  },
+  "elapsed_seconds": 4.2110349999857135,
+  "unbounded_full_corpus_estimate": {
+    "scope": "all_usable_full_document_pages_before_bounded_selection",
+    "usable_public_pages": 22086,
+    "usable_private_pages": 203,
+    "estimated_public_pages_by_split": {
+      "train": 15460,
+      "validation": 3313,
+      "test": 3313
+    },
+    "train_angles_per_page": 20,
+    "evaluation_angles_per_page": 16,
+    "private_angles_per_page": 4,
+    "expected_public_rotations": 415216,
+    "expected_private_rotations": 812,
+    "expected_total_rotations": 416028,
+    "resource_estimate": {
+      "safe_to_run": false,
+      "expected_rotation_count": 416028,
+      "average_bytes_per_rotation": 406980,
+      "estimated_rotation_bytes": 228575351844,
+      "estimated_feature_working_bytes": 6656448000,
+      "estimated_total_new_bytes": 235231799844,
+      "free_bytes_before": 32621989888,
+      "reserve_bytes": 10737418240,
+      "predicted_disk_usage_fraction": 1.3974906318535274,
+      "estimate_source": "empirical_smoke",
+      "detail": "insufficient disk for safe materialization: estimated new bytes=219.08 GiB, free=30.38 GiB, reserve=10.00 GiB, source=empirical_smoke, predicted usage=1.397"
+    },
+    "safe_on_current_disk": false,
+    "active_reduced_configuration": {
+      "max_pages_per_public_dataset": 100,
+      "reason": "preserve the configured free-space reserve on the current machine"
+    }
+  }
+}

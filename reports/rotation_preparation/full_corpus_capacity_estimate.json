@@ -1,0 +1,34 @@
+{
+  "scope": "all_usable_full_document_pages_before_bounded_selection",
+  "usable_public_pages": 22086,
+  "usable_private_pages": 203,
+  "estimated_public_pages_by_split": {
+    "train": 15460,
+    "validation": 3313,
+    "test": 3313
+  },
+  "train_angles_per_page": 20,
+  "evaluation_angles_per_page": 16,
+  "private_angles_per_page": 4,
+  "expected_public_rotations": 415216,
+  "expected_private_rotations": 812,
+  "expected_total_rotations": 416028,
+  "resource_estimate": {
+    "safe_to_run": false,
+    "expected_rotation_count": 416028,
+    "average_bytes_per_rotation": 406980,
+    "estimated_rotation_bytes": 228575351844,
+    "estimated_feature_working_bytes": 6656448000,
+    "estimated_total_new_bytes": 235231799844,
+    "free_bytes_before": 17311465472,
+    "reserve_bytes": 10737418240,
+    "predicted_disk_usage_fraction": 1.4275276277198494,
+    "estimate_source": "empirical_smoke",
+    "detail": "insufficient disk for safe materialization: estimated new bytes=219.08 GiB, free=16.12 GiB, reserve=10.00 GiB, source=empirical_smoke, predicted usage=1.428"
+  },
+  "safe_on_current_disk": false,
+  "active_reduced_configuration": {
+    "max_pages_per_public_dataset": 100,
+    "reason": "preserve the configured free-space reserve on the current machine"
+  }
+}
