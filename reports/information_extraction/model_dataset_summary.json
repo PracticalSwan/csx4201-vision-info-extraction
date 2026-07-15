@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "profile": "smoke",
+  "candidate_count": 16,
+  "usable_example_count": 9,
+  "excluded_example_count": 7,
+  "counts_by_dataset": {
+    "fatura": 4,
+    "funsd": 2,
+    "sroie": 3
+  },
+  "counts_by_split": {
+    "test": 4,
+    "train": 3,
+    "validation": 2
+  },
+  "exclusion_counts": {
+    "requires_ocr_alignment_without_source_token_geometry": 6,
+    "alignment_below_threshold": 1
+  },
+  "minimum_alignment_coverage": 0.7,
+  "gmail_fit_rows": 0,
+  "output_root": "D:\\CSX4201\\vision-info-extraction-assets\\data\\model_datasets\\smoke",
+  "manifest_path": "C:\\Assumption University\\CSX4201\\Project\\data\\metadata\\model_dataset_manifest.csv"
+}

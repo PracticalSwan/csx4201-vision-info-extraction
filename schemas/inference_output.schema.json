@@ -1,0 +1,246 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/csx4201/inference_output.schema.json",
+  "title": "Vision information extraction result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "document_id",
+    "source_type",
+    "document_type",
+    "language",
+    "rotation_display",
+    "pages",
+    "fields",
+    "warnings",
+    "processing"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "document_id": {"type": "string", "minLength": 1},
+    "source_type": {"enum": ["image", "pdf", "unknown"]},
+    "document_type": {"$ref": "#/$defs/classification"},
+    "language": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["selected_route", "detected_languages", "confidence"],
+      "properties": {
+        "selected_route": {"enum": ["auto", "general", "thai", "en", "tr", "th", "unknown"]},
+        "detected_languages": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "confidence": {"$ref": "#/$defs/confidence"}
+      }
+    },
+    "rotation_display": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cluster_id", "zone", "confidence", "purpose", "warning"],
+      "properties": {
+        "cluster_id": {"type": ["integer", "null"], "minimum": 0, "maximum": 3},
+        "zone": {"type": ["integer", "null"], "minimum": 1, "maximum": 4},
+        "confidence": {"$ref": "#/$defs/confidence"},
+        "purpose": {"const": "display_only"},
+        "warning": {"type": ["string", "null"]}
+      }
+    },
+    "pages": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/page"}
+    },
+    "fields": {"$ref": "#/$defs/canonicalFields"},
+    "warnings": {"type": "array", "items": {"type": "string"}},
+    "processing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["duration_seconds", "device", "pipeline_version", "private_output"],
+      "properties": {
+        "duration_seconds": {"type": "number", "minimum": 0},
+        "device": {"type": "string", "minLength": 1},
+        "pipeline_version": {"type": "string", "minLength": 1},
+        "private_output": {"type": "boolean"}
+      }
+    }
+  },
+  "$defs": {
+    "confidence": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+    "classification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "confidence"],
+      "properties": {
+        "label": {"type": "string", "minLength": 1},
+        "confidence": {"$ref": "#/$defs/confidence"}
+      }
+    },
+    "point": {
+      "type": "array",
+      "prefixItems": [{"type": "number"}, {"type": "number"}],
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "polygon": {
+      "type": "array",
+      "minItems": 4,
+      "items": {"$ref": "#/$defs/point"}
+    },
+    "bbox": {
+      "type": "array",
+      "prefixItems": [
+        {"type": "number"}, {"type": "number"}, {"type": "number"}, {"type": "number"}
+      ],
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "word": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "text", "confidence", "polygon", "bbox"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "text": {"type": "string"},
+        "confidence": {"$ref": "#/$defs/confidence"},
+        "polygon": {"$ref": "#/$defs/polygon"},
+        "bbox": {"$ref": "#/$defs/bbox"}
+      }
+    },
+    "line": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "text", "word_ids", "polygon", "bbox", "confidence"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "text": {"type": "string"},
+        "word_ids": {"type": "array", "items": {"type": "string"}},
+        "polygon": {"$ref": "#/$defs/polygon"},
+        "bbox": {"$ref": "#/$defs/bbox"},
+        "confidence": {"$ref": "#/$defs/confidence"}
+      }
+    },
+    "entity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label", "text", "word_ids", "polygon", "bbox", "confidence", "page_number"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "label": {"type": "string", "minLength": 1},
+        "text": {"type": "string"},
+        "word_ids": {"type": "array", "items": {"type": "string"}},
+        "polygon": {"$ref": "#/$defs/polygon"},
+        "bbox": {"$ref": "#/$defs/bbox"},
+        "confidence": {"$ref": "#/$defs/confidence"},
+        "page_number": {"type": "integer", "minimum": 1}
+      }
+    },
+    "relation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "type", "source_id", "target_id", "confidence", "page_number"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "type": {"enum": ["KEY_VALUE", "QUESTION_ANSWER", "HEADER_SECTION", "TABLE_HEADER_CELL", "GENERIC"]},
+        "source_id": {"type": "string", "minLength": 1},
+        "target_id": {"type": "string", "minLength": 1},
+        "confidence": {"$ref": "#/$defs/confidence"},
+        "page_number": {"type": "integer", "minimum": 1}
+      }
+    },
+    "fieldEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "raw_text", "polygon", "bbox", "confidence", "method", "page_number"],
+      "properties": {
+        "value": {"type": ["string", "number", "boolean"]},
+        "raw_text": {"type": "string"},
+        "polygon": {"$ref": "#/$defs/polygon"},
+        "bbox": {"$ref": "#/$defs/bbox"},
+        "confidence": {"$ref": "#/$defs/confidence"},
+        "method": {"type": "string", "minLength": 1},
+        "page_number": {"type": "integer", "minimum": 1}
+      }
+    },
+    "canonicalFields": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "organization_name", "document_title", "date", "invoice_number", "receipt_number",
+        "reference_number", "subtotal", "tax", "total_amount", "currency", "payment_method",
+        "address", "email", "phone_number"
+      ],
+      "properties": {
+        "organization_name": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/fieldEvidence"}]},
+        "document_title": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/fieldEvidence"}]},
+        "date": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/fieldEvidence"}]},
+        "invoice_number": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/fieldEvidence"}]},
+        "receipt_number": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/fieldEvidence"}]},
+        "reference_number": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/fieldEvidence"}]},
+        "subtotal": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/fieldEvidence"}]},
+        "tax": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/fieldEvidence"}]},
+        "total_amount": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/fieldEvidence"}]},
+        "currency": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/fieldEvidence"}]},
+        "payment_method": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/fieldEvidence"}]},
+        "address": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/fieldEvidence"}]},
+        "email": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/fieldEvidence"}]},
+        "phone_number": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/fieldEvidence"}]}
+      }
+    },
+    "page": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "page_number", "width", "height", "selected_ocr_orientation", "full_text", "ocr",
+        "entities", "key_value_pairs", "tables", "warnings", "transforms"
+      ],
+      "properties": {
+        "page_number": {"type": "integer", "minimum": 1},
+        "width": {"type": "integer", "minimum": 1},
+        "height": {"type": "integer", "minimum": 1},
+        "selected_ocr_orientation": {"type": "number", "minimum": 0, "exclusiveMaximum": 360},
+        "full_text": {"type": "string"},
+        "ocr": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "detector_model", "recognizer_model", "language_route", "mean_confidence",
+            "words", "lines", "candidate_scores", "provenance_hash", "duration_seconds"
+          ],
+          "properties": {
+            "detector_model": {"type": "string", "minLength": 1},
+            "recognizer_model": {"type": "string", "minLength": 1},
+            "language_route": {"enum": ["general", "thai"]},
+            "mean_confidence": {"$ref": "#/$defs/confidence"},
+            "words": {"type": "array", "items": {"$ref": "#/$defs/word"}},
+            "lines": {"type": "array", "items": {"$ref": "#/$defs/line"}},
+            "candidate_scores": {"type": "array", "items": {"type": "object"}},
+            "provenance_hash": {"type": "string", "minLength": 8},
+            "duration_seconds": {"type": "number", "minimum": 0}
+          }
+        },
+        "entities": {"type": "array", "items": {"$ref": "#/$defs/entity"}},
+        "key_value_pairs": {"type": "array", "items": {"$ref": "#/$defs/relation"}},
+        "tables": {"type": "array", "items": {"type": "object"}},
+        "warnings": {"type": "array", "items": {"type": "string"}},
+        "transforms": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["forward", "inverse"],
+          "properties": {
+            "forward": {"$ref": "#/$defs/matrix"},
+            "inverse": {"$ref": "#/$defs/matrix"}
+          }
+        }
+      }
+    },
+    "matrix": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "array",
+        "minItems": 3,
+        "maxItems": 3,
+        "items": {"type": "number"}
+      }
+    }
+  }
+}

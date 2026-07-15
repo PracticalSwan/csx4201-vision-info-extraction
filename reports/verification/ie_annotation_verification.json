@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "status": "passed",
+  "validated_annotations": 12433,
+  "validation_errors": 0,
+  "counts_by_dataset": {
+    "coru": 1261,
+    "fatura": 10000,
+    "funsd": 199,
+    "sroie": 973
+  },
+  "duplicate_page_ids": 0,
+  "document_split_leak_count": 0,
+  "private_public_rows": 203,
+  "private_paths_redacted": true,
+  "gmail_fit_rows": 0,
+  "errors": []
+}

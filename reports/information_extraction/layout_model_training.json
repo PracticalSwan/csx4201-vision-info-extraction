@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "status": "smoke_trained",
+  "profile": "smoke",
+  "architecture": "LayoutXLMTextLayoutForTokenClassification+GeometryAwareRelationHead",
+  "visual_backbone": false,
+  "layout_features": "multilingual token embeddings plus normalized 2D boxes",
+  "source_checkpoint": "microsoft/layoutxlm-base",
+  "license": "CC-BY-NC-SA-4.0",
+  "device": "cuda",
+  "mixed_precision": true,
+  "train_examples": 3,
+  "validation_examples": 2,
+  "train_windows": 10,
+  "validation_windows": 4,
+  "gmail_fit_rows": 0,
+  "steps": 2,
+  "optimizer_steps": 1,
+  "losses": [
+    2.530552387237549,
+    2.6675782203674316
+  ],
+  "dynamic_rotation": {
+    "sample_count": 3,
+    "upright_count": 0,
+    "minimum_angle": 28.925891407537748,
+    "maximum_angle": 280.93424432250924
+  },
+  "final_training_loss": 2.6675782203674316,
+  "validation": {
+    "loss": 2.349034607410431,
+    "token_accuracy": 0.10071942446043165,
+    "evaluated_tokens": 139
+  },
+  "checkpoint": "D:\\CSX4201\\vision-info-extraction-assets\\checkpoints\\layoutxlm\\smoke",
+  "best_checkpoint": "D:\\CSX4201\\vision-info-extraction-assets\\checkpoints\\layoutxlm\\smoke\\best",
+  "best_epoch": 1,
+  "early_stopped": false,
+  "validation_history": [
+    {
+      "epoch": 1,
+      "selection_metric": 2.349034607410431,
+      "loss": 2.349034607410431,
+      "token_accuracy": 0.10071942446043165,
+      "evaluated_tokens": 139
+    }
+  ],
+  "checkpoint_reload_passed": true,
+  "checkpoint_reload_max_logit_difference": 0.0,
+  "relation_head": {
+    "loss": 1.64029061794281,
+    "reload_passed": true,
+    "reload_max_logit_difference": 0.0,
+    "path": "D:\\CSX4201\\vision-info-extraction-assets\\checkpoints\\layoutxlm\\smoke\\relation_head.pt"
+  },
+  "duration_seconds": 5.075019899999461,
+  "limitations": [
+    "Smoke training proves pipeline/checkpoint lifecycle only; final model quality is not claimed."
+  ]
+}

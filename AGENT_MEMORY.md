@@ -13,9 +13,16 @@
 - The baseline is technically reproducible but performs modestly: public
   validation/test zone accuracy is about 38%, and exact-angle reliability is
   0% at the configured threshold.
-- OCR, information extraction, supervised classifiers, neural networks, APIs,
-  GUI work, and deployment have not started.
-- The workspace is not a Git repository. Repository visibility remains open.
+- A rotation-robust OCR/information-extraction inference and smoke-training
+  lifecycle completed on 2026-07-15. It includes exact PaddleOCR general/Thai
+  models, public annotation normalization, a Detectron2-free LayoutXLM text +
+  2D-layout model, relations/fields, schema-valid image/PDF inference, bounded
+  public evaluation, and aggregate-only private testing.
+- This is implementation and smoke-lifecycle completion, not final model
+  quality. The public smoke entity F1 is about 0.01, relation F1 is 0, and the
+  trained checkpoint used three public training examples.
+- The workspace is a Git repository with an existing GitHub remote. Recheck
+  live visibility and staged privacy before every push.
 
 ## Confirmed goal
 
@@ -108,18 +115,39 @@
   angle_estimation.py.
 - Main result roots: data/metadata, data/splits, data/processed,
   models/kmeans_rotation, and reports.
-- Current synthetic suite: 113 tests pass.
+- OCR/IE CLIs: normalize_ie_annotations.py, setup_ie_environment.ps1,
+  download_ocr_models.py, verify_ocr_models.py, prepare_model_dataset.py,
+  train_layout_model.py, extract_document.py, evaluate_information_extraction.py,
+  evaluate_private_gmail.py, verify_ie_annotations.py, and
+  verify_information_extraction.py.
+- Large OCR/layout/model/checkpoint/cache assets live below
+  D:\CSX4201\vision-info-extraction-assets in isolated Python 3.10 OCR and
+  CUDA-layout environments.
+- Required OCR models: PP-OCRv6_medium_det, PP-OCRv6_medium_rec, and
+  th_PP-OCRv5_mobile_rec; model hashes and GPU smoke initialization pass.
+- Public annotation normalization produced 12,433 records; the aligned smoke
+  model dataset contains 9 usable examples (3 train, 2 validation, 4 test),
+  with Gmail fit rows 0.
+- Layout smoke training saved/reloaded model and relation-head logits with
+  maximum difference 0.0. Validation loss was 2.3490 and token accuracy 0.1007.
+- Public angle smoke completed 16/16 runs. Private operational inference
+  completed 2/2 pages and published aggregate counts only.
+- Current development suite: 153 tests pass with one environment-dependent
+  skip; OCR-runtime and CUDA-layout partitions pass 50 and 3 tests.
 
 ## Open questions
 
-- Which document types and fields must information extraction target?
+- Do the provisional canonical fields and document types match the professor's
+  final target scope?
 - Are exact boundary angles assigned to the lower or upper zone?
 - Is K-Means specifically required, or may a deterministic/supervised
   four-way orientation method be used?
 - Which angle-estimation approach is expected?
 - What does “pre-model” mean in the final deliverable?
-- What is the official metric and held-out protocol?
-- May any derived artifact be produced from the private Gmail set?
+- What are the official quality thresholds and held-out protocol? Current
+  smoke and natural CORU-holdout results are not final benchmarks.
+- May any additional derived artifact be produced from the private Gmail set
+  beyond ignored local inference and aggregate-only reporting?
 - Is the deliverable a model, notebook, report, or submission?
 - Will a future GitHub repository be public or private?
 
@@ -158,3 +186,21 @@
 - 2026-07-13 - The single follow-up review validated live-source hashing,
   exact manifest enums, privacy coverage, artifact regeneration, tests, and
   both verifiers; no reproducible violations remained.
+- 2026-07-15 - Added the D:-backed, process-isolated PaddleOCR/LayoutXLM
+  implementation; normalized public annotations; smoke-trained and reloaded a
+  public-only layout checkpoint; verified image, rotated, Thai, unknown, and
+  multipage-PDF inference; executed bounded public and aggregate-only private
+  evaluation; retained K-Means as a failure-isolated display branch. Recorded
+  low model-quality metrics without presenting the smoke checkpoint as final.
+- 2026-07-15 - Final-review correction pass replaced static integration claims
+  with a tracked hash-bound runner and independent semantic verification,
+  required real rotated phrase recovery, corrected automatic Thai retry and
+  bounded script scoring, and added polygon detection plus recognized-text
+  metrics. Public smoke detection P/R/F1 is 0.5483/0.3333/0.4146 and
+  recognized-text coverage is 0.2503; the development/OCR/layout partitions
+  pass 158 (1 skipped), 53, and 3 tests respectively. The repository remote was
+  confirmed private before publication; Gmail fit rows remain 0.
+- 2026-07-15 - The permitted second and final independent review rechecked the
+  three prior blockers, validated 11 integration artifacts plus 13 focused
+  regressions, and confirmed all three closed with no reproducible completion
+  blocker remaining.

@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "profile": "smoke",
+  "public_only": true,
+  "examples": 9,
+  "gmail_fit_rows": 0,
+  "cer": 0.5448453608247422,
+  "wer": 0.6629213483146067,
+  "empty_output_rate": 0.0,
+  "limitations": [
+    "Uses the aligned smoke subset and cached upright PaddleOCR tokens."
+  ]
+}

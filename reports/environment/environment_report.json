@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "architecture": "AMD64",
+  "python_version": "3.10.11",
+  "python_executable": "D:\\CSX4201\\vision-info-extraction-assets\\environments\\ie-ocr\\Scripts\\python.exe",
+  "asset_root": "D:\\CSX4201\\vision-info-extraction-assets",
+  "environment": {
+    "PADDLE_PDX_CACHE_HOME": "D:\\CSX4201\\vision-info-extraction-assets\\cache\\paddlex",
+    "HF_HOME": "D:\\CSX4201\\vision-info-extraction-assets\\cache\\huggingface",
+    "HUGGINGFACE_HUB_CACHE": "D:\\CSX4201\\vision-info-extraction-assets\\cache\\huggingface\\hub",
+    "TRANSFORMERS_CACHE": "D:\\CSX4201\\vision-info-extraction-assets\\cache\\huggingface\\transformers",
+    "TORCH_HOME": "D:\\CSX4201\\vision-info-extraction-assets\\cache\\torch",
+    "PIP_CACHE_DIR": "D:\\CSX4201\\vision-info-extraction-assets\\cache\\pip",
+    "TMP": "D:\\CSX4201\\vision-info-extraction-assets\\cache\\temp",
+    "TEMP": "D:\\CSX4201\\vision-info-extraction-assets\\cache\\temp"
+  },
+  "drives": {
+    "C:\\": {
+      "total_bytes": 509722226688,
+      "used_bytes": 461134368768,
+      "free_bytes": 48587857920,
+      "free_gib": 45.251
+    },
+    "D:\\": {
+      "total_bytes": 1000186310656,
+      "used_bytes": 585592786944,
+      "free_bytes": 414593523712,
+      "free_gib": 386.12
+    }
+  },
+  "packages": {
+    "paddlepaddle-gpu": "3.3.0",
+    "paddlepaddle": null,
+    "paddleocr": "3.7.0",
+    "paddlex": "3.7.2",
+    "torch": "2.8.0+cpu",
+    "transformers": "4.57.6"
+  },
+  "gpu": {
+    "available": true,
+    "name": "NVIDIA GeForce RTX 5050 Laptop GPU",
+    "driver_version": "610.47",
+    "memory_mib": 8151,
+    "compute_capability": "12.0"
+  },
+  "paddle_runtime": {
+    "compiled_with_cuda": true,
+    "device": "gpu:0",
+    "cuda_device_count": 1
+  },
+  "torch_runtime": {
+    "cuda_available": true,
+    "cuda_version": "12.8",
+    "device_count": 1,
+    "device_name": "NVIDIA GeForce RTX 5050 Laptop GPU",
+    "device_capability": [
+      12,
+      0
+    ]
+  },
+  "layout_python_executable": "D:\\CSX4201\\vision-info-extraction-assets\\environments\\ie-layout\\Scripts\\python.exe",
+  "layout_packages": {
+    "torch": "2.8.0+cu128",
+    "transformers": "4.57.6",
+    "sentencepiece": "0.2.1",
+    "accelerate": "1.14.0"
+  },
+  "framework_process_isolation_required": true,
+  "storage_gate": {
+    "minimum_c_free_gib": 15.0,
+    "minimum_asset_free_gib": 15.0,
+    "passed": true,
+    "errors": [],
+    "c_free_gib": 45.251,
+    "asset_free_gib": 386.12
+  }
+}

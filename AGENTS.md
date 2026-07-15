@@ -16,14 +16,14 @@
 - **Workspace:** `c:\Assumption University\CSX4201\Project`
 - **Data root:** `data/raw/` (organized 2026-07-13). The original `vision_info_extraction_data/` is now an empty husk (0 files).
 - **Domain (confirmed by professor, 2026-07-13):** vision information extraction — build a model that extracts information correctly and accurately from images, documents, and any file that contains information. The datasets on disk are scanned forms, receipts, and invoices (OCR + IE + possibly DocVQA).
-- **Status:** Dataset organization is complete. A bounded full-angle rotation-zone baseline was implemented and validated on 2026-07-13: 400 selected public pages plus 203 private pages, 8,332 rotations, 1,957-value features, train-only PCA/K-Means, mapped-zone evaluation, and exact-angle evaluation. Held-out public zone accuracy is about 38%, and exact-angle reliability is 0% at the configured threshold. Treat this as a modest baseline, not the final model. Evaluation protocol, target fields, and deliverable format remain open.
+- **Status:** Dataset organization and the bounded rotation baseline remain verified. On 2026-07-15 the repository added a complete information-extraction inference and smoke-training lifecycle: D:-backed PaddleOCR/LayoutXLM environments, exact general/Thai OCR models, public annotation normalization, dynamic geometry transforms, public-only layout smoke training, image/PDF/multipage inference, schema validation, bounded evaluation, and aggregate-only private testing. Final-review regressions added real rotated phrase recovery, automatic Thai multipage routing, one-to-one polygon detection metrics, and hash-bound integration evidence. Treat the smoke checkpoint as lifecycle proof, not a final-quality model: public text-detection F1 is 0.4146, entity F1 is about 0.01, and relation F1 is 0. K-Means remains display-only, and the failed exact-angle estimator is disabled for inference.
 
 ## Project goal and model requirements (confirmed by professor, 2026-07-13)
 
 The professor has now stated the project goal. Treat it as authoritative for downstream work; do not re-litigate it without the user.
 
 - **Goal:** Build a **vision pre-model** that extracts information correctly and accurately from pictures, files, and anything that contains information.
-- **Rotation-zone clustering (required feature, built into the model):** group each document by its rotation angle into four zones (clusters):
+- **Rotation-zone clustering (required auxiliary feature):** group each document by its rotation angle into four zones for display/diagnostics. It is included alongside the main pre-model but must not control OCR or extraction:
 
 | Zone (cluster) | Rotation angle range | Example |
 |----------------|----------------------|---------|
@@ -32,7 +32,7 @@ The professor has now stated the project goal. Treat it as authoritative for dow
 | 3              | 180 to 270 degrees   |         |
 | 4              | 270 to 360 degrees   |         |
 
-- The rotation requirement now has an executed baseline. It uses deterministic balanced augmentation, K-Means with four clusters, a training-only Hungarian cluster-to-zone mapping, and a zone-guided exact-angle search. This implementation does not resolve the professor's open method questions.
+- The rotation requirement has an executed baseline. It uses deterministic balanced augmentation, K-Means with four clusters, a training-only Hungarian cluster-to-zone mapping, and an experimental zone-guided exact-angle search. Its held-out quality is weak, so inference exposes only the K-Means display value and disables exact-angle correction by default. This implementation does not resolve the professor's open method questions.
 - **Open sub-questions to confirm with the professor (do NOT assume answers):**
   - Angle-range boundaries: is exactly 90 / 180 / 270 degrees in the lower or upper zone? Default convention if unspecified: half-open intervals [0,90), [90,180), [180,270), [270,360).
   - Method: the professor said "clustering," but the four zones are predefined angular quadrants. Confirm whether this means K-Means (k=4) on the estimated rotation angle, or a deterministic 4-way classifier / regression head. These are different implementations.
@@ -51,11 +51,12 @@ data/
   splits/                  # train, validation, test, private_test page manifests
 models/kmeans_rotation/    # scaler, PCA, K-Means, mapping, provenance
 reports/                   # preparation, features, K-Means, angles, verification
+schemas/                   # versioned inference-output JSON Schema
 scripts/                   # organization plus rotation-stage CLI entry points
-src/                       # organization and rotation pipeline modules
-tests/                     # synthetic tests; 113 pass
+src/                       # organization, rotation, OCR, IE, inference, evaluation
+tests/                     # synthetic tests; 158 pass, 1 environment-dependent skip
 ```
-Raw totals remain 128,793 files and 35,459,126,772 bytes. The bounded run selected 100 pages from each public dataset and rendered all 203 pages from 26 private PDFs. It generated 8,332 rotations with 0 failures and 2,083 rows per zone. Rotation verification passes 20/20 checks; the current pytest suite passes 113/113.
+Large OCR/layout assets live below `D:\CSX4201\vision-info-extraction-assets` in separate Python 3.10 environments. Raw totals remain 128,793 files and 35,459,126,772 bytes. The bounded rotation run generated 8,332 rotations with 0 failures and 2,083 rows per zone. Rotation verification passes 20/20 checks; the expanded development suite passes 158 tests with one skip. OCR-runtime and CUDA-layout partitions pass 53 and 3 tests respectively.
 
 ---
 
@@ -74,7 +75,7 @@ Raw totals remain 128,793 files and 35,459,126,772 bytes. The bounded run select
 - **No implied work.** Do not claim an edit, validation, sync, or doc update happened unless it actually did.
 
 ## Data and git hygiene
-- The repo is **not yet initialized** (planned for GitHub upload). When initializing:
+- The repo is initialized on `main` with an existing private GitHub remote. Before every commit or push:
   - `.gitignore` already excludes OS junk (`__MACOSX/`, `.DS_Store`), Python build/venv artifacts, and IDE folders — keep it that way.
   - Large binaries are present (`.zip`, `.pdf`, image archives). Before committing, decide policy: **Git LFS**, gitignore + documented download steps, or commit directly. Do not blindly push hundreds of MB.
   - Derived rotations, features, private page renders, private operational manifests, and large operational manifests are local ignored outputs. Classical artifacts under `models/kmeans_rotation/` are legitimate for this stage, but verify their provenance and contents before staging.
@@ -89,12 +90,12 @@ Raw totals remain 128,793 files and 35,459,126,772 bytes. The bounded run select
 
 ## Pending from user (blockers for fuller documentation)
 - [x] High-level project goal — CONFIRMED 2026-07-13 by professor (vision info-extraction pre-model + rotation-zone clustering). See *Project goal and model requirements*.
-- [ ] Which specific fields to extract, and from which document type(s)? (still open)
+- [ ] Confirm whether the implemented provisional canonical fields and document types match the professor's final required scope.
 - [ ] Rotation-zone open sub-questions (boundary inclusivity; clustering vs classification; angle-estimation source; meaning of "pre-model"). The current baseline uses half-open zones, K-Means, and a zone-guided handcrafted estimator only as provisional implementation choices.
-- [ ] Evaluation metric and test protocol (which folder is the held-out test?).
+- [ ] Confirm official quality thresholds and test protocol. Current smoke and natural CORU-holdout results are not final benchmarks.
 - [ ] Is `gmail_private_test` the private leaderboard set? Should derived outputs be derived from it at all?
-- [ ] Target deliverable: model? notebook? report? competition submission?
-- [ ] Repo visibility for GitHub (public vs private) — drives the privacy decision above.
-- [x] README.md — updated for the completed bounded rotation-zone baseline (2026-07-13), with limitations and open questions preserved.
+- [ ] Target deliverable: final trained model, notebook, report, or competition submission?
+- [x] Repo visibility for GitHub — confirmed private before the 2026-07-15 publication pass; recheck before every future upload.
+- [x] README.md — updated for the implemented information-extraction smoke lifecycle (2026-07-15), while preserving historical rotation metrics and open research decisions.
 
 > When the user provides the above, update this section, `AGENT_MEMORY.md`, and then `README.md`.

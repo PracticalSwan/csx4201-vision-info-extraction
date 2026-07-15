@@ -1,4 +1,4 @@
-# config.yaml — vision-info-extraction (CSX4201)
+# config.yaml - vision-info-extraction (CSX4201)
 # Dataset organization, audit, and validation configuration.
 # Paths are relative to project_root unless absolute. Use POSIX separators;
 # src/config.py resolves them with pathlib (Windows-safe).
@@ -29,6 +29,20 @@ paths:
   splits: "data/splits"
   rotation_models: "models/kmeans_rotation"
   reports: "reports"
+  # Large OCR, layout-model, cache, and generated assets live outside C:.
+  external_assets: "D:/CSX4201/vision-info-extraction-assets"
+  ocr_environment: "D:/CSX4201/vision-info-extraction-assets/environments/ie-ocr"
+  layout_environment: "D:/CSX4201/vision-info-extraction-assets/environments/ie-layout"
+  layout_python: "D:/CSX4201/vision-info-extraction-assets/environments/ie-layout/Scripts/python.exe"
+  paddle_cache: "D:/CSX4201/vision-info-extraction-assets/cache/paddlex"
+  huggingface_cache: "D:/CSX4201/vision-info-extraction-assets/cache/huggingface"
+  ocr_models: "D:/CSX4201/vision-info-extraction-assets/models/paddleocr"
+  layout_models: "D:/CSX4201/vision-info-extraction-assets/models/layoutxlm"
+  ie_checkpoints: "D:/CSX4201/vision-info-extraction-assets/checkpoints"
+  ocr_cache: "D:/CSX4201/vision-info-extraction-assets/ocr_cache"
+  model_datasets: "D:/CSX4201/vision-info-extraction-assets/data/model_datasets"
+  generated_documents: "D:/CSX4201/vision-info-extraction-assets/generated"
+  private_outputs: "D:/CSX4201/vision-info-extraction-assets/private_outputs"
 
 # Where dataset_discovery looks for datasets. The target layout (data/raw) is
 # searched first so discovery is idempotent after organization; the legacy
@@ -64,6 +78,83 @@ privacy:
   include_private_contents_in_reports: false
   include_private_images_in_reports: false
   private_split_name: "private_test"
+
+information_extraction:
+  schema_version: "1.0"
+  annotation_schema_version: "1.0"
+  output_schema: "schemas/inference_output.schema.json"
+  normalized_annotations: "data/processed/normalized_ie_annotations"
+  manifest: "data/metadata/information_extraction_manifest.csv"
+  private_manifest: "data/metadata/private_information_extraction_manifest.csv"
+  canonical_fields:
+    - organization_name
+    - document_title
+    - date
+    - invoice_number
+    - receipt_number
+    - reference_number
+    - subtotal
+    - tax
+    - total_amount
+    - currency
+    - payment_method
+    - address
+    - email
+    - phone_number
+  entity_labels: ["HEADER", "KEY", "VALUE", "QUESTION", "ANSWER", "TABLE_CELL", "OTHER"]
+  minimum_alignment_coverage: 0.70
+  public_only_training: true
+
+augmentation:
+  upright_probability: 0.20
+  angle_min: 0.0
+  angle_max: 360.0
+  background_fill: "white"
+  interpolation: "bicubic"
+  validation_angles: [0, 1, 45, 89, 90, 91, 135, 179, 180, 181, 225, 269, 270, 271, 315, 359]
+
+ocr:
+  device: "gpu:0"
+  cache_enabled: true
+  preprocessing_version: "1.0"
+  paddle_cache_home: "D:/CSX4201/vision-info-extraction-assets/cache/paddlex"
+  detector:
+    name: "PP-OCRv6_medium_det"
+    path: "D:/CSX4201/vision-info-extraction-assets/cache/paddlex/official_models/PP-OCRv6_medium_det"
+  general_recognizer:
+    name: "PP-OCRv6_medium_rec"
+    path: "D:/CSX4201/vision-info-extraction-assets/cache/paddlex/official_models/PP-OCRv6_medium_rec"
+  thai_recognizer:
+    name: "th_PP-OCRv5_mobile_rec"
+    path: "D:/CSX4201/vision-info-extraction-assets/cache/paddlex/official_models/th_PP-OCRv5_mobile_rec"
+  language_modes: ["auto", "general", "thai", "en", "tr", "th"]
+  orientation_candidates: [0, 90, 180, 270]
+  enable_continuous_deskew: false
+  enable_document_orientation_classifier: false
+  enable_document_unwarping: false
+  enable_textline_orientation: false
+
+layout_model:
+  architecture: "LayoutXLMTextLayoutForTokenClassification"
+  checkpoint: "microsoft/layoutxlm-base"
+  license: "CC-BY-NC-SA-4.0"
+  max_length: 512
+  batch_size: 1
+  gradient_accumulation_steps: 4
+  # Transformers 4.57's LayoutLMv2 encoder does not expose supported gradient
+  # checkpointing. Batch size 1 plus gradient accumulation is used instead.
+  gradient_checkpointing: false
+  mixed_precision: true
+  seed: 42
+  smoke_steps: 2
+  development_epochs: 1
+  final_epochs: 5
+  early_stopping_patience: 2
+
+kmeans_display:
+  enabled: true
+  purpose: "display_only"
+  experimental_exact_angle_enabled: false
 
 # Public existing images are referenced read-only. Private PDFs are rendered to
 # anonymized PNG page IDs because the rotation pipeline operates on page images.

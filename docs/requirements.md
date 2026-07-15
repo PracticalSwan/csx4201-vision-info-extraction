@@ -1,87 +1,85 @@
-# Rotation Pipeline Requirements
+# Information-Extraction Requirements
 
-Acceptance criteria and measured outcomes for the completed bounded baseline.
+Acceptance criteria and current evidence for the rotation-robust pre-model.
 
-## Purpose and scope
+## Scope
 
-The implemented baseline prepares document pages, generates balanced synthetic
-rotations, learns four unsupervised clusters, maps those clusters to the
-professor's four angle zones, and evaluates a zone-guided exact-angle method.
-
-The executed full profile is bounded to 100 pages per public dataset plus all
-203 private pages. “Full” means complete configured angle coverage over that
-selected corpus, not the full 22,086-page public corpus.
-The unbounded capacity estimate projected 416,028 rotations and 219.08 GiB of
-new space with 16.12 GiB free at the final full-profile gate and a 10 GiB
-reserve.
+The main result is structured information extraction from images and PDFs,
+including rotated, multilingual, multipage, and unknown-type inputs. The
+existing four-cluster K-Means model is a display-only diagnostic. Its weak
+quadrant prediction and the failed exact-angle experiment cannot control or
+block the main pipeline.
 
 ## Functional requirements
 
 | ID | Requirement | Validated state |
-|----|-------------|-----------------|
-| U-001 | Treat every file below data/raw as read-only. | Pass: raw baseline unchanged; no generated output under raw. |
-| U-002 | Use half-open zones [0,90), [90,180), [180,270), [270,360). | Pass as provisional convention; professor confirmation remains open. |
-| U-003 | Define positive angles as counterclockwise and normalize modulo 360. | Pass in generation, filenames, manifests, tests, and reports. |
-| U-004 | Separate public train, validation, test, and private_test at page, document, and duplicate-group level. | Pass: zero page, document, split-group, or private/public leakage. |
-| U-005 | Use Gmail PDFs only for private_test transformation and aggregate evaluation. | Pass: 203 pages; zero private fit rows and zero private row-level prediction outputs. |
-| U-006 | Extract fixed HOG, Hough, projection, directional-edge, and geometry features without OCR. | Pass: 8,332 vectors, 1,957 values each, zero invalid. |
-| U-007 | Fit StandardScaler, optional PCA, K-Means, and cluster mapping from public training data only. | Pass: all fit provenance records train only and zero private rows. |
-| U-008 | Fit scikit-learn K-Means with exactly four non-empty clusters. | Pass: sizes 1,112, 1,114, 1,686, 1,688. |
-| U-009 | Learn a deterministic one-to-one cluster-to-zone mapping with Hungarian assignment. | Pass: C0→Z1, C1→Z2, C2→Z4, C3→Z3. |
-| U-010 | Evaluate raw clusters, mapped zones, boundary angles, confidence, and circular exact-angle error. | Pass as evaluation coverage; model quality remains modest. |
+|---|---|---|
+| IE-001 | Accept supported images plus single- and multipage PDFs. | Pass in unit tests and local image/two-page PDF integration. |
+| IE-002 | Handle EXIF, grayscale, RGB/RGBA, transparent, and CMYK inputs without losing page geometry. | Pass in synthetic tests; transparency flattens on white. |
+| IE-003 | Detect text with `PP-OCRv6_medium_det`. | Pass; exact artifact and runtime model identity verified. |
+| IE-004 | Recognize general text with `PP-OCRv6_medium_rec`. | Pass for English/Turkish-compatible general route smoke. |
+| IE-005 | Recognize Thai/mixed text with `th_PP-OCRv5_mobile_rec`. | Pass for Thai model and mixed-language multipage smoke. |
+| IE-006 | Select OCR orientation independently of K-Means. | Pass; cardinal candidates and optional supplied deskew use OCR evidence only. |
+| IE-007 | Preserve polygons and boxes when rotating and mapping results back. | Pass in homogeneous-transform and clipping tests. |
+| IE-008 | Produce layout entities, key-value pairs, canonical fields, and evidence. | Pass functionally; bounded quality metrics remain low. |
+| IE-009 | Return generic OCR/entities/key-value output for unknown document types. | Pass in unit and real CLI synthetic integration. |
+| IE-010 | Validate all output against versioned JSON Schema. | Pass; missing canonical fields are explicit `null`. |
+| IE-011 | Keep pages separate in multipage output. | Pass; page number, geometry, OCR, entities, and relations are page-specific. |
+| IE-012 | Make K-Means display-only and failure-isolated. | Pass; disabled, wrong, or missing artifacts cannot block extraction. |
 
-## Safety and lifecycle requirements
+## Data and training requirements
 
 | ID | Requirement | Validated state |
-|----|-------------|-----------------|
-| S-001 | Record raw counts, size, and deterministic sampled hashes before preprocessing. | Pass: 128,793 files, 35,459,126,772 bytes, 100 sampled hashes. |
-| S-002 | Estimate storage from smoke output and preserve at least 10 GiB free before full materialization. | Pass: the 52-rotation smoke profile projected 219.08 GiB for the 416,028-rotation unbounded run, which was rejected. |
-| S-003 | Stop before fitting if page, document, duplicate-group, or private leakage is detected. | Pass in validator and synthetic negative tests. |
-| S-004 | Keep real private filenames, paths, previews, and per-row private predictions out of committable code and public outputs. | Pass: scanner covers source, tests, docs, config, metadata, reports, and models; private evaluation is aggregate-only. |
-| S-005 | Use stable IDs, configuration hashes, source hashes, atomic writes, and cache validation for repeatability. | Pass: materialized page/rotation PNGs carry verified provenance and stale artifacts regenerate. |
-| S-006 | Reloaded artifacts must reproduce transforms and predictions within tolerance. | Pass for scaler, PCA, and K-Means. |
-| S-007 | Describe the run as bounded full-angle coverage over a deterministic selected corpus. | Pass in README, summary, reports, design, and memory. |
+|---|---|---|
+| DT-001 | Treat `data/raw` as read-only. | Pass; raw verifier unchanged. |
+| DT-002 | Normalize SROIE, FUNSD, FATURA, and supported CORU annotations without changing sources. | Pass: 12,433 records; source defects reported separately. |
+| DT-003 | Reuse document-safe public splits. | Pass; model manifests retain existing project split IDs. |
+| DT-004 | Fit only public data and keep Gmail private-test only. | Pass; `gmail_fit_rows` is 0 in model, training, and evaluation reports. |
+| DT-005 | Align OCR tokens to labels and exclude insufficient alignments. | Pass; 0.70 coverage gate and explicit exclusion reasons. |
+| DT-006 | Apply continuous training rotations with aligned polygon/box transforms. | Pass in data loader and model tests. |
+| DT-007 | Save and reload model/tokenizer/label map/relation head. | Pass; maximum reloaded logit difference is 0.0. |
+| DT-008 | Report training scope honestly. | Pass; only the smoke profile was trained and no final-quality claim is made. |
 
-## Quality results
+## Safety and reproducibility requirements
 
-The requirements above establish pipeline behavior and safety. They do not
-imply that the learned model meets a production-quality accuracy target.
+| ID | Requirement | Validated state |
+|---|---|---|
+| SF-001 | Preserve at least 15 GiB free on C: and D: before downloads/training. | Pass; latest report records about 45.25/386.12 GiB free. |
+| SF-002 | Place model/cache/checkpoint/data assets on D:. | Pass; setup and runtime reports resolve all large roots below the external asset root. |
+| SF-003 | Detect incomplete or hash-mismatched OCR artifacts. | Pass in model registry and download verification. |
+| SF-004 | Isolate Paddle CUDA and PyTorch CUDA processes on Windows. | Pass; two environment probes and end-to-end subprocess inference. |
+| SF-005 | Cache OCR only with source, model, preprocessing, route, and transform provenance. | Pass in cache tests. |
+| SF-006 | Return actionable input/model/storage errors without fabricated output. | Pass for missing/corrupt/unsupported/encrypted/oversize inputs and checkpoint failures. |
+| SF-007 | Keep private output under ignored private roots. | Pass; public path rejection and aggregate-only private report tests. |
+| SF-008 | Preserve the previous rotation verifier and artifacts. | Pass; 20/20 checks and artifact reload remain intact. |
+| SF-009 | Make synthetic integration evidence reproducible and tamper-evident. | Pass; tracked runner plus independent source/model/config/checkpoint/fixture/output SHA-256 and semantic verification. |
 
-- Public mapped-zone accuracy: 37.81% validation and 37.92% test.
-- Public test ARI/NMI: 0.0871/0.1035.
-- Public exact-angle evaluation: 1,920 attempts, 16 hard failures, zero reliable
-  estimates, 89.74-degree circular MAE, and 90-degree median error.
-- Private exact-angle evaluation: 812 aggregate-only attempts, eight hard
-  failures, zero reliable estimates, and 90.00-degree circular MAE.
-- Rotation verification: 20/20 pass.
-- Synthetic tests: 113/113 pass.
+## Measured quality
 
-The exact-angle stage therefore satisfies evaluation and failure-reporting
-requirements but fails the intended reliability objective. Its output must not
-be treated as a dependable correction.
+The following are observations, not acceptance thresholds:
 
-## Out of scope
+- OCR-only aligned smoke subset: CER 0.5448, WER 0.6629, 0% empty output.
+- Rule baseline: 4/37 applicable fields correct (10.81%).
+- Layout smoke validation: loss 2.3490, token accuracy 10.07%.
+- Public angle smoke: 16/16 completed, CER 0.7497 and WER 0.8856
+  across the 12 runs with OCR reference text.
+- Recognized-text coverage: 0.2503 on referenced runs.
+- Text-detection precision/recall/F1: 0.5483/0.3333/0.4146 at polygon IoU 0.5.
+- Entity precision/recall/F1: 0.0062/0.0217/0.0096.
+- Relation precision/recall/F1: 0/0/0.
+- Canonical-field accuracy: 0.05.
+- Orientation exact accuracy: 0.375 overall and 0 at 45 degrees.
+- Rotation-retention entity-F1 ratio: 0.9856, based on two very weak scores.
 
-The current system does not implement:
-
-- OCR;
-- key-field or information extraction;
-- a supervised rotation classifier;
-- neural networks;
-- APIs, GUI work, deployment, or production serving.
+These results do not satisfy any plausible final-quality target. A final model
+requires larger public dataset preparation, training, and an agreed benchmark.
 
 ## Open acceptance decisions
 
-Professor or user confirmation is still required for:
-
-- exact zone-boundary inclusivity;
-- whether “clustering” specifically requires K-Means;
-- the expected angle-estimation source or method;
-- the meaning of “pre-model”;
-- target document types and extraction fields;
-- official metric and held-out protocol;
-- allowed use of private Gmail-derived artifacts;
-- final deliverable format and repository visibility.
-
-The current half-open boundaries and K-Means approach are provisional
-implementation decisions, not confirmed answers.
+- professor-approved field/document scope and minimum quality thresholds;
+- official held-out protocol and whether a natural CORU holdout is sufficient;
+- whether cardinal OCR candidates plus optional fine-angle evidence satisfy
+  “any angle,” or an approved supervised orientation model is required;
+- zone boundary semantics and whether K-Means is academically mandatory;
+- final deliverable format and approval to redistribute the noncommercial
+  LayoutXLM-derived checkpoint.

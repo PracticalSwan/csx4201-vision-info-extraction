@@ -1,296 +1,229 @@
 # vision-info-extraction
 
-CSX4201 vision preprocessing project for document rotation analysis. The
-workspace contains a completed dataset organization layer and a completed,
-reproducible rotation-zone baseline. OCR and information extraction have not
-been implemented.
+CSX4201 document information-extraction pre-model with rotation-robust OCR.
+The repository now contains two deliberately separate systems:
 
-## Current result
+1. The main pre-model accepts images and PDFs, selects an OCR orientation,
+   routes general or Thai recognition, extracts layout entities and key-value
+   relations, normalizes canonical fields, and writes schema-validated JSON.
+2. The preserved K-Means rotation baseline reports a quadrant for display
+   only. It never controls OCR, correction, extraction, or success.
 
-The executed experiment is a **bounded full-angle run**. It applies every
-configured angle to a deterministic sample of 100 public pages from each of
-SROIE, FUNSD, FATURA, and CORU, plus all 203 rendered pages from 26 private
-Gmail PDFs. It is not a full-corpus experiment: the live audit found 22,086
-usable public full-document images, and materializing all required angles for
-all of them would require an estimated 416,028 rotations and 219.08 GiB of
-new space. The final full-profile gate had 16.12 GiB free and a required 10 GiB
-reserve, so it correctly marked the unbounded run unsafe.
+The implementation and smoke lifecycle are verified. Model quality is not
+final: the trained LayoutXLM smoke checkpoint used three public training
+examples and is proof of training/checkpoint integration, not a production
+model.
 
-Positive angles are counterclockwise. Angles are normalized to [0, 360), and
-the current provisional zone convention is:
+## Verified status (2026-07-15)
 
-| Zone | Half-open interval |
-|------|--------------------|
-| 1 | [0, 90) |
-| 2 | [90, 180) |
-| 3 | [180, 270) |
-| 4 | [270, 360) |
+| Area | Current evidence |
+|---|---|
+| Existing rotation baseline | 8,332 rotations; 20/20 verifier checks; public held-out zone accuracy about 38% |
+| Exact-angle experiment | About 90-degree median error and 0% reliable estimates; disabled for inference by default |
+| Public annotation normalization | 12,433 normalized pages from SROIE, FUNSD, FATURA, and CORU; Gmail fit rows 0 |
+| OCR models | `PP-OCRv6_medium_det`, `PP-OCRv6_medium_rec`, and `th_PP-OCRv5_mobile_rec`; hash and GPU smoke verification pass, including exact phrase recovery from a 90-degree fixture |
+| Layout model | Detectron2-free LayoutXLM text + normalized 2D layout encoder; smoke trained on CUDA; checkpoint and relation-head reload differences 0.0 |
+| Public smoke evaluation | 16/16 successful runs across four datasets and 0/45/90/270-degree inputs; text-detection P/R/F1 0.5483/0.3333/0.4146, entity F1 0.0096, relation F1 0.0 |
+| Private operational test | 2/2 pages completed locally; aggregate-only report; no private filenames, OCR text, images, or per-document output |
+| Tests | 158 passed, 1 skipped in the development runtime; 53 OCR-runtime tests and 3 CUDA-layout tests pass |
 
-This boundary convention is implemented and tested, but the professor still
-needs to confirm it. See [Open project questions](#open-project-questions).
+The public smoke metrics are intentionally reported even though they are poor.
+They show that the end-to-end path works, not that the model is accurate.
 
-## Verified experiment at a glance
+## Architecture
 
-| Stage | Verified result |
-|-------|-----------------|
-| Selected pages | 603: 100 per public dataset and 203 private pages |
-| Public splits | 280 train, 61 validation, 59 test pages |
-| Private split | 203 pages in private_test only |
-| Generated rotations | 8,332 successful, 0 failed |
-| Zone balance | 2,083 rotations in each zone |
-| Features | 8,332 fixed vectors, 1,957 values each, 0 invalid |
-| Preprocessing | train-only StandardScaler and PCA from 1,957 to 128 dimensions |
-| PCA variance retained | 84.22% cumulative explained variance |
-| K-Means fit | k=4 on 5,600 public training rotations only |
-| Cluster mapping | C0→Z1, C1→Z2, C2→Z4, C3→Z3 |
-| Public zone accuracy | 37.81% validation; 37.92% test |
-| Exact-angle reliability | 0 reliable public or private estimates at the configured threshold |
-| Rotation verification | 20/20 checks pass |
-| Tests | 113/113 pass |
+```text
+image or PDF
+  -> EXIF/color/PDF page normalization
+  -> independent OCR candidates (0, 90, 180, 270; optional supplied deskew)
+  -> PP-OCRv6 detector
+  -> general or Thai recognizer selected from metadata and OCR evidence
+  -> LayoutXLM text + 2D-layout entity worker
+  -> geometry-aware key-value relations and evidence-backed field rules
+  -> JSON Schema validation and atomic output
 
-The unsupervised result is modest. Validation and test mapped-zone accuracy are
-about 38%, only moderately above the 25% four-class chance baseline. The
-clustering metrics are also weak on held-out public data:
+same page -> preserved K-Means quadrant -> display field only
+```
 
-| Split | Rows | Accuracy | Macro F1 | ARI | NMI | Silhouette |
-|-------|-----:|---------:|---------:|----:|----:|-----------:|
-| Train | 5,600 | 0.5000 | 0.4947 | 0.3422 | 0.5038 | 0.1450 |
-| Validation | 976 | 0.3781 | 0.3702 | 0.0886 | 0.1021 | 0.0288 |
-| Test | 944 | 0.3792 | 0.3772 | 0.0871 | 0.1035 | 0.0245 |
-| Private test, aggregate only | 812 | 0.5000 | 0.3654 | 0.4793 | 0.6174 | 0.4891 |
+Paddle and CUDA PyTorch load conflicting cuDNN DLLs on this Windows host, so
+they run in separate Python 3.10 processes. The OCR process uses Paddle GPU and
+CPU-only PyTorch (required transitively by PaddleX). The layout worker uses
+PyTorch 2.8.0 + CUDA 12.8. Both environments, caches, datasets, checkpoints,
+and generated outputs live under `D:\CSX4201\vision-info-extraction-assets`.
 
-Cluster IDs are arbitrary. The one-to-one cluster-to-zone mapping above was
-learned after fitting by Hungarian assignment on training labels only. It was
-then fixed for validation, public test, and private aggregate evaluation.
+The layout implementation uses the official `microsoft/layoutxlm-base`
+embeddings and encoder with multilingual text and normalized bounding boxes.
+It intentionally omits the visual Detectron2 backbone because a compatible
+Windows wheel is unavailable. The source checkpoint is
+CC-BY-NC-SA-4.0; review that noncommercial license before redistribution or
+commercial use.
 
-## Exact-angle result
+## Setup
 
-The exact-angle stage searches only inside the mapped K-Means zone, using
-projection-profile, gradient, Hough-line, minimum-area-rectangle, and content
-preservation evidence. It applies the correction as the signed negative of the
-estimated counterclockwise angle.
+Requirements: Windows, Python 3.10, D: with at least 15 GiB free, and C: with
+at least 15 GiB free. GPU mode was verified on an NVIDIA GeForce RTX 5050
+Laptop GPU (8,151 MiB).
 
-This stage did not meet its reliability objective:
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/setup_ie_environment.ps1
+& 'D:\CSX4201\vision-info-extraction-assets\environments\ie-ocr\Scripts\python.exe' scripts/download_ocr_models.py
+& 'D:\CSX4201\vision-info-extraction-assets\environments\ie-ocr\Scripts\python.exe' scripts/verify_ocr_models.py --device gpu:0
+```
 
-- Public validation and test: 1,920 attempts, 1,904 estimates, 16 hard
-  failures, and all 1,904 estimates marked low-confidence.
-- Public circular mean absolute error: 89.74 degrees; median error: 90 degrees.
-- Private test: 812 aggregate-only attempts, 804 estimates, 8 hard failures,
-  all 804 estimates low-confidence, and circular MAE 90.00 degrees.
-- Reliable rate at the configured 0.50 threshold: 0% on public and private
-  evaluation.
+The setup script checks storage first and configures `PADDLE_PDX_CACHE_HOME`,
+`HF_HOME`, `HUGGINGFACE_HUB_CACHE`, `TRANSFORMERS_CACHE`, `TORCH_HOME`,
+`PIP_CACHE_DIR`, `TMP`, and `TEMP` on D:. Details are in
+[docs/ocr_setup.md](docs/ocr_setup.md).
 
-The reported correction direction is internally consistent, and pixel-derived
-orientation scores often improve after correction, but that does not establish
-angle correctness. With a 90-degree median error and zero reliable estimates,
-the exact-angle output must be treated as a failed baseline, not a usable
-orientation corrector.
+## Inference
 
-## Pipeline design
+Run the CLI with the OCR environment:
 
-The executed flow is:
+```powershell
+$ocr = 'D:\CSX4201\vision-info-extraction-assets\environments\ie-ocr\Scripts\python.exe'
+& $ocr scripts/extract_document.py `
+  --input 'path\to\document.pdf' `
+  --output 'D:\CSX4201\vision-info-extraction-assets\generated\run-001' `
+  --language auto --device gpu:0
+```
 
-    raw inventory
-      -> public-safe page manifest and private operational manifest
-      -> document/duplicate-safe 70/15/15 public splits plus private_test
-      -> expanded RGB rotations on white canvas
-      -> 1,957-value HOG/Hough/projection/edge/geometry features
-      -> train-only StandardScaler and 128-component PCA
-      -> train-only K-Means k=4
-      -> train-only Hungarian cluster-to-zone mapping
-      -> public row-level and private aggregate-only evaluation
-      -> zone-guided exact-angle baseline
+Useful options:
 
-Public source images stay as read-only references. Private PDFs are rendered at
-200 DPI to anonymized page IDs. Before rotation, each page is resized without
-cropping to a maximum dimension of 1,024 pixels. Rotation uses bicubic
-interpolation, an expanded canvas, and white fill.
+- `--language auto|general|thai|en|tr|th`
+- `--language-hint th` when trusted metadata identifies Thai
+- `--deskew-angle <degrees>` to add an evidence-backed fine-angle candidate
+- `--disable-kmeans-display` without changing extraction
+- `--private-output` to require an ignored private destination
+- `--max-pages`, `--continue-on-page-error`, and `--dry-run`
 
-The feature vector contains:
+Outputs validate against
+[schemas/inference_output.schema.json](schemas/inference_output.schema.json).
+Every canonical value includes evidence and confidence; unsupported fields
+remain `null`. Unknown document types retain OCR, layout entities, and generic
+`key: value` relations.
 
-- 1,764 OpenCV HOG values;
-- 48 Hough orientation and line-statistic values;
-- 136 horizontal and vertical projection-profile values;
-- 4 directional-edge values;
-- 5 page geometry and density values.
+## Data and training
 
-No label is used to fit the feature transform, scaler, PCA, or K-Means. Labels
-enter only after K-Means fitting to assign arbitrary cluster IDs to Zones 1–4.
+Raw inputs are read-only. Normalized annotations are derived from public data
+without modifying source annotations:
 
-## Data and privacy
+```powershell
+& $ocr scripts/normalize_ie_annotations.py --force
+& $ocr scripts/verify_ie_annotations.py
+& $ocr scripts/prepare_model_dataset.py --profile smoke --device gpu:0 --force
+```
 
-| Dataset | Access | Selected pages | Role in this run |
-|---------|--------|---------------:|------------------|
-| SROIE | public | 100 | train/validation/test |
-| FUNSD | public | 100 | train/validation/test |
-| FATURA | public | 100 | train/validation/test |
-| CORU | public | 100 | train/validation/test |
-| Gmail | private | 203 pages from 26 PDFs | private_test only |
+The executed smoke model dataset has 9 usable examples: FATURA 4, FUNSD 2,
+and SROIE 3; splits are 3 train, 2 validation, and 4 test. Seven candidates
+were excluded for missing source token geometry or insufficient OCR alignment.
+No CORU or Gmail row entered training.
 
-For CORU, only full-document images from Receipt Images & Key Information
-Detection and Receipt Question Answering are eligible. The 30,148 OCR line
-crops are excluded. Unreadable FUNSD macOS artifacts are also excluded.
+```powershell
+$layout = 'D:\CSX4201\vision-info-extraction-assets\environments\ie-layout\Scripts\python.exe'
+& $layout scripts/train_layout_model.py --profile smoke --device cuda
+```
 
-The Gmail documents contain real personal financial and legal information:
+The smoke run completed two micro-steps and one optimizer step. Validation loss
+was 2.3490 and token accuracy 0.1007 over 139 tokens. These values are not a
+quality claim. Full-corpus dataset preparation and final training were not run;
+they require a separately bounded capacity plan and an agreed official
+evaluation protocol.
 
-- never commit or upload data/raw/private/gmail;
-- never commit data/processed/private or private operational manifests;
-- do not publish per-document private predictions, identifiers, paths, or
-  previews;
-- keep private evaluation aggregate-only;
-- confirm repository visibility before any commit or external upload.
+## Evaluation and verification
 
-The latest rotation verifier found no private filenames in committable code,
-tests, docs, config, or public artifacts.
-That check does not authorize publication: inspect ignore rules and repository
-visibility again before sharing.
+```powershell
+& $ocr scripts/evaluate_rule_baselines.py
+& $ocr scripts/evaluate_information_extraction.py --profile smoke --device gpu:0
+& $ocr scripts/evaluate_private_gmail.py --limit 2 --device gpu:0
+& $ocr scripts/run_integration_smoke.py --device gpu:0
+python -m pytest -q
+python -m compileall -q src scripts tests
+python scripts/verify_data.py
+python scripts/verify_rotation_data.py --profile full --complete
+python scripts/verify_information_extraction.py --complete
+```
 
-## Installation
+The public smoke evaluation uses one page from each public dataset and four
+input angles. It is bounded and not statistically representative. CER/WER are
+computed only where reference OCR tokens exist (12/16 runs); CORU has no usable
+OCR reference in this protocol. On the same 12 referenced runs, recognized-text
+coverage is 0.2503 and text-detection precision/recall/F1 is
+0.5483/0.3333/0.4146 at polygon IoU 0.5. CORU nevertheless provides a natural unseen
+dataset check because it contributed zero fit rows: 4/4 runs returned nonempty
+OCR, with mean 29.25 OCR words, 24.25 predicted entities, and 6.75 key-value
+pairs.
 
-Requirements: Python 3.10 or newer. The executed environment used Python 3.14.
+The synthetic image/45-degree/Thai/two-page-PDF integration report is produced
+by a tracked runner rather than edited by hand. Complete verification re-hashes
+the runner, core pipeline sources, config, schema, exact model setup, 1.1 GB
+layout checkpoint, relation head, fixtures, and schema-valid outputs before
+independently checking their semantics.
 
-    python -m pip install -r requirements.txt
+## Privacy
 
-The rotation pipeline uses NumPy, OpenCV, scikit-learn, SciPy, joblib,
-matplotlib, pandas, Pillow, PyMuPDF, PyYAML, and pytest. It does not require an
-OCR framework or a deep-learning framework.
+`data/raw/private/gmail/` contains real financial and legal documents. Never
+commit or upload it. Gmail is private-test only and must never influence OCR
+routing thresholds, model fitting, checkpoint selection, or hyperparameters.
+Public reports may contain only aggregate private counts. See
+[docs/privacy.md](docs/privacy.md).
 
-## Run the pipeline
+Large and private assets are ignored. Before any publish action, inspect
+`git status --ignored`, the staged diff, file sizes, secret matches, and the
+repository visibility.
 
-Run from the project root. The complete command executes stages in dependency
-order and stops if rotation verification fails:
+## Preserved rotation baseline
 
-    python scripts/run_rotation_experiment.py --profile full
+The original bounded full-angle experiment remains intact: 400 public pages
+plus 203 private pages, 8,332 generated rotations, 1,957-value handcrafted
+features, train-only StandardScaler/PCA/K-Means, and a training-only Hungarian
+cluster-to-zone mapping. Mapped validation/test accuracy is about 38%. The
+exact-angle experiment has 0% reliable estimates and is not used by the main
+pipeline.
 
-The full profile means full configured angle coverage over the bounded selected
-corpus. It does not mean the full 22,086-page public corpus.
+The OCR runtime is Python 3.10 and therefore uses scikit-learn 1.7.2, while the
+preserved K-Means artifacts were serialized with 1.8.0 (Python 3.14). A live
+compatibility check produced the same cluster and zone and a confidence delta
+below 1e-10 on the checked public sample. The wrapper remains failure-isolated;
+any load or prediction error returns a display warning and cannot stop OCR.
 
-For a fresh staged run:
+To reproduce the preserved bounded rotation baseline in dependency order:
 
-    python scripts/prepare_page_images.py
-    python scripts/create_rotation_splits.py
-    python scripts/generate_rotation_data.py --profile smoke
-    python scripts/verify_rotation_data.py --profile smoke
-    python scripts/generate_rotation_data.py --profile full
-    python scripts/verify_rotation_data.py --profile full
-    python scripts/extract_rotation_features.py --profile full
-    python scripts/fit_rotation_preprocessing.py
-    python scripts/train_kmeans_rotation.py
-    python scripts/evaluate_kmeans_rotation.py
-    python scripts/evaluate_angle_estimation.py --profile full
-    python scripts/verify_rotation_data.py --profile full --complete
+```powershell
+python scripts/prepare_page_images.py
+python scripts/create_rotation_splits.py
+python scripts/generate_rotation_data.py --profile smoke
+python scripts/verify_rotation_data.py --profile smoke
+python scripts/generate_rotation_data.py --profile full
+python scripts/verify_rotation_data.py --profile full
+python scripts/extract_rotation_features.py --profile full
+python scripts/fit_rotation_preprocessing.py
+python scripts/train_kmeans_rotation.py
+python scripts/evaluate_kmeans_rotation.py
+python scripts/evaluate_angle_estimation.py --profile full
+python scripts/run_rotation_experiment.py --profile full
+```
 
-The smoke run creates 52 rotations and provides the empirical storage estimate
-used by the full-profile disk gate. The gate reserves at least 10 GiB free.
-Use --force only when intentionally rebuilding replaceable derived artifacts.
-
-Dataset organization commands remain available:
-
-    python scripts/inspect_data.py --depth 2
-    python scripts/organize_data.py --mode reference
-    python scripts/audit_data.py
-    python scripts/verify_data.py
-
-Validation:
-
-    python scripts/verify_rotation_data.py --profile full --complete
-    python -m pytest tests/ -q
-
-The --complete flag adds feature-cache, train-only provenance, saved-model,
-and evaluation-output checks to the preparation/rotation checks.
-
-## Artifact map
-
-| Path | Contents |
-|------|----------|
-| data/raw/public | Original public datasets, read-only |
-| data/raw/private/gmail | Original private PDFs, never publish |
-| data/metadata/page_manifest.csv | Public-safe page inventory and selection |
-| data/metadata/private_page_manifest.csv | Private source-path mapping, ignored |
-| data/metadata/split_manifest.csv | Leakage-safe page split assignments |
-| data/metadata/rotation_manifest.csv | One row per generated rotation |
-| data/metadata/feature_manifest.csv | One row per feature vector |
-| data/splits | Per-split page manifests |
-| data/processed/private/page_images | Anonymized private PDF page renders |
-| data/processed/rotated_images/full | Bounded full-profile rotated PNGs |
-| data/processed/features/full | Raw and transformed NPZ feature caches |
-| models/kmeans_rotation | Scaler, PCA, K-Means, mapping, and provenance |
-| reports/rotation_preparation | Selection, split, smoke, and generation summaries |
-| reports/feature_analysis | Feature method summary |
-| reports/kmeans_evaluation | Metrics, predictions, boundary analysis, and plots |
-| reports/angle_estimation | Public exact-angle rows and private aggregates |
-| reports/verification | Raw baseline and rotation verification |
-
-Private and bulk derived paths are intended to remain ignored by Git. Review
-[.gitignore](.gitignore) before repository initialization.
-
-## Reproducibility and safety controls
-
-- Seed 42 drives selection, split assignment, PCA, K-Means, and metric sampling.
-- Stable IDs and configuration/manifest hashes detect stale caches.
-- Materialized page and rotation PNGs embed configuration and source-hash
-  provenance; mismatched artifacts are regenerated instead of silently reused.
-- Setting `materialize_existing_images: true` converts selected public sources
-  to EXIF-normalized RGB PNGs; the executed run keeps the default read-only
-  reference mode.
-- Documents, exact duplicates, reliable reported near duplicates, FATURA
-  template families, and shared CORU stems stay in one public split group.
-- StandardScaler, PCA, K-Means, and Hungarian mapping record train-only fit
-  provenance; private training count is zero.
-- Saved scaler, PCA, and K-Means artifacts are reloaded and checked.
-- Raw count, byte size, and 100 deterministic sampled SHA-256 hashes are checked
-  against the recorded baseline.
-- The privacy check covers source, tests, docs, root config, and public report
-  surfaces as well as generated metadata and model summaries.
-- The full run stops on leakage, stale artifacts, invalid vectors, non-bijective
-  mapping, raw drift, privacy leakage, or insufficient disk reserve.
-
-See [docs/requirements.md](docs/requirements.md) and
-[docs/design.md](docs/design.md) for the acceptance criteria and design.
+Here `full` means the complete configured angle profile over the documented
+bounded selection, not the full 22,086-page public corpus.
 
 ## Known limitations
 
-- The public experiment uses 400 selected pages, not the entire public corpus.
-- The selection is deterministic but is not claimed to be statistically
-  representative of every template, language, or capture condition.
-- K-Means models visual similarity without labels; four clusters do not
-  naturally guarantee the four required angular quadrants.
-- The training-derived mapping reaches only 50% training accuracy, and public
-  held-out accuracy is about 38%.
-- The exact-angle baseline has zero reliable estimates at the configured
-  threshold and about 90-degree circular MAE.
-- Confidence values are heuristic centroid or score margins, not calibrated
-  probabilities.
-- The organization-stage near-duplicate scan is bounded, so its recall is not
-  exhaustive.
-- The SROIE download contains a pre-existing LayoutLM checkpoint. It remains
-  untouched and unused.
+- The LayoutXLM checkpoint is a smoke checkpoint, not a final trained model.
+- Public smoke text-detection F1 is 0.4146, entity F1 is 0.0096, relation F1 is
+  0.0, and field accuracy is 0.05; do not describe the system as accurate.
+- The default orientation set is cardinal. Arbitrary-angle inputs complete,
+  but the 45-degree exact-orientation score was 0% in the bounded smoke run.
+  A supplied deskew candidate is supported; automatic fine-angle correction is
+  disabled because the preserved estimator is unreliable.
+- Thai routing and mixed English/Thai multipage inference are verified on
+  synthetic smoke fixtures, not a labeled public Thai benchmark.
+- The natural CORU holdout demonstrates generic output only; it lacks usable
+  OCR reference tokens and is not a separately retrained leave-one-out study.
+- LayoutXLM visual features are omitted, and the checkpoint license is
+  noncommercial.
+- Official target fields, quality thresholds, and final delivery protocol
+  still require professor confirmation.
 
-## Out of scope
-
-This implementation does not perform:
-
-- OCR;
-- key-field or information extraction;
-- a supervised rotation classifier;
-- neural-network training;
-- APIs, GUI work, deployment, or production serving.
-
-## Open project questions
-
-The following still require professor or user confirmation:
-
-- Are exactly 90, 180, and 270 degrees assigned to the lower or upper zone?
-  The implementation currently uses the upper zone via half-open intervals.
-- Does “clustering” specifically require K-Means, or is a deterministic or
-  supervised four-way orientation model acceptable?
-- Which orientation-estimation approach is expected before zoning?
-- What exactly does “pre-model” mean in the required deliverable?
-- Which document types and fields must later information extraction target?
-- What is the official evaluation metric and held-out test protocol?
-- May any derived artifact be produced from the private Gmail set?
-- Is the final deliverable a model, notebook, report, or submission?
-- Will the future repository be public or private?
-
-Do not treat the current implementation choices as answers to those open
-questions.
+More detail: [requirements](docs/requirements.md),
+[design](docs/design.md), [information extraction](docs/information_extraction.md),
+and [evaluation](docs/evaluation.md).

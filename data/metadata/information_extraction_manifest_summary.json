@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "source_page_count": 52636,
+  "public_manifest_rows": 52636,
+  "private_operational_rows": 203,
+  "normalized_pages": 12433,
+  "normalization_error_count": 135,
+  "gmail_fit_rows": 0,
+  "counts_by_dataset": {
+    "coru": 1261,
+    "fatura": 10000,
+    "funsd": 199,
+    "sroie": 973
+  },
+  "usable_counts_by_split": {
+    "test": 2857,
+    "train": 6575,
+    "validation": 3001
+  },
+  "exclusion_counts": {
+    "line crops are not full document pages": 30148,
+    "malformed_source_annotation": 4,
+    "missing_source_annotation": 1212,
+    "source image is unreadable, invalid, or empty": 199,
+    "unsupported_annotation_semantics": 8437
+  },
+  "normalized_root": "C:\\Assumption University\\CSX4201\\Project\\data\\processed\\normalized_ie_annotations"
+}
