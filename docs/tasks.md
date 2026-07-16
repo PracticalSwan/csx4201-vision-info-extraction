@@ -48,8 +48,8 @@
 - [x] Update README, summary, requirements, design, setup, IE, evaluation, privacy, memory, and lessons.
 - [x] Run final combined verification after documentation and cleanup stabilize.
 - [x] Complete the independent final review and fix every confirmed finding.
-- [ ] Inspect staged content, commit the feature branch, merge it, and sync GitHub `main`.
+- [x] Inspect staged content, commit the feature branch, merge it, and sync GitHub `main`.
 
-The unchecked research item requires professor-approved data and protocol; it
-is not a hidden implementation failure. The unchecked finalization items must
-be completed in this session before publication.
+The only unchecked research item requires professor-approved data and protocol;
+it is not a hidden implementation failure. Final publication completed through
+GitHub PR #1 at merge commit `b38ebc2fc3de8975c03ef9ea5fe66334f40bd137`.

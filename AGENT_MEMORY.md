@@ -230,3 +230,8 @@
   verification passes 46/46. Conservative cleanup removed 19.740 GiB of
   obsolete development/smoke datasets and checkpoints while preserving and
   re-hashing the final checkpoint, resume state, and final model dataset.
+- 2026-07-17 - Published the final working academic pre-model through private
+  GitHub PR #1. The feature branch merged cleanly into `main` at
+  `b38ebc2fc3de8975c03ef9ea5fe66334f40bd137`; the staged publication audit
+  found zero private filename, high-confidence secret, forbidden-path, or
+  symlink findings.
