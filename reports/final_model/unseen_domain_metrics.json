@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "dataset": "coru",
+  "split": "unseen_domain_test",
+  "public_only": true,
+  "private_page_count": 0,
+  "population_pages": 1261,
+  "sample_pages": 100,
+  "sample_strategy": "deterministic bounded sample; never used for model or threshold selection",
+  "successful_pages": 100,
+  "failed_pages": 0,
+  "nonempty_rate": 1.0,
+  "qa_answer_text_recall": 0.7853036740814796,
+  "qa_answers": 4001,
+  "canonical_field_accuracy": 0.15678776290630975,
+  "canonical_fields_applicable": 523,
+  "mean_entities": 13.26,
+  "mean_relations": 3.47,
+  "mean_non_null_fields": 6.71,
+  "mean_duration_seconds": 31.041742668999067,
+  "route_counts": {
+    "general": 100
+  },
+  "document_type_counts": {
+    "unknown": 100
+  },
+  "error_type_counts": {},
+  "checkpoint_model_sha256": "34c7a26e78d6285a2739e1b61839eadfd0e686ccbcf57f9cb47997c12cef2189",
+  "calibration_sha256": "b1c683d3f1e1cfc4b9515bb83cf64ce455343445a553ab7525f845272b902087",
+  "elapsed_seconds": 3149.9461350000056,
+  "limitations": [
+    "CORU QA has answer text but no compatible token polygons, so entity and relation F1 are not defined.",
+    "This bounded unseen-domain sample reports OCR answer coverage and canonical exact-match accuracy rather than pretending QA supervision is token labeling."
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "profile": "development",
+  "split": "dev_select",
+  "token_sources": [
+    "hybrid",
+    "paddleocr"
+  ],
+  "public_only": true,
+  "private_example_count": 0,
+  "checkpoint": "D:\\CSX4201\\vision-info-extraction-assets\\checkpoints\\layoutxlm_multitask\\development_trials\\trial_1_ground_truth",
+  "checkpoint_model_sha256": "43e47b67d6b38191a064a815f6a19f0f08fdef9867c13005048eece53633ab63",
+  "checkpoint_build_id": "development-0d392354f7b5380e",
+  "evaluation_build_id": "development-c155e2ba6dcfb4b6",
+  "cross_build_comparison": true,
+  "manifest_path": "C:\\Assumption University\\CSX4201\\Project\\data\\metadata\\model_dataset_development_manifest.csv",
+  "manifest_sha256": "b19d382e4875281ee2953bd166804fe9cdfd1196c42aaa25ed6858ed110ea8cc",
+  "example_count": 64,
+  "window_count": 69,
+  "device": "cuda",
+  "metrics": {
+    "loss": 1.7546107233434483,
+    "entity_token_f1": 0.5285195471053193,
+    "entity_counts": {
+      "fp": 965,
+      "fn": 1242,
+      "tp": 1237
+    },
+    "canonical_evidence_token_f1": 0.6615087040618955,
+    "canonical_counts": {
+      "fn": 109,
+      "fp": 241,
+      "tp": 342
+    },
+    "relation_f1": 0.0,
+    "relation_counts": {
+      "fn": 357
+    },
+    "document_macro_f1": 0.986303284416492,
+    "document_accuracy": 0.9855072463768116,
+    "composite_score": 0.47541532329925085,
+    "evaluated_windows": 69
+  }
+}

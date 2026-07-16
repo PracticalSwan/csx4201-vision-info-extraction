@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "profile": "smoke",
+  "public_only": true,
+  "examples": 9,
+  "gmail_fit_rows": 0,
+  "field_applicable": 37,
+  "field_correct": 4,
+  "field_accuracy": 0.10810810810810811,
+  "predicted_field_count": 52,
+  "conflict_warning_count": 16,
+  "by_dataset": {
+    "fatura": {
+      "applicable": 25,
+      "correct": 1,
+      "accuracy": 0.04
+    },
+    "sroie": {
+      "applicable": 12,
+      "correct": 3,
+      "accuracy": 0.25
+    }
+  },
+  "by_language": {
+    "en": {
+      "applicable": 12,
+      "correct": 3,
+      "accuracy": 0.25
+    },
+    "tr": {
+      "applicable": 25,
+      "correct": 1,
+      "accuracy": 0.04
+    }
+  },
+  "limitations": [
+    "Rules are evidence-only and are not a substitute for the layout model."
+  ]
+}

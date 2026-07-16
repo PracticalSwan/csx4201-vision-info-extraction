@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "status": "compiled_from_executed_artifacts",
+  "checkpoint_reload_passed": true,
+  "final_profile_trained": true,
+  "usable_public_fit_pages": 11172,
+  "gmail_fit_rows": 0,
+  "private_operational_test_successes": 2,
+  "integration_status": "passed",
+  "kmeans_controls_ocr": false,
+  "artifact_hashes": {
+    "dataset": {
+      "path": "C:\\Assumption University\\CSX4201\\Project\\reports\\final_model\\dataset_summary.json",
+      "sha256": "37c772698fdc2d79fb3276cd1275f714ec71f2ea137ef5b648ce0e9b31bd06ed"
+    },
+    "model_dataset": {
+      "path": "C:\\Assumption University\\CSX4201\\Project\\reports\\final_model\\model_dataset_final_summary.json",
+      "sha256": "68d2caf3085f38f7b35b71bd33059bd0f84a5be3399e3c0a1c6af050e237942d"
+    },
+    "training": {
+      "path": "C:\\Assumption University\\CSX4201\\Project\\reports\\final_model\\training_summary.json",
+      "sha256": "907af7be28ef4e691811ed4363a10c1e5c2d5526979f656718121109770c9e45"
+    },
+    "heldout": {
+      "path": "C:\\Assumption University\\CSX4201\\Project\\reports\\final_model\\evaluations\\final_test_in_domain_ground_truth.json",
+      "sha256": "ab6c4180c3706b531d56971780b1faf6bfb3aea738bd020177482cc762770ba3"
+    },
+    "calibration": {
+      "path": "C:\\Assumption University\\CSX4201\\Project\\models\\multitask_calibration.json",
+      "sha256": "b1c683d3f1e1cfc4b9515bb83cf64ce455343445a553ab7525f845272b902087"
+    },
+    "ocr_ablation": {
+      "path": "C:\\Assumption University\\CSX4201\\Project\\reports\\final_model\\ocr_preprocessing_ablation.json",
+      "sha256": "51d96411f05988064c223e1f45461f1b73fa99a2eab1c65587c868b23e17412b"
+    },
+    "layout_angles": {
+      "path": "C:\\Assumption University\\CSX4201\\Project\\reports\\final_model\\layout_angle_metrics.json",
+      "sha256": "5b8afaaaeecc22409844417daa5d5b5048557c64eafabe09a441337728aa3315"
+    },
+    "end_to_end_angles": {
+      "path": "C:\\Assumption University\\CSX4201\\Project\\reports\\final_model\\end_to_end_angle_metrics.json",
+      "sha256": "154304a403169b8abf267d559bfcd6b46bc36ecf0f9a6ebb9921b2a196585d54"
+    },
+    "unseen": {
+      "path": "C:\\Assumption University\\CSX4201\\Project\\reports\\final_model\\unseen_domain_metrics.json",
+      "sha256": "a752a399383672e3609f560b25d5508fe2aef85335408e6e8c7c0cf1cf5eec9a"
+    },
+    "private": {
+      "path": "C:\\Assumption University\\CSX4201\\Project\\reports\\final_model\\private_test_aggregate.json",
+      "sha256": "d5d4fab750012c0cfd8873b332f2dd41a319e4fbd2f781c84110d825e089f203"
+    },
+    "integration": {
+      "path": "C:\\Assumption University\\CSX4201\\Project\\reports\\information_extraction\\integration_smoke.json",
+      "sha256": "27262400ff6f04a452317f1383fa6cd8cb6117c2f4d94b9a0b4cead3efd891d5"
+    },
+    "ocr_models": {
+      "path": "C:\\Assumption University\\CSX4201\\Project\\reports\\ocr\\model_verification.json",
+      "sha256": "c8ababa7001c20f59725821bc94dd15ce3b2da8402f568862f4effb01b7a2dc1"
+    }
+  },
+  "limitations": [
+    "Passing lifecycle verification does not imply production quality; measured held-out metrics and model-card limitations remain authoritative."
+  ]
+}

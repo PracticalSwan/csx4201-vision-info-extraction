@@ -1,0 +1,1846 @@
+{
+  "schema_version": "1.0",
+  "profile": "final",
+  "split": "test_in_domain",
+  "public_only_selection": true,
+  "private_document_count": 0,
+  "checkpoint": "D:\\CSX4201\\vision-info-extraction-assets\\checkpoints\\layoutxlm_multitask\\final",
+  "checkpoint_model_sha256": "34c7a26e78d6285a2739e1b61839eadfd0e686ccbcf57f9cb47997c12cef2189",
+  "calibration_sha256": "b1c683d3f1e1cfc4b9515bb83cf64ce455343445a553ab7525f845272b902087",
+  "angles": [
+    0,
+    1,
+    15,
+    30,
+    37,
+    45,
+    60,
+    89,
+    90,
+    91,
+    135,
+    179,
+    180,
+    225,
+    269,
+    270,
+    315,
+    359
+  ],
+  "public_sample_pages": 3,
+  "public_datasets": [
+    "fatura",
+    "funsd",
+    "sroie"
+  ],
+  "public_metrics": [
+    {
+      "angle": 0,
+      "page_count": 3,
+      "recognized_text_coverage": 0.4027889972234873,
+      "wer": 0.6998877146245568,
+      "detection_f1": 0.3395106950662506,
+      "entity_f1": 0.17720042680959824,
+      "relation_f1": 0.00749063670411985,
+      "field_accuracy": 0.4444444444444444,
+      "nonempty_rate": 1.0,
+      "route_counts": {
+        "general": 3
+      },
+      "error_counts": {
+        "ocr_coverage_below_0_70": 2,
+        "detection_f1_below_0_70": 2,
+        "entity_f1_below_0_70_with_reference": 3,
+        "relation_f1_below_0_60_with_reference": 1,
+        "canonical_field_miss": 2,
+        "no_table_detected": 1,
+        "empty_ocr": 0
+      },
+      "by_dataset": {
+        "fatura": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.0,
+          "wer": 1.0350877192982457,
+          "detection_f1": 0.10989010989010989,
+          "entity_f1": 0.14285714285714285,
+          "relation_f1": 0.0,
+          "field_accuracy": 0.4,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 1,
+            "detection_f1_below_0_70": 1,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 0,
+            "canonical_field_miss": 1,
+            "no_table_detected": 0,
+            "empty_ocr": 0
+          }
+        },
+        "funsd": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.223888055972014,
+          "wer": 0.9476923076923077,
+          "detection_f1": 0.0691358024691358,
+          "entity_f1": 0.1782178217821782,
+          "relation_f1": 0.02247191011235955,
+          "field_accuracy": null,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 1,
+            "detection_f1_below_0_70": 1,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 1,
+            "canonical_field_miss": 0,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        },
+        "sroie": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.9844789356984479,
+          "wer": 0.11688311688311688,
+          "detection_f1": 0.8395061728395062,
+          "entity_f1": 0.2105263157894737,
+          "relation_f1": 0.0,
+          "field_accuracy": 0.5,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 0,
+            "detection_f1_below_0_70": 0,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 0,
+            "canonical_field_miss": 1,
+            "no_table_detected": 0,
+            "empty_ocr": 0
+          }
+        }
+      },
+      "extraction_retention_vs_upright": 1.0
+    },
+    {
+      "angle": 1,
+      "page_count": 3,
+      "recognized_text_coverage": 0.4065055424985216,
+      "wer": 0.6835973383341805,
+      "detection_f1": 0.3378646045312712,
+      "entity_f1": 0.17896409523993337,
+      "relation_f1": 0.008032128514056224,
+      "field_accuracy": 0.5555555555555556,
+      "nonempty_rate": 1.0,
+      "route_counts": {
+        "general": 3
+      },
+      "error_counts": {
+        "ocr_coverage_below_0_70": 2,
+        "detection_f1_below_0_70": 2,
+        "entity_f1_below_0_70_with_reference": 3,
+        "relation_f1_below_0_60_with_reference": 1,
+        "canonical_field_miss": 2,
+        "no_table_detected": 1,
+        "empty_ocr": 0
+      },
+      "by_dataset": {
+        "fatura": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.0,
+          "wer": 1.0350877192982457,
+          "detection_f1": 0.10989010989010989,
+          "entity_f1": 0.14814814814814817,
+          "relation_f1": 0.0,
+          "field_accuracy": 0.4,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 1,
+            "detection_f1_below_0_70": 1,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 0,
+            "canonical_field_miss": 1,
+            "no_table_detected": 0,
+            "empty_ocr": 0
+          }
+        },
+        "funsd": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.22838580709645173,
+          "wer": 0.9507692307692308,
+          "detection_f1": 0.06419753086419754,
+          "entity_f1": 0.1782178217821782,
+          "relation_f1": 0.024096385542168672,
+          "field_accuracy": null,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 1,
+            "detection_f1_below_0_70": 1,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 1,
+            "canonical_field_miss": 0,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        },
+        "sroie": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.991130820399113,
+          "wer": 0.06493506493506493,
+          "detection_f1": 0.8395061728395062,
+          "entity_f1": 0.2105263157894737,
+          "relation_f1": 0.0,
+          "field_accuracy": 0.75,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 0,
+            "detection_f1_below_0_70": 0,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 0,
+            "canonical_field_miss": 1,
+            "no_table_detected": 0,
+            "empty_ocr": 0
+          }
+        }
+      },
+      "extraction_retention_vs_upright": 1.0099529581394868
+    },
+    {
+      "angle": 15,
+      "page_count": 3,
+      "recognized_text_coverage": 0.4047669439485726,
+      "wer": 0.6879263426631849,
+      "detection_f1": 0.3414155151778915,
+      "entity_f1": 0.13592139947280135,
+      "relation_f1": 0.006349206349206348,
+      "field_accuracy": 0.4444444444444444,
+      "nonempty_rate": 1.0,
+      "route_counts": {
+        "general": 3
+      },
+      "error_counts": {
+        "ocr_coverage_below_0_70": 2,
+        "detection_f1_below_0_70": 2,
+        "entity_f1_below_0_70_with_reference": 3,
+        "relation_f1_below_0_60_with_reference": 1,
+        "canonical_field_miss": 2,
+        "no_table_detected": 2,
+        "empty_ocr": 0
+      },
+      "by_dataset": {
+        "fatura": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.0,
+          "wer": 1.0350877192982457,
+          "detection_f1": 0.10989010989010989,
+          "entity_f1": 0.07692307692307693,
+          "relation_f1": 0.0,
+          "field_accuracy": 0.2,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 1,
+            "detection_f1_below_0_70": 1,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 0,
+            "canonical_field_miss": 1,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        },
+        "funsd": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.22538730634682658,
+          "wer": 0.9507692307692308,
+          "detection_f1": 0.06435643564356436,
+          "entity_f1": 0.13084112149532712,
+          "relation_f1": 0.019047619047619046,
+          "field_accuracy": null,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 1,
+            "detection_f1_below_0_70": 1,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 1,
+            "canonical_field_miss": 0,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        },
+        "sroie": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.9889135254988913,
+          "wer": 0.07792207792207792,
+          "detection_f1": 0.8500000000000001,
+          "entity_f1": 0.2,
+          "relation_f1": 0.0,
+          "field_accuracy": 0.75,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 0,
+            "detection_f1_below_0_70": 0,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 0,
+            "canonical_field_miss": 1,
+            "no_table_detected": 0,
+            "empty_ocr": 0
+          }
+        }
+      },
+      "extraction_retention_vs_upright": 0.7670489395539031
+    },
+    {
+      "angle": 30,
+      "page_count": 3,
+      "recognized_text_coverage": 0.43168068589504216,
+      "wer": 0.6686656034024455,
+      "detection_f1": 0.341468746307456,
+      "entity_f1": 0.132168284789644,
+      "relation_f1": 0.01333333333333333,
+      "field_accuracy": 0.5555555555555556,
+      "nonempty_rate": 1.0,
+      "route_counts": {
+        "general": 3
+      },
+      "error_counts": {
+        "ocr_coverage_below_0_70": 2,
+        "detection_f1_below_0_70": 2,
+        "entity_f1_below_0_70_with_reference": 3,
+        "relation_f1_below_0_60_with_reference": 1,
+        "canonical_field_miss": 2,
+        "no_table_detected": 2,
+        "empty_ocr": 0
+      },
+      "by_dataset": {
+        "fatura": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.0,
+          "wer": 1.0350877192982457,
+          "detection_f1": 0.10989010989010989,
+          "entity_f1": 0.08,
+          "relation_f1": 0.0,
+          "field_accuracy": 0.4,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 1,
+            "detection_f1_below_0_70": 1,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 0,
+            "canonical_field_miss": 1,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        },
+        "funsd": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.30834582708645675,
+          "wer": 0.88,
+          "detection_f1": 0.06451612903225806,
+          "entity_f1": 0.11650485436893201,
+          "relation_f1": 0.039999999999999994,
+          "field_accuracy": null,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 1,
+            "detection_f1_below_0_70": 1,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 1,
+            "canonical_field_miss": 0,
+            "no_table_detected": 0,
+            "empty_ocr": 0
+          }
+        },
+        "sroie": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.9866962305986696,
+          "wer": 0.09090909090909091,
+          "detection_f1": 0.8500000000000001,
+          "entity_f1": 0.2,
+          "relation_f1": 0.0,
+          "field_accuracy": 0.75,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 0,
+            "detection_f1_below_0_70": 0,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 0,
+            "canonical_field_miss": 1,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        }
+      },
+      "extraction_retention_vs_upright": 0.7458688851334357
+    },
+    {
+      "angle": 37,
+      "page_count": 3,
+      "recognized_text_coverage": 0.43049354849552307,
+      "wer": 0.7362574267837426,
+      "detection_f1": 0.34557699158696664,
+      "entity_f1": 0.15794871794871795,
+      "relation_f1": 0.01532567049808429,
+      "field_accuracy": 0.4444444444444444,
+      "nonempty_rate": 1.0,
+      "route_counts": {
+        "general": 3
+      },
+      "error_counts": {
+        "ocr_coverage_below_0_70": 2,
+        "detection_f1_below_0_70": 2,
+        "entity_f1_below_0_70_with_reference": 3,
+        "relation_f1_below_0_60_with_reference": 1,
+        "canonical_field_miss": 2,
+        "no_table_detected": 2,
+        "empty_ocr": 0
+      },
+      "by_dataset": {
+        "fatura": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.0,
+          "wer": 1.263157894736842,
+          "detection_f1": 0.13186813186813184,
+          "entity_f1": 0.15384615384615385,
+          "relation_f1": 0.0,
+          "field_accuracy": 0.2,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 1,
+            "detection_f1_below_0_70": 1,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 0,
+            "canonical_field_miss": 1,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        },
+        "funsd": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.3003498250874562,
+          "wer": 0.8676923076923077,
+          "detection_f1": 0.05486284289276808,
+          "entity_f1": 0.12,
+          "relation_f1": 0.04597701149425287,
+          "field_accuracy": null,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 1,
+            "detection_f1_below_0_70": 1,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 1,
+            "canonical_field_miss": 0,
+            "no_table_detected": 0,
+            "empty_ocr": 0
+          }
+        },
+        "sroie": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.991130820399113,
+          "wer": 0.07792207792207792,
+          "detection_f1": 0.8500000000000001,
+          "entity_f1": 0.2,
+          "relation_f1": 0.0,
+          "field_accuracy": 0.75,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 0,
+            "detection_f1_below_0_70": 0,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 0,
+            "canonical_field_miss": 1,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        }
+      },
+      "extraction_retention_vs_upright": 0.8913563064858402
+    },
+    {
+      "angle": 45,
+      "page_count": 3,
+      "recognized_text_coverage": 0.4026224138485081,
+      "wer": 0.7789880295143452,
+      "detection_f1": 0.3592459264873058,
+      "entity_f1": 0.16370035193564605,
+      "relation_f1": 0.006666666666666665,
+      "field_accuracy": 0.4444444444444444,
+      "nonempty_rate": 1.0,
+      "route_counts": {
+        "general": 3
+      },
+      "error_counts": {
+        "ocr_coverage_below_0_70": 2,
+        "detection_f1_below_0_70": 2,
+        "entity_f1_below_0_70_with_reference": 3,
+        "relation_f1_below_0_60_with_reference": 1,
+        "canonical_field_miss": 2,
+        "no_table_detected": 2,
+        "empty_ocr": 0
+      },
+      "by_dataset": {
+        "fatura": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.0,
+          "wer": 1.263157894736842,
+          "detection_f1": 0.15384615384615385,
+          "entity_f1": 0.15384615384615385,
+          "relation_f1": 0.0,
+          "field_accuracy": 0.2,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 1,
+            "detection_f1_below_0_70": 1,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 0,
+            "canonical_field_miss": 1,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        },
+        "funsd": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.22338830584707647,
+          "wer": 0.9569230769230769,
+          "detection_f1": 0.07389162561576355,
+          "entity_f1": 0.1372549019607843,
+          "relation_f1": 0.019999999999999997,
+          "field_accuracy": null,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 1,
+            "detection_f1_below_0_70": 1,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 1,
+            "canonical_field_miss": 0,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        },
+        "sroie": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.9844789356984479,
+          "wer": 0.11688311688311688,
+          "detection_f1": 0.8500000000000001,
+          "entity_f1": 0.2,
+          "relation_f1": 0.0,
+          "field_accuracy": 0.75,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 0,
+            "detection_f1_below_0_70": 0,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 0,
+            "canonical_field_miss": 1,
+            "no_table_detected": 0,
+            "empty_ocr": 0
+          }
+        }
+      },
+      "extraction_retention_vs_upright": 0.9238146593830837
+    },
+    {
+      "angle": 60,
+      "page_count": 3,
+      "recognized_text_coverage": 0.40369467889854044,
+      "wer": 0.7693043798306957,
+      "detection_f1": 0.3453517746621195,
+      "entity_f1": 0.18077430180990053,
+      "relation_f1": 0.011204481792717087,
+      "field_accuracy": 0.5555555555555556,
+      "nonempty_rate": 1.0,
+      "route_counts": {
+        "general": 3
+      },
+      "error_counts": {
+        "ocr_coverage_below_0_70": 2,
+        "detection_f1_below_0_70": 2,
+        "entity_f1_below_0_70_with_reference": 3,
+        "relation_f1_below_0_60_with_reference": 1,
+        "canonical_field_miss": 2,
+        "no_table_detected": 3,
+        "empty_ocr": 0
+      },
+      "by_dataset": {
+        "fatura": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.0,
+          "wer": 1.263157894736842,
+          "detection_f1": 0.13186813186813184,
+          "entity_f1": 0.14814814814814817,
+          "relation_f1": 0.0,
+          "field_accuracy": 0.4,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 1,
+            "detection_f1_below_0_70": 1,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 0,
+            "canonical_field_miss": 1,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        },
+        "funsd": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.22438780609695153,
+          "wer": 0.9538461538461539,
+          "detection_f1": 0.0541871921182266,
+          "entity_f1": 0.1941747572815534,
+          "relation_f1": 0.03361344537815126,
+          "field_accuracy": null,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 1,
+            "detection_f1_below_0_70": 1,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 1,
+            "canonical_field_miss": 0,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        },
+        "sroie": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.9866962305986696,
+          "wer": 0.09090909090909091,
+          "detection_f1": 0.8500000000000001,
+          "entity_f1": 0.2,
+          "relation_f1": 0.0,
+          "field_accuracy": 0.75,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 0,
+            "detection_f1_below_0_70": 0,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 0,
+            "canonical_field_miss": 1,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        }
+      },
+      "extraction_retention_vs_upright": 1.0201685462312255
+    },
+    {
+      "angle": 89,
+      "page_count": 3,
+      "recognized_text_coverage": 0.4204257811966153,
+      "wer": 0.6567042314410736,
+      "detection_f1": 0.3347530418741281,
+      "entity_f1": 0.1583108715184187,
+      "relation_f1": 0.013468013468013467,
+      "field_accuracy": 0.4444444444444444,
+      "nonempty_rate": 1.0,
+      "route_counts": {
+        "general": 3
+      },
+      "error_counts": {
+        "ocr_coverage_below_0_70": 2,
+        "detection_f1_below_0_70": 2,
+        "entity_f1_below_0_70_with_reference": 3,
+        "relation_f1_below_0_60_with_reference": 1,
+        "canonical_field_miss": 2,
+        "no_table_detected": 3,
+        "empty_ocr": 0
+      },
+      "by_dataset": {
+        "fatura": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.0,
+          "wer": 1.0350877192982457,
+          "detection_f1": 0.10989010989010989,
+          "entity_f1": 0.14285714285714285,
+          "relation_f1": 0.0,
+          "field_accuracy": 0.2,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 1,
+            "detection_f1_below_0_70": 1,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 0,
+            "canonical_field_miss": 1,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        },
+        "funsd": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.27236381809095456,
+          "wer": 0.8830769230769231,
+          "detection_f1": 0.05486284289276808,
+          "entity_f1": 0.1320754716981132,
+          "relation_f1": 0.0404040404040404,
+          "field_accuracy": null,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 1,
+            "detection_f1_below_0_70": 1,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 1,
+            "canonical_field_miss": 0,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        },
+        "sroie": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.9889135254988913,
+          "wer": 0.05194805194805195,
+          "detection_f1": 0.8395061728395062,
+          "entity_f1": 0.2,
+          "relation_f1": 0.0,
+          "field_accuracy": 0.75,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 0,
+            "detection_f1_below_0_70": 0,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 0,
+            "canonical_field_miss": 1,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        }
+      },
+      "extraction_retention_vs_upright": 0.8934000575998817
+    },
+    {
+      "angle": 90,
+      "page_count": 3,
+      "recognized_text_coverage": 0.4027889972234873,
+      "wer": 0.7009133556501977,
+      "detection_f1": 0.3395106950662506,
+      "entity_f1": 0.18301423662248406,
+      "relation_f1": 0.00784313725490196,
+      "field_accuracy": 0.2222222222222222,
+      "nonempty_rate": 1.0,
+      "route_counts": {
+        "general": 3
+      },
+      "error_counts": {
+        "ocr_coverage_below_0_70": 2,
+        "detection_f1_below_0_70": 2,
+        "entity_f1_below_0_70_with_reference": 3,
+        "relation_f1_below_0_60_with_reference": 1,
+        "canonical_field_miss": 2,
+        "no_table_detected": 3,
+        "empty_ocr": 0
+      },
+      "by_dataset": {
+        "fatura": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.0,
+          "wer": 1.0350877192982457,
+          "detection_f1": 0.10989010989010989,
+          "entity_f1": 0.14285714285714285,
+          "relation_f1": 0.0,
+          "field_accuracy": 0.2,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 1,
+            "detection_f1_below_0_70": 1,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 0,
+            "canonical_field_miss": 1,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        },
+        "funsd": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.223888055972014,
+          "wer": 0.9507692307692308,
+          "detection_f1": 0.0691358024691358,
+          "entity_f1": 0.20618556701030927,
+          "relation_f1": 0.023529411764705882,
+          "field_accuracy": null,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 1,
+            "detection_f1_below_0_70": 1,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 1,
+            "canonical_field_miss": 0,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        },
+        "sroie": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.9844789356984479,
+          "wer": 0.11688311688311688,
+          "detection_f1": 0.8395061728395062,
+          "entity_f1": 0.2,
+          "relation_f1": 0.0,
+          "field_accuracy": 0.25,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 0,
+            "detection_f1_below_0_70": 0,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 0,
+            "canonical_field_miss": 1,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        }
+      },
+      "extraction_retention_vs_upright": 1.0328092314311001
+    },
+    {
+      "angle": 91,
+      "page_count": 3,
+      "recognized_text_coverage": 0.4315141025200629,
+      "wer": 0.6612596759965181,
+      "detection_f1": 0.34134104946708593,
+      "entity_f1": 0.15098296199213632,
+      "relation_f1": 0.005698005698005697,
+      "field_accuracy": 0.4444444444444444,
+      "nonempty_rate": 1.0,
+      "route_counts": {
+        "general": 3
+      },
+      "error_counts": {
+        "ocr_coverage_below_0_70": 2,
+        "detection_f1_below_0_70": 2,
+        "entity_f1_below_0_70_with_reference": 3,
+        "relation_f1_below_0_60_with_reference": 1,
+        "canonical_field_miss": 2,
+        "no_table_detected": 3,
+        "empty_ocr": 0
+      },
+      "by_dataset": {
+        "fatura": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.0,
+          "wer": 1.0350877192982457,
+          "detection_f1": 0.10989010989010989,
+          "entity_f1": 0.14285714285714285,
+          "relation_f1": 0.0,
+          "field_accuracy": 0.2,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 1,
+            "detection_f1_below_0_70": 1,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 0,
+            "canonical_field_miss": 1,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        },
+        "funsd": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.3078460769615192,
+          "wer": 0.8707692307692307,
+          "detection_f1": 0.0746268656716418,
+          "entity_f1": 0.11009174311926606,
+          "relation_f1": 0.017094017094017092,
+          "field_accuracy": null,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 1,
+            "detection_f1_below_0_70": 1,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 1,
+            "canonical_field_miss": 0,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        },
+        "sroie": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.9866962305986696,
+          "wer": 0.07792207792207792,
+          "detection_f1": 0.8395061728395062,
+          "entity_f1": 0.2,
+          "relation_f1": 0.0,
+          "field_accuracy": 0.75,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 0,
+            "detection_f1_below_0_70": 0,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 0,
+            "canonical_field_miss": 1,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        }
+      },
+      "extraction_retention_vs_upright": 0.8520462659741075
+    },
+    {
+      "angle": 135,
+      "page_count": 3,
+      "recognized_text_coverage": 0.40376744369869755,
+      "wer": 0.7660010165273322,
+      "detection_f1": 0.3576038903625111,
+      "entity_f1": 0.17023629964806433,
+      "relation_f1": 0.0,
+      "field_accuracy": 0.5555555555555556,
+      "nonempty_rate": 1.0,
+      "route_counts": {
+        "general": 3
+      },
+      "error_counts": {
+        "ocr_coverage_below_0_70": 2,
+        "detection_f1_below_0_70": 2,
+        "entity_f1_below_0_70_with_reference": 3,
+        "relation_f1_below_0_60_with_reference": 1,
+        "canonical_field_miss": 2,
+        "no_table_detected": 2,
+        "empty_ocr": 0
+      },
+      "by_dataset": {
+        "fatura": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.0,
+          "wer": 1.263157894736842,
+          "detection_f1": 0.15384615384615385,
+          "entity_f1": 0.15384615384615385,
+          "relation_f1": 0.0,
+          "field_accuracy": 0.4,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 1,
+            "detection_f1_below_0_70": 1,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 0,
+            "canonical_field_miss": 1,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        },
+        "funsd": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.22238880559720142,
+          "wer": 0.9569230769230769,
+          "detection_f1": 0.06896551724137931,
+          "entity_f1": 0.1568627450980392,
+          "relation_f1": 0.0,
+          "field_accuracy": null,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 1,
+            "detection_f1_below_0_70": 1,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 1,
+            "canonical_field_miss": 0,
+            "no_table_detected": 0,
+            "empty_ocr": 0
+          }
+        },
+        "sroie": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.9889135254988913,
+          "wer": 0.07792207792207792,
+          "detection_f1": 0.8500000000000001,
+          "entity_f1": 0.2,
+          "relation_f1": 0.0,
+          "field_accuracy": 0.75,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 0,
+            "detection_f1_below_0_70": 0,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 0,
+            "canonical_field_miss": 1,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        }
+      },
+      "extraction_retention_vs_upright": 0.9606991513117693
+    },
+    {
+      "angle": 179,
+      "page_count": 3,
+      "recognized_text_coverage": 0.4195200995215622,
+      "wer": 0.6633109580478002,
+      "detection_f1": 0.336415552264818,
+      "entity_f1": 0.13534798534798534,
+      "relation_f1": 0.010101010101010102,
+      "field_accuracy": 0.4444444444444444,
+      "nonempty_rate": 1.0,
+      "route_counts": {
+        "general": 3
+      },
+      "error_counts": {
+        "ocr_coverage_below_0_70": 2,
+        "detection_f1_below_0_70": 2,
+        "entity_f1_below_0_70_with_reference": 3,
+        "relation_f1_below_0_60_with_reference": 1,
+        "canonical_field_miss": 2,
+        "no_table_detected": 2,
+        "empty_ocr": 0
+      },
+      "by_dataset": {
+        "fatura": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.0,
+          "wer": 1.0350877192982457,
+          "detection_f1": 0.10989010989010989,
+          "entity_f1": 0.07142857142857142,
+          "relation_f1": 0.0,
+          "field_accuracy": 0.4,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 1,
+            "detection_f1_below_0_70": 1,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 0,
+            "canonical_field_miss": 1,
+            "no_table_detected": 0,
+            "empty_ocr": 0
+          }
+        },
+        "funsd": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.27186406796601703,
+          "wer": 0.8769230769230769,
+          "detection_f1": 0.05985037406483791,
+          "entity_f1": 0.13461538461538464,
+          "relation_f1": 0.030303030303030304,
+          "field_accuracy": null,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 1,
+            "detection_f1_below_0_70": 1,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 1,
+            "canonical_field_miss": 0,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        },
+        "sroie": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.9866962305986696,
+          "wer": 0.07792207792207792,
+          "detection_f1": 0.8395061728395062,
+          "entity_f1": 0.2,
+          "relation_f1": 0.0,
+          "field_accuracy": 0.5,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 0,
+            "detection_f1_below_0_70": 0,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 0,
+            "canonical_field_miss": 1,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        }
+      },
+      "extraction_retention_vs_upright": 0.7638129759891418
+    },
+    {
+      "angle": 180,
+      "page_count": 3,
+      "recognized_text_coverage": 0.4368447705193967,
+      "wer": 0.6553322700691122,
+      "detection_f1": 0.33962506363940054,
+      "entity_f1": 0.13135802469135802,
+      "relation_f1": 0.0,
+      "field_accuracy": 0.3333333333333333,
+      "nonempty_rate": 1.0,
+      "route_counts": {
+        "general": 3
+      },
+      "error_counts": {
+        "ocr_coverage_below_0_70": 2,
+        "detection_f1_below_0_70": 2,
+        "entity_f1_below_0_70_with_reference": 3,
+        "relation_f1_below_0_60_with_reference": 1,
+        "canonical_field_miss": 2,
+        "no_table_detected": 2,
+        "empty_ocr": 0
+      },
+      "by_dataset": {
+        "fatura": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.0,
+          "wer": 1.0350877192982457,
+          "detection_f1": 0.10989010989010989,
+          "entity_f1": 0.07407407407407408,
+          "relation_f1": 0.0,
+          "field_accuracy": 0.4,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 1,
+            "detection_f1_below_0_70": 1,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 0,
+            "canonical_field_miss": 1,
+            "no_table_detected": 0,
+            "empty_ocr": 0
+          }
+        },
+        "funsd": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.32383808095952027,
+          "wer": 0.84,
+          "detection_f1": 0.06947890818858561,
+          "entity_f1": 0.12,
+          "relation_f1": 0.0,
+          "field_accuracy": null,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 1,
+            "detection_f1_below_0_70": 1,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 1,
+            "canonical_field_miss": 0,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        },
+        "sroie": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.9866962305986696,
+          "wer": 0.09090909090909091,
+          "detection_f1": 0.8395061728395062,
+          "entity_f1": 0.2,
+          "relation_f1": 0.0,
+          "field_accuracy": 0.25,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 0,
+            "detection_f1_below_0_70": 0,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 0,
+            "canonical_field_miss": 1,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        }
+      },
+      "extraction_retention_vs_upright": 0.7412963222289647
+    },
+    {
+      "angle": 225,
+      "page_count": 3,
+      "recognized_text_coverage": 0.40533945887366735,
+      "wer": 0.7639497344760503,
+      "detection_f1": 0.3559618542377163,
+      "entity_f1": 0.1583108715184187,
+      "relation_f1": 0.005649717514124294,
+      "field_accuracy": 0.3333333333333333,
+      "nonempty_rate": 1.0,
+      "route_counts": {
+        "general": 3
+      },
+      "error_counts": {
+        "ocr_coverage_below_0_70": 2,
+        "detection_f1_below_0_70": 2,
+        "entity_f1_below_0_70_with_reference": 3,
+        "relation_f1_below_0_60_with_reference": 1,
+        "canonical_field_miss": 2,
+        "no_table_detected": 2,
+        "empty_ocr": 0
+      },
+      "by_dataset": {
+        "fatura": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.0,
+          "wer": 1.263157894736842,
+          "detection_f1": 0.15384615384615385,
+          "entity_f1": 0.14285714285714285,
+          "relation_f1": 0.0,
+          "field_accuracy": 0.2,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 1,
+            "detection_f1_below_0_70": 1,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 0,
+            "canonical_field_miss": 1,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        },
+        "funsd": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.22488755622188905,
+          "wer": 0.9507692307692308,
+          "detection_f1": 0.06403940886699507,
+          "entity_f1": 0.1320754716981132,
+          "relation_f1": 0.01694915254237288,
+          "field_accuracy": null,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 1,
+            "detection_f1_below_0_70": 1,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 1,
+            "canonical_field_miss": 0,
+            "no_table_detected": 0,
+            "empty_ocr": 0
+          }
+        },
+        "sroie": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.991130820399113,
+          "wer": 0.07792207792207792,
+          "detection_f1": 0.8500000000000001,
+          "entity_f1": 0.2,
+          "relation_f1": 0.0,
+          "field_accuracy": 0.5,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 0,
+            "detection_f1_below_0_70": 0,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 0,
+            "canonical_field_miss": 1,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        }
+      },
+      "extraction_retention_vs_upright": 0.8934000575998817
+    },
+    {
+      "angle": 269,
+      "page_count": 3,
+      "recognized_text_coverage": 0.42201885014624985,
+      "wer": 0.6694648042016463,
+      "detection_f1": 0.3330491755035702,
+      "entity_f1": 0.15264367816091953,
+      "relation_f1": 0.020512820512820513,
+      "field_accuracy": 0.4444444444444444,
+      "nonempty_rate": 1.0,
+      "route_counts": {
+        "general": 3
+      },
+      "error_counts": {
+        "ocr_coverage_below_0_70": 2,
+        "detection_f1_below_0_70": 2,
+        "entity_f1_below_0_70_with_reference": 3,
+        "relation_f1_below_0_60_with_reference": 1,
+        "canonical_field_miss": 2,
+        "no_table_detected": 3,
+        "empty_ocr": 0
+      },
+      "by_dataset": {
+        "fatura": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.0,
+          "wer": 1.0350877192982457,
+          "detection_f1": 0.10989010989010989,
+          "entity_f1": 0.13793103448275862,
+          "relation_f1": 0.0,
+          "field_accuracy": 0.4,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 1,
+            "detection_f1_below_0_70": 1,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 0,
+            "canonical_field_miss": 1,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        },
+        "funsd": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.2793603198400799,
+          "wer": 0.8953846153846153,
+          "detection_f1": 0.04975124378109453,
+          "entity_f1": 0.12,
+          "relation_f1": 0.06153846153846154,
+          "field_accuracy": null,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 1,
+            "detection_f1_below_0_70": 1,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 1,
+            "canonical_field_miss": 0,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        },
+        "sroie": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.9866962305986696,
+          "wer": 0.07792207792207792,
+          "detection_f1": 0.8395061728395062,
+          "entity_f1": 0.2,
+          "relation_f1": 0.0,
+          "field_accuracy": 0.5,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 0,
+            "detection_f1_below_0_70": 0,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 0,
+            "canonical_field_miss": 1,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        }
+      },
+      "extraction_retention_vs_upright": 0.8614182308089758
+    },
+    {
+      "angle": 270,
+      "page_count": 3,
+      "recognized_text_coverage": 0.43610567221932267,
+      "wer": 0.6639902787271209,
+      "detection_f1": 0.33962506363940054,
+      "entity_f1": 0.15506792058516197,
+      "relation_f1": 0.012461059190031152,
+      "field_accuracy": 0.3333333333333333,
+      "nonempty_rate": 1.0,
+      "route_counts": {
+        "general": 3
+      },
+      "error_counts": {
+        "ocr_coverage_below_0_70": 2,
+        "detection_f1_below_0_70": 2,
+        "entity_f1_below_0_70_with_reference": 3,
+        "relation_f1_below_0_60_with_reference": 1,
+        "canonical_field_miss": 2,
+        "no_table_detected": 3,
+        "empty_ocr": 0
+      },
+      "by_dataset": {
+        "fatura": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.0,
+          "wer": 1.0350877192982457,
+          "detection_f1": 0.10989010989010989,
+          "entity_f1": 0.13793103448275862,
+          "relation_f1": 0.0,
+          "field_accuracy": 0.4,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 1,
+            "detection_f1_below_0_70": 1,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 0,
+            "canonical_field_miss": 1,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        },
+        "funsd": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.32383808095952027,
+          "wer": 0.84,
+          "detection_f1": 0.06947890818858561,
+          "entity_f1": 0.1272727272727273,
+          "relation_f1": 0.037383177570093455,
+          "field_accuracy": null,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 1,
+            "detection_f1_below_0_70": 1,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 1,
+            "canonical_field_miss": 0,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        },
+        "sroie": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.9844789356984479,
+          "wer": 0.11688311688311688,
+          "detection_f1": 0.8395061728395062,
+          "entity_f1": 0.2,
+          "relation_f1": 0.0,
+          "field_accuracy": 0.25,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 0,
+            "detection_f1_below_0_70": 0,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 0,
+            "canonical_field_miss": 1,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        }
+      },
+      "extraction_retention_vs_upright": 0.8750990241788885
+    },
+    {
+      "angle": 315,
+      "page_count": 3,
+      "recognized_text_coverage": 0.4046731253737506,
+      "wer": 0.7616720121983279,
+      "detection_f1": 0.3576038903625111,
+      "entity_f1": 0.16622482131254063,
+      "relation_f1": 0.005952380952380953,
+      "field_accuracy": 0.5555555555555556,
+      "nonempty_rate": 1.0,
+      "route_counts": {
+        "general": 3
+      },
+      "error_counts": {
+        "ocr_coverage_below_0_70": 2,
+        "detection_f1_below_0_70": 2,
+        "entity_f1_below_0_70_with_reference": 3,
+        "relation_f1_below_0_60_with_reference": 1,
+        "canonical_field_miss": 2,
+        "no_table_detected": 2,
+        "empty_ocr": 0
+      },
+      "by_dataset": {
+        "fatura": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.0,
+          "wer": 1.263157894736842,
+          "detection_f1": 0.15384615384615385,
+          "entity_f1": 0.14814814814814817,
+          "relation_f1": 0.0,
+          "field_accuracy": 0.4,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 1,
+            "detection_f1_below_0_70": 1,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 0,
+            "canonical_field_miss": 1,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        },
+        "funsd": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.22288855572213895,
+          "wer": 0.9569230769230769,
+          "detection_f1": 0.06896551724137931,
+          "entity_f1": 0.14,
+          "relation_f1": 0.01785714285714286,
+          "field_accuracy": null,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 1,
+            "detection_f1_below_0_70": 1,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 1,
+            "canonical_field_miss": 0,
+            "no_table_detected": 0,
+            "empty_ocr": 0
+          }
+        },
+        "sroie": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.991130820399113,
+          "wer": 0.06493506493506493,
+          "detection_f1": 0.8500000000000001,
+          "entity_f1": 0.2105263157894737,
+          "relation_f1": 0.0,
+          "field_accuracy": 0.75,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 0,
+            "detection_f1_below_0_70": 0,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 0,
+            "canonical_field_miss": 1,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        }
+      },
+      "extraction_retention_vs_upright": 0.9380610662475949
+    },
+    {
+      "angle": 359,
+      "page_count": 3,
+      "recognized_text_coverage": 0.4217584481964487,
+      "wer": 0.6577298724667145,
+      "detection_f1": 0.336415552264818,
+      "entity_f1": 0.14616328054178,
+      "relation_f1": 0.0,
+      "field_accuracy": 0.5555555555555556,
+      "nonempty_rate": 1.0,
+      "route_counts": {
+        "general": 3
+      },
+      "error_counts": {
+        "ocr_coverage_below_0_70": 2,
+        "detection_f1_below_0_70": 2,
+        "entity_f1_below_0_70_with_reference": 3,
+        "relation_f1_below_0_60_with_reference": 1,
+        "canonical_field_miss": 2,
+        "no_table_detected": 1,
+        "empty_ocr": 0
+      },
+      "by_dataset": {
+        "fatura": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.0,
+          "wer": 1.0350877192982457,
+          "detection_f1": 0.10989010989010989,
+          "entity_f1": 0.14285714285714285,
+          "relation_f1": 0.0,
+          "field_accuracy": 0.4,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 1,
+            "detection_f1_below_0_70": 1,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 0,
+            "canonical_field_miss": 1,
+            "no_table_detected": 0,
+            "empty_ocr": 0
+          }
+        },
+        "funsd": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.27636181909045476,
+          "wer": 0.8861538461538462,
+          "detection_f1": 0.05985037406483791,
+          "entity_f1": 0.0851063829787234,
+          "relation_f1": 0.0,
+          "field_accuracy": null,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 1,
+            "detection_f1_below_0_70": 1,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 1,
+            "canonical_field_miss": 0,
+            "no_table_detected": 1,
+            "empty_ocr": 0
+          }
+        },
+        "sroie": {
+          "page_count": 1,
+          "recognized_text_coverage": 0.9889135254988913,
+          "wer": 0.05194805194805195,
+          "detection_f1": 0.8395061728395062,
+          "entity_f1": 0.2105263157894737,
+          "relation_f1": 0.0,
+          "field_accuracy": 0.75,
+          "nonempty_rate": 1.0,
+          "route_counts": {
+            "general": 1
+          },
+          "error_counts": {
+            "ocr_coverage_below_0_70": 0,
+            "detection_f1_below_0_70": 0,
+            "entity_f1_below_0_70_with_reference": 1,
+            "relation_f1_below_0_60_with_reference": 0,
+            "canonical_field_miss": 1,
+            "no_table_detected": 0,
+            "empty_ocr": 0
+          }
+        }
+      },
+      "extraction_retention_vs_upright": 0.8248472262362683
+    }
+  ],
+  "synthetic_thai_metrics": [
+    {
+      "angle": 0,
+      "recognized_text_coverage": 1.0,
+      "wer": 0.0,
+      "nonempty": true,
+      "route": "thai",
+      "entity_count": 0
+    },
+    {
+      "angle": 1,
+      "recognized_text_coverage": 1.0,
+      "wer": 0.0,
+      "nonempty": true,
+      "route": "thai",
+      "entity_count": 0
+    },
+    {
+      "angle": 15,
+      "recognized_text_coverage": 1.0,
+      "wer": 0.0,
+      "nonempty": true,
+      "route": "thai",
+      "entity_count": 0
+    },
+    {
+      "angle": 30,
+      "recognized_text_coverage": 1.0,
+      "wer": 0.0,
+      "nonempty": true,
+      "route": "thai",
+      "entity_count": 0
+    },
+    {
+      "angle": 37,
+      "recognized_text_coverage": 1.0,
+      "wer": 0.0,
+      "nonempty": true,
+      "route": "thai",
+      "entity_count": 0
+    },
+    {
+      "angle": 45,
+      "recognized_text_coverage": 1.0,
+      "wer": 0.0,
+      "nonempty": true,
+      "route": "thai",
+      "entity_count": 0
+    },
+    {
+      "angle": 60,
+      "recognized_text_coverage": 1.0,
+      "wer": 0.0,
+      "nonempty": true,
+      "route": "thai",
+      "entity_count": 0
+    },
+    {
+      "angle": 89,
+      "recognized_text_coverage": 1.0,
+      "wer": 0.0,
+      "nonempty": true,
+      "route": "thai",
+      "entity_count": 0
+    },
+    {
+      "angle": 90,
+      "recognized_text_coverage": 1.0,
+      "wer": 0.0,
+      "nonempty": true,
+      "route": "thai",
+      "entity_count": 0
+    },
+    {
+      "angle": 91,
+      "recognized_text_coverage": 1.0,
+      "wer": 0.0,
+      "nonempty": true,
+      "route": "thai",
+      "entity_count": 0
+    },
+    {
+      "angle": 135,
+      "recognized_text_coverage": 1.0,
+      "wer": 0.0,
+      "nonempty": true,
+      "route": "thai",
+      "entity_count": 0
+    },
+    {
+      "angle": 179,
+      "recognized_text_coverage": 1.0,
+      "wer": 0.0,
+      "nonempty": true,
+      "route": "thai",
+      "entity_count": 0
+    },
+    {
+      "angle": 180,
+      "recognized_text_coverage": 1.0,
+      "wer": 0.0,
+      "nonempty": true,
+      "route": "thai",
+      "entity_count": 0
+    },
+    {
+      "angle": 225,
+      "recognized_text_coverage": 1.0,
+      "wer": 0.0,
+      "nonempty": true,
+      "route": "thai",
+      "entity_count": 0
+    },
+    {
+      "angle": 269,
+      "recognized_text_coverage": 1.0,
+      "wer": 0.0,
+      "nonempty": true,
+      "route": "thai",
+      "entity_count": 0
+    },
+    {
+      "angle": 270,
+      "recognized_text_coverage": 1.0,
+      "wer": 0.0,
+      "nonempty": true,
+      "route": "thai",
+      "entity_count": 0
+    },
+    {
+      "angle": 315,
+      "recognized_text_coverage": 1.0,
+      "wer": 0.0,
+      "nonempty": true,
+      "route": "thai",
+      "entity_count": 0
+    },
+    {
+      "angle": 359,
+      "recognized_text_coverage": 1.0,
+      "wer": 0.0,
+      "nonempty": true,
+      "route": "thai",
+      "entity_count": 0
+    }
+  ],
+  "kmeans_controls_ocr": false,
+  "duration_seconds": 335.74877849999757,
+  "limitations": [
+    "The expensive end-to-end angle grid is a deterministic bounded public sample; full test-head metrics are reported separately.",
+    "Thai angle coverage uses a local synthetic page because the public held-out corpus has no compatible Thai polygon annotations."
+  ]
+}

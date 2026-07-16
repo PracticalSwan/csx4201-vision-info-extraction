@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "status": "private_test_aggregate",
+  "attempted_pages": 2,
+  "successful_pages": 2,
+  "failed_pages": 0,
+  "mean_ocr_words": 89.0,
+  "mean_entities": 67.5,
+  "mean_relations": 13.0,
+  "mean_non_null_fields": 4.5,
+  "mean_ocr_confidence": 0.9528385933219927,
+  "mean_duration_seconds": 14.277473900000132,
+  "route_counts": {
+    "general": 2
+  },
+  "error_type_counts": {},
+  "gmail_fit_rows": 0,
+  "local_processing_only": true,
+  "contains_filenames": false,
+  "contains_ocr_text": false,
+  "contains_images": false,
+  "contains_per_document_predictions": false,
+  "elapsed_seconds": 29.892074899999898,
+  "limitations": [
+    "No private ground truth is used; this is operational aggregate testing, not accuracy evaluation."
+  ]
+}

@@ -77,6 +77,30 @@ def _normalize_config(cfg: dict[str, Any]) -> dict[str, Any]:
     cfg.setdefault("runtime", {})
     cfg["runtime"].setdefault("workers", 2)
     cfg["runtime"].setdefault("log_level", "INFO")
+    cfg.setdefault("information_extraction", {})
+    cfg["information_extraction"].setdefault("schema_version", "1.0")
+    cfg["information_extraction"].setdefault(
+        "output_schema", "schemas/inference_output.schema.json"
+    )
+    cfg["information_extraction"].setdefault(
+        "entity_labels", ["HEADER", "KEY", "VALUE", "QUESTION", "ANSWER", "TABLE_CELL", "OTHER"]
+    )
+    cfg["information_extraction"].setdefault("public_only_training", True)
+    cfg.setdefault("augmentation", {})
+    cfg["augmentation"].setdefault("upright_probability", 0.2)
+    cfg["augmentation"].setdefault("angle_min", 0.0)
+    cfg["augmentation"].setdefault("angle_max", 360.0)
+    cfg.setdefault("ocr", {})
+    cfg["ocr"].setdefault("device", "cpu")
+    cfg["ocr"].setdefault("orientation_candidates", [0, 90, 180, 270])
+    cfg["ocr"].setdefault("preprocessing_version", "1.0")
+    cfg.setdefault("layout_model", {})
+    cfg["layout_model"].setdefault("checkpoint", "microsoft/layoutxlm-base")
+    cfg["layout_model"].setdefault("max_length", 512)
+    cfg.setdefault("kmeans_display", {})
+    cfg["kmeans_display"].setdefault("enabled", True)
+    cfg["kmeans_display"].setdefault("purpose", "display_only")
+    cfg["kmeans_display"].setdefault("experimental_exact_angle_enabled", False)
     return cfg
 
 

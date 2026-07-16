@@ -1,0 +1,4 @@
+-r requirements-ie.txt
+# setup_ie_environment.ps1 installs the CPU-only PyTorch wheel required by
+# ModelScope/PaddleX. Never install a CUDA PyTorch wheel in this environment.
+paddleocr==3.7.0

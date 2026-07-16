@@ -85,7 +85,7 @@ Data originally lived under `vision_info_extraction_data/` with the layout recor
 - [PASS] no-files-lost: all dataset counts match summary
 - [PASS] raw-bytes-unchanged: 100 sample hashes stable across move
 - [PASS] duplicate-report-consistent: 3302 duplicate groups well-formed
-- [PASS] no-disallowed-neural-or-ocr-outputs: no OCR outputs or neural checkpoints outside data/raw; classical rotation artifacts allowed
+- [PASS] no-disallowed-neural-or-ocr-outputs: no OCR outputs or neural checkpoints outside data/raw; classical rotation artifacts allowed; external directory links pruned
 
 ## 20. Remaining manual decisions
 - Review any low-confidence Gmail classifications in `unclassified/`.

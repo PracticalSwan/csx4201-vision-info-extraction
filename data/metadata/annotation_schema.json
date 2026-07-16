@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/csx4201/annotation_schema.json",
+  "title": "Normalized public document annotation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "document_id", "page_id", "dataset", "dataset_component",
+    "document_type", "language", "image_path", "page", "tokens", "entities",
+    "relations", "canonical_fields", "source_qa", "annotation_provenance",
+    "alignment_status", "project_split", "is_private"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "document_id": {"type": "string", "minLength": 1},
+    "page_id": {"type": "string", "minLength": 1},
+    "dataset": {"enum": ["sroie", "funsd", "fatura", "coru"]},
+    "dataset_component": {"type": "string"},
+    "document_type": {"type": "string"},
+    "language": {"type": "string"},
+    "image_path": {"type": "string", "minLength": 1},
+    "page": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["number", "width", "height"],
+      "properties": {
+        "number": {"type": "integer", "minimum": 1},
+        "width": {"type": "integer", "minimum": 1},
+        "height": {"type": "integer", "minimum": 1}
+      }
+    },
+    "tokens": {"type": "array", "items": {"$ref": "#/$defs/token"}},
+    "entities": {"type": "array", "items": {"$ref": "#/$defs/entity"}},
+    "relations": {"type": "array", "items": {"$ref": "#/$defs/relation"}},
+    "canonical_fields": {"type": "object"},
+    "source_qa": {"type": "array", "items": {"type": "object"}},
+    "annotation_provenance": {
+      "type": "object",
+      "required": ["source_paths", "source_format", "converter_version"],
+      "properties": {
+        "source_paths": {"type": "array", "items": {"type": "string"}},
+        "source_format": {"type": "string"},
+        "converter_version": {"type": "string"}
+      }
+    },
+    "alignment_status": {"enum": ["source_tokens", "requires_ocr_alignment", "unsupported"]},
+    "project_split": {"enum": ["train", "validation", "test"]},
+    "is_private": {"const": false}
+  },
+  "$defs": {
+    "point": {
+      "type": "array", "minItems": 2, "maxItems": 2,
+      "prefixItems": [{"type": "number"}, {"type": "number"}]
+    },
+    "polygon": {"type": "array", "minItems": 4, "items": {"$ref": "#/$defs/point"}},
+    "bbox": {
+      "type": "array", "minItems": 4, "maxItems": 4,
+      "prefixItems": [{"type": "number"}, {"type": "number"}, {"type": "number"}, {"type": "number"}]
+    },
+    "token": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "text", "polygon", "bbox", "entity_label", "source_id"],
+      "properties": {
+        "id": {"type": "string"}, "text": {"type": "string", "minLength": 1},
+        "polygon": {"$ref": "#/$defs/polygon"}, "bbox": {"$ref": "#/$defs/bbox"},
+        "entity_label": {"enum": ["HEADER", "KEY", "VALUE", "QUESTION", "ANSWER", "TABLE_CELL", "OTHER"]},
+        "source_id": {"type": ["string", "integer", "null"]}
+      }
+    },
+    "entity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label", "text", "token_ids", "polygon", "bbox"],
+      "properties": {
+        "id": {"type": "string"},
+        "label": {"enum": ["HEADER", "KEY", "VALUE", "QUESTION", "ANSWER", "TABLE_CELL", "OTHER"]},
+        "text": {"type": "string", "minLength": 1},
+        "token_ids": {"type": "array", "items": {"type": "string"}},
+        "polygon": {"$ref": "#/$defs/polygon"}, "bbox": {"$ref": "#/$defs/bbox"}
+      }
+    },
+    "relation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "type", "source_id", "target_id"],
+      "properties": {
+        "id": {"type": "string"},
+        "type": {"enum": ["KEY_VALUE", "QUESTION_ANSWER", "HEADER_SECTION", "TABLE_HEADER_CELL", "GENERIC"]},
+        "source_id": {"type": "string"}, "target_id": {"type": "string"}
+      }
+    }
+  }
+}

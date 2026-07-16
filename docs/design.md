@@ -1,253 +1,169 @@
-# Rotation Pipeline Design
+# Rotation-Robust Information-Extraction Design
 
-Implemented architecture, safety controls, artifacts, and observed tradeoffs.
+## Separation of responsibilities
 
-## Design status
+The system has one controlling path and one diagnostic branch:
 
-This document describes the implementation that completed its bounded
-full-angle run on 2026-07-13. The pipeline and safety controls passed
-verification. Model quality is modest, and the exact-angle baseline did not
-meet its reliability threshold.
+```text
+controlling: input -> pages -> OCR orientation/profile/route -> calibrated
+             layout heads -> relations/tables/fields -> schema -> atomic JSON
 
-## Scope decision
+diagnostic:  page -> handcrafted features/PCA/K-Means -> display only
+```
 
-The live audit found 22,086 usable public full-document images and 203 private
-PDF pages. Materializing every configured angle for the entire public pool
-would create an estimated 416,028 rotations and consume 219.08 GiB of new
-space. The final full-profile gate observed 16.12 GiB free and enforced a 10 GiB
-reserve, so it marked the unbounded profile unsafe.
+The controlling path never consumes a K-Means cluster, zone, or estimated
+angle. `safe_kmeans_display` catches diagnostic failures and returns nullable
+display fields. The preserved baseline therefore cannot reduce OCR or
+extraction availability.
 
-The implemented full profile therefore selects, deterministically:
+## Input and geometry
 
-- 100 SROIE pages;
-- 100 FUNSD pages;
-- 100 FATURA pages;
-- 100 CORU full-document pages;
-- all 203 pages from 26 private Gmail PDFs.
+`src/inference/document_io.py` accepts supported raster formats and PDFs with
+explicit size/page limits. Images are EXIF-transposed, flattened to RGB on
+white, and normalized without changing the source. Each unencrypted PDF page
+is rendered independently.
 
-The public cap preserves source and split strata where practical. FATURA uses
-round-robin template-family selection. CORU selects equally from Receipt Images
-& Key Information Detection and Receipt Question Answering. CORU OCR line
-crops and CSV-only item extraction are excluded.
+`src/information_extraction/geometry.py` uses one 3x3 homogeneous transform for
+pixels, polygons, boxes, entities, and relations. Expanded rotations keep the
+whole page on a white canvas; coordinates are clipped only after the transform
+and mapped back with its inverse.
 
-A 52-rotation smoke run measures average artifact size. The full run proceeds
-only if its empirical estimate preserves at least 10 GiB free and stays below
-the configured disk-use ceiling.
+Training retains an upright fraction and otherwise draws deterministic angles
+from [0, 360). The selected final run used 60% upright and 40% arbitrary-angle
+examples. Inference scores 0/90/180/270-degree candidates and can add an
+automatic fine-deskew candidate when line evidence is reliable. K-Means and
+the failed historical exact-angle estimator never supply a correction.
 
-## Data flow
+## Process boundary and storage
 
-    organization inventory
-      -> page preparation and deterministic selection
-      -> unioned leakage groups and split assignment
-      -> smoke or bounded full rotation materialization
-      -> rotation verification
-      -> fixed orientation feature extraction
-      -> train-only StandardScaler and PCA
-      -> train-only K-Means k=4
-      -> train-only Hungarian cluster-to-zone mapping
-      -> raw-cluster and mapped-zone evaluation
-      -> zone-guided exact-angle evaluation
-      -> final rotation verification
+PaddlePaddle GPU and CUDA PyTorch bundle incompatible cuDNN DLLs on this
+Windows host. The implementation uses two Python 3.10 environments:
 
-The orchestrator in scripts/run_rotation_experiment.py follows this order and
-stops before fitting if rotation verification fails.
+- `ie-ocr`: Paddle GPU, PaddleOCR/PaddleX, and CPU-only PyTorch required by
+  PaddleX;
+- `ie-layout`: CUDA PyTorch 2.8.0, Transformers 4.57.6, SentencePiece, and
+  Accelerate.
 
-## Identity and leakage control
+The OCR process owns Paddle models. `SubprocessLayoutEntityExtractor` keeps a
+persistent `scripts/layout_entity_worker.py` process and exchanges one JSON
+object per line. Startup, protocol, request, timeout, and checkpoint errors are
+explicit. Final-profile evaluation and private testing require the learned
+checkpoint; they cannot silently fall back to rules.
 
-Page IDs and document IDs are stable hashes of source identity. A union-find
-structure combines selected public pages when any of these conditions apply:
+Environments, caches, aligned examples, checkpoints, generated documents, and
+private output live under
+`D:\CSX4201\vision-info-extraction-assets`. Storage gates preserve at least
+15 GiB on both C: and D: before materialization or training.
 
-- same logical document;
-- same exact SHA-256 image hash;
-- same reliable near-duplicate group reported by the organization audit;
-- same FATURA template family;
-- same source stem shared across CORU KIE and QA components.
+## OCR models, preprocessing, and routing
 
-Each unioned group receives one deterministic public split assignment. Private
-documents bypass public assignment and enter private_test only.
+`ModelRegistry` verifies exact local artifact inventories from
+`reports/ocr/model_setup.json` before model construction:
 
-The executed assignment contains:
+| Route | Detector | Recognizer |
+|---|---|---|
+| general | `PP-OCRv6_medium_det` | `PP-OCRv6_medium_rec` |
+| Thai | `PP-OCRv6_medium_det` | `th_PP-OCRv5_mobile_rec` |
 
-| Split | Pages | Rotation profile | Rotations |
-|-------|------:|------------------|----------:|
-| Train | 280 | 20 interior angles | 5,600 |
-| Validation | 61 | 16 boundary/interior angles | 976 |
-| Test | 59 | 16 boundary/interior angles | 944 |
-| Private test | 203 | 45, 135, 225, 315 degrees | 812 |
+The final dev-only ablation compared original, grayscale, contrast, denoise,
+sharpen, background normalization, quality-auto, and optional Paddle
+orientation/unwarping modules. `original` retained the best selection score;
+the locked test and private set were not used. Raster-to-PDF DPI ties resolved
+to 200 DPI for lower cost.
 
-The split report records zero page, document, split-group, or private/public
-leakage.
+Auto routing uses trusted metadata/hints, Unicode evidence, valid-character
+ratio, confidence, coverage, and duplicate/garbage penalties. Weak general
+output triggers a Thai comparison. Output records the exact detector,
+recognizer, preprocessing version, route, candidate scores, selected
+orientation, and fine-deskew evidence.
 
-## Page preparation and rotations
+Public OCR caching binds source bytes, model hashes, route, preprocessing
+profile/version, and transform settings. Private inference bypasses public
+caches.
 
-Public images remain read-only references to data/raw/public. Private PDFs are
-rendered at 200 DPI as RGB PNGs with anonymous page IDs under
-data/processed/private/page_images. Only the ignored private operational
-manifest maps those IDs to real private paths.
+## Public data and leakage controls
 
-Before rotation, a page is EXIF-normalized, converted to RGB, and resized
-without cropping so its longest side is at most 1,024 pixels. Positive rotation
-is counterclockwise. Pillow applies bicubic rotation with an expanded canvas
-and white fill.
+Adapters normalize source annotations into stable page/document IDs, source
+provenance, dimensions, tokens, polygons, boxes, entities, relations,
+canonical fields, document type, language, split, and privacy status.
 
-The full run produced 8,332 valid rotations with zero generation failures and
-exact balance of 2,083 rows in each zone.
+- SROIE supplies receipt OCR quadrilaterals and canonical fields.
+- FUNSD supplies words, entity labels, and linked entity pairs.
+- FATURA supplies Turkish invoice text boxes and fields.
+- CORU supplies supported full-document KIE/QA records; malformed, empty,
+  line-crop, and text-only components are excluded with reasons.
 
-## Feature representation
+The authoritative normalized public population is 12,433 pages. Leakage-safe
+identity grouping assigns FATURA/SROIE/FUNSD to train, `dev_select`,
+`dev_calibration`, and `test_in_domain`; all 1,261 CORU pages remain
+`unseen_domain_test`. The final model build contains 11,684 examples: 11,172
+ground-truth examples plus 256 PaddleOCR and 256 hybrid variants. Gmail rows
+are structurally ineligible for model data, training, calibration, selection,
+or public evaluation.
 
-Each rotated image is fitted without distortion into a 128 by 128 white canvas.
-Histogram equalization precedes the configured feature extraction.
+## Final multi-task model
 
-The 1,957-value vector concatenates:
+`MultiTaskTextLayoutModel` starts from `microsoft/layoutxlm-base` multilingual
+token and normalized 2D-layout embeddings. It intentionally omits the visual
+Detectron2 backbone, which has no compatible verified Windows runtime here.
+The shared encoder feeds four learned heads:
 
-| Feature group | Dimensions | Purpose |
-|---------------|-----------:|---------|
-| OpenCV HOG | 1,764 | Local gradient layout |
-| Hough and line statistics | 48 | Dominant line orientations and edge density |
-| Projection profiles | 136 | Horizontal/vertical ink distribution |
-| Directional edges | 4 | Axis and diagonal gradient energy |
-| Geometry | 5 | Aspect ratio, ink density, edge density |
+- BIO entity labels;
+- document type;
+- canonical-field evidence labels;
+- geometry-aware typed entity-pair relations with real positives and hard
+  negatives.
 
-Feature extraction performs no fitting. Split NPZ caches store feature,
-manifest, and configuration hashes. The completed run produced 8,332 finite
-vectors with no failures.
+Inference merges overlapping windows, applies learned calibrated thresholds,
+resolves conflicting evidence by abstaining, then combines learned output with
+deterministic evidence-backed field validation, arithmetic checks, generic
+key/value fallback, and structured table output.
 
-## Train-only preprocessing
+The final public run trained four epochs using mixed precision, batch size 1,
+gradient accumulation 4, gradient clipping, and a 0.7 upright/0.3 fixed-37°
+checkpoint-selection score. It completed 7,812 optimizer steps over 7,782
+training examples. The checkpoint and tokenizer reload exactly (maximum logit
+difference 0.0). The source and derived checkpoint are
+CC-BY-NC-SA-4.0 and are not committed to Git.
 
-StandardScaler fits the 5,600 public training vectors only. PCA then fits those
-scaled training rows only, reducing 1,957 dimensions to the requested 128
-components. The fitted PCA retained 84.22% cumulative explained variance.
+Calibration uses only `dev_calibration`. Temperature scaling and abstention
+thresholds are bound to the exact checkpoint, final build ID, and manifest
+hash. Every final evaluator checks that binding before reading a held-out row.
 
-The scaler and PCA transform validation, test, and private_test only after
-fitting. Provenance records the training split, training rotation-ID digest,
-private fit count of zero, configuration hashes, and artifact reload checks.
+## Output contract
 
-## K-Means and mapping
+`schemas/inference_output.schema.json` requires document/source metadata,
+document/language decisions, nullable display-only rotation output,
+page-specific OCR/layout geometry, entities, typed relations, tables,
+canonical fields, validation status, extraction source, warnings, transforms,
+and processing provenance. Unsupported or conflicted canonical values are
+explicitly `null`; every emitted value carries evidence and confidence.
 
-K-Means fits four clusters on the transformed public training matrix without
-using zone labels. Configuration: seed 42, n_init 20, maximum 300 iterations,
-and tolerance 0.0001.
+Schema validation precedes atomic write. Private results must target the
+configured ignored D: private root.
 
-The fitted cluster sizes are 1,112, 1,114, 1,686, and 1,688. Because raw
-cluster IDs are arbitrary, a 4 by 4 cluster/true-zone count matrix is passed to
-Hungarian assignment after fitting. Training labels are used only for this
-one-to-one mapping:
+## Evaluation boundaries
 
-    C0 -> Z1
-    C1 -> Z2
-    C2 -> Z4
-    C3 -> Z3
+The protocol separates evidence so no result is overstated:
 
-The mapping is fixed for all later splits. Evaluation reports raw clustering
-metrics separately from mapped classification metrics. Centroid confidence is
-the normalized margin between nearest and second-nearest centroid distances;
-it is a heuristic, not a calibrated probability.
+- `dev_select`: bounded hyperparameter and OCR-profile selection only;
+- `dev_calibration`: temperatures and abstention thresholds only;
+- `test_in_domain`: one locked ground-truth-token evaluation plus fixed-angle
+  layout and bounded real-OCR grids; never used for tuning;
+- `unseen_domain_test`: deterministic CORU QA/OCR coverage only;
+- private Gmail: local operational aggregates only, with no accuracy claim;
+- synthetic integration: executable image, rotation, Thai, multipage, schema,
+  and hash-binding proof.
 
-## Observed K-Means behavior
+The reference-token layout scores isolate the learned heads. End-to-end scores
+include OCR errors and therefore measure the usable pipeline. These two levels
+must be reported separately.
 
-Mapped accuracy is 50.00% on training, 37.81% on validation, and 37.92% on
-public test. Public test ARI is 0.0871 and NMI is 0.1035. Boundary confidence is
-low, and the confusion matrices show substantial quadrant ambiguity.
+## Failure boundaries
 
-This behavior is consistent with a key limitation of the design: visual
-document orientation can be symmetric over 180 degrees or dominated by content
-and template style. Four unsupervised clusters are not guaranteed to represent
-four predefined angular quadrants.
-
-## Exact-angle estimator
-
-The mapped K-Means zone restricts a coarse-to-fine search:
-
-- 2-degree coarse step inside the half-open predicted zone;
-- 0.25-degree fine step within a 3-degree window around the best coarse result;
-- 128-pixel safely padded scoring canvas;
-- projection, gradient, Hough, minimum-area-rectangle, and content-preservation
-  scores;
-- explicit failure for insufficient ink, insufficient edges, invalid images,
-  or non-finite scores.
-
-For a candidate angle, the estimator applies the signed negative candidate to
-the scoring image. It records the best and runner-up score margin, evidence
-density, confidence, and pixel-derived orientation score before and after
-correction.
-
-The executed evaluation shows that this design is not reliable:
-
-- public: 1,920 attempts, 16 hard failures, 1,904 low-confidence estimates,
-  zero reliable estimates, 89.74-degree circular MAE, 90-degree median error;
-- private: 812 aggregate-only attempts, eight hard failures, 804
-  low-confidence estimates, zero reliable estimates, 90.00-degree MAE.
-
-Low-confidence estimates remain in primary error metrics. Hard failures have
-no fabricated angle. A higher corrected-orientation score is diagnostic only;
-it does not compensate for a 90-degree circular error.
-
-## Privacy design
-
-Public metadata may contain anonymous private page IDs but never real private
-filenames or source paths. Public K-Means and exact-angle reports contain
-row-level public results. Private evaluation writes aggregates only:
-
-- no private prediction CSV rows;
-- no private document identifiers;
-- no private path or filename;
-- no private preview or corrected image.
-
-The privacy scanner checks public text artifacts against the real private
-filenames held in the ignored inventory. Repository visibility and ignore
-rules still require manual confirmation before sharing.
-
-## Artifacts
-
-| Root | Main artifacts |
-|------|----------------|
-| data/metadata | Page, split, rotation, and feature manifests and summaries |
-| data/splits | Per-split selected-page CSV files |
-| data/processed/rotated_images/full | Generated bounded full-profile PNGs |
-| data/processed/features/full | Raw and transformed NPZ caches |
-| models/kmeans_rotation | Feature config, scaler, PCA, K-Means, mapping, training summaries |
-| reports/rotation_preparation | Page, split, smoke, disk, and full-run summaries |
-| reports/kmeans_evaluation | Metrics, public predictions, boundary tables, confusion matrices |
-| reports/angle_estimation | Public angle rows, boundary/group metrics, private aggregates |
-| reports/verification | Raw baseline and 20-check full-pipeline verification |
-
-## Stop gates
-
-The workflow stops on:
-
-- raw count, size, or sampled-hash drift;
-- missing or unreadable selected pages;
-- page, document, duplicate-group, or private/public leakage;
-- insufficient disk reserve;
-- mismatched rotation manifest and physical artifacts;
-- stale configuration or manifest hashes;
-- missing or mismatched embedded page/rotation PNG provenance;
-- missing, non-finite, or inconsistent feature vectors;
-- private rows in fit data;
-- incompatible saved artifacts or failed reload checks;
-- fewer than four non-empty K-Means clusters;
-- non-bijective cluster-to-zone mapping;
-- private filename leakage.
-
-Page and rotation PNGs store the source SHA-256 and applicable configuration
-hash in PNG text metadata. Reuse requires valid RGB/PNG structure plus exact
-provenance agreement; otherwise the pipeline atomically regenerates the
-artifact. The privacy scan includes committable code, tests, docs, root config,
-metadata, reports, and model summaries while excluding explicitly private
-operational manifests.
-
-Exact-angle low confidence does not abort evaluation because it is a measured
-quality outcome. It is instead reported explicitly and prevents the baseline
-from being described as a usable correction method.
-
-## Alternatives and next design decision
-
-The current K-Means baseline honors a literal unsupervised interpretation of
-“clustering.” Plausible alternatives include a deterministic orientation
-estimator, a supervised four-way classifier, direct angle regression, or a
-coarse-zone classifier followed by a specialized skew estimator.
-
-Do not choose among them until the professor confirms whether K-Means is
-mandatory, how boundaries are assigned, and what “pre-model” and the official
-evaluation protocol mean. The current held-out metrics justify a method review,
-not parameter-only tuning presented as completion.
+The workflow fails closed for raw-data drift, storage-reserve violations,
+missing or hash-mismatched models, invalid manifests/build bindings,
+unsupported/corrupt/encrypted/oversized inputs, invalid geometry or schema,
+missing/incompatible final checkpoints, worker protocol failure, private-path
+violations, or detected publication candidates. K-Means failure is the sole
+deliberate exception because it is non-controlling and becomes a warning.

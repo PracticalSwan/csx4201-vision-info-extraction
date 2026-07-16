@@ -99,7 +99,7 @@
     {
       "name": "no-disallowed-neural-or-ocr-outputs",
       "passed": true,
-      "detail": "no OCR outputs or neural checkpoints outside data/raw; classical rotation artifacts allowed"
+      "detail": "no OCR outputs or neural checkpoints outside data/raw; classical rotation artifacts allowed; external directory links pruned"
     }
   ]
 }

@@ -53,3 +53,22 @@ def test_ocr_and_checkpoint_outputs_are_rejected_outside_raw(tmp_path: Path) -> 
     assert "data/processed/ocr_outputs" in detail
     assert "checkpoints" in detail
 
+
+def test_external_asset_link_is_not_treated_as_committable_output(
+    tmp_path: Path, monkeypatch
+) -> None:
+    external = tmp_path.parent / f"{tmp_path.name}-external-assets"
+    link = tmp_path / "data" / "processed" / "model_datasets"
+    _touch(link / "final" / "model.safetensors")
+    original_resolve = Path.resolve
+
+    def resolve_external_link(self, *args, **kwargs):
+        if self == link:
+            return external
+        return original_resolve(self, *args, **kwargs)
+
+    monkeypatch.setattr(Path, "resolve", resolve_external_link)
+
+    passed, detail = verify_data._check_forbidden(tmp_path)
+
+    assert passed, detail

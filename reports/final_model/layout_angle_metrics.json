@@ -1,0 +1,6051 @@
+{
+  "schema_version": "1.0",
+  "profile": "final",
+  "split": "test_in_domain",
+  "public_only": true,
+  "private_example_count": 0,
+  "checkpoint": "D:\\CSX4201\\vision-info-extraction-assets\\checkpoints\\layoutxlm_multitask\\final",
+  "checkpoint_model_sha256": "34c7a26e78d6285a2739e1b61839eadfd0e686ccbcf57f9cb47997c12cef2189",
+  "calibration_sha256": "b1c683d3f1e1cfc4b9515bb83cf64ce455343445a553ab7525f845272b902087",
+  "build_id": "final-6be3e0b46b0a4e4c",
+  "manifest_sha256": "448582175cc832f336ee5e2654b7f1f1d417f8d47d8c6a08b2a91cd03334d200",
+  "sample_strategy": "deterministic dataset-balanced ground-truth geometry sample",
+  "pages_per_dataset": 10,
+  "example_count": 30,
+  "datasets": [
+    "fatura",
+    "funsd",
+    "sroie"
+  ],
+  "angles": [
+    {
+      "angle": 0,
+      "example_count": 30,
+      "window_count": 30,
+      "metrics": {
+        "loss": 0.48421145861405723,
+        "entity_token_f1": 0.8005945008669805,
+        "entity_macro_f1": 0.7215716084229665,
+        "entity_per_class": {
+          "B-HEADER": {
+            "fn": 27,
+            "tp": 2,
+            "fp": 1,
+            "f1": 0.125,
+            "support": 29
+          },
+          "I-HEADER": {
+            "fp": 31,
+            "tp": 32,
+            "fn": 34,
+            "f1": 0.49612403100775193,
+            "support": 66
+          },
+          "B-VALUE": {
+            "tp": 125,
+            "fn": 6,
+            "fp": 15,
+            "f1": 0.922509225092251,
+            "support": 131
+          },
+          "I-VALUE": {
+            "tp": 295,
+            "fp": 6,
+            "fn": 9,
+            "f1": 0.9752066115702479,
+            "support": 304
+          },
+          "B-QUESTION": {
+            "fp": 65,
+            "tp": 169,
+            "fn": 34,
+            "f1": 0.7734553775743707,
+            "support": 203
+          },
+          "I-QUESTION": {
+            "fn": 98,
+            "tp": 178,
+            "fp": 91,
+            "f1": 0.653211009174312,
+            "support": 276
+          },
+          "B-ANSWER": {
+            "tp": 162,
+            "fn": 44,
+            "fp": 84,
+            "f1": 0.7168141592920354,
+            "support": 206
+          },
+          "I-ANSWER": {
+            "fp": 187,
+            "tp": 643,
+            "fn": 73,
+            "f1": 0.8318240620957309,
+            "support": 716
+          },
+          "B-TABLE_CELL": {
+            "tp": 10,
+            "f1": 1.0,
+            "support": 10
+          }
+        },
+        "entity_counts": {
+          "tp": 1616,
+          "fp": 480,
+          "fn": 325
+        },
+        "canonical_evidence_token_f1": 0.965034965034965,
+        "canonical_macro_f1": 0.9589530861873858,
+        "canonical_per_class": {
+          "organization_name": {
+            "tp": 30,
+            "fp": 3,
+            "fn": 1,
+            "f1": 0.9375,
+            "support": 31
+          },
+          "document_title": {
+            "tp": 3,
+            "fp": 1,
+            "f1": 0.8571428571428571,
+            "support": 3
+          },
+          "date": {
+            "tp": 26,
+            "fn": 1,
+            "fp": 1,
+            "f1": 0.9629629629629629,
+            "support": 27
+          },
+          "invoice_number": {
+            "tp": 22,
+            "f1": 1.0,
+            "support": 22
+          },
+          "subtotal": {
+            "tp": 16,
+            "f1": 1.0,
+            "support": 16
+          },
+          "tax": {
+            "tp": 25,
+            "f1": 1.0,
+            "support": 25
+          },
+          "total_amount": {
+            "tp": 42,
+            "fp": 3,
+            "fn": 1,
+            "f1": 0.9545454545454546,
+            "support": 43
+          },
+          "address": {
+            "tp": 101,
+            "fp": 3,
+            "fn": 5,
+            "f1": 0.9619047619047619,
+            "support": 106
+          },
+          "email": {
+            "tp": 11,
+            "fn": 1,
+            "f1": 0.9565217391304348,
+            "support": 12
+          }
+        },
+        "canonical_counts": {
+          "tp": 276,
+          "fp": 11,
+          "fn": 9
+        },
+        "relation_f1": 0.4310850439882698,
+        "relation_macro_f1": 0.5233395989974937,
+        "relation_per_class": {
+          "QUESTION_ANSWER": {
+            "fn": 103,
+            "tp": 110,
+            "fp": 247,
+            "f1": 0.38596491228070173,
+            "support": 213
+          },
+          "OTHER_RELATION": {
+            "tp": 37,
+            "fp": 29,
+            "fn": 9,
+            "f1": 0.6607142857142857,
+            "support": 46
+          }
+        },
+        "relation_counts": {
+          "fn": 112,
+          "tp": 147,
+          "fp": 276
+        },
+        "document_macro_f1": 1.0,
+        "document_accuracy": 1.0,
+        "composite_score": 0.7692678026026009,
+        "evaluated_windows": 30,
+        "entity_calibrated_f1": 0.7859943977591036,
+        "entity_calibrated_macro_f1": 0.6824201858719486,
+        "entity_calibrated_per_class": {
+          "B-HEADER": {
+            "fn": 29,
+            "f1": 0.0,
+            "support": 29
+          },
+          "I-HEADER": {
+            "tp": 22,
+            "fn": 44,
+            "fp": 5,
+            "f1": 0.4731182795698925,
+            "support": 66
+          },
+          "B-VALUE": {
+            "tp": 125,
+            "fn": 6,
+            "fp": 14,
+            "f1": 0.9259259259259259,
+            "support": 131
+          },
+          "I-VALUE": {
+            "tp": 295,
+            "fp": 4,
+            "fn": 9,
+            "f1": 0.978441127694859,
+            "support": 304
+          },
+          "B-QUESTION": {
+            "fp": 16,
+            "tp": 124,
+            "fn": 79,
+            "f1": 0.7230320699708455,
+            "support": 203
+          },
+          "I-QUESTION": {
+            "fn": 159,
+            "tp": 117,
+            "fp": 38,
+            "f1": 0.54292343387471,
+            "support": 276
+          },
+          "B-ANSWER": {
+            "tp": 120,
+            "fn": 86,
+            "fp": 33,
+            "f1": 0.6685236768802229,
+            "support": 206
+          },
+          "I-ANSWER": {
+            "fn": 126,
+            "fp": 116,
+            "tp": 590,
+            "f1": 0.829817158931083,
+            "support": 716
+          },
+          "B-TABLE_CELL": {
+            "tp": 10,
+            "f1": 1.0,
+            "support": 10
+          }
+        },
+        "entity_calibrated_counts": {
+          "tp": 1403,
+          "fp": 226,
+          "fn": 538
+        },
+        "canonical_calibrated_f1": 0.9487179487179487,
+        "canonical_calibrated_macro_f1": 0.9452534906296408,
+        "canonical_calibrated_per_class": {
+          "organization_name": {
+            "tp": 22,
+            "fp": 1,
+            "fn": 9,
+            "f1": 0.8148148148148148,
+            "support": 31
+          },
+          "document_title": {
+            "tp": 3,
+            "f1": 1.0,
+            "support": 3
+          },
+          "date": {
+            "tp": 24,
+            "fn": 3,
+            "f1": 0.9411764705882353,
+            "support": 27
+          },
+          "invoice_number": {
+            "tp": 21,
+            "fn": 1,
+            "f1": 0.9767441860465116,
+            "support": 22
+          },
+          "subtotal": {
+            "tp": 16,
+            "f1": 1.0,
+            "support": 16
+          },
+          "tax": {
+            "tp": 25,
+            "f1": 1.0,
+            "support": 25
+          },
+          "total_amount": {
+            "fn": 4,
+            "tp": 39,
+            "f1": 0.9512195121951219,
+            "support": 43
+          },
+          "address": {
+            "tp": 100,
+            "fn": 6,
+            "fp": 1,
+            "f1": 0.966183574879227,
+            "support": 106
+          },
+          "email": {
+            "tp": 9,
+            "fn": 3,
+            "f1": 0.8571428571428571,
+            "support": 12
+          }
+        },
+        "canonical_calibrated_counts": {
+          "fn": 26,
+          "tp": 259,
+          "fp": 2
+        },
+        "relation_calibrated_f1": 0.4226415094339623,
+        "relation_calibrated_macro_f1": 0.539970470364902,
+        "relation_calibrated_per_class": {
+          "QUESTION_ANSWER": {
+            "fn": 137,
+            "tp": 76,
+            "fp": 142,
+            "f1": 0.35266821345707655,
+            "support": 213
+          },
+          "OTHER_RELATION": {
+            "tp": 36,
+            "fp": 17,
+            "fn": 10,
+            "f1": 0.7272727272727273,
+            "support": 46
+          }
+        },
+        "relation_calibrated_counts": {
+          "fn": 147,
+          "tp": 112,
+          "fp": 159
+        },
+        "document_calibrated_coverage": 0.8333333333333334,
+        "document_calibrated_selective_accuracy": 1.0,
+        "calibrated_composite_score": 0.7572376236416193
+      },
+      "retention_vs_upright": {
+        "entity_token_f1": 1.0,
+        "canonical_evidence_token_f1": 1.0,
+        "relation_f1": 1.0,
+        "composite_score": 1.0,
+        "entity_calibrated_f1": 1.0,
+        "canonical_calibrated_f1": 1.0,
+        "relation_calibrated_f1": 1.0,
+        "calibrated_composite_score": 1.0
+      }
+    },
+    {
+      "angle": 1,
+      "example_count": 30,
+      "window_count": 30,
+      "metrics": {
+        "loss": 0.4825754507697032,
+        "entity_token_f1": 0.7992077246843278,
+        "entity_macro_f1": 0.7261485879756658,
+        "entity_per_class": {
+          "B-HEADER": {
+            "fn": 26,
+            "fp": 2,
+            "tp": 3,
+            "f1": 0.17647058823529413,
+            "support": 29
+          },
+          "I-HEADER": {
+            "fp": 31,
+            "tp": 32,
+            "fn": 34,
+            "f1": 0.49612403100775193,
+            "support": 66
+          },
+          "B-VALUE": {
+            "tp": 125,
+            "fn": 6,
+            "fp": 15,
+            "f1": 0.922509225092251,
+            "support": 131
+          },
+          "I-VALUE": {
+            "tp": 295,
+            "fp": 6,
+            "fn": 9,
+            "f1": 0.9752066115702479,
+            "support": 304
+          },
+          "B-QUESTION": {
+            "fp": 64,
+            "tp": 167,
+            "fn": 36,
+            "f1": 0.7695852534562212,
+            "support": 203
+          },
+          "I-QUESTION": {
+            "fn": 98,
+            "tp": 178,
+            "fp": 90,
+            "f1": 0.6544117647058824,
+            "support": 276
+          },
+          "B-ANSWER": {
+            "tp": 161,
+            "fn": 45,
+            "fp": 86,
+            "f1": 0.7108167770419426,
+            "support": 206
+          },
+          "I-ANSWER": {
+            "fp": 190,
+            "tp": 643,
+            "fn": 73,
+            "f1": 0.8302130406714009,
+            "support": 716
+          },
+          "B-TABLE_CELL": {
+            "tp": 10,
+            "f1": 1.0,
+            "support": 10
+          }
+        },
+        "entity_counts": {
+          "tp": 1614,
+          "fp": 484,
+          "fn": 327
+        },
+        "canonical_evidence_token_f1": 0.9670710571923743,
+        "canonical_macro_f1": 0.9569998711915508,
+        "canonical_per_class": {
+          "organization_name": {
+            "tp": 31,
+            "fp": 3,
+            "f1": 0.9538461538461539,
+            "support": 31
+          },
+          "document_title": {
+            "tp": 3,
+            "fp": 1,
+            "f1": 0.8571428571428571,
+            "support": 3
+          },
+          "date": {
+            "tp": 26,
+            "fn": 1,
+            "fp": 1,
+            "f1": 0.9629629629629629,
+            "support": 27
+          },
+          "invoice_number": {
+            "tp": 22,
+            "f1": 1.0,
+            "support": 22
+          },
+          "subtotal": {
+            "tp": 16,
+            "f1": 1.0,
+            "support": 16
+          },
+          "tax": {
+            "tp": 25,
+            "f1": 1.0,
+            "support": 25
+          },
+          "total_amount": {
+            "tp": 43,
+            "fp": 4,
+            "f1": 0.9555555555555556,
+            "support": 43
+          },
+          "address": {
+            "tp": 102,
+            "fp": 3,
+            "fn": 4,
+            "f1": 0.966824644549763,
+            "support": 106
+          },
+          "email": {
+            "tp": 11,
+            "fp": 1,
+            "fn": 1,
+            "f1": 0.9166666666666666,
+            "support": 12
+          }
+        },
+        "canonical_counts": {
+          "tp": 279,
+          "fp": 13,
+          "fn": 6
+        },
+        "relation_f1": 0.4312590448625181,
+        "relation_macro_f1": 0.5264367816091954,
+        "relation_per_class": {
+          "QUESTION_ANSWER": {
+            "fn": 101,
+            "tp": 112,
+            "fp": 255,
+            "f1": 0.38620689655172413,
+            "support": 213
+          },
+          "OTHER_RELATION": {
+            "tp": 37,
+            "fp": 28,
+            "fn": 9,
+            "f1": 0.6666666666666666,
+            "support": 46
+          }
+        },
+        "relation_counts": {
+          "fn": 110,
+          "tp": 149,
+          "fp": 283
+        },
+        "document_macro_f1": 1.0,
+        "document_accuracy": 1.0,
+        "composite_score": 0.7692656153874542,
+        "evaluated_windows": 30,
+        "entity_calibrated_f1": 0.7862531433361274,
+        "entity_calibrated_macro_f1": 0.6827547960226996,
+        "entity_calibrated_per_class": {
+          "B-HEADER": {
+            "fn": 29,
+            "f1": 0.0,
+            "support": 29
+          },
+          "I-HEADER": {
+            "tp": 22,
+            "fn": 44,
+            "fp": 5,
+            "f1": 0.4731182795698925,
+            "support": 66
+          },
+          "B-VALUE": {
+            "tp": 125,
+            "fn": 6,
+            "fp": 15,
+            "f1": 0.922509225092251,
+            "support": 131
+          },
+          "I-VALUE": {
+            "tp": 295,
+            "fp": 5,
+            "fn": 9,
+            "f1": 0.9768211920529801,
+            "support": 304
+          },
+          "B-QUESTION": {
+            "fp": 18,
+            "tp": 124,
+            "fn": 79,
+            "f1": 0.7188405797101449,
+            "support": 203
+          },
+          "I-QUESTION": {
+            "fn": 157,
+            "tp": 119,
+            "fp": 38,
+            "f1": 0.5496535796766744,
+            "support": 276
+          },
+          "B-ANSWER": {
+            "tp": 122,
+            "fn": 84,
+            "fp": 34,
+            "f1": 0.6740331491712708,
+            "support": 206
+          },
+          "I-ANSWER": {
+            "fn": 126,
+            "fp": 116,
+            "tp": 590,
+            "f1": 0.829817158931083,
+            "support": 716
+          },
+          "B-TABLE_CELL": {
+            "tp": 10,
+            "f1": 1.0,
+            "support": 10
+          }
+        },
+        "entity_calibrated_counts": {
+          "tp": 1407,
+          "fp": 231,
+          "fn": 534
+        },
+        "canonical_calibrated_f1": 0.9523809523809523,
+        "canonical_calibrated_macro_f1": 0.9475139501524283,
+        "canonical_calibrated_per_class": {
+          "organization_name": {
+            "tp": 22,
+            "fn": 9,
+            "f1": 0.8301886792452831,
+            "support": 31
+          },
+          "document_title": {
+            "tp": 3,
+            "f1": 1.0,
+            "support": 3
+          },
+          "date": {
+            "tp": 24,
+            "fn": 3,
+            "f1": 0.9411764705882353,
+            "support": 27
+          },
+          "invoice_number": {
+            "tp": 21,
+            "fn": 1,
+            "f1": 0.9767441860465116,
+            "support": 22
+          },
+          "subtotal": {
+            "tp": 16,
+            "f1": 1.0,
+            "support": 16
+          },
+          "tax": {
+            "tp": 25,
+            "f1": 1.0,
+            "support": 25
+          },
+          "total_amount": {
+            "fn": 4,
+            "tp": 39,
+            "f1": 0.9512195121951219,
+            "support": 43
+          },
+          "address": {
+            "tp": 101,
+            "fn": 5,
+            "fp": 1,
+            "f1": 0.9711538461538461,
+            "support": 106
+          },
+          "email": {
+            "tp": 9,
+            "fn": 3,
+            "f1": 0.8571428571428571,
+            "support": 12
+          }
+        },
+        "canonical_calibrated_counts": {
+          "fn": 25,
+          "tp": 260,
+          "fp": 1
+        },
+        "relation_calibrated_f1": 0.42696629213483145,
+        "relation_calibrated_macro_f1": 0.5397235023041475,
+        "relation_calibrated_per_class": {
+          "QUESTION_ANSWER": {
+            "fn": 135,
+            "tp": 78,
+            "fp": 143,
+            "f1": 0.35944700460829493,
+            "support": 213
+          },
+          "OTHER_RELATION": {
+            "tp": 36,
+            "fp": 18,
+            "fn": 10,
+            "f1": 0.72,
+            "support": 46
+          }
+        },
+        "relation_calibrated_counts": {
+          "fn": 145,
+          "tp": 114,
+          "fp": 161
+        },
+        "document_calibrated_coverage": 0.8333333333333334,
+        "document_calibrated_selective_accuracy": 1.0,
+        "calibrated_composite_score": 0.7593380684633969
+      },
+      "retention_vs_upright": {
+        "entity_token_f1": 0.9982678170020517,
+        "canonical_evidence_token_f1": 1.002109863612388,
+        "relation_f1": 1.0004036346810794,
+        "composite_score": 0.9999971567571927,
+        "entity_calibrated_f1": 1.0003291951924358,
+        "canonical_calibrated_f1": 1.0038610038610039,
+        "relation_calibrated_f1": 1.0102327447833066,
+        "calibrated_composite_score": 1.0027738252250018
+      }
+    },
+    {
+      "angle": 15,
+      "example_count": 30,
+      "window_count": 30,
+      "metrics": {
+        "loss": 0.4922613186344582,
+        "entity_token_f1": 0.7962459866633737,
+        "entity_macro_f1": 0.7337811781584307,
+        "entity_per_class": {
+          "B-HEADER": {
+            "fn": 25,
+            "tp": 4,
+            "f1": 0.24242424242424243,
+            "support": 29
+          },
+          "I-HEADER": {
+            "fp": 29,
+            "tp": 33,
+            "fn": 33,
+            "f1": 0.515625,
+            "support": 66
+          },
+          "B-VALUE": {
+            "tp": 126,
+            "fn": 5,
+            "fp": 14,
+            "f1": 0.9298892988929889,
+            "support": 131
+          },
+          "I-VALUE": {
+            "tp": 296,
+            "fp": 8,
+            "fn": 8,
+            "f1": 0.9736842105263158,
+            "support": 304
+          },
+          "B-QUESTION": {
+            "fp": 59,
+            "tp": 163,
+            "fn": 40,
+            "f1": 0.7670588235294118,
+            "support": 203
+          },
+          "I-QUESTION": {
+            "fp": 90,
+            "tp": 177,
+            "fn": 99,
+            "f1": 0.6519337016574586,
+            "support": 276
+          },
+          "B-ANSWER": {
+            "tp": 159,
+            "fn": 47,
+            "fp": 88,
+            "f1": 0.7019867549668874,
+            "support": 206
+          },
+          "I-ANSWER": {
+            "fp": 208,
+            "tp": 644,
+            "fn": 72,
+            "f1": 0.8214285714285714,
+            "support": 716
+          },
+          "B-TABLE_CELL": {
+            "tp": 10,
+            "f1": 1.0,
+            "support": 10
+          }
+        },
+        "entity_counts": {
+          "tp": 1612,
+          "fp": 496,
+          "fn": 329
+        },
+        "canonical_evidence_token_f1": 0.9548611111111112,
+        "canonical_macro_f1": 0.9470463965076612,
+        "canonical_per_class": {
+          "organization_name": {
+            "tp": 30,
+            "fp": 5,
+            "fn": 1,
+            "f1": 0.9090909090909091,
+            "support": 31
+          },
+          "document_title": {
+            "tp": 3,
+            "fp": 1,
+            "f1": 0.8571428571428571,
+            "support": 3
+          },
+          "date": {
+            "tp": 26,
+            "fn": 1,
+            "fp": 1,
+            "f1": 0.9629629629629629,
+            "support": 27
+          },
+          "invoice_number": {
+            "tp": 21,
+            "fn": 1,
+            "f1": 0.9767441860465116,
+            "support": 22
+          },
+          "subtotal": {
+            "tp": 16,
+            "f1": 1.0,
+            "support": 16
+          },
+          "tax": {
+            "tp": 25,
+            "f1": 1.0,
+            "support": 25
+          },
+          "total_amount": {
+            "tp": 43,
+            "fp": 4,
+            "f1": 0.9555555555555556,
+            "support": 43
+          },
+          "address": {
+            "tp": 101,
+            "fp": 5,
+            "fn": 5,
+            "f1": 0.9528301886792453,
+            "support": 106
+          },
+          "email": {
+            "tp": 10,
+            "fn": 2,
+            "f1": 0.9090909090909091,
+            "support": 12
+          }
+        },
+        "canonical_counts": {
+          "tp": 275,
+          "fp": 16,
+          "fn": 10
+        },
+        "relation_f1": 0.44287729196050774,
+        "relation_macro_f1": 0.5386156975352956,
+        "relation_per_class": {
+          "QUESTION_ANSWER": {
+            "fn": 94,
+            "tp": 119,
+            "fp": 265,
+            "f1": 0.39865996649916247,
+            "support": 213
+          },
+          "OTHER_RELATION": {
+            "tp": 38,
+            "fp": 28,
+            "fn": 8,
+            "f1": 0.6785714285714286,
+            "support": 46
+          }
+        },
+        "relation_counts": {
+          "fn": 102,
+          "tp": 157,
+          "fp": 293
+        },
+        "document_macro_f1": 1.0,
+        "document_accuracy": 1.0,
+        "composite_score": 0.7679329954332542,
+        "evaluated_windows": 30,
+        "entity_calibrated_f1": 0.7811014816885659,
+        "entity_calibrated_macro_f1": 0.6751170113138774,
+        "entity_calibrated_per_class": {
+          "B-HEADER": {
+            "fn": 29,
+            "f1": 0.0,
+            "support": 29
+          },
+          "I-HEADER": {
+            "tp": 21,
+            "fn": 45,
+            "fp": 8,
+            "f1": 0.4421052631578947,
+            "support": 66
+          },
+          "B-VALUE": {
+            "tp": 126,
+            "fn": 5,
+            "fp": 13,
+            "f1": 0.9333333333333333,
+            "support": 131
+          },
+          "I-VALUE": {
+            "tp": 295,
+            "fp": 8,
+            "fn": 9,
+            "f1": 0.9719934102141681,
+            "support": 304
+          },
+          "B-QUESTION": {
+            "fp": 15,
+            "tp": 115,
+            "fn": 88,
+            "f1": 0.6906906906906907,
+            "support": 203
+          },
+          "I-QUESTION": {
+            "fn": 164,
+            "tp": 112,
+            "fp": 37,
+            "f1": 0.5270588235294118,
+            "support": 276
+          },
+          "B-ANSWER": {
+            "tp": 123,
+            "fn": 83,
+            "fp": 31,
+            "f1": 0.6833333333333333,
+            "support": 206
+          },
+          "I-ANSWER": {
+            "fp": 127,
+            "fn": 121,
+            "tp": 595,
+            "f1": 0.827538247566064,
+            "support": 716
+          },
+          "B-TABLE_CELL": {
+            "tp": 10,
+            "f1": 1.0,
+            "support": 10
+          }
+        },
+        "entity_calibrated_counts": {
+          "tp": 1397,
+          "fp": 239,
+          "fn": 544
+        },
+        "canonical_calibrated_f1": 0.9467889908256881,
+        "canonical_calibrated_macro_f1": 0.9456089332970318,
+        "canonical_calibrated_per_class": {
+          "organization_name": {
+            "tp": 21,
+            "fn": 10,
+            "f1": 0.8076923076923077,
+            "support": 31
+          },
+          "document_title": {
+            "tp": 3,
+            "f1": 1.0,
+            "support": 3
+          },
+          "date": {
+            "tp": 24,
+            "fn": 3,
+            "f1": 0.9411764705882353,
+            "support": 27
+          },
+          "invoice_number": {
+            "tp": 21,
+            "fn": 1,
+            "f1": 0.9767441860465116,
+            "support": 22
+          },
+          "subtotal": {
+            "tp": 16,
+            "f1": 1.0,
+            "support": 16
+          },
+          "tax": {
+            "tp": 25,
+            "f1": 1.0,
+            "support": 25
+          },
+          "total_amount": {
+            "tp": 42,
+            "fn": 1,
+            "fp": 1,
+            "f1": 0.9767441860465116,
+            "support": 43
+          },
+          "address": {
+            "tp": 97,
+            "fn": 9,
+            "fp": 1,
+            "f1": 0.9509803921568627,
+            "support": 106
+          },
+          "email": {
+            "tp": 9,
+            "fn": 3,
+            "f1": 0.8571428571428571,
+            "support": 12
+          }
+        },
+        "canonical_calibrated_counts": {
+          "tp": 258,
+          "fn": 27,
+          "fp": 2
+        },
+        "relation_calibrated_f1": 0.41354723707664887,
+        "relation_calibrated_macro_f1": 0.5303486870426173,
+        "relation_calibrated_per_class": {
+          "QUESTION_ANSWER": {
+            "fn": 133,
+            "tp": 80,
+            "fp": 167,
+            "f1": 0.34782608695652173,
+            "support": 213
+          },
+          "OTHER_RELATION": {
+            "tp": 36,
+            "fp": 19,
+            "fn": 10,
+            "f1": 0.7128712871287128,
+            "support": 46
+          }
+        },
+        "relation_calibrated_counts": {
+          "fn": 143,
+          "tp": 116,
+          "fp": 186
+        },
+        "document_calibrated_coverage": 0.7333333333333333,
+        "document_calibrated_selective_accuracy": 1.0,
+        "calibrated_composite_score": 0.7525246496510106
+      },
+      "retention_vs_upright": {
+        "entity_token_f1": 0.9945683936138735,
+        "canonical_evidence_token_f1": 0.9894575281803544,
+        "relation_f1": 1.0273548065206335,
+        "composite_score": 0.998264834216601,
+        "entity_calibrated_f1": 0.9937748715709837,
+        "canonical_calibrated_f1": 0.9979667741135632,
+        "relation_calibrated_f1": 0.9784823020117138,
+        "calibrated_composite_score": 0.9937760963752124
+      }
+    },
+    {
+      "angle": 30,
+      "example_count": 30,
+      "window_count": 30,
+      "metrics": {
+        "loss": 0.5100291554195185,
+        "entity_token_f1": 0.7887601676115357,
+        "entity_macro_f1": 0.7258028764369967,
+        "entity_per_class": {
+          "B-HEADER": {
+            "fn": 25,
+            "tp": 4,
+            "f1": 0.24242424242424243,
+            "support": 29
+          },
+          "I-HEADER": {
+            "fp": 27,
+            "tp": 31,
+            "fn": 35,
+            "f1": 0.5,
+            "support": 66
+          },
+          "B-VALUE": {
+            "tp": 126,
+            "fn": 5,
+            "fp": 17,
+            "f1": 0.9197080291970803,
+            "support": 131
+          },
+          "I-VALUE": {
+            "tp": 296,
+            "fp": 10,
+            "fn": 8,
+            "f1": 0.9704918032786886,
+            "support": 304
+          },
+          "B-QUESTION": {
+            "fp": 56,
+            "tp": 158,
+            "fn": 45,
+            "f1": 0.7577937649880095,
+            "support": 203
+          },
+          "I-QUESTION": {
+            "fp": 95,
+            "tp": 175,
+            "fn": 101,
+            "f1": 0.6410256410256411,
+            "support": 276
+          },
+          "B-ANSWER": {
+            "tp": 155,
+            "fn": 51,
+            "fp": 92,
+            "f1": 0.6843267108167771,
+            "support": 206
+          },
+          "I-ANSWER": {
+            "fp": 219,
+            "tp": 645,
+            "fn": 71,
+            "f1": 0.8164556962025317,
+            "support": 716
+          },
+          "B-TABLE_CELL": {
+            "tp": 10,
+            "f1": 1.0,
+            "support": 10
+          }
+        },
+        "entity_counts": {
+          "tp": 1600,
+          "fp": 516,
+          "fn": 341
+        },
+        "canonical_evidence_token_f1": 0.9547038327526133,
+        "canonical_macro_f1": 0.9479445146300457,
+        "canonical_per_class": {
+          "organization_name": {
+            "tp": 29,
+            "fp": 3,
+            "fn": 2,
+            "f1": 0.9206349206349206,
+            "support": 31
+          },
+          "document_title": {
+            "tp": 3,
+            "fp": 1,
+            "f1": 0.8571428571428571,
+            "support": 3
+          },
+          "date": {
+            "tp": 26,
+            "fn": 1,
+            "fp": 1,
+            "f1": 0.9629629629629629,
+            "support": 27
+          },
+          "invoice_number": {
+            "tp": 22,
+            "f1": 1.0,
+            "support": 22
+          },
+          "subtotal": {
+            "tp": 16,
+            "f1": 1.0,
+            "support": 16
+          },
+          "tax": {
+            "tp": 25,
+            "f1": 1.0,
+            "support": 25
+          },
+          "total_amount": {
+            "tp": 43,
+            "fp": 7,
+            "f1": 0.9247311827956989,
+            "support": 43
+          },
+          "address": {
+            "tp": 100,
+            "fn": 6,
+            "fp": 3,
+            "f1": 0.9569377990430622,
+            "support": 106
+          },
+          "email": {
+            "tp": 10,
+            "fn": 2,
+            "f1": 0.9090909090909091,
+            "support": 12
+          }
+        },
+        "canonical_counts": {
+          "tp": 274,
+          "fp": 15,
+          "fn": 11
+        },
+        "relation_f1": 0.43502051983584133,
+        "relation_macro_f1": 0.537503632664923,
+        "relation_per_class": {
+          "QUESTION_ANSWER": {
+            "fn": 92,
+            "tp": 121,
+            "fp": 286,
+            "f1": 0.3903225806451613,
+            "support": 213
+          },
+          "OTHER_RELATION": {
+            "tp": 38,
+            "fp": 27,
+            "fn": 8,
+            "f1": 0.6846846846846847,
+            "support": 46
+          }
+        },
+        "relation_counts": {
+          "fn": 100,
+          "tp": 159,
+          "fp": 313
+        },
+        "document_macro_f1": 1.0,
+        "document_accuracy": 1.0,
+        "composite_score": 0.7629351551917279,
+        "evaluated_windows": 30,
+        "entity_calibrated_f1": 0.772599663110612,
+        "entity_calibrated_macro_f1": 0.6635943611217132,
+        "entity_calibrated_per_class": {
+          "B-HEADER": {
+            "fn": 29,
+            "f1": 0.0,
+            "support": 29
+          },
+          "I-HEADER": {
+            "fn": 47,
+            "tp": 19,
+            "fp": 5,
+            "f1": 0.4222222222222222,
+            "support": 66
+          },
+          "B-VALUE": {
+            "tp": 126,
+            "fn": 5,
+            "fp": 15,
+            "f1": 0.9264705882352942,
+            "support": 131
+          },
+          "I-VALUE": {
+            "tp": 295,
+            "fp": 8,
+            "fn": 9,
+            "f1": 0.9719934102141681,
+            "support": 304
+          },
+          "B-QUESTION": {
+            "fp": 15,
+            "tp": 103,
+            "fn": 100,
+            "f1": 0.6417445482866043,
+            "support": 203
+          },
+          "I-QUESTION": {
+            "tp": 111,
+            "fn": 165,
+            "fp": 36,
+            "f1": 0.524822695035461,
+            "support": 276
+          },
+          "B-ANSWER": {
+            "tp": 120,
+            "fn": 86,
+            "fp": 37,
+            "f1": 0.6611570247933884,
+            "support": 206
+          },
+          "I-ANSWER": {
+            "fp": 129,
+            "fn": 124,
+            "tp": 592,
+            "f1": 0.8239387613082811,
+            "support": 716
+          },
+          "B-TABLE_CELL": {
+            "tp": 10,
+            "f1": 1.0,
+            "support": 10
+          }
+        },
+        "entity_calibrated_counts": {
+          "tp": 1376,
+          "fp": 245,
+          "fn": 565
+        },
+        "canonical_calibrated_f1": 0.945054945054945,
+        "canonical_calibrated_macro_f1": 0.9439156580188508,
+        "canonical_calibrated_per_class": {
+          "organization_name": {
+            "tp": 21,
+            "fp": 1,
+            "fn": 10,
+            "f1": 0.7924528301886793,
+            "support": 31
+          },
+          "document_title": {
+            "tp": 3,
+            "f1": 1.0,
+            "support": 3
+          },
+          "date": {
+            "tp": 24,
+            "fn": 3,
+            "f1": 0.9411764705882353,
+            "support": 27
+          },
+          "invoice_number": {
+            "tp": 21,
+            "fn": 1,
+            "f1": 0.9767441860465116,
+            "support": 22
+          },
+          "subtotal": {
+            "tp": 16,
+            "f1": 1.0,
+            "support": 16
+          },
+          "tax": {
+            "tp": 25,
+            "f1": 1.0,
+            "support": 25
+          },
+          "total_amount": {
+            "tp": 42,
+            "fn": 1,
+            "fp": 1,
+            "f1": 0.9767441860465116,
+            "support": 43
+          },
+          "address": {
+            "tp": 97,
+            "fn": 9,
+            "fp": 1,
+            "f1": 0.9509803921568627,
+            "support": 106
+          },
+          "email": {
+            "tp": 9,
+            "fn": 3,
+            "f1": 0.8571428571428571,
+            "support": 12
+          }
+        },
+        "canonical_calibrated_counts": {
+          "tp": 258,
+          "fn": 27,
+          "fp": 3
+        },
+        "relation_calibrated_f1": 0.40695652173913044,
+        "relation_calibrated_macro_f1": 0.5305263157894737,
+        "relation_calibrated_per_class": {
+          "QUESTION_ANSWER": {
+            "fn": 132,
+            "tp": 81,
+            "fp": 181,
+            "f1": 0.3410526315789474,
+            "support": 213
+          },
+          "OTHER_RELATION": {
+            "tp": 36,
+            "fp": 18,
+            "fn": 10,
+            "f1": 0.72,
+            "support": 46
+          }
+        },
+        "relation_calibrated_counts": {
+          "fn": 142,
+          "tp": 117,
+          "fp": 199
+        },
+        "document_calibrated_coverage": 0.7333333333333333,
+        "document_calibrated_selective_accuracy": 1.0,
+        "calibrated_composite_score": 0.7470427319427636
+      },
+      "retention_vs_upright": {
+        "entity_token_f1": 0.9852180682697306,
+        "canonical_evidence_token_f1": 0.9892945513306065,
+        "relation_f1": 1.0091292330885844,
+        "composite_score": 0.9917679546843788,
+        "entity_calibrated_f1": 0.9829582313987473,
+        "canonical_calibrated_f1": 0.9961389961389961,
+        "relation_calibrated_f1": 0.962888198757764,
+        "calibrated_composite_score": 0.9865367338064536
+      }
+    },
+    {
+      "angle": 37,
+      "example_count": 30,
+      "window_count": 30,
+      "metrics": {
+        "loss": 0.5105185301343833,
+        "entity_token_f1": 0.7849223946784922,
+        "entity_macro_f1": 0.7158307239455763,
+        "entity_per_class": {
+          "B-HEADER": {
+            "fn": 26,
+            "tp": 3,
+            "f1": 0.1875,
+            "support": 29
+          },
+          "I-HEADER": {
+            "fp": 29,
+            "tp": 31,
+            "fn": 35,
+            "f1": 0.49206349206349204,
+            "support": 66
+          },
+          "B-VALUE": {
+            "tp": 126,
+            "fn": 5,
+            "fp": 19,
+            "f1": 0.9130434782608695,
+            "support": 131
+          },
+          "I-VALUE": {
+            "tp": 296,
+            "fp": 8,
+            "fn": 8,
+            "f1": 0.9736842105263158,
+            "support": 304
+          },
+          "B-QUESTION": {
+            "fp": 57,
+            "tp": 157,
+            "fn": 46,
+            "f1": 0.7529976019184652,
+            "support": 203
+          },
+          "I-QUESTION": {
+            "tp": 172,
+            "fp": 95,
+            "fn": 104,
+            "f1": 0.6335174953959485,
+            "support": 276
+          },
+          "B-ANSWER": {
+            "tp": 152,
+            "fn": 54,
+            "fp": 92,
+            "f1": 0.6755555555555556,
+            "support": 206
+          },
+          "I-ANSWER": {
+            "fp": 225,
+            "tp": 646,
+            "fn": 70,
+            "f1": 0.81411468178954,
+            "support": 716
+          },
+          "B-TABLE_CELL": {
+            "tp": 10,
+            "f1": 1.0,
+            "support": 10
+          }
+        },
+        "entity_counts": {
+          "tp": 1593,
+          "fp": 525,
+          "fn": 348
+        },
+        "canonical_evidence_token_f1": 0.9548611111111112,
+        "canonical_macro_f1": 0.9487253494734519,
+        "canonical_per_class": {
+          "organization_name": {
+            "tp": 30,
+            "fp": 3,
+            "fn": 1,
+            "f1": 0.9375,
+            "support": 31
+          },
+          "document_title": {
+            "tp": 3,
+            "fp": 1,
+            "f1": 0.8571428571428571,
+            "support": 3
+          },
+          "date": {
+            "tp": 26,
+            "fn": 1,
+            "fp": 1,
+            "f1": 0.9629629629629629,
+            "support": 27
+          },
+          "invoice_number": {
+            "tp": 22,
+            "f1": 1.0,
+            "support": 22
+          },
+          "subtotal": {
+            "tp": 16,
+            "f1": 1.0,
+            "support": 16
+          },
+          "tax": {
+            "tp": 25,
+            "f1": 1.0,
+            "support": 25
+          },
+          "total_amount": {
+            "tp": 43,
+            "fp": 8,
+            "f1": 0.9148936170212766,
+            "support": 43
+          },
+          "address": {
+            "tp": 100,
+            "fn": 6,
+            "fp": 3,
+            "f1": 0.9569377990430622,
+            "support": 106
+          },
+          "email": {
+            "tp": 10,
+            "fn": 2,
+            "f1": 0.9090909090909091,
+            "support": 12
+          }
+        },
+        "canonical_counts": {
+          "tp": 275,
+          "fp": 16,
+          "fn": 10
+        },
+        "relation_f1": 0.4326530612244898,
+        "relation_macro_f1": 0.5343377201981417,
+        "relation_per_class": {
+          "QUESTION_ANSWER": {
+            "fn": 91,
+            "tp": 122,
+            "fp": 291,
+            "f1": 0.38977635782747605,
+            "support": 213
+          },
+          "OTHER_RELATION": {
+            "tp": 37,
+            "fp": 26,
+            "fn": 9,
+            "f1": 0.6788990825688074,
+            "support": 46
+          }
+        },
+        "relation_counts": {
+          "fn": 100,
+          "tp": 159,
+          "fp": 317
+        },
+        "document_macro_f1": 1.0,
+        "document_accuracy": 1.0,
+        "composite_score": 0.7608475009552972,
+        "evaluated_windows": 30,
+        "entity_calibrated_f1": 0.7682379349046016,
+        "entity_calibrated_macro_f1": 0.6587133050370632,
+        "entity_calibrated_per_class": {
+          "B-HEADER": {
+            "fn": 29,
+            "f1": 0.0,
+            "support": 29
+          },
+          "I-HEADER": {
+            "fn": 48,
+            "tp": 18,
+            "fp": 4,
+            "f1": 0.4090909090909091,
+            "support": 66
+          },
+          "B-VALUE": {
+            "tp": 126,
+            "fn": 5,
+            "fp": 16,
+            "f1": 0.9230769230769231,
+            "support": 131
+          },
+          "I-VALUE": {
+            "tp": 295,
+            "fp": 8,
+            "fn": 9,
+            "f1": 0.9719934102141681,
+            "support": 304
+          },
+          "B-QUESTION": {
+            "fp": 16,
+            "tp": 100,
+            "fn": 103,
+            "f1": 0.6269592476489029,
+            "support": 203
+          },
+          "I-QUESTION": {
+            "tp": 111,
+            "fn": 165,
+            "fp": 37,
+            "f1": 0.5235849056603774,
+            "support": 276
+          },
+          "B-ANSWER": {
+            "tp": 120,
+            "fn": 86,
+            "fp": 41,
+            "f1": 0.6539509536784741,
+            "support": 206
+          },
+          "I-ANSWER": {
+            "fp": 132,
+            "fn": 127,
+            "tp": 589,
+            "f1": 0.8197633959638135,
+            "support": 716
+          },
+          "B-TABLE_CELL": {
+            "tp": 10,
+            "f1": 1.0,
+            "support": 10
+          }
+        },
+        "entity_calibrated_counts": {
+          "tp": 1369,
+          "fp": 254,
+          "fn": 572
+        },
+        "canonical_calibrated_f1": 0.948905109489051,
+        "canonical_calibrated_macro_f1": 0.9469688972905045,
+        "canonical_calibrated_per_class": {
+          "organization_name": {
+            "tp": 22,
+            "fp": 1,
+            "fn": 9,
+            "f1": 0.8148148148148148,
+            "support": 31
+          },
+          "document_title": {
+            "tp": 3,
+            "f1": 1.0,
+            "support": 3
+          },
+          "date": {
+            "tp": 24,
+            "fn": 3,
+            "f1": 0.9411764705882353,
+            "support": 27
+          },
+          "invoice_number": {
+            "tp": 21,
+            "fn": 1,
+            "f1": 0.9767441860465116,
+            "support": 22
+          },
+          "subtotal": {
+            "tp": 16,
+            "f1": 1.0,
+            "support": 16
+          },
+          "tax": {
+            "tp": 25,
+            "f1": 1.0,
+            "support": 25
+          },
+          "total_amount": {
+            "tp": 42,
+            "fn": 1,
+            "fp": 1,
+            "f1": 0.9767441860465116,
+            "support": 43
+          },
+          "address": {
+            "tp": 98,
+            "fn": 8,
+            "fp": 1,
+            "f1": 0.9560975609756097,
+            "support": 106
+          },
+          "email": {
+            "tp": 9,
+            "fn": 3,
+            "f1": 0.8571428571428571,
+            "support": 12
+          }
+        },
+        "canonical_calibrated_counts": {
+          "tp": 260,
+          "fn": 25,
+          "fp": 3
+        },
+        "relation_calibrated_f1": 0.3951473136915078,
+        "relation_calibrated_macro_f1": 0.5235220125786163,
+        "relation_calibrated_per_class": {
+          "QUESTION_ANSWER": {
+            "fn": 135,
+            "tp": 78,
+            "fp": 186,
+            "f1": 0.3270440251572327,
+            "support": 213
+          },
+          "OTHER_RELATION": {
+            "tp": 36,
+            "fp": 18,
+            "fn": 10,
+            "f1": 0.72,
+            "support": 46
+          }
+        },
+        "relation_calibrated_counts": {
+          "fn": 145,
+          "tp": 114,
+          "fp": 204
+        },
+        "document_calibrated_coverage": 0.7666666666666667,
+        "document_calibrated_selective_accuracy": 1.0,
+        "calibrated_composite_score": 0.7433082797569803
+      },
+      "retention_vs_upright": {
+        "entity_token_f1": 0.9804244143926587,
+        "canonical_evidence_token_f1": 0.9894575281803544,
+        "relation_f1": 1.0036373733166737,
+        "composite_score": 0.9890541348294886,
+        "entity_calibrated_f1": 0.9774089193191118,
+        "canonical_calibrated_f1": 1.0001972775695402,
+        "relation_calibrated_f1": 0.9349467690022282,
+        "calibrated_composite_score": 0.9816050557318433
+      }
+    },
+    {
+      "angle": 45,
+      "example_count": 30,
+      "window_count": 30,
+      "metrics": {
+        "loss": 0.5175709262402961,
+        "entity_token_f1": 0.7791184437330707,
+        "entity_macro_f1": 0.6974166069872777,
+        "entity_per_class": {
+          "B-HEADER": {
+            "fn": 28,
+            "fp": 1,
+            "tp": 1,
+            "f1": 0.06451612903225806,
+            "support": 29
+          },
+          "I-HEADER": {
+            "fp": 28,
+            "tp": 30,
+            "fn": 36,
+            "f1": 0.4838709677419355,
+            "support": 66
+          },
+          "B-VALUE": {
+            "tp": 127,
+            "fn": 4,
+            "fp": 22,
+            "f1": 0.9071428571428571,
+            "support": 131
+          },
+          "I-VALUE": {
+            "tp": 296,
+            "fp": 7,
+            "fn": 8,
+            "f1": 0.9752883031301482,
+            "support": 304
+          },
+          "B-QUESTION": {
+            "fp": 57,
+            "tp": 156,
+            "fn": 47,
+            "f1": 0.75,
+            "support": 203
+          },
+          "I-QUESTION": {
+            "tp": 172,
+            "fp": 101,
+            "fn": 104,
+            "f1": 0.6265938069216758,
+            "support": 276
+          },
+          "B-ANSWER": {
+            "tp": 148,
+            "fn": 58,
+            "fp": 95,
+            "f1": 0.6592427616926503,
+            "support": 206
+          },
+          "I-ANSWER": {
+            "fp": 227,
+            "tp": 642,
+            "fn": 74,
+            "f1": 0.8100946372239748,
+            "support": 716
+          },
+          "B-TABLE_CELL": {
+            "tp": 10,
+            "f1": 1.0,
+            "support": 10
+          }
+        },
+        "entity_counts": {
+          "tp": 1582,
+          "fp": 538,
+          "fn": 359
+        },
+        "canonical_evidence_token_f1": 0.9550173010380623,
+        "canonical_macro_f1": 0.9476746701332988,
+        "canonical_per_class": {
+          "organization_name": {
+            "fp": 4,
+            "tp": 30,
+            "fn": 1,
+            "f1": 0.9230769230769231,
+            "support": 31
+          },
+          "document_title": {
+            "tp": 3,
+            "fp": 1,
+            "f1": 0.8571428571428571,
+            "support": 3
+          },
+          "date": {
+            "tp": 26,
+            "fn": 1,
+            "fp": 1,
+            "f1": 0.9629629629629629,
+            "support": 27
+          },
+          "invoice_number": {
+            "tp": 22,
+            "f1": 1.0,
+            "support": 22
+          },
+          "subtotal": {
+            "tp": 16,
+            "f1": 1.0,
+            "support": 16
+          },
+          "tax": {
+            "tp": 25,
+            "f1": 1.0,
+            "support": 25
+          },
+          "total_amount": {
+            "tp": 43,
+            "fp": 8,
+            "f1": 0.9148936170212766,
+            "support": 43
+          },
+          "address": {
+            "tp": 101,
+            "fn": 5,
+            "fp": 3,
+            "f1": 0.9619047619047619,
+            "support": 106
+          },
+          "email": {
+            "tp": 10,
+            "fn": 2,
+            "f1": 0.9090909090909091,
+            "support": 12
+          }
+        },
+        "canonical_counts": {
+          "tp": 276,
+          "fp": 17,
+          "fn": 9
+        },
+        "relation_f1": 0.4444444444444444,
+        "relation_macro_f1": 0.5548232297051112,
+        "relation_per_class": {
+          "QUESTION_ANSWER": {
+            "fn": 87,
+            "tp": 126,
+            "fp": 292,
+            "f1": 0.3993660855784469,
+            "support": 213
+          },
+          "OTHER_RELATION": {
+            "tp": 38,
+            "fp": 23,
+            "fn": 8,
+            "f1": 0.7102803738317757,
+            "support": 46
+          }
+        },
+        "relation_counts": {
+          "fn": 95,
+          "tp": 164,
+          "fp": 315
+        },
+        "document_macro_f1": 1.0,
+        "document_accuracy": 1.0,
+        "composite_score": 0.7615128138638549,
+        "evaluated_windows": 30,
+        "entity_calibrated_f1": 0.7658263305322129,
+        "entity_calibrated_macro_f1": 0.6551019863465419,
+        "entity_calibrated_per_class": {
+          "B-HEADER": {
+            "fn": 29,
+            "f1": 0.0,
+            "support": 29
+          },
+          "I-HEADER": {
+            "fn": 48,
+            "tp": 18,
+            "fp": 4,
+            "f1": 0.4090909090909091,
+            "support": 66
+          },
+          "B-VALUE": {
+            "tp": 126,
+            "fn": 5,
+            "fp": 21,
+            "f1": 0.9064748201438849,
+            "support": 131
+          },
+          "I-VALUE": {
+            "tp": 295,
+            "fp": 7,
+            "fn": 9,
+            "f1": 0.9735973597359736,
+            "support": 304
+          },
+          "B-QUESTION": {
+            "fp": 16,
+            "tp": 99,
+            "fn": 104,
+            "f1": 0.6226415094339622,
+            "support": 203
+          },
+          "I-QUESTION": {
+            "tp": 111,
+            "fn": 165,
+            "fp": 40,
+            "f1": 0.5199063231850117,
+            "support": 276
+          },
+          "B-ANSWER": {
+            "tp": 118,
+            "fn": 88,
+            "fp": 43,
+            "f1": 0.6430517711171662,
+            "support": 206
+          },
+          "I-ANSWER": {
+            "fp": 131,
+            "fn": 126,
+            "tp": 590,
+            "f1": 0.8211551844119693,
+            "support": 716
+          },
+          "B-TABLE_CELL": {
+            "tp": 10,
+            "f1": 1.0,
+            "support": 10
+          }
+        },
+        "entity_calibrated_counts": {
+          "tp": 1367,
+          "fp": 262,
+          "fn": 574
+        },
+        "canonical_calibrated_f1": 0.948905109489051,
+        "canonical_calibrated_macro_f1": 0.9469688972905045,
+        "canonical_calibrated_per_class": {
+          "organization_name": {
+            "tp": 22,
+            "fp": 1,
+            "fn": 9,
+            "f1": 0.8148148148148148,
+            "support": 31
+          },
+          "document_title": {
+            "tp": 3,
+            "f1": 1.0,
+            "support": 3
+          },
+          "date": {
+            "tp": 24,
+            "fn": 3,
+            "f1": 0.9411764705882353,
+            "support": 27
+          },
+          "invoice_number": {
+            "tp": 21,
+            "fn": 1,
+            "f1": 0.9767441860465116,
+            "support": 22
+          },
+          "subtotal": {
+            "tp": 16,
+            "f1": 1.0,
+            "support": 16
+          },
+          "tax": {
+            "tp": 25,
+            "f1": 1.0,
+            "support": 25
+          },
+          "total_amount": {
+            "tp": 42,
+            "fn": 1,
+            "fp": 1,
+            "f1": 0.9767441860465116,
+            "support": 43
+          },
+          "address": {
+            "tp": 98,
+            "fn": 8,
+            "fp": 1,
+            "f1": 0.9560975609756097,
+            "support": 106
+          },
+          "email": {
+            "tp": 9,
+            "fn": 3,
+            "f1": 0.8571428571428571,
+            "support": 12
+          }
+        },
+        "canonical_calibrated_counts": {
+          "tp": 260,
+          "fn": 25,
+          "fp": 3
+        },
+        "relation_calibrated_f1": 0.3944153577661431,
+        "relation_calibrated_macro_f1": 0.547513440860215,
+        "relation_calibrated_per_class": {
+          "QUESTION_ANSWER": {
+            "fn": 136,
+            "tp": 77,
+            "fp": 190,
+            "f1": 0.32083333333333336,
+            "support": 213
+          },
+          "OTHER_RELATION": {
+            "tp": 36,
+            "fp": 11,
+            "fn": 10,
+            "f1": 0.7741935483870968,
+            "support": 46
+          }
+        },
+        "relation_calibrated_counts": {
+          "fn": 146,
+          "tp": 113,
+          "fp": 201
+        },
+        "document_calibrated_coverage": 0.7,
+        "document_calibrated_selective_accuracy": 1.0,
+        "calibrated_composite_score": 0.7421606490266838
+      },
+      "retention_vs_upright": {
+        "entity_token_f1": 0.9731748630415861,
+        "canonical_evidence_token_f1": 0.9896193771626298,
+        "relation_f1": 1.0309901738473166,
+        "composite_score": 0.9899189999730794,
+        "entity_calibrated_f1": 0.9743406985032075,
+        "canonical_calibrated_f1": 1.0001972775695402,
+        "relation_calibrated_f1": 0.9332149090002493,
+        "calibrated_composite_score": 0.9800895067225673
+      }
+    },
+    {
+      "angle": 60,
+      "example_count": 30,
+      "window_count": 30,
+      "metrics": {
+        "loss": 0.5227840015131127,
+        "entity_token_f1": 0.7764067127344522,
+        "entity_macro_f1": 0.691232663500975,
+        "entity_per_class": {
+          "B-HEADER": {
+            "fn": 28,
+            "fp": 2,
+            "tp": 1,
+            "f1": 0.0625,
+            "support": 29
+          },
+          "I-HEADER": {
+            "fp": 25,
+            "tp": 30,
+            "fn": 36,
+            "f1": 0.49586776859504134,
+            "support": 66
+          },
+          "B-VALUE": {
+            "tp": 128,
+            "fn": 3,
+            "fp": 24,
+            "f1": 0.9045936395759717,
+            "support": 131
+          },
+          "I-VALUE": {
+            "tp": 296,
+            "fp": 6,
+            "fn": 8,
+            "f1": 0.976897689768977,
+            "support": 304
+          },
+          "B-QUESTION": {
+            "fp": 54,
+            "tp": 155,
+            "fn": 48,
+            "f1": 0.7524271844660194,
+            "support": 203
+          },
+          "I-QUESTION": {
+            "tp": 173,
+            "fp": 98,
+            "fn": 103,
+            "f1": 0.6325411334552102,
+            "support": 276
+          },
+          "B-ANSWER": {
+            "tp": 146,
+            "fn": 60,
+            "fp": 101,
+            "f1": 0.6445916114790287,
+            "support": 206
+          },
+          "I-ANSWER": {
+            "fp": 228,
+            "tp": 635,
+            "fn": 81,
+            "f1": 0.8043065231158961,
+            "support": 716
+          },
+          "B-TABLE_CELL": {
+            "tp": 9,
+            "fn": 1,
+            "f1": 0.9473684210526315,
+            "support": 10
+          }
+        },
+        "entity_counts": {
+          "tp": 1573,
+          "fn": 368,
+          "fp": 538
+        },
+        "canonical_evidence_token_f1": 0.9512195121951219,
+        "canonical_macro_f1": 0.942140013710648,
+        "canonical_per_class": {
+          "organization_name": {
+            "fp": 4,
+            "tp": 29,
+            "fn": 2,
+            "f1": 0.90625,
+            "support": 31
+          },
+          "document_title": {
+            "tp": 3,
+            "fp": 1,
+            "f1": 0.8571428571428571,
+            "support": 3
+          },
+          "date": {
+            "tp": 25,
+            "fn": 2,
+            "fp": 1,
+            "f1": 0.9433962264150944,
+            "support": 27
+          },
+          "invoice_number": {
+            "tp": 21,
+            "fn": 1,
+            "f1": 0.9767441860465116,
+            "support": 22
+          },
+          "subtotal": {
+            "tp": 16,
+            "f1": 1.0,
+            "support": 16
+          },
+          "tax": {
+            "tp": 25,
+            "f1": 1.0,
+            "support": 25
+          },
+          "total_amount": {
+            "tp": 43,
+            "fp": 7,
+            "f1": 0.9247311827956989,
+            "support": 43
+          },
+          "address": {
+            "tp": 101,
+            "fn": 5,
+            "fp": 3,
+            "f1": 0.9619047619047619,
+            "support": 106
+          },
+          "email": {
+            "tp": 10,
+            "fn": 2,
+            "f1": 0.9090909090909091,
+            "support": 12
+          }
+        },
+        "canonical_counts": {
+          "tp": 273,
+          "fp": 16,
+          "fn": 12
+        },
+        "relation_f1": 0.44021739130434784,
+        "relation_macro_f1": 0.5553159628631327,
+        "relation_per_class": {
+          "QUESTION_ANSWER": {
+            "fn": 89,
+            "tp": 124,
+            "fp": 293,
+            "f1": 0.39365079365079364,
+            "support": 213
+          },
+          "OTHER_RELATION": {
+            "tp": 38,
+            "fp": 22,
+            "fn": 8,
+            "f1": 0.7169811320754716,
+            "support": 46
+          }
+        },
+        "relation_counts": {
+          "fn": 97,
+          "tp": 162,
+          "fp": 315
+        },
+        "document_macro_f1": 1.0,
+        "document_accuracy": 1.0,
+        "composite_score": 0.7584219109686483,
+        "evaluated_windows": 30,
+        "entity_calibrated_f1": 0.7602701181767023,
+        "entity_calibrated_macro_f1": 0.640000550920655,
+        "entity_calibrated_per_class": {
+          "B-HEADER": {
+            "fn": 29,
+            "f1": 0.0,
+            "support": 29
+          },
+          "I-HEADER": {
+            "fn": 51,
+            "tp": 15,
+            "fp": 5,
+            "f1": 0.3488372093023256,
+            "support": 66
+          },
+          "B-VALUE": {
+            "tp": 128,
+            "fn": 3,
+            "fp": 23,
+            "f1": 0.9078014184397163,
+            "support": 131
+          },
+          "I-VALUE": {
+            "tp": 296,
+            "fp": 5,
+            "fn": 8,
+            "f1": 0.9785123966942149,
+            "support": 304
+          },
+          "B-QUESTION": {
+            "fp": 15,
+            "tp": 97,
+            "fn": 106,
+            "f1": 0.6158730158730159,
+            "support": 203
+          },
+          "I-QUESTION": {
+            "tp": 111,
+            "fn": 165,
+            "fp": 42,
+            "f1": 0.5174825174825175,
+            "support": 276
+          },
+          "B-ANSWER": {
+            "tp": 114,
+            "fn": 92,
+            "fp": 42,
+            "f1": 0.6298342541436464,
+            "support": 206
+          },
+          "I-ANSWER": {
+            "fp": 130,
+            "fn": 135,
+            "tp": 581,
+            "f1": 0.8142957252978276,
+            "support": 716
+          },
+          "B-TABLE_CELL": {
+            "tp": 9,
+            "fn": 1,
+            "f1": 0.9473684210526315,
+            "support": 10
+          }
+        },
+        "entity_calibrated_counts": {
+          "tp": 1351,
+          "fn": 590,
+          "fp": 262
+        },
+        "canonical_calibrated_f1": 0.9508196721311475,
+        "canonical_calibrated_macro_f1": 0.9482757374104962,
+        "canonical_calibrated_per_class": {
+          "organization_name": {
+            "tp": 22,
+            "fp": 1,
+            "fn": 9,
+            "f1": 0.8148148148148148,
+            "support": 31
+          },
+          "document_title": {
+            "tp": 3,
+            "f1": 1.0,
+            "support": 3
+          },
+          "date": {
+            "tp": 24,
+            "fn": 3,
+            "f1": 0.9411764705882353,
+            "support": 27
+          },
+          "invoice_number": {
+            "tp": 21,
+            "fn": 1,
+            "f1": 0.9767441860465116,
+            "support": 22
+          },
+          "subtotal": {
+            "tp": 16,
+            "f1": 1.0,
+            "support": 16
+          },
+          "tax": {
+            "tp": 25,
+            "f1": 1.0,
+            "support": 25
+          },
+          "total_amount": {
+            "tp": 43,
+            "fp": 1,
+            "f1": 0.9885057471264368,
+            "support": 43
+          },
+          "address": {
+            "tp": 98,
+            "fn": 8,
+            "fp": 1,
+            "f1": 0.9560975609756097,
+            "support": 106
+          },
+          "email": {
+            "tp": 9,
+            "fn": 3,
+            "f1": 0.8571428571428571,
+            "support": 12
+          }
+        },
+        "canonical_calibrated_counts": {
+          "tp": 261,
+          "fn": 24,
+          "fp": 3
+        },
+        "relation_calibrated_f1": 0.42086956521739133,
+        "relation_calibrated_macro_f1": 0.5712242303151394,
+        "relation_calibrated_per_class": {
+          "QUESTION_ANSWER": {
+            "fn": 128,
+            "tp": 85,
+            "fp": 186,
+            "f1": 0.3512396694214876,
+            "support": 213
+          },
+          "OTHER_RELATION": {
+            "tp": 36,
+            "fp": 9,
+            "fn": 10,
+            "f1": 0.7912087912087912,
+            "support": 46
+          }
+        },
+        "relation_calibrated_counts": {
+          "fn": 138,
+          "tp": 121,
+          "fp": 195
+        },
+        "document_calibrated_coverage": 0.6666666666666666,
+        "document_calibrated_selective_accuracy": 1.0,
+        "calibrated_composite_score": 0.7470303566078157
+      },
+      "retention_vs_upright": {
+        "entity_token_f1": 0.9697877163703538,
+        "canonical_evidence_token_f1": 0.9856839872746553,
+        "relation_f1": 1.021184560780834,
+        "composite_score": 0.985901019648478,
+        "entity_calibrated_f1": 0.9672716756560326,
+        "canonical_calibrated_f1": 1.0022153300841825,
+        "relation_calibrated_f1": 0.9958074534161491,
+        "calibrated_composite_score": 0.9865203910699577
+      }
+    },
+    {
+      "angle": 89,
+      "example_count": 30,
+      "window_count": 30,
+      "metrics": {
+        "loss": 0.5386581097962335,
+        "entity_token_f1": 0.77348616994767,
+        "entity_macro_f1": 0.7087887617573834,
+        "entity_per_class": {
+          "B-HEADER": {
+            "fn": 25,
+            "fp": 3,
+            "tp": 4,
+            "f1": 0.2222222222222222,
+            "support": 29
+          },
+          "I-HEADER": {
+            "tp": 27,
+            "fp": 22,
+            "fn": 39,
+            "f1": 0.46956521739130436,
+            "support": 66
+          },
+          "B-VALUE": {
+            "tp": 126,
+            "fn": 5,
+            "fp": 22,
+            "f1": 0.9032258064516129,
+            "support": 131
+          },
+          "I-VALUE": {
+            "tp": 296,
+            "fp": 6,
+            "fn": 8,
+            "f1": 0.976897689768977,
+            "support": 304
+          },
+          "B-QUESTION": {
+            "fp": 67,
+            "tp": 156,
+            "fn": 47,
+            "f1": 0.7323943661971831,
+            "support": 203
+          },
+          "I-QUESTION": {
+            "fp": 92,
+            "tp": 171,
+            "fn": 105,
+            "f1": 0.634508348794063,
+            "support": 276
+          },
+          "B-ANSWER": {
+            "tp": 147,
+            "fn": 59,
+            "fp": 109,
+            "f1": 0.6363636363636364,
+            "support": 206
+          },
+          "I-ANSWER": {
+            "fp": 199,
+            "fn": 101,
+            "tp": 615,
+            "f1": 0.803921568627451,
+            "support": 716
+          },
+          "B-TABLE_CELL": {
+            "tp": 10,
+            "f1": 1.0,
+            "support": 10
+          }
+        },
+        "entity_counts": {
+          "tp": 1552,
+          "fp": 520,
+          "fn": 389
+        },
+        "canonical_evidence_token_f1": 0.9480968858131488,
+        "canonical_macro_f1": 0.9474353332256652,
+        "canonical_per_class": {
+          "organization_name": {
+            "fp": 5,
+            "tp": 30,
+            "fn": 1,
+            "f1": 0.9090909090909091,
+            "support": 31
+          },
+          "document_title": {
+            "tp": 3,
+            "fp": 1,
+            "f1": 0.8571428571428571,
+            "support": 3
+          },
+          "date": {
+            "tp": 25,
+            "fn": 2,
+            "fp": 1,
+            "f1": 0.9433962264150944,
+            "support": 27
+          },
+          "invoice_number": {
+            "tp": 21,
+            "fn": 1,
+            "f1": 0.9767441860465116,
+            "support": 22
+          },
+          "subtotal": {
+            "tp": 16,
+            "f1": 1.0,
+            "support": 16
+          },
+          "tax": {
+            "tp": 25,
+            "f1": 1.0,
+            "support": 25
+          },
+          "total_amount": {
+            "tp": 43,
+            "fp": 5,
+            "f1": 0.945054945054945,
+            "support": 43
+          },
+          "address": {
+            "tp": 100,
+            "fp": 7,
+            "fn": 6,
+            "f1": 0.9389671361502347,
+            "support": 106
+          },
+          "email": {
+            "tp": 11,
+            "fn": 1,
+            "f1": 0.9565217391304348,
+            "support": 12
+          }
+        },
+        "canonical_counts": {
+          "tp": 274,
+          "fp": 19,
+          "fn": 11
+        },
+        "relation_f1": 0.4172461752433936,
+        "relation_macro_f1": 0.5443151853575307,
+        "relation_per_class": {
+          "QUESTION_ANSWER": {
+            "fn": 101,
+            "tp": 112,
+            "fp": 289,
+            "f1": 0.36482084690553745,
+            "support": 213
+          },
+          "OTHER_RELATION": {
+            "tp": 38,
+            "fp": 21,
+            "fn": 8,
+            "f1": 0.7238095238095238,
+            "support": 46
+          }
+        },
+        "relation_counts": {
+          "fn": 109,
+          "tp": 150,
+          "fp": 310
+        },
+        "document_macro_f1": 1.0,
+        "document_accuracy": 1.0,
+        "composite_score": 0.7507302332432036,
+        "evaluated_windows": 30,
+        "entity_calibrated_f1": 0.7598525659200454,
+        "entity_calibrated_macro_f1": 0.6454203795573168,
+        "entity_calibrated_per_class": {
+          "B-HEADER": {
+            "fn": 29,
+            "f1": 0.0,
+            "support": 29
+          },
+          "I-HEADER": {
+            "fn": 53,
+            "tp": 13,
+            "fp": 5,
+            "f1": 0.30952380952380953,
+            "support": 66
+          },
+          "B-VALUE": {
+            "tp": 126,
+            "fn": 5,
+            "fp": 21,
+            "f1": 0.9064748201438849,
+            "support": 131
+          },
+          "I-VALUE": {
+            "tp": 295,
+            "fp": 5,
+            "fn": 9,
+            "f1": 0.9768211920529801,
+            "support": 304
+          },
+          "B-QUESTION": {
+            "fp": 17,
+            "tp": 108,
+            "fn": 95,
+            "f1": 0.6585365853658537,
+            "support": 203
+          },
+          "I-QUESTION": {
+            "tp": 114,
+            "fp": 46,
+            "fn": 162,
+            "f1": 0.5229357798165137,
+            "support": 276
+          },
+          "B-ANSWER": {
+            "tp": 114,
+            "fn": 92,
+            "fp": 45,
+            "f1": 0.6246575342465753,
+            "support": 206
+          },
+          "I-ANSWER": {
+            "fn": 156,
+            "fp": 107,
+            "tp": 560,
+            "f1": 0.8098336948662328,
+            "support": 716
+          },
+          "B-TABLE_CELL": {
+            "tp": 10,
+            "f1": 1.0,
+            "support": 10
+          }
+        },
+        "entity_calibrated_counts": {
+          "tp": 1340,
+          "fp": 246,
+          "fn": 601
+        },
+        "canonical_calibrated_f1": 0.9525547445255474,
+        "canonical_calibrated_macro_f1": 0.9528402174322161,
+        "canonical_calibrated_per_class": {
+          "organization_name": {
+            "tp": 21,
+            "fn": 10,
+            "fp": 1,
+            "f1": 0.7924528301886793,
+            "support": 31
+          },
+          "document_title": {
+            "tp": 3,
+            "f1": 1.0,
+            "support": 3
+          },
+          "date": {
+            "tp": 24,
+            "fn": 3,
+            "f1": 0.9411764705882353,
+            "support": 27
+          },
+          "invoice_number": {
+            "tp": 21,
+            "fn": 1,
+            "f1": 0.9767441860465116,
+            "support": 22
+          },
+          "subtotal": {
+            "tp": 16,
+            "f1": 1.0,
+            "support": 16
+          },
+          "tax": {
+            "tp": 25,
+            "f1": 1.0,
+            "support": 25
+          },
+          "total_amount": {
+            "tp": 43,
+            "f1": 1.0,
+            "support": 43
+          },
+          "address": {
+            "tp": 98,
+            "fn": 8,
+            "fp": 1,
+            "f1": 0.9560975609756097,
+            "support": 106
+          },
+          "email": {
+            "tp": 10,
+            "fn": 2,
+            "f1": 0.9090909090909091,
+            "support": 12
+          }
+        },
+        "canonical_calibrated_counts": {
+          "tp": 261,
+          "fn": 24,
+          "fp": 2
+        },
+        "relation_calibrated_f1": 0.4272890484739677,
+        "relation_calibrated_macro_f1": 0.5622443821515555,
+        "relation_calibrated_per_class": {
+          "QUESTION_ANSWER": {
+            "fn": 130,
+            "tp": 83,
+            "fp": 167,
+            "f1": 0.35853131749460043,
+            "support": 213
+          },
+          "OTHER_RELATION": {
+            "tp": 36,
+            "fp": 12,
+            "fn": 10,
+            "f1": 0.7659574468085106,
+            "support": 46
+          }
+        },
+        "relation_calibrated_counts": {
+          "fn": 140,
+          "tp": 119,
+          "fp": 179
+        },
+        "document_calibrated_coverage": 0.6333333333333333,
+        "document_calibrated_selective_accuracy": 1.0,
+        "calibrated_composite_score": 0.748901974617897
+      },
+      "retention_vs_upright": {
+        "entity_token_f1": 0.96613974878674,
+        "canonical_evidence_token_f1": 0.9824482222556542,
+        "relation_f1": 0.9678975901904572,
+        "composite_score": 0.9759023199766316,
+        "entity_calibrated_f1": 0.9667404349018396,
+        "canonical_calibrated_f1": 1.004044190175577,
+        "relation_calibrated_f1": 1.010996409335727,
+        "calibrated_composite_score": 0.9889920300266706
+      }
+    },
+    {
+      "angle": 90,
+      "example_count": 30,
+      "window_count": 30,
+      "metrics": {
+        "loss": 0.5483926180847144,
+        "entity_token_f1": 0.7722969606377678,
+        "entity_macro_f1": 0.7010539208442713,
+        "entity_per_class": {
+          "B-HEADER": {
+            "fn": 26,
+            "fp": 4,
+            "tp": 3,
+            "f1": 0.16666666666666666,
+            "support": 29
+          },
+          "I-HEADER": {
+            "fn": 40,
+            "tp": 26,
+            "fp": 21,
+            "f1": 0.46017699115044247,
+            "support": 66
+          },
+          "B-VALUE": {
+            "tp": 127,
+            "fn": 4,
+            "fp": 25,
+            "f1": 0.8975265017667845,
+            "support": 131
+          },
+          "I-VALUE": {
+            "tp": 296,
+            "fp": 5,
+            "fn": 8,
+            "f1": 0.9785123966942149,
+            "support": 304
+          },
+          "B-QUESTION": {
+            "fp": 71,
+            "tp": 156,
+            "fn": 47,
+            "f1": 0.7255813953488373,
+            "support": 203
+          },
+          "I-QUESTION": {
+            "fp": 93,
+            "tp": 173,
+            "fn": 103,
+            "f1": 0.6383763837638377,
+            "support": 276
+          },
+          "B-ANSWER": {
+            "tp": 149,
+            "fn": 57,
+            "fp": 111,
+            "f1": 0.6394849785407726,
+            "support": 206
+          },
+          "I-ANSWER": {
+            "fp": 193,
+            "fn": 106,
+            "tp": 610,
+            "f1": 0.8031599736668861,
+            "support": 716
+          },
+          "B-TABLE_CELL": {
+            "tp": 10,
+            "f1": 1.0,
+            "support": 10
+          }
+        },
+        "entity_counts": {
+          "tp": 1550,
+          "fp": 523,
+          "fn": 391
+        },
+        "canonical_evidence_token_f1": 0.9379310344827586,
+        "canonical_macro_f1": 0.9400398485676161,
+        "canonical_per_class": {
+          "organization_name": {
+            "fp": 6,
+            "tp": 28,
+            "fn": 3,
+            "f1": 0.8615384615384616,
+            "support": 31
+          },
+          "document_title": {
+            "tp": 3,
+            "fp": 1,
+            "f1": 0.8571428571428571,
+            "support": 3
+          },
+          "date": {
+            "tp": 25,
+            "fn": 2,
+            "fp": 1,
+            "f1": 0.9433962264150944,
+            "support": 27
+          },
+          "invoice_number": {
+            "tp": 21,
+            "fn": 1,
+            "f1": 0.9767441860465116,
+            "support": 22
+          },
+          "subtotal": {
+            "tp": 16,
+            "f1": 1.0,
+            "support": 16
+          },
+          "tax": {
+            "tp": 25,
+            "f1": 1.0,
+            "support": 25
+          },
+          "total_amount": {
+            "tp": 43,
+            "fp": 6,
+            "f1": 0.9347826086956522,
+            "support": 43
+          },
+          "address": {
+            "tp": 100,
+            "fp": 9,
+            "fn": 6,
+            "f1": 0.9302325581395349,
+            "support": 106
+          },
+          "email": {
+            "tp": 11,
+            "fn": 1,
+            "f1": 0.9565217391304348,
+            "support": 12
+          }
+        },
+        "canonical_counts": {
+          "tp": 272,
+          "fp": 23,
+          "fn": 13
+        },
+        "relation_f1": 0.4172461752433936,
+        "relation_macro_f1": 0.5443151853575307,
+        "relation_per_class": {
+          "QUESTION_ANSWER": {
+            "fn": 101,
+            "tp": 112,
+            "fp": 289,
+            "f1": 0.36482084690553745,
+            "support": 213
+          },
+          "OTHER_RELATION": {
+            "tp": 38,
+            "fp": 21,
+            "fn": 8,
+            "f1": 0.7238095238095238,
+            "support": 46
+          }
+        },
+        "relation_counts": {
+          "fn": 109,
+          "tp": 150,
+          "fp": 310
+        },
+        "document_macro_f1": 1.0,
+        "document_accuracy": 1.0,
+        "composite_score": 0.7477130866866452,
+        "evaluated_windows": 30,
+        "entity_calibrated_f1": 0.7570492737111933,
+        "entity_calibrated_macro_f1": 0.6385236409924516,
+        "entity_calibrated_per_class": {
+          "B-HEADER": {
+            "fn": 29,
+            "f1": 0.0,
+            "support": 29
+          },
+          "I-HEADER": {
+            "fn": 55,
+            "fp": 5,
+            "tp": 11,
+            "f1": 0.2682926829268293,
+            "support": 66
+          },
+          "B-VALUE": {
+            "tp": 125,
+            "fn": 6,
+            "fp": 23,
+            "f1": 0.8960573476702509,
+            "support": 131
+          },
+          "I-VALUE": {
+            "tp": 295,
+            "fp": 3,
+            "fn": 9,
+            "f1": 0.9800664451827242,
+            "support": 304
+          },
+          "B-QUESTION": {
+            "fp": 18,
+            "tp": 109,
+            "fn": 94,
+            "f1": 0.6606060606060606,
+            "support": 203
+          },
+          "I-QUESTION": {
+            "fn": 163,
+            "tp": 113,
+            "fp": 45,
+            "f1": 0.5207373271889401,
+            "support": 276
+          },
+          "B-ANSWER": {
+            "tp": 110,
+            "fn": 96,
+            "fp": 43,
+            "f1": 0.6128133704735376,
+            "support": 206
+          },
+          "I-ANSWER": {
+            "fn": 160,
+            "fp": 104,
+            "tp": 556,
+            "f1": 0.8081395348837209,
+            "support": 716
+          },
+          "B-TABLE_CELL": {
+            "tp": 10,
+            "f1": 1.0,
+            "support": 10
+          }
+        },
+        "entity_calibrated_counts": {
+          "tp": 1329,
+          "fp": 241,
+          "fn": 612
+        },
+        "canonical_calibrated_f1": 0.948905109489051,
+        "canonical_calibrated_macro_f1": 0.9465525171828771,
+        "canonical_calibrated_per_class": {
+          "organization_name": {
+            "tp": 21,
+            "fn": 10,
+            "fp": 1,
+            "f1": 0.7924528301886793,
+            "support": 31
+          },
+          "document_title": {
+            "tp": 3,
+            "f1": 1.0,
+            "support": 3
+          },
+          "date": {
+            "tp": 24,
+            "fn": 3,
+            "f1": 0.9411764705882353,
+            "support": 27
+          },
+          "invoice_number": {
+            "tp": 21,
+            "fn": 1,
+            "f1": 0.9767441860465116,
+            "support": 22
+          },
+          "subtotal": {
+            "tp": 16,
+            "f1": 1.0,
+            "support": 16
+          },
+          "tax": {
+            "tp": 25,
+            "f1": 1.0,
+            "support": 25
+          },
+          "total_amount": {
+            "tp": 43,
+            "f1": 1.0,
+            "support": 43
+          },
+          "address": {
+            "tp": 98,
+            "fp": 2,
+            "fn": 8,
+            "f1": 0.9514563106796117,
+            "support": 106
+          },
+          "email": {
+            "tp": 9,
+            "fn": 3,
+            "f1": 0.8571428571428571,
+            "support": 12
+          }
+        },
+        "canonical_calibrated_counts": {
+          "tp": 260,
+          "fn": 25,
+          "fp": 3
+        },
+        "relation_calibrated_f1": 0.4244604316546763,
+        "relation_calibrated_macro_f1": 0.571948481625901,
+        "relation_calibrated_per_class": {
+          "QUESTION_ANSWER": {
+            "fn": 131,
+            "tp": 82,
+            "fp": 170,
+            "f1": 0.35268817204301073,
+            "support": 213
+          },
+          "OTHER_RELATION": {
+            "tp": 36,
+            "fp": 9,
+            "fn": 10,
+            "f1": 0.7912087912087912,
+            "support": 46
+          }
+        },
+        "relation_calibrated_counts": {
+          "fn": 141,
+          "tp": 118,
+          "fp": 179
+        },
+        "document_calibrated_coverage": 0.6333333333333333,
+        "document_calibrated_selective_accuracy": 1.0,
+        "calibrated_composite_score": 0.7461610947704092
+      },
+      "retention_vs_upright": {
+        "entity_token_f1": 0.9646543409946374,
+        "canonical_evidence_token_f1": 0.9719140429785108,
+        "relation_f1": 0.9678975901904572,
+        "composite_score": 0.9719802182763514,
+        "entity_calibrated_f1": 0.9631738799533002,
+        "canonical_calibrated_f1": 1.0001972775695402,
+        "relation_calibrated_f1": 1.004303699897225,
+        "calibrated_composite_score": 0.9853724530776189
+      }
+    },
+    {
+      "angle": 91,
+      "example_count": 30,
+      "window_count": 30,
+      "metrics": {
+        "loss": 0.5432637666681936,
+        "entity_token_f1": 0.7713787085514834,
+        "entity_macro_f1": 0.708699312625938,
+        "entity_per_class": {
+          "B-HEADER": {
+            "fn": 25,
+            "fp": 4,
+            "tp": 4,
+            "f1": 0.21621621621621623,
+            "support": 29
+          },
+          "I-HEADER": {
+            "tp": 27,
+            "fp": 19,
+            "fn": 39,
+            "f1": 0.48214285714285715,
+            "support": 66
+          },
+          "B-VALUE": {
+            "tp": 126,
+            "fn": 5,
+            "fp": 21,
+            "f1": 0.9064748201438849,
+            "support": 131
+          },
+          "I-VALUE": {
+            "tp": 296,
+            "fp": 6,
+            "fn": 8,
+            "f1": 0.976897689768977,
+            "support": 304
+          },
+          "B-QUESTION": {
+            "fp": 68,
+            "tp": 155,
+            "fn": 48,
+            "f1": 0.7276995305164319,
+            "support": 203
+          },
+          "I-QUESTION": {
+            "fp": 95,
+            "tp": 173,
+            "fn": 103,
+            "f1": 0.6360294117647058,
+            "support": 276
+          },
+          "B-ANSWER": {
+            "tp": 147,
+            "fn": 59,
+            "fp": 111,
+            "f1": 0.6336206896551724,
+            "support": 206
+          },
+          "I-ANSWER": {
+            "fp": 199,
+            "fn": 107,
+            "tp": 609,
+            "f1": 0.7992125984251969,
+            "support": 716
+          },
+          "B-TABLE_CELL": {
+            "tp": 10,
+            "f1": 1.0,
+            "support": 10
+          }
+        },
+        "entity_counts": {
+          "tp": 1547,
+          "fp": 523,
+          "fn": 394
+        },
+        "canonical_evidence_token_f1": 0.949740034662045,
+        "canonical_macro_f1": 0.9472828694555177,
+        "canonical_per_class": {
+          "organization_name": {
+            "fp": 5,
+            "tp": 30,
+            "fn": 1,
+            "f1": 0.9090909090909091,
+            "support": 31
+          },
+          "document_title": {
+            "tp": 3,
+            "fp": 1,
+            "f1": 0.8571428571428571,
+            "support": 3
+          },
+          "date": {
+            "tp": 25,
+            "fn": 2,
+            "fp": 1,
+            "f1": 0.9433962264150944,
+            "support": 27
+          },
+          "invoice_number": {
+            "tp": 21,
+            "fn": 1,
+            "f1": 0.9767441860465116,
+            "support": 22
+          },
+          "subtotal": {
+            "tp": 16,
+            "f1": 1.0,
+            "support": 16
+          },
+          "tax": {
+            "tp": 25,
+            "f1": 1.0,
+            "support": 25
+          },
+          "total_amount": {
+            "tp": 43,
+            "fp": 6,
+            "f1": 0.9347826086956522,
+            "support": 43
+          },
+          "address": {
+            "tp": 100,
+            "fp": 5,
+            "fn": 6,
+            "f1": 0.9478672985781991,
+            "support": 106
+          },
+          "email": {
+            "tp": 11,
+            "fn": 1,
+            "f1": 0.9565217391304348,
+            "support": 12
+          }
+        },
+        "canonical_counts": {
+          "tp": 274,
+          "fp": 18,
+          "fn": 11
+        },
+        "relation_f1": 0.4206128133704735,
+        "relation_macro_f1": 0.5431310889135528,
+        "relation_per_class": {
+          "QUESTION_ANSWER": {
+            "fn": 100,
+            "tp": 113,
+            "fp": 286,
+            "f1": 0.369281045751634,
+            "support": 213
+          },
+          "OTHER_RELATION": {
+            "tp": 38,
+            "fp": 22,
+            "fn": 8,
+            "f1": 0.7169811320754716,
+            "support": 46
+          }
+        },
+        "relation_counts": {
+          "fn": 108,
+          "tp": 151,
+          "fp": 308
+        },
+        "document_macro_f1": 1.0,
+        "document_accuracy": 1.0,
+        "composite_score": 0.7511396954287229,
+        "evaluated_windows": 30,
+        "entity_calibrated_f1": 0.7562642369020501,
+        "entity_calibrated_macro_f1": 0.6384783086640051,
+        "entity_calibrated_per_class": {
+          "B-HEADER": {
+            "fn": 29,
+            "f1": 0.0,
+            "support": 29
+          },
+          "I-HEADER": {
+            "fn": 55,
+            "fp": 5,
+            "tp": 11,
+            "f1": 0.2682926829268293,
+            "support": 66
+          },
+          "B-VALUE": {
+            "tp": 126,
+            "fn": 5,
+            "fp": 21,
+            "f1": 0.9064748201438849,
+            "support": 131
+          },
+          "I-VALUE": {
+            "tp": 295,
+            "fp": 4,
+            "fn": 9,
+            "f1": 0.978441127694859,
+            "support": 304
+          },
+          "B-QUESTION": {
+            "fp": 21,
+            "tp": 108,
+            "fn": 95,
+            "f1": 0.6506024096385542,
+            "support": 203
+          },
+          "I-QUESTION": {
+            "fn": 164,
+            "tp": 112,
+            "fp": 46,
+            "f1": 0.5161290322580645,
+            "support": 276
+          },
+          "B-ANSWER": {
+            "tp": 112,
+            "fn": 94,
+            "fp": 44,
+            "f1": 0.6187845303867403,
+            "support": 206
+          },
+          "I-ANSWER": {
+            "fn": 162,
+            "fp": 102,
+            "tp": 554,
+            "f1": 0.8075801749271136,
+            "support": 716
+          },
+          "B-TABLE_CELL": {
+            "tp": 10,
+            "f1": 1.0,
+            "support": 10
+          }
+        },
+        "entity_calibrated_counts": {
+          "tp": 1328,
+          "fp": 243,
+          "fn": 613
+        },
+        "canonical_calibrated_f1": 0.9542961608775137,
+        "canonical_calibrated_macro_f1": 0.954533492710397,
+        "canonical_calibrated_per_class": {
+          "organization_name": {
+            "tp": 21,
+            "fn": 10,
+            "f1": 0.8076923076923077,
+            "support": 31
+          },
+          "document_title": {
+            "tp": 3,
+            "f1": 1.0,
+            "support": 3
+          },
+          "date": {
+            "tp": 24,
+            "fn": 3,
+            "f1": 0.9411764705882353,
+            "support": 27
+          },
+          "invoice_number": {
+            "tp": 21,
+            "fn": 1,
+            "f1": 0.9767441860465116,
+            "support": 22
+          },
+          "subtotal": {
+            "tp": 16,
+            "f1": 1.0,
+            "support": 16
+          },
+          "tax": {
+            "tp": 25,
+            "f1": 1.0,
+            "support": 25
+          },
+          "total_amount": {
+            "tp": 43,
+            "f1": 1.0,
+            "support": 43
+          },
+          "address": {
+            "tp": 98,
+            "fn": 8,
+            "fp": 1,
+            "f1": 0.9560975609756097,
+            "support": 106
+          },
+          "email": {
+            "tp": 10,
+            "fn": 2,
+            "f1": 0.9090909090909091,
+            "support": 12
+          }
+        },
+        "canonical_calibrated_counts": {
+          "tp": 261,
+          "fn": 24,
+          "fp": 1
+        },
+        "relation_calibrated_f1": 0.4148936170212766,
+        "relation_calibrated_macro_f1": 0.5716654384672071,
+        "relation_calibrated_per_class": {
+          "QUESTION_ANSWER": {
+            "fn": 133,
+            "tp": 80,
+            "fp": 179,
+            "f1": 0.3389830508474576,
+            "support": 213
+          },
+          "OTHER_RELATION": {
+            "tp": 37,
+            "fp": 9,
+            "fn": 9,
+            "f1": 0.8043478260869565,
+            "support": 46
+          }
+        },
+        "relation_calibrated_counts": {
+          "fn": 142,
+          "tp": 117,
+          "fp": 188
+        },
+        "document_calibrated_coverage": 0.6,
+        "document_calibrated_selective_accuracy": 1.0,
+        "calibrated_composite_score": 0.7448031392355177
+      },
+      "retention_vs_upright": {
+        "entity_token_f1": 0.9635073782247334,
+        "canonical_evidence_token_f1": 0.9841509054831337,
+        "relation_f1": 0.9757072745532753,
+        "composite_score": 0.9764345951922769,
+        "entity_calibrated_f1": 0.9621750982681109,
+        "canonical_calibrated_f1": 1.0058797371411632,
+        "relation_calibrated_f1": 0.981667933130699,
+        "calibrated_composite_score": 0.9835791513550223
+      }
+    },
+    {
+      "angle": 135,
+      "example_count": 30,
+      "window_count": 30,
+      "metrics": {
+        "loss": 0.5409956480793577,
+        "entity_token_f1": 0.7698019801980198,
+        "entity_macro_f1": 0.702320849438823,
+        "entity_per_class": {
+          "B-HEADER": {
+            "fn": 26,
+            "fp": 2,
+            "tp": 3,
+            "f1": 0.17647058823529413,
+            "support": 29
+          },
+          "I-HEADER": {
+            "fp": 25,
+            "tp": 29,
+            "fn": 37,
+            "f1": 0.48333333333333334,
+            "support": 66
+          },
+          "B-VALUE": {
+            "tp": 127,
+            "fn": 4,
+            "fp": 23,
+            "f1": 0.9039145907473309,
+            "support": 131
+          },
+          "I-VALUE": {
+            "tp": 296,
+            "fp": 6,
+            "fn": 8,
+            "f1": 0.976897689768977,
+            "support": 304
+          },
+          "B-QUESTION": {
+            "fp": 64,
+            "tp": 153,
+            "fn": 50,
+            "f1": 0.7285714285714285,
+            "support": 203
+          },
+          "I-QUESTION": {
+            "fp": 100,
+            "tp": 169,
+            "fn": 107,
+            "f1": 0.6201834862385321,
+            "support": 276
+          },
+          "B-ANSWER": {
+            "tp": 150,
+            "fn": 56,
+            "fp": 123,
+            "f1": 0.6263048016701461,
+            "support": 206
+          },
+          "I-ANSWER": {
+            "fp": 201,
+            "tp": 618,
+            "fn": 98,
+            "f1": 0.8052117263843648,
+            "support": 716
+          },
+          "B-TABLE_CELL": {
+            "tp": 10,
+            "f1": 1.0,
+            "support": 10
+          }
+        },
+        "entity_counts": {
+          "tp": 1555,
+          "fp": 544,
+          "fn": 386
+        },
+        "canonical_evidence_token_f1": 0.949740034662045,
+        "canonical_macro_f1": 0.9428516650927516,
+        "canonical_per_class": {
+          "organization_name": {
+            "fp": 5,
+            "tp": 29,
+            "fn": 2,
+            "f1": 0.8923076923076924,
+            "support": 31
+          },
+          "document_title": {
+            "tp": 3,
+            "fp": 1,
+            "f1": 0.8571428571428571,
+            "support": 3
+          },
+          "date": {
+            "tp": 26,
+            "fn": 1,
+            "fp": 2,
+            "f1": 0.9454545454545454,
+            "support": 27
+          },
+          "invoice_number": {
+            "tp": 22,
+            "f1": 1.0,
+            "support": 22
+          },
+          "subtotal": {
+            "tp": 16,
+            "f1": 1.0,
+            "support": 16
+          },
+          "tax": {
+            "tp": 25,
+            "f1": 1.0,
+            "support": 25
+          },
+          "total_amount": {
+            "tp": 43,
+            "fp": 7,
+            "f1": 0.9247311827956989,
+            "support": 43
+          },
+          "address": {
+            "tp": 100,
+            "fn": 6,
+            "fp": 3,
+            "f1": 0.9569377990430622,
+            "support": 106
+          },
+          "email": {
+            "tp": 10,
+            "fn": 2,
+            "f1": 0.9090909090909091,
+            "support": 12
+          }
+        },
+        "canonical_counts": {
+          "tp": 274,
+          "fp": 18,
+          "fn": 11
+        },
+        "relation_f1": 0.4169986719787517,
+        "relation_macro_f1": 0.5094354731082343,
+        "relation_per_class": {
+          "QUESTION_ANSWER": {
+            "fn": 94,
+            "tp": 119,
+            "fp": 303,
+            "f1": 0.37480314960629924,
+            "support": 213
+          },
+          "OTHER_RELATION": {
+            "fp": 34,
+            "tp": 38,
+            "fn": 8,
+            "f1": 0.6440677966101694,
+            "support": 46
+          }
+        },
+        "relation_counts": {
+          "fn": 102,
+          "fp": 337,
+          "tp": 157
+        },
+        "document_macro_f1": 1.0,
+        "document_accuracy": 1.0,
+        "composite_score": 0.7496054687394071,
+        "evaluated_windows": 30,
+        "entity_calibrated_f1": 0.754210676562946,
+        "entity_calibrated_macro_f1": 0.6402097750766392,
+        "entity_calibrated_per_class": {
+          "B-HEADER": {
+            "fn": 29,
+            "f1": 0.0,
+            "support": 29
+          },
+          "I-HEADER": {
+            "fn": 53,
+            "tp": 13,
+            "fp": 5,
+            "f1": 0.30952380952380953,
+            "support": 66
+          },
+          "B-VALUE": {
+            "tp": 126,
+            "fn": 5,
+            "fp": 21,
+            "f1": 0.9064748201438849,
+            "support": 131
+          },
+          "I-VALUE": {
+            "tp": 296,
+            "fp": 4,
+            "fn": 8,
+            "f1": 0.9801324503311258,
+            "support": 304
+          },
+          "B-QUESTION": {
+            "fp": 19,
+            "tp": 104,
+            "fn": 99,
+            "f1": 0.6380368098159509,
+            "support": 203
+          },
+          "I-QUESTION": {
+            "tp": 98,
+            "fn": 178,
+            "fp": 36,
+            "f1": 0.47804878048780486,
+            "support": 276
+          },
+          "B-ANSWER": {
+            "tp": 121,
+            "fn": 85,
+            "fp": 47,
+            "f1": 0.6470588235294118,
+            "support": 206
+          },
+          "I-ANSWER": {
+            "fp": 109,
+            "fn": 163,
+            "tp": 553,
+            "f1": 0.8026124818577649,
+            "support": 716
+          },
+          "B-TABLE_CELL": {
+            "tp": 10,
+            "f1": 1.0,
+            "support": 10
+          }
+        },
+        "entity_calibrated_counts": {
+          "tp": 1321,
+          "fp": 241,
+          "fn": 620
+        },
+        "canonical_calibrated_f1": 0.9413919413919414,
+        "canonical_calibrated_macro_f1": 0.9420940436919297,
+        "canonical_calibrated_per_class": {
+          "organization_name": {
+            "tp": 21,
+            "fp": 1,
+            "fn": 10,
+            "f1": 0.7924528301886793,
+            "support": 31
+          },
+          "document_title": {
+            "tp": 3,
+            "f1": 1.0,
+            "support": 3
+          },
+          "date": {
+            "tp": 24,
+            "fn": 3,
+            "f1": 0.9411764705882353,
+            "support": 27
+          },
+          "invoice_number": {
+            "tp": 21,
+            "fn": 1,
+            "f1": 0.9767441860465116,
+            "support": 22
+          },
+          "subtotal": {
+            "tp": 16,
+            "f1": 1.0,
+            "support": 16
+          },
+          "tax": {
+            "tp": 25,
+            "f1": 1.0,
+            "support": 25
+          },
+          "total_amount": {
+            "tp": 42,
+            "fn": 1,
+            "fp": 2,
+            "f1": 0.9655172413793104,
+            "support": 43
+          },
+          "address": {
+            "tp": 96,
+            "fn": 10,
+            "fp": 1,
+            "f1": 0.9458128078817734,
+            "support": 106
+          },
+          "email": {
+            "tp": 9,
+            "fn": 3,
+            "f1": 0.8571428571428571,
+            "support": 12
+          }
+        },
+        "canonical_calibrated_counts": {
+          "tp": 257,
+          "fn": 28,
+          "fp": 4
+        },
+        "relation_calibrated_f1": 0.37137989778534924,
+        "relation_calibrated_macro_f1": 0.48607221537657297,
+        "relation_calibrated_per_class": {
+          "QUESTION_ANSWER": {
+            "fn": 142,
+            "tp": 71,
+            "fp": 190,
+            "f1": 0.29957805907172996,
+            "support": 213
+          },
+          "OTHER_RELATION": {
+            "fp": 29,
+            "tp": 38,
+            "fn": 8,
+            "f1": 0.672566371681416,
+            "support": 46
+          }
+        },
+        "relation_calibrated_counts": {
+          "fn": 150,
+          "fp": 219,
+          "tp": 109
+        },
+        "document_calibrated_coverage": 0.6666666666666666,
+        "document_calibrated_selective_accuracy": 1.0,
+        "calibrated_composite_score": 0.729877230419501
+      },
+      "retention_vs_upright": {
+        "entity_token_f1": 0.9615379313302617,
+        "canonical_evidence_token_f1": 0.9841509054831337,
+        "relation_f1": 0.9673234499643151,
+        "composite_score": 0.9744401965132666,
+        "entity_calibrated_f1": 0.9595624074589157,
+        "canonical_calibrated_f1": 0.9922779922779923,
+        "relation_calibrated_f1": 0.8787113652956924,
+        "calibrated_composite_score": 0.9638681539745214
+      }
+    },
+    {
+      "angle": 179,
+      "example_count": 30,
+      "window_count": 30,
+      "metrics": {
+        "loss": 0.514523520891089,
+        "entity_token_f1": 0.786583850931677,
+        "entity_macro_f1": 0.7209894572197163,
+        "entity_per_class": {
+          "B-HEADER": {
+            "fn": 26,
+            "fp": 3,
+            "tp": 3,
+            "f1": 0.17142857142857143,
+            "support": 29
+          },
+          "I-HEADER": {
+            "tp": 34,
+            "fp": 25,
+            "fn": 32,
+            "f1": 0.544,
+            "support": 66
+          },
+          "B-VALUE": {
+            "tp": 124,
+            "fn": 7,
+            "fp": 18,
+            "f1": 0.9084249084249084,
+            "support": 131
+          },
+          "I-VALUE": {
+            "tp": 296,
+            "fp": 6,
+            "fn": 8,
+            "f1": 0.976897689768977,
+            "support": 304
+          },
+          "B-QUESTION": {
+            "fp": 57,
+            "tp": 157,
+            "fn": 46,
+            "f1": 0.7529976019184652,
+            "support": 203
+          },
+          "I-QUESTION": {
+            "tp": 176,
+            "fp": 99,
+            "fn": 100,
+            "f1": 0.6388384754990926,
+            "support": 276
+          },
+          "B-ANSWER": {
+            "tp": 149,
+            "fn": 57,
+            "fp": 80,
+            "f1": 0.6850574712643678,
+            "support": 206
+          },
+          "I-ANSWER": {
+            "fp": 213,
+            "tp": 634,
+            "fn": 82,
+            "f1": 0.8112603966730646,
+            "support": 716
+          },
+          "B-TABLE_CELL": {
+            "tp": 10,
+            "f1": 1.0,
+            "support": 10
+          }
+        },
+        "entity_counts": {
+          "tp": 1583,
+          "fp": 501,
+          "fn": 358
+        },
+        "canonical_evidence_token_f1": 0.9530434782608695,
+        "canonical_macro_f1": 0.9456205278591145,
+        "canonical_per_class": {
+          "organization_name": {
+            "fp": 5,
+            "tp": 29,
+            "fn": 2,
+            "f1": 0.8923076923076924,
+            "support": 31
+          },
+          "document_title": {
+            "tp": 3,
+            "fp": 1,
+            "f1": 0.8571428571428571,
+            "support": 3
+          },
+          "date": {
+            "tp": 25,
+            "fn": 2,
+            "fp": 1,
+            "f1": 0.9433962264150944,
+            "support": 27
+          },
+          "invoice_number": {
+            "tp": 21,
+            "fn": 1,
+            "f1": 0.9767441860465116,
+            "support": 22
+          },
+          "subtotal": {
+            "tp": 16,
+            "f1": 1.0,
+            "support": 16
+          },
+          "tax": {
+            "tp": 25,
+            "f1": 1.0,
+            "support": 25
+          },
+          "total_amount": {
+            "tp": 42,
+            "fp": 7,
+            "fn": 1,
+            "f1": 0.9130434782608695,
+            "support": 43
+          },
+          "address": {
+            "tp": 102,
+            "fn": 4,
+            "fp": 2,
+            "f1": 0.9714285714285714,
+            "support": 106
+          },
+          "email": {
+            "tp": 11,
+            "fn": 1,
+            "f1": 0.9565217391304348,
+            "support": 12
+          }
+        },
+        "canonical_counts": {
+          "tp": 274,
+          "fp": 16,
+          "fn": 11
+        },
+        "relation_f1": 0.36885245901639346,
+        "relation_macro_f1": 0.4728057242564012,
+        "relation_per_class": {
+          "QUESTION_ANSWER": {
+            "fn": 116,
+            "tp": 97,
+            "fp": 301,
+            "f1": 0.31751227495908346,
+            "support": 213
+          },
+          "OTHER_RELATION": {
+            "tp": 38,
+            "fp": 37,
+            "fn": 8,
+            "f1": 0.628099173553719,
+            "support": 46
+          }
+        },
+        "relation_counts": {
+          "fn": 124,
+          "tp": 135,
+          "fp": 338
+        },
+        "document_macro_f1": 1.0,
+        "document_accuracy": 1.0,
+        "composite_score": 0.7451075246919866,
+        "evaluated_windows": 30,
+        "entity_calibrated_f1": 0.7667894587701899,
+        "entity_calibrated_macro_f1": 0.6566800822380219,
+        "entity_calibrated_per_class": {
+          "B-HEADER": {
+            "fn": 29,
+            "f1": 0.0,
+            "support": 29
+          },
+          "I-HEADER": {
+            "fn": 50,
+            "tp": 16,
+            "fp": 8,
+            "f1": 0.35555555555555557,
+            "support": 66
+          },
+          "B-VALUE": {
+            "tp": 124,
+            "fn": 7,
+            "fp": 17,
+            "f1": 0.9117647058823529,
+            "support": 131
+          },
+          "I-VALUE": {
+            "tp": 295,
+            "fp": 5,
+            "fn": 9,
+            "f1": 0.9768211920529801,
+            "support": 304
+          },
+          "B-QUESTION": {
+            "fp": 11,
+            "tp": 112,
+            "fn": 91,
+            "f1": 0.6871165644171779,
+            "support": 203
+          },
+          "I-QUESTION": {
+            "tp": 119,
+            "fp": 41,
+            "fn": 157,
+            "f1": 0.5458715596330275,
+            "support": 276
+          },
+          "B-ANSWER": {
+            "tp": 107,
+            "fn": 99,
+            "fp": 30,
+            "f1": 0.6239067055393586,
+            "support": 206
+          },
+          "I-ANSWER": {
+            "fp": 123,
+            "fn": 146,
+            "tp": 570,
+            "f1": 0.8090844570617459,
+            "support": 716
+          },
+          "B-TABLE_CELL": {
+            "tp": 10,
+            "f1": 1.0,
+            "support": 10
+          }
+        },
+        "entity_calibrated_counts": {
+          "tp": 1353,
+          "fp": 235,
+          "fn": 588
+        },
+        "canonical_calibrated_f1": 0.9467889908256881,
+        "canonical_calibrated_macro_f1": 0.94199352961422,
+        "canonical_calibrated_per_class": {
+          "organization_name": {
+            "tp": 20,
+            "fn": 11,
+            "f1": 0.7843137254901961,
+            "support": 31
+          },
+          "document_title": {
+            "tp": 3,
+            "f1": 1.0,
+            "support": 3
+          },
+          "date": {
+            "tp": 24,
+            "fn": 3,
+            "f1": 0.9411764705882353,
+            "support": 27
+          },
+          "invoice_number": {
+            "tp": 21,
+            "fn": 1,
+            "f1": 0.9767441860465116,
+            "support": 22
+          },
+          "subtotal": {
+            "tp": 16,
+            "f1": 1.0,
+            "support": 16
+          },
+          "tax": {
+            "tp": 25,
+            "f1": 1.0,
+            "support": 25
+          },
+          "total_amount": {
+            "fn": 3,
+            "tp": 40,
+            "fp": 1,
+            "f1": 0.9523809523809523,
+            "support": 43
+          },
+          "address": {
+            "tp": 100,
+            "fn": 6,
+            "fp": 1,
+            "f1": 0.966183574879227,
+            "support": 106
+          },
+          "email": {
+            "tp": 9,
+            "fn": 3,
+            "f1": 0.8571428571428571,
+            "support": 12
+          }
+        },
+        "canonical_calibrated_counts": {
+          "fn": 27,
+          "tp": 258,
+          "fp": 2
+        },
+        "relation_calibrated_f1": 0.37410071942446044,
+        "relation_calibrated_macro_f1": 0.48009464655427386,
+        "relation_calibrated_per_class": {
+          "QUESTION_ANSWER": {
+            "fn": 147,
+            "tp": 66,
+            "fp": 162,
+            "f1": 0.29931972789115646,
+            "support": 213
+          },
+          "OTHER_RELATION": {
+            "tp": 38,
+            "fp": 31,
+            "fn": 8,
+            "f1": 0.6608695652173913,
+            "support": 46
+          }
+        },
+        "relation_calibrated_counts": {
+          "fn": 155,
+          "tp": 104,
+          "fp": 193
+        },
+        "document_calibrated_coverage": 0.6666666666666666,
+        "document_calibrated_selective_accuracy": 1.0,
+        "calibrated_composite_score": 0.7369382110706132
+      },
+      "retention_vs_upright": {
+        "entity_token_f1": 0.9824996925158355,
+        "canonical_evidence_token_f1": 0.9875740390674228,
+        "relation_f1": 0.855637336901974,
+        "composite_score": 0.9685931507481857,
+        "entity_calibrated_f1": 0.9755660612293577,
+        "canonical_calibrated_f1": 0.9979667741135632,
+        "relation_calibrated_f1": 0.8851490236382322,
+        "calibrated_composite_score": 0.9731928103712221
+      }
+    },
+    {
+      "angle": 180,
+      "example_count": 30,
+      "window_count": 30,
+      "metrics": {
+        "loss": 0.5155639448474783,
+        "entity_token_f1": 0.7847912524850894,
+        "entity_macro_f1": 0.7253362846863112,
+        "entity_per_class": {
+          "B-HEADER": {
+            "fn": 25,
+            "fp": 3,
+            "tp": 4,
+            "f1": 0.2222222222222222,
+            "support": 29
+          },
+          "I-HEADER": {
+            "tp": 34,
+            "fp": 25,
+            "fn": 32,
+            "f1": 0.544,
+            "support": 66
+          },
+          "B-VALUE": {
+            "tp": 124,
+            "fn": 7,
+            "fp": 19,
+            "f1": 0.9051094890510949,
+            "support": 131
+          },
+          "I-VALUE": {
+            "tp": 296,
+            "fp": 7,
+            "fn": 8,
+            "f1": 0.9752883031301482,
+            "support": 304
+          },
+          "B-QUESTION": {
+            "fp": 56,
+            "tp": 156,
+            "fn": 47,
+            "f1": 0.7518072289156627,
+            "support": 203
+          },
+          "I-QUESTION": {
+            "fp": 103,
+            "tp": 176,
+            "fn": 100,
+            "f1": 0.6342342342342342,
+            "support": 276
+          },
+          "B-ANSWER": {
+            "tp": 149,
+            "fn": 57,
+            "fp": 79,
+            "f1": 0.6866359447004609,
+            "support": 206
+          },
+          "I-ANSWER": {
+            "fp": 212,
+            "tp": 630,
+            "fn": 86,
+            "f1": 0.8087291399229781,
+            "support": 716
+          },
+          "B-TABLE_CELL": {
+            "tp": 10,
+            "f1": 1.0,
+            "support": 10
+          }
+        },
+        "entity_counts": {
+          "tp": 1579,
+          "fp": 504,
+          "fn": 362
+        },
+        "canonical_evidence_token_f1": 0.9493891797556719,
+        "canonical_macro_f1": 0.9447842968598401,
+        "canonical_per_class": {
+          "organization_name": {
+            "fp": 4,
+            "tp": 29,
+            "fn": 2,
+            "f1": 0.90625,
+            "support": 31
+          },
+          "document_title": {
+            "tp": 3,
+            "fp": 1,
+            "f1": 0.8571428571428571,
+            "support": 3
+          },
+          "date": {
+            "tp": 25,
+            "fn": 2,
+            "fp": 1,
+            "f1": 0.9433962264150944,
+            "support": 27
+          },
+          "invoice_number": {
+            "tp": 21,
+            "fn": 1,
+            "f1": 0.9767441860465116,
+            "support": 22
+          },
+          "subtotal": {
+            "tp": 16,
+            "f1": 1.0,
+            "support": 16
+          },
+          "tax": {
+            "tp": 25,
+            "f1": 1.0,
+            "support": 25
+          },
+          "total_amount": {
+            "tp": 41,
+            "fp": 7,
+            "fn": 2,
+            "f1": 0.9010989010989011,
+            "support": 43
+          },
+          "address": {
+            "tp": 101,
+            "fp": 3,
+            "fn": 5,
+            "f1": 0.9619047619047619,
+            "support": 106
+          },
+          "email": {
+            "tp": 11,
+            "fn": 1,
+            "f1": 0.9565217391304348,
+            "support": 12
+          }
+        },
+        "canonical_counts": {
+          "tp": 272,
+          "fp": 16,
+          "fn": 13
+        },
+        "relation_f1": 0.37516869095816463,
+        "relation_macro_f1": 0.4746418072512514,
+        "relation_per_class": {
+          "QUESTION_ANSWER": {
+            "fn": 112,
+            "tp": 101,
+            "fp": 305,
+            "f1": 0.3263327948303716,
+            "support": 213
+          },
+          "OTHER_RELATION": {
+            "tp": 38,
+            "fp": 38,
+            "fn": 8,
+            "f1": 0.6229508196721312,
+            "support": 46
+          }
+        },
+        "relation_counts": {
+          "fn": 120,
+          "tp": 139,
+          "fp": 343
+        },
+        "document_macro_f1": 1.0,
+        "document_accuracy": 1.0,
+        "composite_score": 0.7450559686724949,
+        "evaluated_windows": 30,
+        "entity_calibrated_f1": 0.7667894587701899,
+        "entity_calibrated_macro_f1": 0.6586186853950033,
+        "entity_calibrated_per_class": {
+          "B-HEADER": {
+            "fn": 29,
+            "f1": 0.0,
+            "support": 29
+          },
+          "I-HEADER": {
+            "fn": 49,
+            "tp": 17,
+            "fp": 7,
+            "f1": 0.37777777777777777,
+            "support": 66
+          },
+          "B-VALUE": {
+            "tp": 124,
+            "fn": 7,
+            "fp": 18,
+            "f1": 0.9084249084249084,
+            "support": 131
+          },
+          "I-VALUE": {
+            "tp": 295,
+            "fp": 4,
+            "fn": 9,
+            "f1": 0.978441127694859,
+            "support": 304
+          },
+          "B-QUESTION": {
+            "fp": 13,
+            "tp": 108,
+            "fn": 95,
+            "f1": 0.6666666666666666,
+            "support": 203
+          },
+          "I-QUESTION": {
+            "tp": 118,
+            "fp": 43,
+            "fn": 158,
+            "f1": 0.540045766590389,
+            "support": 276
+          },
+          "B-ANSWER": {
+            "tp": 112,
+            "fn": 94,
+            "fp": 28,
+            "f1": 0.6473988439306358,
+            "support": 206
+          },
+          "I-ANSWER": {
+            "fp": 122,
+            "fn": 147,
+            "tp": 569,
+            "f1": 0.8088130774697939,
+            "support": 716
+          },
+          "B-TABLE_CELL": {
+            "tp": 10,
+            "f1": 1.0,
+            "support": 10
+          }
+        },
+        "entity_calibrated_counts": {
+          "tp": 1353,
+          "fp": 235,
+          "fn": 588
+        },
+        "canonical_calibrated_f1": 0.946983546617916,
+        "canonical_calibrated_macro_f1": 0.9433462074374859,
+        "canonical_calibrated_per_class": {
+          "organization_name": {
+            "tp": 21,
+            "fn": 10,
+            "f1": 0.8076923076923077,
+            "support": 31
+          },
+          "document_title": {
+            "tp": 3,
+            "f1": 1.0,
+            "support": 3
+          },
+          "date": {
+            "tp": 24,
+            "fn": 3,
+            "f1": 0.9411764705882353,
+            "support": 27
+          },
+          "invoice_number": {
+            "tp": 21,
+            "fn": 1,
+            "f1": 0.9767441860465116,
+            "support": 22
+          },
+          "subtotal": {
+            "tp": 16,
+            "f1": 1.0,
+            "support": 16
+          },
+          "tax": {
+            "tp": 25,
+            "f1": 1.0,
+            "support": 25
+          },
+          "total_amount": {
+            "fn": 3,
+            "tp": 40,
+            "fp": 2,
+            "f1": 0.9411764705882353,
+            "support": 43
+          },
+          "address": {
+            "tp": 100,
+            "fn": 6,
+            "fp": 1,
+            "f1": 0.966183574879227,
+            "support": 106
+          },
+          "email": {
+            "tp": 9,
+            "fn": 3,
+            "f1": 0.8571428571428571,
+            "support": 12
+          }
+        },
+        "canonical_calibrated_counts": {
+          "fn": 26,
+          "tp": 259,
+          "fp": 3
+        },
+        "relation_calibrated_f1": 0.38571428571428573,
+        "relation_calibrated_macro_f1": 0.4877381533952125,
+        "relation_calibrated_per_class": {
+          "QUESTION_ANSWER": {
+            "fn": 143,
+            "tp": 70,
+            "fp": 162,
+            "f1": 0.3146067415730337,
+            "support": 213
+          },
+          "OTHER_RELATION": {
+            "tp": 38,
+            "fp": 31,
+            "fn": 8,
+            "f1": 0.6608695652173913,
+            "support": 46
+          }
+        },
+        "relation_calibrated_counts": {
+          "fn": 151,
+          "tp": 108,
+          "fp": 193
+        },
+        "document_calibrated_coverage": 0.6666666666666666,
+        "document_calibrated_selective_accuracy": 1.0,
+        "calibrated_composite_score": 0.7398902415911264
+      },
+      "retention_vs_upright": {
+        "entity_token_f1": 0.9802606083794263,
+        "canonical_evidence_token_f1": 0.9837873384424717,
+        "relation_f1": 0.8702892763043139,
+        "composite_score": 0.9685261311493968,
+        "entity_calibrated_f1": 0.9755660612293577,
+        "canonical_calibrated_f1": 0.9981718464351006,
+        "relation_calibrated_f1": 0.9126275510204082,
+        "calibrated_composite_score": 0.9770912306667121
+      }
+    },
+    {
+      "angle": 225,
+      "example_count": 30,
+      "window_count": 30,
+      "metrics": {
+        "loss": 0.540036780142691,
+        "entity_token_f1": 0.7743526510480888,
+        "entity_macro_f1": 0.7139484917941583,
+        "entity_per_class": {
+          "B-HEADER": {
+            "fn": 25,
+            "fp": 2,
+            "tp": 4,
+            "f1": 0.22857142857142856,
+            "support": 29
+          },
+          "I-HEADER": {
+            "fp": 29,
+            "tp": 33,
+            "fn": 33,
+            "f1": 0.515625,
+            "support": 66
+          },
+          "B-VALUE": {
+            "tp": 127,
+            "fn": 4,
+            "fp": 25,
+            "f1": 0.8975265017667845,
+            "support": 131
+          },
+          "I-VALUE": {
+            "tp": 296,
+            "fp": 6,
+            "fn": 8,
+            "f1": 0.976897689768977,
+            "support": 304
+          },
+          "B-QUESTION": {
+            "fp": 54,
+            "tp": 146,
+            "fn": 57,
+            "f1": 0.7245657568238213,
+            "support": 203
+          },
+          "I-QUESTION": {
+            "tp": 172,
+            "fp": 105,
+            "fn": 104,
+            "f1": 0.6220614828209765,
+            "support": 276
+          },
+          "B-ANSWER": {
+            "tp": 149,
+            "fn": 57,
+            "fp": 100,
+            "f1": 0.654945054945055,
+            "support": 206
+          },
+          "I-ANSWER": {
+            "fp": 223,
+            "tp": 633,
+            "fn": 83,
+            "f1": 0.8053435114503816,
+            "support": 716
+          },
+          "B-TABLE_CELL": {
+            "tp": 10,
+            "f1": 1.0,
+            "support": 10
+          }
+        },
+        "entity_counts": {
+          "tp": 1570,
+          "fp": 544,
+          "fn": 371
+        },
+        "canonical_evidence_token_f1": 0.9517241379310345,
+        "canonical_macro_f1": 0.948023757438908,
+        "canonical_per_class": {
+          "organization_name": {
+            "fp": 6,
+            "tp": 29,
+            "fn": 2,
+            "f1": 0.8787878787878788,
+            "support": 31
+          },
+          "document_title": {
+            "tp": 3,
+            "fp": 1,
+            "f1": 0.8571428571428571,
+            "support": 3
+          },
+          "date": {
+            "tp": 26,
+            "fn": 1,
+            "fp": 1,
+            "f1": 0.9629629629629629,
+            "support": 27
+          },
+          "invoice_number": {
+            "tp": 22,
+            "f1": 1.0,
+            "support": 22
+          },
+          "subtotal": {
+            "tp": 16,
+            "f1": 1.0,
+            "support": 16
+          },
+          "tax": {
+            "tp": 25,
+            "f1": 1.0,
+            "support": 25
+          },
+          "total_amount": {
+            "tp": 43,
+            "fp": 8,
+            "f1": 0.9148936170212766,
+            "support": 43
+          },
+          "address": {
+            "tp": 101,
+            "fn": 5,
+            "fp": 3,
+            "f1": 0.9619047619047619,
+            "support": 106
+          },
+          "email": {
+            "tp": 11,
+            "fn": 1,
+            "f1": 0.9565217391304348,
+            "support": 12
+          }
+        },
+        "canonical_counts": {
+          "tp": 276,
+          "fp": 19,
+          "fn": 9
+        },
+        "relation_f1": 0.36578947368421055,
+        "relation_macro_f1": 0.48441850503319767,
+        "relation_per_class": {
+          "QUESTION_ANSWER": {
+            "fn": 112,
+            "tp": 101,
+            "fp": 330,
+            "f1": 0.3136645962732919,
+            "support": 213
+          },
+          "OTHER_RELATION": {
+            "tp": 38,
+            "fp": 32,
+            "fn": 8,
+            "f1": 0.6551724137931034,
+            "support": 46
+          }
+        },
+        "relation_counts": {
+          "fn": 120,
+          "tp": 139,
+          "fp": 362
+        },
+        "document_macro_f1": 1.0,
+        "document_accuracy": 1.0,
+        "composite_score": 0.7391194633230468,
+        "evaluated_windows": 30,
+        "entity_calibrated_f1": 0.7490743377954998,
+        "entity_calibrated_macro_f1": 0.6392307412141427,
+        "entity_calibrated_per_class": {
+          "B-HEADER": {
+            "fn": 29,
+            "f1": 0.0,
+            "support": 29
+          },
+          "I-HEADER": {
+            "fn": 49,
+            "tp": 17,
+            "fp": 8,
+            "f1": 0.37362637362637363,
+            "support": 66
+          },
+          "B-VALUE": {
+            "tp": 126,
+            "fn": 5,
+            "fp": 23,
+            "f1": 0.9,
+            "support": 131
+          },
+          "I-VALUE": {
+            "tp": 296,
+            "fp": 5,
+            "fn": 8,
+            "f1": 0.9785123966942149,
+            "support": 304
+          },
+          "B-QUESTION": {
+            "fp": 14,
+            "tp": 91,
+            "fn": 112,
+            "f1": 0.5909090909090909,
+            "support": 203
+          },
+          "I-QUESTION": {
+            "tp": 97,
+            "fn": 179,
+            "fp": 32,
+            "f1": 0.47901234567901235,
+            "support": 276
+          },
+          "B-ANSWER": {
+            "tp": 115,
+            "fn": 91,
+            "fp": 43,
+            "f1": 0.6318681318681318,
+            "support": 206
+          },
+          "I-ANSWER": {
+            "fp": 130,
+            "fn": 153,
+            "tp": 563,
+            "f1": 0.7991483321504613,
+            "support": 716
+          },
+          "B-TABLE_CELL": {
+            "tp": 10,
+            "f1": 1.0,
+            "support": 10
+          }
+        },
+        "entity_calibrated_counts": {
+          "tp": 1315,
+          "fp": 255,
+          "fn": 626
+        },
+        "canonical_calibrated_f1": 0.948905109489051,
+        "canonical_calibrated_macro_f1": 0.9474296661530897,
+        "canonical_calibrated_per_class": {
+          "organization_name": {
+            "tp": 22,
+            "fn": 9,
+            "f1": 0.8301886792452831,
+            "support": 31
+          },
+          "document_title": {
+            "tp": 3,
+            "f1": 1.0,
+            "support": 3
+          },
+          "date": {
+            "tp": 24,
+            "fn": 3,
+            "f1": 0.9411764705882353,
+            "support": 27
+          },
+          "invoice_number": {
+            "tp": 21,
+            "fn": 1,
+            "f1": 0.9767441860465116,
+            "support": 22
+          },
+          "subtotal": {
+            "tp": 16,
+            "f1": 1.0,
+            "support": 16
+          },
+          "tax": {
+            "tp": 25,
+            "f1": 1.0,
+            "support": 25
+          },
+          "total_amount": {
+            "tp": 42,
+            "fn": 1,
+            "fp": 2,
+            "f1": 0.9655172413793104,
+            "support": 43
+          },
+          "address": {
+            "tp": 98,
+            "fn": 8,
+            "fp": 1,
+            "f1": 0.9560975609756097,
+            "support": 106
+          },
+          "email": {
+            "tp": 9,
+            "fn": 3,
+            "f1": 0.8571428571428571,
+            "support": 12
+          }
+        },
+        "canonical_calibrated_counts": {
+          "tp": 260,
+          "fn": 25,
+          "fp": 3
+        },
+        "relation_calibrated_f1": 0.3434343434343434,
+        "relation_calibrated_macro_f1": 0.48963810702134236,
+        "relation_calibrated_per_class": {
+          "QUESTION_ANSWER": {
+            "fn": 149,
+            "tp": 64,
+            "fp": 211,
+            "f1": 0.26229508196721313,
+            "support": 213
+          },
+          "OTHER_RELATION": {
+            "tp": 38,
+            "fp": 22,
+            "fn": 8,
+            "f1": 0.7169811320754716,
+            "support": 46
+          }
+        },
+        "relation_calibrated_counts": {
+          "fn": 157,
+          "tp": 102,
+          "fp": 233
+        },
+        "document_calibrated_coverage": 0.6666666666666666,
+        "document_calibrated_selective_accuracy": 1.0,
+        "calibrated_composite_score": 0.7227145983490485
+      },
+      "retention_vs_upright": {
+        "entity_token_f1": 0.9672220458790639,
+        "canonical_evidence_token_f1": 0.9862068965517242,
+        "relation_f1": 0.8485320443967062,
+        "composite_score": 0.9608090457217165,
+        "entity_calibrated_f1": 0.9530275787348305,
+        "canonical_calibrated_f1": 1.0001972775695402,
+        "relation_calibrated_f1": 0.8125901875901875,
+        "calibrated_composite_score": 0.9544092577881343
+      }
+    },
+    {
+      "angle": 269,
+      "example_count": 30,
+      "window_count": 30,
+      "metrics": {
+        "loss": 0.548751208151225,
+        "entity_token_f1": 0.7784431137724551,
+        "entity_macro_f1": 0.7023575387568172,
+        "entity_per_class": {
+          "B-HEADER": {
+            "fn": 28,
+            "fp": 5,
+            "tp": 1,
+            "f1": 0.05714285714285714,
+            "support": 29
+          },
+          "I-HEADER": {
+            "tp": 31,
+            "fp": 20,
+            "fn": 35,
+            "f1": 0.5299145299145299,
+            "support": 66
+          },
+          "B-VALUE": {
+            "tp": 125,
+            "fp": 22,
+            "fn": 6,
+            "f1": 0.8992805755395683,
+            "support": 131
+          },
+          "I-VALUE": {
+            "tp": 296,
+            "fp": 7,
+            "fn": 8,
+            "f1": 0.9752883031301482,
+            "support": 304
+          },
+          "B-QUESTION": {
+            "fp": 65,
+            "tp": 159,
+            "fn": 44,
+            "f1": 0.7447306791569087,
+            "support": 203
+          },
+          "I-QUESTION": {
+            "fn": 99,
+            "tp": 177,
+            "fp": 91,
+            "f1": 0.6507352941176471,
+            "support": 276
+          },
+          "B-ANSWER": {
+            "tp": 161,
+            "fn": 45,
+            "fp": 121,
+            "f1": 0.6598360655737705,
+            "support": 206
+          },
+          "I-ANSWER": {
+            "fp": 176,
+            "tp": 600,
+            "fn": 116,
+            "f1": 0.8042895442359249,
+            "support": 716
+          },
+          "B-TABLE_CELL": {
+            "tp": 10,
+            "f1": 1.0,
+            "support": 10
+          }
+        },
+        "entity_counts": {
+          "tp": 1560,
+          "fp": 507,
+          "fn": 381
+        },
+        "canonical_evidence_token_f1": 0.9301533219761499,
+        "canonical_macro_f1": 0.9311016036162234,
+        "canonical_per_class": {
+          "organization_name": {
+            "fp": 6,
+            "tp": 29,
+            "fn": 2,
+            "f1": 0.8787878787878788,
+            "support": 31
+          },
+          "document_title": {
+            "tp": 3,
+            "fp": 1,
+            "f1": 0.8571428571428571,
+            "support": 3
+          },
+          "date": {
+            "tp": 25,
+            "fn": 2,
+            "fp": 2,
+            "f1": 0.9259259259259259,
+            "support": 27
+          },
+          "invoice_number": {
+            "tp": 22,
+            "fp": 1,
+            "f1": 0.9777777777777777,
+            "support": 22
+          },
+          "subtotal": {
+            "tp": 16,
+            "f1": 1.0,
+            "support": 16
+          },
+          "tax": {
+            "tp": 25,
+            "f1": 1.0,
+            "support": 25
+          },
+          "total_amount": {
+            "tp": 43,
+            "fp": 9,
+            "f1": 0.9052631578947369,
+            "support": 43
+          },
+          "address": {
+            "tp": 100,
+            "fp": 10,
+            "fn": 6,
+            "f1": 0.9259259259259259,
+            "support": 106
+          },
+          "email": {
+            "tp": 10,
+            "fn": 2,
+            "f1": 0.9090909090909091,
+            "support": 12
+          }
+        },
+        "canonical_counts": {
+          "fp": 29,
+          "tp": 273,
+          "fn": 12
+        },
+        "relation_f1": 0.39267015706806285,
+        "relation_macro_f1": 0.5030079721310377,
+        "relation_per_class": {
+          "QUESTION_ANSWER": {
+            "fn": 101,
+            "tp": 112,
+            "fp": 324,
+            "f1": 0.34514637904468415,
+            "support": 213
+          },
+          "OTHER_RELATION": {
+            "tp": 38,
+            "fp": 31,
+            "fn": 8,
+            "f1": 0.6608695652173913,
+            "support": 46
+          }
+        },
+        "relation_counts": {
+          "fn": 109,
+          "tp": 150,
+          "fp": 355
+        },
+        "document_macro_f1": 1.0,
+        "document_accuracy": 1.0,
+        "composite_score": 0.7420831152700352,
+        "evaluated_windows": 30,
+        "entity_calibrated_f1": 0.7549554725653548,
+        "entity_calibrated_macro_f1": 0.646352013100701,
+        "entity_calibrated_per_class": {
+          "B-HEADER": {
+            "fn": 29,
+            "f1": 0.0,
+            "support": 29
+          },
+          "I-HEADER": {
+            "fn": 52,
+            "tp": 14,
+            "fp": 8,
+            "f1": 0.3181818181818182,
+            "support": 66
+          },
+          "B-VALUE": {
+            "tp": 124,
+            "fp": 20,
+            "fn": 7,
+            "f1": 0.9018181818181819,
+            "support": 131
+          },
+          "I-VALUE": {
+            "tp": 295,
+            "fp": 4,
+            "fn": 9,
+            "f1": 0.978441127694859,
+            "support": 304
+          },
+          "B-QUESTION": {
+            "fp": 20,
+            "fn": 94,
+            "tp": 109,
+            "f1": 0.6566265060240963,
+            "support": 203
+          },
+          "I-QUESTION": {
+            "fn": 166,
+            "tp": 110,
+            "fp": 37,
+            "f1": 0.5200945626477541,
+            "support": 276
+          },
+          "B-ANSWER": {
+            "tp": 117,
+            "fn": 89,
+            "fp": 37,
+            "f1": 0.65,
+            "support": 206
+          },
+          "I-ANSWER": {
+            "fn": 181,
+            "fp": 100,
+            "tp": 535,
+            "f1": 0.7920059215396003,
+            "support": 716
+          },
+          "B-TABLE_CELL": {
+            "tp": 10,
+            "f1": 1.0,
+            "support": 10
+          }
+        },
+        "entity_calibrated_counts": {
+          "tp": 1314,
+          "fp": 226,
+          "fn": 627
+        },
+        "canonical_calibrated_f1": 0.943327239488117,
+        "canonical_calibrated_macro_f1": 0.9425534809662169,
+        "canonical_calibrated_per_class": {
+          "organization_name": {
+            "tp": 20,
+            "fn": 11,
+            "f1": 0.7843137254901961,
+            "support": 31
+          },
+          "document_title": {
+            "tp": 3,
+            "f1": 1.0,
+            "support": 3
+          },
+          "date": {
+            "tp": 24,
+            "fn": 3,
+            "f1": 0.9411764705882353,
+            "support": 27
+          },
+          "invoice_number": {
+            "tp": 21,
+            "fn": 1,
+            "f1": 0.9767441860465116,
+            "support": 22
+          },
+          "subtotal": {
+            "tp": 16,
+            "f1": 1.0,
+            "support": 16
+          },
+          "tax": {
+            "tp": 25,
+            "f1": 1.0,
+            "support": 25
+          },
+          "total_amount": {
+            "tp": 42,
+            "fn": 1,
+            "fp": 1,
+            "f1": 0.9767441860465116,
+            "support": 43
+          },
+          "address": {
+            "tp": 98,
+            "fp": 3,
+            "fn": 8,
+            "f1": 0.9468599033816425,
+            "support": 106
+          },
+          "email": {
+            "tp": 9,
+            "fn": 3,
+            "f1": 0.8571428571428571,
+            "support": 12
+          }
+        },
+        "canonical_calibrated_counts": {
+          "tp": 258,
+          "fn": 27,
+          "fp": 4
+        },
+        "relation_calibrated_f1": 0.36454849498327757,
+        "relation_calibrated_macro_f1": 0.5027995091271668,
+        "relation_calibrated_per_class": {
+          "QUESTION_ANSWER": {
+            "fn": 142,
+            "tp": 71,
+            "fp": 208,
+            "f1": 0.2886178861788618,
+            "support": 213
+          },
+          "OTHER_RELATION": {
+            "tp": 38,
+            "fp": 22,
+            "fn": 8,
+            "f1": 0.7169811320754716,
+            "support": 46
+          }
+        },
+        "relation_calibrated_counts": {
+          "fn": 150,
+          "tp": 109,
+          "fp": 230
+        },
+        "document_calibrated_coverage": 0.6,
+        "document_calibrated_selective_accuracy": 1.0,
+        "calibrated_composite_score": 0.7289511226439905
+      },
+      "retention_vs_upright": {
+        "entity_token_f1": 0.9723313274441217,
+        "canonical_evidence_token_f1": 0.9638545292941263,
+        "relation_f1": 0.9108879153755743,
+        "composite_score": 0.9646616077774295,
+        "entity_calibrated_f1": 0.9605099918240615,
+        "canonical_calibrated_f1": 0.9943179010820693,
+        "relation_calibrated_f1": 0.8625477783086478,
+        "calibrated_composite_score": 0.9626451458373178
+      }
+    },
+    {
+      "angle": 270,
+      "example_count": 30,
+      "window_count": 30,
+      "metrics": {
+        "loss": 0.5449324045504909,
+        "entity_token_f1": 0.7770287141073658,
+        "entity_macro_f1": 0.7129503194224325,
+        "entity_per_class": {
+          "B-HEADER": {
+            "fn": 26,
+            "fp": 5,
+            "tp": 3,
+            "f1": 0.16216216216216217,
+            "support": 29
+          },
+          "I-HEADER": {
+            "tp": 31,
+            "fp": 20,
+            "fn": 35,
+            "f1": 0.5299145299145299,
+            "support": 66
+          },
+          "B-VALUE": {
+            "tp": 125,
+            "fp": 21,
+            "fn": 6,
+            "f1": 0.9025270758122743,
+            "support": 131
+          },
+          "I-VALUE": {
+            "tp": 296,
+            "fp": 6,
+            "fn": 8,
+            "f1": 0.976897689768977,
+            "support": 304
+          },
+          "B-QUESTION": {
+            "fp": 64,
+            "tp": 159,
+            "fn": 44,
+            "f1": 0.7464788732394366,
+            "support": 203
+          },
+          "I-QUESTION": {
+            "fn": 99,
+            "tp": 177,
+            "fp": 92,
+            "f1": 0.6495412844036698,
+            "support": 276
+          },
+          "B-ANSWER": {
+            "tp": 157,
+            "fn": 49,
+            "fp": 122,
+            "f1": 0.6474226804123712,
+            "support": 206
+          },
+          "I-ANSWER": {
+            "fp": 178,
+            "tp": 598,
+            "fn": 118,
+            "f1": 0.8016085790884718,
+            "support": 716
+          },
+          "B-TABLE_CELL": {
+            "tp": 10,
+            "f1": 1.0,
+            "support": 10
+          }
+        },
+        "entity_counts": {
+          "tp": 1556,
+          "fp": 508,
+          "fn": 385
+        },
+        "canonical_evidence_token_f1": 0.931740614334471,
+        "canonical_macro_f1": 0.9306057454306208,
+        "canonical_per_class": {
+          "organization_name": {
+            "fp": 7,
+            "tp": 29,
+            "fn": 2,
+            "f1": 0.8656716417910447,
+            "support": 31
+          },
+          "document_title": {
+            "tp": 3,
+            "fp": 1,
+            "f1": 0.8571428571428571,
+            "support": 3
+          },
+          "date": {
+            "tp": 25,
+            "fn": 2,
+            "fp": 2,
+            "f1": 0.9259259259259259,
+            "support": 27
+          },
+          "invoice_number": {
+            "tp": 22,
+            "fp": 1,
+            "f1": 0.9777777777777777,
+            "support": 22
+          },
+          "subtotal": {
+            "tp": 16,
+            "f1": 1.0,
+            "support": 16
+          },
+          "tax": {
+            "tp": 25,
+            "f1": 1.0,
+            "support": 25
+          },
+          "total_amount": {
+            "tp": 43,
+            "fp": 9,
+            "f1": 0.9052631578947369,
+            "support": 43
+          },
+          "address": {
+            "tp": 100,
+            "fp": 8,
+            "fn": 6,
+            "f1": 0.9345794392523364,
+            "support": 106
+          },
+          "email": {
+            "tp": 10,
+            "fn": 2,
+            "f1": 0.9090909090909091,
+            "support": 12
+          }
+        },
+        "canonical_counts": {
+          "fp": 28,
+          "tp": 273,
+          "fn": 12
+        },
+        "relation_f1": 0.4031413612565445,
+        "relation_macro_f1": 0.5171998247151621,
+        "relation_per_class": {
+          "QUESTION_ANSWER": {
+            "fn": 97,
+            "tp": 116,
+            "fp": 323,
+            "f1": 0.3558282208588957,
+            "support": 213
+          },
+          "OTHER_RELATION": {
+            "tp": 38,
+            "fp": 28,
+            "fn": 8,
+            "f1": 0.6785714285714286,
+            "support": 46
+          }
+        },
+        "relation_counts": {
+          "fn": 105,
+          "tp": 154,
+          "fp": 351
+        },
+        "document_macro_f1": 1.0,
+        "document_accuracy": 1.0,
+        "composite_score": 0.7445319795407002,
+        "evaluated_windows": 30,
+        "entity_calibrated_f1": 0.7549554725653548,
+        "entity_calibrated_macro_f1": 0.6468039963009615,
+        "entity_calibrated_per_class": {
+          "B-HEADER": {
+            "fn": 29,
+            "f1": 0.0,
+            "support": 29
+          },
+          "I-HEADER": {
+            "fn": 52,
+            "tp": 14,
+            "fp": 8,
+            "f1": 0.3181818181818182,
+            "support": 66
+          },
+          "B-VALUE": {
+            "tp": 125,
+            "fp": 20,
+            "fn": 6,
+            "f1": 0.9057971014492754,
+            "support": 131
+          },
+          "I-VALUE": {
+            "tp": 295,
+            "fn": 9,
+            "fp": 3,
+            "f1": 0.9800664451827242,
+            "support": 304
+          },
+          "B-QUESTION": {
+            "fp": 19,
+            "fn": 92,
+            "tp": 111,
+            "f1": 0.6666666666666666,
+            "support": 203
+          },
+          "I-QUESTION": {
+            "fn": 167,
+            "tp": 109,
+            "fp": 36,
+            "f1": 0.517814726840855,
+            "support": 276
+          },
+          "B-ANSWER": {
+            "tp": 115,
+            "fn": 91,
+            "fp": 37,
+            "f1": 0.6424581005586593,
+            "support": 206
+          },
+          "I-ANSWER": {
+            "fn": 181,
+            "fp": 103,
+            "tp": 535,
+            "f1": 0.7902511078286558,
+            "support": 716
+          },
+          "B-TABLE_CELL": {
+            "tp": 10,
+            "f1": 1.0,
+            "support": 10
+          }
+        },
+        "entity_calibrated_counts": {
+          "tp": 1314,
+          "fn": 627,
+          "fp": 226
+        },
+        "canonical_calibrated_f1": 0.9360146252285192,
+        "canonical_calibrated_macro_f1": 0.9340678375757524,
+        "canonical_calibrated_per_class": {
+          "organization_name": {
+            "tp": 18,
+            "fn": 13,
+            "f1": 0.7346938775510204,
+            "support": 31
+          },
+          "document_title": {
+            "tp": 3,
+            "f1": 1.0,
+            "support": 3
+          },
+          "date": {
+            "tp": 24,
+            "fn": 3,
+            "f1": 0.9411764705882353,
+            "support": 27
+          },
+          "invoice_number": {
+            "tp": 21,
+            "fn": 1,
+            "fp": 1,
+            "f1": 0.9545454545454546,
+            "support": 22
+          },
+          "subtotal": {
+            "tp": 16,
+            "f1": 1.0,
+            "support": 16
+          },
+          "tax": {
+            "tp": 25,
+            "f1": 1.0,
+            "support": 25
+          },
+          "total_amount": {
+            "tp": 42,
+            "fn": 1,
+            "fp": 1,
+            "f1": 0.9767441860465116,
+            "support": 43
+          },
+          "address": {
+            "tp": 98,
+            "fp": 4,
+            "fn": 8,
+            "f1": 0.9423076923076923,
+            "support": 106
+          },
+          "email": {
+            "tp": 9,
+            "fn": 3,
+            "f1": 0.8571428571428571,
+            "support": 12
+          }
+        },
+        "canonical_calibrated_counts": {
+          "tp": 256,
+          "fn": 29,
+          "fp": 6
+        },
+        "relation_calibrated_f1": 0.3669421487603306,
+        "relation_calibrated_macro_f1": 0.5110931982189467,
+        "relation_calibrated_per_class": {
+          "QUESTION_ANSWER": {
+            "fn": 140,
+            "tp": 73,
+            "fp": 215,
+            "f1": 0.29141716566866266,
+            "support": 213
+          },
+          "OTHER_RELATION": {
+            "tp": 38,
+            "fp": 20,
+            "fn": 8,
+            "f1": 0.7307692307692307,
+            "support": 46
+          }
+        },
+        "relation_calibrated_counts": {
+          "fn": 148,
+          "tp": 111,
+          "fp": 235
+        },
+        "document_calibrated_coverage": 0.6333333333333333,
+        "document_calibrated_selective_accuracy": 1.0,
+        "calibrated_composite_score": 0.7277213825233544
+      },
+      "retention_vs_upright": {
+        "entity_token_f1": 0.9705646407337363,
+        "canonical_evidence_token_f1": 0.9654993322451403,
+        "relation_f1": 0.9351782597855895,
+        "composite_score": 0.9678449780710775,
+        "entity_calibrated_f1": 0.9605099918240615,
+        "canonical_calibrated_f1": 0.9866100103760067,
+        "relation_calibrated_f1": 0.8682113341204251,
+        "calibrated_composite_score": 0.9610211640352485
+      }
+    },
+    {
+      "angle": 315,
+      "example_count": 30,
+      "window_count": 30,
+      "metrics": {
+        "loss": 0.5207608248242953,
+        "entity_token_f1": 0.7857847976307996,
+        "entity_macro_f1": 0.7162257400153573,
+        "entity_per_class": {
+          "B-HEADER": {
+            "fn": 26,
+            "fp": 3,
+            "tp": 3,
+            "f1": 0.17142857142857143,
+            "support": 29
+          },
+          "I-HEADER": {
+            "fp": 29,
+            "tp": 31,
+            "fn": 35,
+            "f1": 0.49206349206349204,
+            "support": 66
+          },
+          "B-VALUE": {
+            "tp": 127,
+            "fn": 4,
+            "fp": 25,
+            "f1": 0.8975265017667845,
+            "support": 131
+          },
+          "I-VALUE": {
+            "tp": 296,
+            "fp": 6,
+            "fn": 8,
+            "f1": 0.976897689768977,
+            "support": 304
+          },
+          "B-QUESTION": {
+            "fp": 57,
+            "tp": 158,
+            "fn": 45,
+            "f1": 0.7559808612440191,
+            "support": 203
+          },
+          "I-QUESTION": {
+            "tp": 181,
+            "fp": 98,
+            "fn": 95,
+            "f1": 0.6522522522522523,
+            "support": 276
+          },
+          "B-ANSWER": {
+            "tp": 159,
+            "fn": 47,
+            "fp": 96,
+            "f1": 0.6898047722342733,
+            "support": 206
+          },
+          "I-ANSWER": {
+            "fp": 205,
+            "tp": 627,
+            "fn": 89,
+            "f1": 0.810077519379845,
+            "support": 716
+          },
+          "B-TABLE_CELL": {
+            "tp": 10,
+            "f1": 1.0,
+            "support": 10
+          }
+        },
+        "entity_counts": {
+          "tp": 1592,
+          "fp": 519,
+          "fn": 349
+        },
+        "canonical_evidence_token_f1": 0.9583333333333334,
+        "canonical_macro_f1": 0.9504549753342023,
+        "canonical_per_class": {
+          "organization_name": {
+            "fp": 3,
+            "tp": 29,
+            "fn": 2,
+            "f1": 0.9206349206349206,
+            "support": 31
+          },
+          "document_title": {
+            "tp": 3,
+            "fp": 1,
+            "f1": 0.8571428571428571,
+            "support": 3
+          },
+          "date": {
+            "tp": 26,
+            "fn": 1,
+            "fp": 1,
+            "f1": 0.9629629629629629,
+            "support": 27
+          },
+          "invoice_number": {
+            "tp": 22,
+            "f1": 1.0,
+            "support": 22
+          },
+          "subtotal": {
+            "tp": 16,
+            "f1": 1.0,
+            "support": 16
+          },
+          "tax": {
+            "tp": 25,
+            "f1": 1.0,
+            "support": 25
+          },
+          "total_amount": {
+            "tp": 43,
+            "fp": 6,
+            "f1": 0.9347826086956522,
+            "support": 43
+          },
+          "address": {
+            "tp": 101,
+            "fn": 5,
+            "fp": 3,
+            "f1": 0.9619047619047619,
+            "support": 106
+          },
+          "email": {
+            "tp": 11,
+            "fp": 1,
+            "fn": 1,
+            "f1": 0.9166666666666666,
+            "support": 12
+          }
+        },
+        "canonical_counts": {
+          "tp": 276,
+          "fp": 15,
+          "fn": 9
+        },
+        "relation_f1": 0.41606886657101866,
+        "relation_macro_f1": 0.5176336746302617,
+        "relation_per_class": {
+          "QUESTION_ANSWER": {
+            "fn": 105,
+            "tp": 108,
+            "fp": 265,
+            "f1": 0.36860068259385664,
+            "support": 213
+          },
+          "OTHER_RELATION": {
+            "tp": 37,
+            "fp": 28,
+            "fn": 9,
+            "f1": 0.6666666666666666,
+            "support": 46
+          }
+        },
+        "relation_counts": {
+          "fn": 114,
+          "tp": 145,
+          "fp": 293
+        },
+        "document_macro_f1": 1.0,
+        "document_accuracy": 1.0,
+        "composite_score": 0.7579144690284079,
+        "evaluated_windows": 30,
+        "entity_calibrated_f1": 0.7618778280542986,
+        "entity_calibrated_macro_f1": 0.6600243309382496,
+        "entity_calibrated_per_class": {
+          "B-HEADER": {
+            "fn": 29,
+            "f1": 0.0,
+            "support": 29
+          },
+          "I-HEADER": {
+            "tp": 19,
+            "fp": 5,
+            "fn": 47,
+            "f1": 0.4222222222222222,
+            "support": 66
+          },
+          "B-VALUE": {
+            "tp": 127,
+            "fn": 4,
+            "fp": 23,
+            "f1": 0.9039145907473309,
+            "support": 131
+          },
+          "I-VALUE": {
+            "tp": 296,
+            "fp": 5,
+            "fn": 8,
+            "f1": 0.9785123966942149,
+            "support": 304
+          },
+          "B-QUESTION": {
+            "fp": 19,
+            "tp": 113,
+            "fn": 90,
+            "f1": 0.6746268656716418,
+            "support": 203
+          },
+          "I-QUESTION": {
+            "fn": 170,
+            "tp": 106,
+            "fp": 36,
+            "f1": 0.507177033492823,
+            "support": 276
+          },
+          "B-ANSWER": {
+            "tp": 121,
+            "fn": 85,
+            "fp": 43,
+            "f1": 0.654054054054054,
+            "support": 206
+          },
+          "I-ANSWER": {
+            "fp": 117,
+            "fn": 161,
+            "tp": 555,
+            "f1": 0.7997118155619597,
+            "support": 716
+          },
+          "B-TABLE_CELL": {
+            "tp": 10,
+            "f1": 1.0,
+            "support": 10
+          }
+        },
+        "entity_calibrated_counts": {
+          "tp": 1347,
+          "fp": 248,
+          "fn": 594
+        },
+        "canonical_calibrated_f1": 0.9452554744525548,
+        "canonical_calibrated_macro_f1": 0.9451528846809547,
+        "canonical_calibrated_per_class": {
+          "organization_name": {
+            "tp": 22,
+            "fp": 1,
+            "fn": 9,
+            "f1": 0.8148148148148148,
+            "support": 31
+          },
+          "document_title": {
+            "tp": 3,
+            "f1": 1.0,
+            "support": 3
+          },
+          "date": {
+            "tp": 24,
+            "fn": 3,
+            "f1": 0.9411764705882353,
+            "support": 27
+          },
+          "invoice_number": {
+            "tp": 21,
+            "fn": 1,
+            "f1": 0.9767441860465116,
+            "support": 22
+          },
+          "subtotal": {
+            "tp": 16,
+            "f1": 1.0,
+            "support": 16
+          },
+          "tax": {
+            "tp": 25,
+            "f1": 1.0,
+            "support": 25
+          },
+          "total_amount": {
+            "tp": 42,
+            "fn": 1,
+            "fp": 2,
+            "f1": 0.9655172413793104,
+            "support": 43
+          },
+          "address": {
+            "tp": 97,
+            "fn": 9,
+            "fp": 1,
+            "f1": 0.9509803921568627,
+            "support": 106
+          },
+          "email": {
+            "tp": 9,
+            "fn": 3,
+            "f1": 0.8571428571428571,
+            "support": 12
+          }
+        },
+        "canonical_calibrated_counts": {
+          "tp": 259,
+          "fn": 26,
+          "fp": 4
+        },
+        "relation_calibrated_f1": 0.37009345794392523,
+        "relation_calibrated_macro_f1": 0.5081317764804003,
+        "relation_calibrated_per_class": {
+          "QUESTION_ANSWER": {
+            "fn": 150,
+            "tp": 63,
+            "fp": 160,
+            "f1": 0.2889908256880734,
+            "support": 213
+          },
+          "OTHER_RELATION": {
+            "tp": 36,
+            "fp": 17,
+            "fn": 10,
+            "f1": 0.7272727272727273,
+            "support": 46
+          }
+        },
+        "relation_calibrated_counts": {
+          "fn": 160,
+          "tp": 99,
+          "fp": 177
+        },
+        "document_calibrated_coverage": 0.7333333333333333,
+        "document_calibrated_selective_accuracy": 1.0,
+        "calibrated_composite_score": 0.7335883643208395
+      },
+      "retention_vs_upright": {
+        "entity_token_f1": 0.981501617585253,
+        "canonical_evidence_token_f1": 0.9930555555555556,
+        "relation_f1": 0.9651665544266487,
+        "composite_score": 0.9852413768836,
+        "entity_calibrated_f1": 0.9693171226492681,
+        "canonical_calibrated_f1": 0.9963503649635037,
+        "relation_calibrated_f1": 0.8756675567423231,
+        "calibrated_composite_score": 0.9687690381692229
+      }
+    },
+    {
+      "angle": 359,
+      "example_count": 30,
+      "window_count": 30,
+      "metrics": {
+        "loss": 0.4815652690042043,
+        "entity_token_f1": 0.8015853356452811,
+        "entity_macro_f1": 0.7290626883271548,
+        "entity_per_class": {
+          "B-HEADER": {
+            "fn": 26,
+            "tp": 3,
+            "fp": 2,
+            "f1": 0.17647058823529413,
+            "support": 29
+          },
+          "I-HEADER": {
+            "fp": 30,
+            "tp": 32,
+            "fn": 34,
+            "f1": 0.5,
+            "support": 66
+          },
+          "B-VALUE": {
+            "tp": 125,
+            "fn": 6,
+            "fp": 14,
+            "f1": 0.9259259259259259,
+            "support": 131
+          },
+          "I-VALUE": {
+            "tp": 295,
+            "fp": 6,
+            "fn": 9,
+            "f1": 0.9752066115702479,
+            "support": 304
+          },
+          "B-QUESTION": {
+            "fp": 61,
+            "tp": 169,
+            "fn": 34,
+            "f1": 0.7806004618937644,
+            "support": 203
+          },
+          "I-QUESTION": {
+            "tp": 180,
+            "fp": 91,
+            "fn": 96,
+            "f1": 0.6581352833638026,
+            "support": 276
+          },
+          "B-ANSWER": {
+            "tp": 162,
+            "fn": 44,
+            "fp": 85,
+            "f1": 0.7152317880794702,
+            "support": 206
+          },
+          "I-ANSWER": {
+            "fp": 189,
+            "tp": 642,
+            "fn": 74,
+            "f1": 0.8299935358758889,
+            "support": 716
+          },
+          "B-TABLE_CELL": {
+            "tp": 10,
+            "f1": 1.0,
+            "support": 10
+          }
+        },
+        "entity_counts": {
+          "tp": 1618,
+          "fp": 478,
+          "fn": 323
+        },
+        "canonical_evidence_token_f1": 0.9634782608695652,
+        "canonical_macro_f1": 0.9578013260998612,
+        "canonical_per_class": {
+          "organization_name": {
+            "tp": 30,
+            "fp": 3,
+            "fn": 1,
+            "f1": 0.9375,
+            "support": 31
+          },
+          "document_title": {
+            "tp": 3,
+            "fp": 1,
+            "f1": 0.8571428571428571,
+            "support": 3
+          },
+          "date": {
+            "tp": 26,
+            "fn": 1,
+            "fp": 1,
+            "f1": 0.9629629629629629,
+            "support": 27
+          },
+          "invoice_number": {
+            "tp": 22,
+            "f1": 1.0,
+            "support": 22
+          },
+          "subtotal": {
+            "tp": 16,
+            "f1": 1.0,
+            "support": 16
+          },
+          "tax": {
+            "tp": 25,
+            "f1": 1.0,
+            "support": 25
+          },
+          "total_amount": {
+            "tp": 42,
+            "fp": 4,
+            "fn": 1,
+            "f1": 0.9438202247191011,
+            "support": 43
+          },
+          "address": {
+            "tp": 102,
+            "fp": 4,
+            "fn": 4,
+            "f1": 0.9622641509433962,
+            "support": 106
+          },
+          "email": {
+            "tp": 11,
+            "fn": 1,
+            "f1": 0.9565217391304348,
+            "support": 12
+          }
+        },
+        "canonical_counts": {
+          "tp": 277,
+          "fp": 13,
+          "fn": 8
+        },
+        "relation_f1": 0.434654919236417,
+        "relation_macro_f1": 0.5307594332112721,
+        "relation_per_class": {
+          "QUESTION_ANSWER": {
+            "fn": 102,
+            "tp": 111,
+            "fp": 247,
+            "f1": 0.38879159369527144,
+            "support": 213
+          },
+          "OTHER_RELATION": {
+            "tp": 37,
+            "fp": 27,
+            "fn": 9,
+            "f1": 0.6727272727272727,
+            "support": 46
+          }
+        },
+        "relation_counts": {
+          "fn": 111,
+          "tp": 148,
+          "fp": 274
+        },
+        "document_macro_f1": 1.0,
+        "document_accuracy": 1.0,
+        "composite_score": 0.770167429284608,
+        "evaluated_windows": 30,
+        "entity_calibrated_f1": 0.7864349775784754,
+        "entity_calibrated_macro_f1": 0.6828872999988705,
+        "entity_calibrated_per_class": {
+          "B-HEADER": {
+            "fn": 29,
+            "f1": 0.0,
+            "support": 29
+          },
+          "I-HEADER": {
+            "tp": 22,
+            "fn": 44,
+            "fp": 5,
+            "f1": 0.4731182795698925,
+            "support": 66
+          },
+          "B-VALUE": {
+            "tp": 125,
+            "fn": 6,
+            "fp": 12,
+            "f1": 0.9328358208955224,
+            "support": 131
+          },
+          "I-VALUE": {
+            "tp": 295,
+            "fp": 6,
+            "fn": 9,
+            "f1": 0.9752066115702479,
+            "support": 304
+          },
+          "B-QUESTION": {
+            "fp": 16,
+            "tp": 123,
+            "fn": 80,
+            "f1": 0.7192982456140351,
+            "support": 203
+          },
+          "I-QUESTION": {
+            "fn": 160,
+            "tp": 116,
+            "fp": 37,
+            "f1": 0.5407925407925408,
+            "support": 276
+          },
+          "B-ANSWER": {
+            "tp": 121,
+            "fn": 85,
+            "fp": 32,
+            "f1": 0.6740947075208914,
+            "support": 206
+          },
+          "I-ANSWER": {
+            "fn": 125,
+            "fp": 116,
+            "tp": 591,
+            "f1": 0.8306394940267041,
+            "support": 716
+          },
+          "B-TABLE_CELL": {
+            "tp": 10,
+            "f1": 1.0,
+            "support": 10
+          }
+        },
+        "entity_calibrated_counts": {
+          "tp": 1403,
+          "fp": 224,
+          "fn": 538
+        },
+        "canonical_calibrated_f1": 0.9523809523809523,
+        "canonical_calibrated_macro_f1": 0.9475139501524283,
+        "canonical_calibrated_per_class": {
+          "organization_name": {
+            "tp": 22,
+            "fn": 9,
+            "f1": 0.8301886792452831,
+            "support": 31
+          },
+          "document_title": {
+            "tp": 3,
+            "f1": 1.0,
+            "support": 3
+          },
+          "date": {
+            "tp": 24,
+            "fn": 3,
+            "f1": 0.9411764705882353,
+            "support": 27
+          },
+          "invoice_number": {
+            "tp": 21,
+            "fn": 1,
+            "f1": 0.9767441860465116,
+            "support": 22
+          },
+          "subtotal": {
+            "tp": 16,
+            "f1": 1.0,
+            "support": 16
+          },
+          "tax": {
+            "tp": 25,
+            "f1": 1.0,
+            "support": 25
+          },
+          "total_amount": {
+            "fn": 4,
+            "tp": 39,
+            "f1": 0.9512195121951219,
+            "support": 43
+          },
+          "address": {
+            "tp": 101,
+            "fn": 5,
+            "fp": 1,
+            "f1": 0.9711538461538461,
+            "support": 106
+          },
+          "email": {
+            "tp": 9,
+            "fn": 3,
+            "f1": 0.8571428571428571,
+            "support": 12
+          }
+        },
+        "canonical_calibrated_counts": {
+          "fn": 25,
+          "tp": 260,
+          "fp": 1
+        },
+        "relation_calibrated_f1": 0.4336448598130841,
+        "relation_calibrated_macro_f1": 0.5376986822442603,
+        "relation_calibrated_per_class": {
+          "QUESTION_ANSWER": {
+            "fn": 133,
+            "tp": 80,
+            "fp": 140,
+            "f1": 0.3695150115473441,
+            "support": 213
+          },
+          "OTHER_RELATION": {
+            "tp": 36,
+            "fp": 20,
+            "fn": 10,
+            "f1": 0.7058823529411765,
+            "support": 46
+          }
+        },
+        "relation_calibrated_counts": {
+          "fn": 143,
+          "tp": 116,
+          "fp": 160
+        },
+        "document_calibrated_coverage": 0.8333333333333334,
+        "document_calibrated_selective_accuracy": 1.0,
+        "calibrated_composite_score": 0.7610804440798992
+      },
+      "retention_vs_upright": {
+        "entity_token_f1": 1.0012376237623761,
+        "canonical_evidence_token_f1": 0.998386893509767,
+        "relation_f1": 1.0082811391810762,
+        "composite_score": 1.001169458384926,
+        "entity_calibrated_f1": 1.000560538116592,
+        "canonical_calibrated_f1": 1.0038610038610039,
+        "relation_calibrated_f1": 1.0260347129506007,
+        "calibrated_composite_score": 1.00507478804315
+      }
+    }
+  ],
+  "duration_seconds": 72.64086050000333,
+  "limitations": [
+    "This isolates text-layout head robustness by rotating token and entity geometry together; end-to-end OCR rotation is evaluated separately."
+  ]
+}

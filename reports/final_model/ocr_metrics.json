@@ -1,0 +1,489 @@
+{
+  "schema_version": "1.0",
+  "heldout_scope": "bounded end-to-end public test sample; development ablation reported separately",
+  "upright": {
+    "page_count": 3,
+    "recognized_text_coverage": 0.4027889972234873,
+    "wer": 0.6998877146245568,
+    "detection_f1": 0.3395106950662506,
+    "nonempty_rate": 1.0
+  },
+  "preprocessing_ablation": {
+    "schema_version": "1.0",
+    "selection_split": "dev_select",
+    "public_only": true,
+    "private_page_count": 0,
+    "sample_pages": 3,
+    "limit_per_dataset": 1,
+    "datasets": [
+      "fatura",
+      "funsd",
+      "sroie"
+    ],
+    "settings": [
+      {
+        "name": "original",
+        "status": "passed",
+        "preprocessing_profile": "original",
+        "paddle_modules": {
+          "use_doc_orientation_classify": false,
+          "use_doc_unwarping": false,
+          "use_textline_orientation": false
+        },
+        "page_count": 3,
+        "mean_alignment_coverage": 0.9032613908872902,
+        "mean_word_error_rate": 0.6671001734026945,
+        "mean_confidence": 0.9910627704809379,
+        "mean_word_count": 52.0,
+        "by_dataset": {
+          "fatura": {
+            "page_count": 1,
+            "mean_alignment_coverage": 0.94,
+            "mean_word_error_rate": 0.9795918367346939,
+            "mean_confidence": 0.9958562489711877
+          },
+          "funsd": {
+            "page_count": 1,
+            "mean_alignment_coverage": 0.7697841726618705,
+            "mean_word_error_rate": 0.9264705882352942,
+            "mean_confidence": 0.9860215679957316
+          },
+          "sroie": {
+            "page_count": 1,
+            "mean_alignment_coverage": 1.0,
+            "mean_word_error_rate": 0.09523809523809523,
+            "mean_confidence": 0.9913104944758945
+          }
+        }
+      },
+      {
+        "name": "grayscale_normalized",
+        "status": "passed",
+        "preprocessing_profile": "grayscale_normalized",
+        "paddle_modules": {
+          "use_doc_orientation_classify": false,
+          "use_doc_unwarping": false,
+          "use_textline_orientation": false
+        },
+        "page_count": 3,
+        "mean_alignment_coverage": 0.9032613908872902,
+        "mean_word_error_rate": 0.6671001734026945,
+        "mean_confidence": 0.9910850571994798,
+        "mean_word_count": 52.0,
+        "by_dataset": {
+          "fatura": {
+            "page_count": 1,
+            "mean_alignment_coverage": 0.94,
+            "mean_word_error_rate": 0.9795918367346939,
+            "mean_confidence": 0.9959231091268135
+          },
+          "funsd": {
+            "page_count": 1,
+            "mean_alignment_coverage": 0.7697841726618705,
+            "mean_word_error_rate": 0.9264705882352942,
+            "mean_confidence": 0.9860215679957316
+          },
+          "sroie": {
+            "page_count": 1,
+            "mean_alignment_coverage": 1.0,
+            "mean_word_error_rate": 0.09523809523809523,
+            "mean_confidence": 0.9913104944758945
+          }
+        }
+      },
+      {
+        "name": "adaptive_contrast",
+        "status": "passed",
+        "preprocessing_profile": "adaptive_contrast",
+        "paddle_modules": {
+          "use_doc_orientation_classify": false,
+          "use_doc_unwarping": false,
+          "use_textline_orientation": false
+        },
+        "page_count": 3,
+        "mean_alignment_coverage": 0.9032613908872902,
+        "mean_word_error_rate": 0.6671001734026945,
+        "mean_confidence": 0.9904616684354485,
+        "mean_word_count": 52.0,
+        "by_dataset": {
+          "fatura": {
+            "page_count": 1,
+            "mean_alignment_coverage": 0.94,
+            "mean_word_error_rate": 0.9795918367346939,
+            "mean_confidence": 0.9970505941997875
+          },
+          "funsd": {
+            "page_count": 1,
+            "mean_alignment_coverage": 0.7697841726618705,
+            "mean_word_error_rate": 0.9264705882352942,
+            "mean_confidence": 0.9860215679957316
+          },
+          "sroie": {
+            "page_count": 1,
+            "mean_alignment_coverage": 1.0,
+            "mean_word_error_rate": 0.09523809523809523,
+            "mean_confidence": 0.9883128431108262
+          }
+        }
+      },
+      {
+        "name": "denoise",
+        "status": "passed",
+        "preprocessing_profile": "denoise",
+        "paddle_modules": {
+          "use_doc_orientation_classify": false,
+          "use_doc_unwarping": false,
+          "use_textline_orientation": false
+        },
+        "page_count": 3,
+        "mean_alignment_coverage": 0.8472901678657075,
+        "mean_word_error_rate": 0.674453114579165,
+        "mean_confidence": 0.9138362822307883,
+        "mean_word_count": 51.666666666666664,
+        "by_dataset": {
+          "fatura": {
+            "page_count": 1,
+            "mean_alignment_coverage": 0.88,
+            "mean_word_error_rate": 0.9795918367346939,
+            "mean_confidence": 0.9084615580963366
+          },
+          "funsd": {
+            "page_count": 1,
+            "mean_alignment_coverage": 0.6618705035971223,
+            "mean_word_error_rate": 0.9485294117647058,
+            "mean_confidence": 0.8419741663065824
+          },
+          "sroie": {
+            "page_count": 1,
+            "mean_alignment_coverage": 1.0,
+            "mean_word_error_rate": 0.09523809523809523,
+            "mean_confidence": 0.9910731222894457
+          }
+        }
+      },
+      {
+        "name": "sharpen",
+        "status": "passed",
+        "preprocessing_profile": "sharpen",
+        "paddle_modules": {
+          "use_doc_orientation_classify": false,
+          "use_doc_unwarping": false,
+          "use_textline_orientation": false
+        },
+        "page_count": 3,
+        "mean_alignment_coverage": 0.900863309352518,
+        "mean_word_error_rate": 0.6671001734026945,
+        "mean_confidence": 0.9938182170772966,
+        "mean_word_count": 51.666666666666664,
+        "by_dataset": {
+          "fatura": {
+            "page_count": 1,
+            "mean_alignment_coverage": 0.94,
+            "mean_word_error_rate": 0.9795918367346939,
+            "mean_confidence": 0.9973068995909258
+          },
+          "funsd": {
+            "page_count": 1,
+            "mean_alignment_coverage": 0.762589928057554,
+            "mean_word_error_rate": 0.9264705882352942,
+            "mean_confidence": 0.9927227977034333
+          },
+          "sroie": {
+            "page_count": 1,
+            "mean_alignment_coverage": 1.0,
+            "mean_word_error_rate": 0.09523809523809523,
+            "mean_confidence": 0.9914249539375305
+          }
+        }
+      },
+      {
+        "name": "background_normalized",
+        "status": "passed",
+        "preprocessing_profile": "background_normalized",
+        "paddle_modules": {
+          "use_doc_orientation_classify": false,
+          "use_doc_unwarping": false,
+          "use_textline_orientation": false
+        },
+        "page_count": 3,
+        "mean_alignment_coverage": 0.900863309352518,
+        "mean_word_error_rate": 0.6512271575296785,
+        "mean_confidence": 0.9898821086093189,
+        "mean_word_count": 51.333333333333336,
+        "by_dataset": {
+          "fatura": {
+            "page_count": 1,
+            "mean_alignment_coverage": 0.94,
+            "mean_word_error_rate": 0.9795918367346939,
+            "mean_confidence": 0.9952030073512684
+          },
+          "funsd": {
+            "page_count": 1,
+            "mean_alignment_coverage": 0.762589928057554,
+            "mean_word_error_rate": 0.9264705882352942,
+            "mean_confidence": 0.9853266359139712
+          },
+          "sroie": {
+            "page_count": 1,
+            "mean_alignment_coverage": 1.0,
+            "mean_word_error_rate": 0.047619047619047616,
+            "mean_confidence": 0.9891166825627171
+          }
+        }
+      },
+      {
+        "name": "quality_auto",
+        "status": "passed",
+        "preprocessing_profile": "quality_auto",
+        "paddle_modules": {
+          "use_doc_orientation_classify": false,
+          "use_doc_unwarping": false,
+          "use_textline_orientation": false
+        },
+        "page_count": 3,
+        "mean_alignment_coverage": 0.900863309352518,
+        "mean_word_error_rate": 0.6512271575296785,
+        "mean_confidence": 0.9898821086093189,
+        "mean_word_count": 51.333333333333336,
+        "by_dataset": {
+          "fatura": {
+            "page_count": 1,
+            "mean_alignment_coverage": 0.94,
+            "mean_word_error_rate": 0.9795918367346939,
+            "mean_confidence": 0.9952030073512684
+          },
+          "funsd": {
+            "page_count": 1,
+            "mean_alignment_coverage": 0.762589928057554,
+            "mean_word_error_rate": 0.9264705882352942,
+            "mean_confidence": 0.9853266359139712
+          },
+          "sroie": {
+            "page_count": 1,
+            "mean_alignment_coverage": 1.0,
+            "mean_word_error_rate": 0.047619047619047616,
+            "mean_confidence": 0.9891166825627171
+          }
+        }
+      },
+      {
+        "name": "doc_orientation_on",
+        "status": "passed",
+        "preprocessing_profile": "original",
+        "paddle_modules": {
+          "use_doc_orientation_classify": true,
+          "use_doc_unwarping": false,
+          "use_textline_orientation": false
+        },
+        "page_count": 3,
+        "mean_alignment_coverage": 0.9032613908872902,
+        "mean_word_error_rate": 0.6671001734026945,
+        "mean_confidence": 0.9910627704809379,
+        "mean_word_count": 52.0,
+        "by_dataset": {
+          "fatura": {
+            "page_count": 1,
+            "mean_alignment_coverage": 0.94,
+            "mean_word_error_rate": 0.9795918367346939,
+            "mean_confidence": 0.9958562489711877
+          },
+          "funsd": {
+            "page_count": 1,
+            "mean_alignment_coverage": 0.7697841726618705,
+            "mean_word_error_rate": 0.9264705882352942,
+            "mean_confidence": 0.9860215679957316
+          },
+          "sroie": {
+            "page_count": 1,
+            "mean_alignment_coverage": 1.0,
+            "mean_word_error_rate": 0.09523809523809523,
+            "mean_confidence": 0.9913104944758945
+          }
+        }
+      },
+      {
+        "name": "textline_orientation_on",
+        "status": "passed",
+        "preprocessing_profile": "original",
+        "paddle_modules": {
+          "use_doc_orientation_classify": false,
+          "use_doc_unwarping": false,
+          "use_textline_orientation": true
+        },
+        "page_count": 3,
+        "mean_alignment_coverage": 0.9032613908872902,
+        "mean_word_error_rate": 0.6671001734026945,
+        "mean_confidence": 0.9910627704809379,
+        "mean_word_count": 52.0,
+        "by_dataset": {
+          "fatura": {
+            "page_count": 1,
+            "mean_alignment_coverage": 0.94,
+            "mean_word_error_rate": 0.9795918367346939,
+            "mean_confidence": 0.9958562489711877
+          },
+          "funsd": {
+            "page_count": 1,
+            "mean_alignment_coverage": 0.7697841726618705,
+            "mean_word_error_rate": 0.9264705882352942,
+            "mean_confidence": 0.9860215679957316
+          },
+          "sroie": {
+            "page_count": 1,
+            "mean_alignment_coverage": 1.0,
+            "mean_word_error_rate": 0.09523809523809523,
+            "mean_confidence": 0.9913104944758945
+          }
+        }
+      },
+      {
+        "name": "unwarping_on",
+        "status": "passed",
+        "preprocessing_profile": "original",
+        "paddle_modules": {
+          "use_doc_orientation_classify": false,
+          "use_doc_unwarping": true,
+          "use_textline_orientation": false
+        },
+        "page_count": 3,
+        "mean_alignment_coverage": 0.9032613908872902,
+        "mean_word_error_rate": 0.6671001734026945,
+        "mean_confidence": 0.9910627704809379,
+        "mean_word_count": 52.0,
+        "by_dataset": {
+          "fatura": {
+            "page_count": 1,
+            "mean_alignment_coverage": 0.94,
+            "mean_word_error_rate": 0.9795918367346939,
+            "mean_confidence": 0.9958562489711877
+          },
+          "funsd": {
+            "page_count": 1,
+            "mean_alignment_coverage": 0.7697841726618705,
+            "mean_word_error_rate": 0.9264705882352942,
+            "mean_confidence": 0.9860215679957316
+          },
+          "sroie": {
+            "page_count": 1,
+            "mean_alignment_coverage": 1.0,
+            "mean_word_error_rate": 0.09523809523809523,
+            "mean_confidence": 0.9913104944758945
+          }
+        }
+      }
+    ],
+    "dpi_ablation": {
+      "source": "derived public dev-select PDF from one raster page",
+      "observations": [
+        {
+          "dpi": 200,
+          "render_width": 1653,
+          "render_height": 2337,
+          "dataset": "fatura",
+          "alignment_coverage": 0.26,
+          "word_error_rate": 0.9795918367346939,
+          "mean_confidence": 0.9951027992999915,
+          "word_count": 33,
+          "selected_orientation": 270.0
+        },
+        {
+          "dpi": 250,
+          "render_width": 2066,
+          "render_height": 2921,
+          "dataset": "fatura",
+          "alignment_coverage": 0.26,
+          "word_error_rate": 0.9795918367346939,
+          "mean_confidence": 0.9978110302578319,
+          "word_count": 33,
+          "selected_orientation": 270.0
+        },
+        {
+          "dpi": 300,
+          "render_width": 2480,
+          "render_height": 3505,
+          "dataset": "fatura",
+          "alignment_coverage": 0.26,
+          "word_error_rate": 0.9795918367346939,
+          "mean_confidence": 0.9985668731458259,
+          "word_count": 33,
+          "selected_orientation": 270.0
+        }
+      ],
+      "chosen_dpi": 200
+    },
+    "chosen_setting": "original",
+    "chosen_preprocessing_profile": "original",
+    "selection_metric": "maximize mean token-alignment coverage, then minimize word error rate",
+    "duration_seconds": 154.03683480000473,
+    "limitations": [
+      "This is a bounded dev-select ablation; the locked public test and private data were not used for selection.",
+      "The public corpus is raster-only, so DPI was tested by wrapping one selected public raster page in a derived PDF before rendering at 200, 250, and 300 DPI."
+    ]
+  },
+  "exact_model_verification": {
+    "schema_version": "1.0",
+    "device": "gpu:0",
+    "artifact_hash_verification": "passed",
+    "tests": {
+      "general": {
+        "passed": true,
+        "word_count": 1,
+        "mean_confidence": 0.999762237071991,
+        "detector_model": "PP-OCRv6_medium_det",
+        "recognizer_model": "PP-OCRv6_medium_rec",
+        "recognized_text_preview": "INVOICE TOTAL 123.45"
+      },
+      "thai": {
+        "passed": true,
+        "word_count": 1,
+        "mean_confidence": 0.9548813700675964,
+        "detector_model": "PP-OCRv6_medium_det",
+        "recognizer_model": "th_PP-OCRv5_mobile_rec",
+        "recognized_text_preview": "ใบเสร็จรับเงิน ยอดรวม 123.45"
+      },
+      "rotated_general": {
+        "passed": true,
+        "word_count": 1,
+        "mean_confidence": 0.9998876452445984,
+        "detector_model": "PP-OCRv6_medium_det",
+        "recognizer_model": "PP-OCRv6_medium_rec",
+        "selected_orientation": 270.0,
+        "required_fragments": [
+          "INVOICE",
+          "TOTAL",
+          "123.45"
+        ],
+        "recognized_text_preview": "INVOICE TOTAL 123.45"
+      },
+      "arbitrary_angle_general": {
+        "passed": true,
+        "word_count": 1,
+        "mean_confidence": 0.9999505877494812,
+        "detector_model": "PP-OCRv6_medium_det",
+        "recognizer_model": "PP-OCRv6_medium_rec",
+        "selected_orientation": 343.0191885516795,
+        "fine_candidate_count": 1,
+        "selected_fine_deskew": {
+          "text_angle_degrees": -16.98081144832049,
+          "correction_degrees": -16.98081144832049,
+          "reliability": 0.9999443292617798,
+          "dispersion_degrees": 0.0,
+          "supported_word_count": 1
+        },
+        "required_fragments": [
+          "INVOICE",
+          "TOTAL",
+          "123.45"
+        ],
+        "recognized_text_preview": "INVOICE TOTAL 123.45"
+      }
+    },
+    "passed": true,
+    "duration_seconds": 16.123712799992063
+  },
+  "model_hashes": {
+    "PP-OCRv6_medium_det": "393f629d341e6388ca72d19b25983b96cae36dfdf1f7146adf42d6ab68789388",
+    "PP-OCRv6_medium_rec": "666f7c4d6d5c846c7e202f63356b3fc4a7a3d4ff7040e763b93c5771608c7ae0",
+    "th_PP-OCRv5_mobile_rec": "507c659e3abb6c2c7262a07965ec880119751a29e3c8ed7437b337f74b36608d"
+  }
+}

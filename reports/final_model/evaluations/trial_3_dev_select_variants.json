@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "profile": "development",
+  "split": "dev_select",
+  "token_sources": [
+    "hybrid",
+    "paddleocr"
+  ],
+  "public_only": true,
+  "private_example_count": 0,
+  "checkpoint": "D:\\CSX4201\\vision-info-extraction-assets\\checkpoints\\layoutxlm_multitask\\development_trials\\trial_3_dynamic_rotation",
+  "checkpoint_model_sha256": "e199662cba9d57a0053b4a88bfa8a7bbacbce75f6e0205608236e19bf5c340e0",
+  "checkpoint_build_id": "development-c155e2ba6dcfb4b6",
+  "evaluation_build_id": "development-c155e2ba6dcfb4b6",
+  "cross_build_comparison": false,
+  "manifest_path": "C:\\Assumption University\\CSX4201\\Project\\data\\metadata\\model_dataset_development_manifest.csv",
+  "manifest_sha256": "b19d382e4875281ee2953bd166804fe9cdfd1196c42aaa25ed6858ed110ea8cc",
+  "example_count": 64,
+  "window_count": 69,
+  "rotation_angle": 0.0,
+  "device": "cuda",
+  "metrics": {
+    "loss": 1.819463154544001,
+    "entity_token_f1": 0.5105200476379516,
+    "entity_counts": {
+      "fn": 1193,
+      "tp": 1286,
+      "fp": 1273
+    },
+    "canonical_evidence_token_f1": 0.581888246628131,
+    "canonical_counts": {
+      "fn": 149,
+      "fp": 285,
+      "tp": 302
+    },
+    "relation_f1": 0.24363636363636362,
+    "relation_counts": {
+      "fn": 290,
+      "tp": 67,
+      "fp": 126
+    },
+    "document_macro_f1": 1.0,
+    "document_accuracy": 1.0,
+    "composite_score": 0.5105891716213042,
+    "evaluated_windows": 69
+  }
+}

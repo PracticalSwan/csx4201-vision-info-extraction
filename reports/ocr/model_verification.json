@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "device": "gpu:0",
+  "artifact_hash_verification": "passed",
+  "tests": {
+    "general": {
+      "passed": true,
+      "word_count": 1,
+      "mean_confidence": 0.999762237071991,
+      "detector_model": "PP-OCRv6_medium_det",
+      "recognizer_model": "PP-OCRv6_medium_rec",
+      "recognized_text_preview": "INVOICE TOTAL 123.45"
+    },
+    "thai": {
+      "passed": true,
+      "word_count": 1,
+      "mean_confidence": 0.9548813700675964,
+      "detector_model": "PP-OCRv6_medium_det",
+      "recognizer_model": "th_PP-OCRv5_mobile_rec",
+      "recognized_text_preview": "ใบเสร็จรับเงิน ยอดรวม 123.45"
+    },
+    "rotated_general": {
+      "passed": true,
+      "word_count": 1,
+      "mean_confidence": 0.9998876452445984,
+      "detector_model": "PP-OCRv6_medium_det",
+      "recognizer_model": "PP-OCRv6_medium_rec",
+      "selected_orientation": 270.0,
+      "required_fragments": [
+        "INVOICE",
+        "TOTAL",
+        "123.45"
+      ],
+      "recognized_text_preview": "INVOICE TOTAL 123.45"
+    },
+    "arbitrary_angle_general": {
+      "passed": true,
+      "word_count": 1,
+      "mean_confidence": 0.9999505877494812,
+      "detector_model": "PP-OCRv6_medium_det",
+      "recognizer_model": "PP-OCRv6_medium_rec",
+      "selected_orientation": 343.0191885516795,
+      "fine_candidate_count": 1,
+      "selected_fine_deskew": {
+        "text_angle_degrees": -16.98081144832049,
+        "correction_degrees": -16.98081144832049,
+        "reliability": 0.9999443292617798,
+        "dispersion_degrees": 0.0,
+        "supported_word_count": 1
+      },
+      "required_fragments": [
+        "INVOICE",
+        "TOTAL",
+        "123.45"
+      ],
+      "recognized_text_preview": "INVOICE TOTAL 123.45"
+    }
+  },
+  "passed": true,
+  "duration_seconds": 10.83247440001287
+}

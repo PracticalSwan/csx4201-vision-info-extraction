@@ -1,0 +1,8 @@
+-r requirements-ie.txt
+# PyTorch is installed separately by setup_ie_environment.ps1 from the
+# official device-specific index.
+transformers==4.57.6
+sentencepiece==0.2.1
+safetensors>=0.4.5
+accelerate>=1.2,<2
+seqeval>=1.2.2

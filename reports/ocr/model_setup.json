@@ -1,0 +1,285 @@
+{
+  "schema_version": "1.0",
+  "complete": true,
+  "missing_models": [],
+  "python_version": "3.10.11",
+  "paddle_version": "3.3.0",
+  "paddleocr_version": "3.7.0",
+  "paddlex_version": "3.7.2",
+  "device": "gpu:0",
+  "asset_root": "D:\\CSX4201\\vision-info-extraction-assets",
+  "cache_root": "D:\\CSX4201\\vision-info-extraction-assets\\cache\\paddlex\\official_models",
+  "offline": false,
+  "models": {
+    "PP-OCRv6_medium_det": {
+      "requested_name": "PP-OCRv6_medium_det",
+      "resolved_name": "PP-OCRv6_medium_det",
+      "resolved_path": "D:\\CSX4201\\vision-info-extraction-assets\\cache\\paddlex\\official_models\\PP-OCRv6_medium_det",
+      "role": "detector",
+      "language": "multilingual",
+      "initialization_attempts": 1,
+      "device": "gpu:0",
+      "total_size_bytes": 62299843,
+      "files": [
+        {
+          "path": ".cache/huggingface/.gitignore",
+          "size_bytes": 1,
+          "sha256": "684888c0ebb17f374298b65ee2807526c066094c701bcc7ebbe1c1095f494fc1"
+        },
+        {
+          "path": ".cache/huggingface/CACHEDIR.TAG",
+          "size_bytes": 195,
+          "sha256": "e8893e2dcb3f4545ef67a0a5b7b769113d38eef1aa61c7c7ba14659b02af955f"
+        },
+        {
+          "path": ".cache/huggingface/download/.gitattributes.metadata",
+          "size_bytes": 104,
+          "sha256": "edb8442dae11b4f8fb550a4cf0d76b8128a8d89767821b85194f9e8d9fd3b5e7"
+        },
+        {
+          "path": ".cache/huggingface/download/inference.json.metadata",
+          "size_bytes": 104,
+          "sha256": "735ccea862da8a6e0a872ba726384f17437d3cb20373630c21def5e1c014dfa5"
+        },
+        {
+          "path": ".cache/huggingface/download/inference.pdiparams.metadata",
+          "size_bytes": 128,
+          "sha256": "0862a77b3587ab05c3693b6cfe396e9dc2fc59df5b1859797428177b3e5d0720"
+        },
+        {
+          "path": ".cache/huggingface/download/inference.yml.metadata",
+          "size_bytes": 104,
+          "sha256": "2e6865f448ca6f1b9a665fedc426d675f103b6878b69223e87ef0c26be36b690"
+        },
+        {
+          "path": ".cache/huggingface/download/README.md.metadata",
+          "size_bytes": 104,
+          "sha256": "cc959bf56e239d39d93e9280993bde9d966fc6e17adede75c040d25459eac014"
+        },
+        {
+          "path": ".cache/huggingface/trees/8e0f56fb2ef86b461d99cfc7ac5c137738985f61.json",
+          "size_bytes": 769,
+          "sha256": "a594e1c1da719685f9ceefd47a7aad4e37d6ff012c1abcb8993767a47e8d29bf"
+        },
+        {
+          "path": ".gitattributes",
+          "size_bytes": 1575,
+          "sha256": "a3a43406012ee8c7b9b38dfab1b11610f33e8245cd864a9a9302d042616a859e"
+        },
+        {
+          "path": "inference.json",
+          "size_bytes": 312150,
+          "sha256": "0f1a7ec35da36173529c7a60238b7f7919e3831929c3f700ad90ad4896adecd5"
+        },
+        {
+          "path": "inference.pdiparams",
+          "size_bytes": 61960476,
+          "sha256": "85218d2e3d98f5a21c58b4220627be923a97aee5db3cc71f39536ab31ac53960"
+        },
+        {
+          "path": "inference.yml",
+          "size_bytes": 886,
+          "sha256": "7298d5ead546584af2504d03355f881ac7a7bc0eb1e282d3e159277c1d0af871"
+        },
+        {
+          "path": "README.md",
+          "size_bytes": 23247,
+          "sha256": "59f37b08a9a49aa6c1275e7b0363991353582f4dc7676539a5d2b05aab57e744"
+        }
+      ]
+    },
+    "PP-OCRv6_medium_rec": {
+      "requested_name": "PP-OCRv6_medium_rec",
+      "resolved_name": "PP-OCRv6_medium_rec",
+      "resolved_path": "D:\\CSX4201\\vision-info-extraction-assets\\cache\\paddlex\\official_models\\PP-OCRv6_medium_rec",
+      "role": "recognizer",
+      "language": "general_50_languages",
+      "initialization_attempts": 1,
+      "device": "gpu:0",
+      "total_size_bytes": 76864042,
+      "files": [
+        {
+          "path": ".cache/huggingface/.gitignore",
+          "size_bytes": 1,
+          "sha256": "684888c0ebb17f374298b65ee2807526c066094c701bcc7ebbe1c1095f494fc1"
+        },
+        {
+          "path": ".cache/huggingface/CACHEDIR.TAG",
+          "size_bytes": 195,
+          "sha256": "e8893e2dcb3f4545ef67a0a5b7b769113d38eef1aa61c7c7ba14659b02af955f"
+        },
+        {
+          "path": ".cache/huggingface/download/.gitattributes.metadata",
+          "size_bytes": 104,
+          "sha256": "e7d2b404717d117164f791d190782a23f7f74f24930c0e4b578d060e355b61b1"
+        },
+        {
+          "path": ".cache/huggingface/download/inference.json.metadata",
+          "size_bytes": 104,
+          "sha256": "4446a7891c91b1c51a7258823e81f819ff2e581e07cea8f4a09828bbe64b393e"
+        },
+        {
+          "path": ".cache/huggingface/download/inference.pdiparams.metadata",
+          "size_bytes": 128,
+          "sha256": "923396df5bf47742cdb8bc4972a1cf77dc8990907682e37549c45b10e2657fc4"
+        },
+        {
+          "path": ".cache/huggingface/download/inference.yml.metadata",
+          "size_bytes": 104,
+          "sha256": "3db3deccb0c5cd41c54b6609d61676378cfa5719d9577e89d5dbe1c134f85d4f"
+        },
+        {
+          "path": ".cache/huggingface/download/README.md.metadata",
+          "size_bytes": 104,
+          "sha256": "e2bc0924b33a75ec6627289ead63f9600f3b88e95a87dcb9a5bb9dc41b05c7cd"
+        },
+        {
+          "path": ".cache/huggingface/trees/e5a92bcbc5cc1b494628e458d267778f0704fd7c.json",
+          "size_bytes": 772,
+          "sha256": "18bc6eb8bf348ff39f7af4340de5d6653d37dc2fae3c5354cbb44661bfd8ecc0"
+        },
+        {
+          "path": ".gitattributes",
+          "size_bytes": 1575,
+          "sha256": "a3a43406012ee8c7b9b38dfab1b11610f33e8245cd864a9a9302d042616a859e"
+        },
+        {
+          "path": "inference.json",
+          "size_bytes": 221814,
+          "sha256": "0b2e25e990bd072f1bf77d59d67d508bce6c4bd44af6624e0fb27d6da2cd00e8"
+        },
+        {
+          "path": "inference.pdiparams",
+          "size_bytes": 76465087,
+          "sha256": "1b01c79a914587933f615569e75de54f2e638ebb5d3f3b3c1b38c24ede8c7319"
+        },
+        {
+          "path": "inference.yml",
+          "size_bytes": 150580,
+          "sha256": "991b700facf5b50a7de193468207d5f4255b538dde0d312ae3b7c7a9b6873129"
+        },
+        {
+          "path": "README.md",
+          "size_bytes": 23474,
+          "sha256": "75ff9c4853ed171f36224127805062f9bcd1cfbbcacae3d577344866df74f6d3"
+        }
+      ]
+    },
+    "th_PP-OCRv5_mobile_rec": {
+      "requested_name": "th_PP-OCRv5_mobile_rec",
+      "resolved_name": "th_PP-OCRv5_mobile_rec",
+      "resolved_path": "D:\\CSX4201\\vision-info-extraction-assets\\cache\\paddlex\\official_models\\th_PP-OCRv5_mobile_rec",
+      "role": "recognizer",
+      "language": "thai_english_numbers",
+      "initialization_attempts": 1,
+      "device": "gpu:0",
+      "total_size_bytes": 8059694,
+      "files": [
+        {
+          "path": ".cache/huggingface/.gitignore",
+          "size_bytes": 1,
+          "sha256": "684888c0ebb17f374298b65ee2807526c066094c701bcc7ebbe1c1095f494fc1"
+        },
+        {
+          "path": ".cache/huggingface/CACHEDIR.TAG",
+          "size_bytes": 195,
+          "sha256": "e8893e2dcb3f4545ef67a0a5b7b769113d38eef1aa61c7c7ba14659b02af955f"
+        },
+        {
+          "path": ".cache/huggingface/download/.gitattributes.metadata",
+          "size_bytes": 104,
+          "sha256": "51ef93009f7e46ca941d5e137b9ec40eb5793b10bb37486f8ff2b10c86cab599"
+        },
+        {
+          "path": ".cache/huggingface/download/config.json.metadata",
+          "size_bytes": 104,
+          "sha256": "dbde6b31ac5a5b700dec5891f6ed20a2b30ac0c7dc27f551d7e23089722b5aa3"
+        },
+        {
+          "path": ".cache/huggingface/download/inference.json.metadata",
+          "size_bytes": 103,
+          "sha256": "bb316c552aef6b5aaeb556725628cd9ca388afb359903fc397e0aa18e48214bf"
+        },
+        {
+          "path": ".cache/huggingface/download/inference.pdiparams.metadata",
+          "size_bytes": 127,
+          "sha256": "0e7c7c77e1c620430d470dc5cea3dc959c886338797d0a5e9eacf6274aeddc29"
+        },
+        {
+          "path": ".cache/huggingface/download/inference.yml.metadata",
+          "size_bytes": 104,
+          "sha256": "93f7823141c87a8b957f4b1bff7814f2fad28cd6b0254a9f135bf1ecc8cd2ab2"
+        },
+        {
+          "path": ".cache/huggingface/download/README.md.metadata",
+          "size_bytes": 104,
+          "sha256": "0c858141226a713744903b292927017aba7d6c5317c8daef9d2f97088e971000"
+        },
+        {
+          "path": ".cache/huggingface/trees/9e25080455925d3943f5db885fddc79db6a07ca3.json",
+          "size_bytes": 870,
+          "sha256": "bed90a2d0cba3421459fc1d10a736e907bb5be83ec35e2ba76574725455738fb"
+        },
+        {
+          "path": ".gitattributes",
+          "size_bytes": 1575,
+          "sha256": "a3a43406012ee8c7b9b38dfab1b11610f33e8245cd864a9a9302d042616a859e"
+        },
+        {
+          "path": "config.json",
+          "size_bytes": 12126,
+          "sha256": "4a23fb6c20225c198d8d9130534475e578da5d0a1d5c93852ae8857dbd7ac120"
+        },
+        {
+          "path": "inference.json",
+          "size_bytes": 217712,
+          "sha256": "b92a9442af5ac6da3c6ba30ce1672d00a2d7a0fbd8068ed543ac6dcb9d5c7764"
+        },
+        {
+          "path": "inference.pdiparams",
+          "size_bytes": 7814907,
+          "sha256": "45ec91f2322b58b8d30ba27d18fcfdbb8bf388b918dd978162d2af91e0c66d4b"
+        },
+        {
+          "path": "inference.yml",
+          "size_bytes": 4667,
+          "sha256": "f6ba7fefc38ca1ff398ddafa75d67d16e0b3757c4e6c833adffee98a981766c9"
+        },
+        {
+          "path": "README.md",
+          "size_bytes": 6995,
+          "sha256": "40483df501f83786b75cda7abe7b31db4c31e52a76b171fe3bbf4b5784701e5f"
+        }
+      ]
+    }
+  },
+  "component_smoke_tests": {
+    "PP-OCRv6_medium_det": {
+      "passed": true,
+      "result_count": 1,
+      "duration_seconds": 0.8150354000003972,
+      "input_size": [
+        720,
+        160
+      ]
+    },
+    "PP-OCRv6_medium_rec": {
+      "passed": true,
+      "result_count": 1,
+      "duration_seconds": 0.22200680000014472,
+      "input_size": [
+        720,
+        160
+      ]
+    },
+    "th_PP-OCRv5_mobile_rec": {
+      "passed": true,
+      "result_count": 1,
+      "duration_seconds": 0.09980749999976979,
+      "input_size": [
+        720,
+        160
+      ]
+    }
+  }
+}
