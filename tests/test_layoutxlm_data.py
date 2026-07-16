@@ -5,6 +5,7 @@ import pytest
 from src.information_extraction.layoutxlm_data import (
     LABEL_TO_ID,
     normalize_bbox,
+    rotate_example_geometry,
     rotated_word_boxes,
     to_bio_labels,
 )
@@ -35,3 +36,32 @@ def test_rotated_word_boxes_are_valid_for_arbitrary_angle() -> None:
     assert boxes[0][0] < boxes[0][2]
     assert boxes[0][1] < boxes[0][3]
     assert transform["angle"] == 43
+
+
+def test_rotated_example_geometry_transforms_tokens_and_relation_entities() -> None:
+    example = {
+        "width": 100,
+        "height": 50,
+        "tokens": [{
+            "id": "token-1",
+            "polygon": [[10, 10], [40, 10], [40, 20], [10, 20]],
+            "bbox": [10, 10, 40, 20],
+        }],
+        "entities": [{
+            "id": "entity-1",
+            "token_ids": ["token-1"],
+            "polygon": [[10, 10], [40, 10], [40, 20], [10, 20]],
+            "bbox": [10, 10, 40, 20],
+        }],
+        "relations": [],
+    }
+
+    rotated, transform = rotate_example_geometry(example, 90)
+
+    assert (rotated["width"], rotated["height"]) == (50, 100)
+    assert rotated["tokens"][0]["bbox"] == pytest.approx(
+        rotated["entities"][0]["bbox"]
+    )
+    assert rotated["tokens"][0]["bbox"] != example["tokens"][0]["bbox"]
+    assert example["width"] == 100
+    assert transform["angle"] == 90

@@ -1,0 +1,154 @@
+{
+  "schema_version": "2.0",
+  "profile": "final",
+  "build_id": "final-6be3e0b46b0a4e4c",
+  "manifest_path": "C:\\Assumption University\\CSX4201\\Project\\data\\metadata\\final_model_dataset_manifest.csv",
+  "manifest_sha256": "448582175cc832f336ee5e2654b7f1f1d417f8d47d8c6a08b2a91cd03334d200",
+  "public_only": true,
+  "gmail_fit_rows": 0,
+  "source_checkpoint": "microsoft/layoutxlm-base",
+  "architecture": "LayoutXLM-initialized multilingual text-layout encoder with entity, document, canonical-evidence, and real relation heads",
+  "visual_backbone": false,
+  "license": "CC-BY-NC-SA-4.0",
+  "device": "cuda",
+  "mixed_precision": true,
+  "token_sources": [
+    "ground_truth",
+    "hybrid",
+    "paddleocr"
+  ],
+  "train_examples": 7782,
+  "validation_examples": 1243,
+  "train_windows": 7810,
+  "validation_windows": 1250,
+  "rotated_validation_windows": 1250,
+  "training_target_counts": {
+    "entity_tokens": 514220,
+    "canonical_tokens": 152875,
+    "relation_pairs": 40954,
+    "relation_positives": 4545
+  },
+  "dynamic_rotation": {
+    "enabled": true,
+    "seed": 42,
+    "upright_probability": 0.6,
+    "angle_min": 0.0,
+    "angle_max": 360.0,
+    "epoch_summaries": [
+      {
+        "epoch": 1,
+        "example_count": 7782,
+        "upright_count": 4658,
+        "cardinal_count": 0,
+        "arbitrary_angle_count": 3124,
+        "mean_angle_degrees": 71.99876202934881
+      },
+      {
+        "epoch": 2,
+        "example_count": 7782,
+        "upright_count": 4643,
+        "cardinal_count": 0,
+        "arbitrary_angle_count": 3139,
+        "mean_angle_degrees": 71.9430454243684
+      },
+      {
+        "epoch": 3,
+        "example_count": 7782,
+        "upright_count": 4713,
+        "cardinal_count": 0,
+        "arbitrary_angle_count": 3069,
+        "mean_angle_degrees": 70.82112555346684
+      },
+      {
+        "epoch": 4,
+        "example_count": 7782,
+        "upright_count": 4721,
+        "cardinal_count": 0,
+        "arbitrary_angle_count": 3061,
+        "mean_angle_degrees": 71.64015637665655
+      }
+    ],
+    "geometry_targets_rotated_together": true
+  },
+  "mean_task_losses": {
+    "entity": 0.27821258359917816,
+    "document": 0.07060648420021873,
+    "canonical": 0.34601135905826297,
+    "relation": 0.0582902430837081
+  },
+  "optimizer_steps": 7812,
+  "micro_steps": 31240,
+  "requested_epochs": 4,
+  "completed_epochs": 4,
+  "early_stopping_patience": 2,
+  "stopped_early": false,
+  "stop_reason": "completed_requested_epochs",
+  "best_epoch": 4,
+  "best_composite_score": 0.8241600322529928,
+  "checkpoint_selection": {
+    "upright_weight": 0.7,
+    "rotated_37_weight": 0.3,
+    "split": "dev_select"
+  },
+  "validation": {
+    "loss": 0.20870461211565416,
+    "entity_token_f1": 0.9439501435690097,
+    "entity_counts": {
+      "tp": 36655,
+      "fp": 2649,
+      "fn": 1704
+    },
+    "canonical_evidence_token_f1": 0.9628756629345905,
+    "canonical_counts": {
+      "tp": 22876,
+      "fp": 992,
+      "fn": 772
+    },
+    "relation_f1": 0.43874643874643876,
+    "relation_counts": {
+      "tp": 847,
+      "fn": 706,
+      "fp": 1461
+    },
+    "document_macro_f1": 0.9949697960396678,
+    "document_accuracy": 0.9984,
+    "composite_score": 0.8274825624518279,
+    "evaluated_windows": 1250,
+    "rotated_37": {
+      "loss": 0.21521654330160236,
+      "entity_token_f1": 0.9394723627795589,
+      "entity_counts": {
+        "tp": 36483,
+        "fp": 2825,
+        "fn": 1876
+      },
+      "canonical_evidence_token_f1": 0.9640330188679245,
+      "canonical_counts": {
+        "tp": 22890,
+        "fp": 950,
+        "fn": 758
+      },
+      "relation_f1": 0.40045312942509204,
+      "relation_counts": {
+        "tp": 707,
+        "fn": 846,
+        "fp": 1271
+      },
+      "document_macro_f1": 0.9949697960396678,
+      "document_accuracy": 0.9984,
+      "composite_score": 0.8164074617890446,
+      "evaluated_windows": 1250
+    },
+    "selection_composite_score": 0.8241600322529928
+  },
+  "checkpoint": "D:\\CSX4201\\vision-info-extraction-assets\\checkpoints\\layoutxlm_multitask\\final",
+  "checkpoint_reload_passed": true,
+  "checkpoint_reload_max_difference": 0.0,
+  "duration_seconds": 3198.2959524000034,
+  "limitations": [
+    "This is a multilingual text-plus-2D-layout model initialized from LayoutXLM-compatible weights; the visual backbone is unavailable on this Windows runtime.",
+    "Canonical supervision trains evidence-token field labels; final value generation and abstention are evaluated separately."
+  ],
+  "bounded_development_trial_count": 4,
+  "selected_development_trial": "trial_4_balanced_rotation"
+}

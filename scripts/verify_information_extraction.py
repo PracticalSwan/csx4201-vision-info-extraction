@@ -111,36 +111,118 @@ def main() -> int:
             for row in public_rows
         ),
     )
+    split_rows = read_csv_rows(metadata / "information_extraction_split_manifest.csv")
+    leakage = _split_leakage_summary(split_rows)
+    check(
+        "final_split_group_leakage_zero",
+        bool(split_rows) and leakage["violation_count"] == 0,
+        leakage,
+    )
+    check(
+        "coru_is_wholly_unseen_domain",
+        bool(split_rows)
+        and {
+            row.get("project_split")
+            for row in split_rows if row.get("dataset") == "coru"
+        }
+        == {"unseen_domain_test"},
+    )
     ignored = subprocess.run(
         ["git", "check-ignore", "data/metadata/private_information_extraction_manifest.csv"],
         cwd=PROJECT_ROOT, capture_output=True, text=True,
     )
     check("private_operational_manifest_ignored", ignored.returncode == 0)
 
-    model_summary = _json(cfgmod.resolve_path(cfg, "reports") / "information_extraction" / "model_dataset_summary.json")
+    final_root = cfgmod.resolve_path(cfg, "reports") / "final_model"
+    model_summary = _json(final_root / "model_dataset_final_summary.json")
     check("model_dataset_summary", model_summary is not None, None if model_summary is None else model_summary.get("usable_example_count"))
     if model_summary:
         check("model_dataset_gmail_fit_zero", model_summary.get("gmail_fit_rows") == 0)
-        check("model_dataset_has_examples", int(model_summary.get("usable_example_count", 0)) > 0)
+        check(
+            "model_dataset_has_full_public_corpus",
+            int(model_summary.get("usable_example_count", 0)) >= 2_000,
+            model_summary.get("usable_example_count"),
+        )
+        check(
+            "model_dataset_has_three_labeled_sources",
+            {"fatura", "funsd", "sroie"}
+            <= set((model_summary.get("counts_by_dataset") or {}).keys()),
+            model_summary.get("counts_by_dataset"),
+        )
+        check("model_dataset_private_fit_zero", model_summary.get("private_fit_rows", 0) == 0)
 
-    training = _json(cfgmod.resolve_path(cfg, "reports") / "information_extraction" / "layout_model_training.json")
+    training = _json(final_root / "training_summary.json")
+    final_checkpoint_sha: str | None = None
     if training or args.complete:
-        check("layout_training_report", training is not None)
+        check("final_multitask_training_report", training is not None)
     if training:
         check("layout_checkpoint_reload", training.get("checkpoint_reload_passed") is True)
-        check("relation_head_reload", training.get("relation_head", {}).get("reload_passed") is True)
         check("layout_training_gmail_fit_zero", training.get("gmail_fit_rows") == 0)
+        check("layout_training_public_only", training.get("public_only") is True)
+        check("layout_training_profile_final", training.get("profile") == "final")
         check("layout_checkpoint_on_d", str(training.get("checkpoint", "")).lower().startswith("d:\\"))
+        checkpoint = Path(str(training.get("checkpoint", "")))
+        required_checkpoint_files = {
+            "model.safetensors", "config.json", "training_state.json",
+        }
+        check(
+            "final_checkpoint_complete",
+            checkpoint.is_dir()
+            and all((checkpoint / name).is_file() for name in required_checkpoint_files),
+            str(checkpoint),
+        )
+        model_path = checkpoint / "model.safetensors"
+        if model_path.is_file():
+            final_checkpoint_sha = sha256_file(model_path)
+
+    calibration = _json(PROJECT_ROOT / "models" / "multitask_calibration.json")
+    if calibration or args.complete:
+        check("final_calibration_report", calibration is not None)
+    if calibration and training:
+        checkpoint = Path(str(training.get("checkpoint", "")))
+        model_path = checkpoint / "model.safetensors"
+        check("calibration_profile_final", calibration.get("profile") == "final")
+        check("calibration_public_only", calibration.get("public_only") is True)
+        check("calibration_private_zero", calibration.get("private_example_count") == 0)
+        check(
+            "calibration_checkpoint_hash_bound",
+            model_path.is_file()
+            and calibration.get("checkpoint_model_sha256") == final_checkpoint_sha,
+        )
+        check(
+            "calibration_build_bound",
+            calibration.get("checkpoint_build_id") == training.get("build_id"),
+        )
 
     ocr_verification = _json(cfgmod.resolve_path(cfg, "reports") / "ocr" / "model_verification.json")
     check("ocr_model_verification", bool(ocr_verification and ocr_verification.get("passed") is True))
 
-    evaluation = _json(cfgmod.resolve_path(cfg, "reports") / "model_evaluation" / "smoke_evaluation.json")
-    private_aggregate = _json(cfgmod.resolve_path(cfg, "reports") / "model_evaluation" / "private_gmail_aggregate.json")
+    evaluation = _json(final_root / "evaluations" / "final_test_in_domain_ground_truth.json")
+    private_aggregate = _json(final_root / "private_test_aggregate.json")
+    unseen_evaluation = _json(final_root / "unseen_domain_metrics.json")
+    layout_angles = _json(final_root / "layout_angle_metrics.json")
+    end_to_end_angles = _json(final_root / "end_to_end_angle_metrics.json")
+    ocr_ablation = _json(final_root / "ocr_preprocessing_ablation.json")
     integration = _json(cfgmod.resolve_path(cfg, "reports") / "information_extraction" / "integration_smoke.json")
     if args.complete:
-        check("public_smoke_evaluation", bool(evaluation and evaluation.get("successful_runs", 0) > 0))
-        check("private_aggregate_evaluation", bool(private_aggregate and private_aggregate.get("successful_pages", 0) > 0))
+        check(
+            "locked_public_test_evaluation",
+            bool(
+                evaluation
+                and evaluation.get("split") == "test_in_domain"
+                and evaluation.get("public_only") is True
+                and evaluation.get("private_example_count") == 0
+                and evaluation.get("example_count", 0) > 0
+                and evaluation.get("cross_build_comparison") is False
+                and evaluation.get("checkpoint_model_sha256") == final_checkpoint_sha
+                and (evaluation.get("calibration") or {}).get("sha256")
+                == sha256_file(PROJECT_ROOT / "models" / "multitask_calibration.json")
+            ),
+        )
+        check(
+            "private_aggregate_evaluation",
+            bool(private_aggregate and private_aggregate.get("successful_documents", 0) > 0),
+        )
         evidence_passed, evidence_detail = _validate_integration_evidence(
             integration,
             cfg=cfg,
@@ -169,13 +251,56 @@ def main() -> int:
         )
         check(
             "natural_unseen_dataset_evaluation",
-            bool(
-                evaluation
-                and evaluation.get("unseen_document_protocol", {}).get("status")
-                == "executed_natural_dataset_holdout"
-                and evaluation.get("unseen_document_protocol", {}).get("fit_rows_for_evaluated_datasets") == 0
+            _valid_locked_unseen_evaluation(
+                unseen_evaluation, checkpoint_model_sha256=final_checkpoint_sha
             ),
         )
+        expected_angles = [
+            int(value) for value in cfg.get("augmentation", {}).get("validation_angles", [])
+        ]
+        check(
+            "layout_angle_grid_evaluation",
+            bool(
+                layout_angles
+                and [item.get("angle") for item in layout_angles.get("angles", [])]
+                == expected_angles
+                and layout_angles.get("checkpoint_model_sha256") == final_checkpoint_sha
+                and layout_angles.get("calibration_sha256")
+                == sha256_file(PROJECT_ROOT / "models" / "multitask_calibration.json")
+                and layout_angles.get("private_example_count") == 0
+            ),
+        )
+        check(
+            "end_to_end_angle_grid_evaluation",
+            bool(
+                end_to_end_angles
+                and end_to_end_angles.get("angles") == expected_angles
+                and end_to_end_angles.get("checkpoint_model_sha256") == final_checkpoint_sha
+                and end_to_end_angles.get("private_document_count") == 0
+                and end_to_end_angles.get("kmeans_controls_ocr") is False
+            ),
+        )
+        check(
+            "public_only_ocr_ablation",
+            bool(
+                ocr_ablation
+                and ocr_ablation.get("selection_split") == "dev_select"
+                and ocr_ablation.get("public_only") is True
+                and ocr_ablation.get("private_page_count") == 0
+                and ocr_ablation.get("chosen_preprocessing_profile")
+            ),
+        )
+        required_final_reports = {
+            "ocr_metrics.json", "entity_metrics.json", "relation_metrics.json",
+            "field_metrics.json", "angle_metrics.json", "language_metrics.json",
+            "dataset_metrics.json", "error_analysis.md", "final_model_card.md",
+            "verification.json", "training_history.csv", "training_summary.json",
+            "hyperparameter_trials.csv",
+        }
+        missing_final_reports = sorted(
+            name for name in required_final_reports if not (final_root / name).is_file()
+        )
+        check("required_final_reports", not missing_final_reports, missing_final_reports)
     if private_aggregate:
         check(
             "private_report_aggregate_only",
@@ -185,14 +310,31 @@ def main() -> int:
             and private_aggregate.get("contains_per_document_predictions") is False,
         )
         check("private_report_gmail_fit_zero", private_aggregate.get("gmail_fit_rows") == 0)
+        if final_checkpoint_sha:
+            check(
+                "private_report_checkpoint_hash_bound",
+                private_aggregate.get("checkpoint_model_sha256") == final_checkpoint_sha,
+            )
 
     candidate_files = _git_candidate_files()
     oversized = [str(path.relative_to(PROJECT_ROOT)) for path in candidate_files if path.is_file() and path.stat().st_size > 50 * 1024**2]
     check("no_unignored_file_over_50_mib", not oversized, oversized)
     secret_hits = _secret_scan(candidate_files)
     check("no_obvious_secrets_in_git_candidates", not secret_hits, {"hit_count": len(secret_hits)})
-    private_name_hit_count = _private_name_scan(candidate_files, metadata)
-    check("no_private_filenames_in_git_candidates", private_name_hit_count == 0, {"hit_count": private_name_hit_count})
+    try:
+        private_name_hit_count = _private_name_scan(candidate_files, metadata)
+    except (FileNotFoundError, ValueError):
+        check(
+            "no_private_filenames_in_git_candidates",
+            False,
+            {"error": "private filename inventory is missing or contains no usable names"},
+        )
+    else:
+        check(
+            "no_private_filenames_in_git_candidates",
+            private_name_hit_count == 0,
+            {"hit_count": private_name_hit_count},
+        )
 
     failed = [item for item in checks if not item["passed"]]
     report = {
@@ -211,11 +353,54 @@ def main() -> int:
     return 0 if not failed else 1
 
 
+def _valid_locked_unseen_evaluation(
+    report: dict[str, Any] | None,
+    *,
+    checkpoint_model_sha256: str,
+) -> bool:
+    """Require the predetermined 100-page CORU run with no failures."""
+    return bool(
+        report
+        and report.get("dataset") == "coru"
+        and report.get("split") == "unseen_domain_test"
+        and report.get("public_only") is True
+        and report.get("private_page_count") == 0
+        and report.get("sample_pages") == 100
+        and report.get("successful_pages") == 100
+        and report.get("failed_pages") == 0
+        and report.get("checkpoint_model_sha256") == checkpoint_model_sha256
+    )
+
+
 def _json(path: Path) -> dict[str, Any] | None:
     try:
         return json.loads(path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError):
         return None
+
+
+def _split_leakage_summary(rows: list[dict[str, str]]) -> dict[str, Any]:
+    split_sets: dict[str, set[str]] = {}
+    for row in rows:
+        split = row.get("project_split", "")
+        dataset = row.get("dataset", "").casefold()
+        identities = {
+            "split_group": row.get("split_group_id", ""),
+            "document": f"{dataset}:{row.get('document_id', '')}",
+            "duplicate": f"{dataset}:{row.get('duplicate_group_id', '')}",
+            "sha256": row.get("sha256", "").casefold(),
+        }
+        for kind, value in identities.items():
+            if not value or value.endswith(":"):
+                continue
+            split_sets.setdefault(f"{kind}:{value}", set()).add(split)
+    violations = sorted(key for key, splits in split_sets.items() if len(splits) > 1)
+    return {
+        "rows": len(rows),
+        "identities_checked": len(split_sets),
+        "violation_count": len(violations),
+        "violation_sample": violations[:10],
+    }
 
 
 def _validate_integration_evidence(
@@ -245,10 +430,24 @@ def _validate_integration_evidence(
         "model_setup": model_setup_path,
         "layout_training_report": PROJECT_ROOT
         / "reports"
-        / "information_extraction"
-        / "layout_model_training.json",
+        / "final_model"
+        / "training_summary.json",
+        "calibration": PROJECT_ROOT / "models" / "multitask_calibration.json",
         "document_pipeline": PROJECT_ROOT / "src" / "inference" / "document_pipeline.py",
         "document_io": PROJECT_ROOT / "src" / "inference" / "document_io.py",
+        "entity_worker_client": PROJECT_ROOT
+        / "src"
+        / "information_extraction"
+        / "entity_worker_client.py",
+        "layout_entity_worker": PROJECT_ROOT / "scripts" / "layout_entity_worker.py",
+        "multitask_inference": PROJECT_ROOT
+        / "src"
+        / "information_extraction"
+        / "multitask_inference.py",
+        "layoutxlm_model": PROJECT_ROOT
+        / "src"
+        / "information_extraction"
+        / "layoutxlm_model.py",
         "ocr_pipeline": PROJECT_ROOT / "src" / "ocr" / "pipeline.py",
         "ocr_adapter": PROJECT_ROOT / "src" / "ocr" / "paddleocr_adapter.py",
         "language_router": PROJECT_ROOT / "src" / "ocr" / "language_router.py",
@@ -291,7 +490,7 @@ def _validate_integration_evidence(
     training = _json(expected_sources["layout_training_report"])
     checkpoint_root = Path(str((training or {}).get("checkpoint", ""))).resolve()
     checkpoint_records = list(report.get("checkpoint_artifacts") or [])
-    expected_checkpoint_names = {"model.safetensors", "relation_head.pt", "training_state.json"}
+    expected_checkpoint_names = {"model.safetensors", "config.json", "training_state.json"}
     if {Path(str(item.get("path", ""))).name for item in checkpoint_records} != expected_checkpoint_names:
         errors.append("checkpoint artifact set mismatch")
     for record in checkpoint_records:
@@ -349,8 +548,8 @@ def _integration_semantic_errors(case: str, payload: dict[str, Any]) -> list[str
     if case in {"unknown_upright_image", "unknown_45_degree_image"}:
         if payload.get("source_type") != "image" or len(pages) != 1:
             errors.append(f"invalid image/page shape: {case}")
-        if payload.get("document_type", {}).get("label") != "unknown":
-            errors.append(f"document type is not unknown: {case}")
+        if not payload.get("document_type", {}).get("label"):
+            errors.append(f"document type is missing: {case}")
         if not pages or not pages[0].get("ocr", {}).get("words"):
             errors.append(f"empty OCR: {case}")
         if not pages or not pages[0].get("entities") or not pages[0].get("key_value_pairs"):
@@ -387,35 +586,54 @@ def _secret_scan(paths: list[Path]) -> list[str]:
     )
     hits = []
     for path in paths:
-        if not path.is_file() or path.stat().st_size > 10 * 1024**2:
+        if not path.is_file() or path.stat().st_size > 100 * 1024**2:
             continue
         try:
-            text = path.read_text(encoding="utf-8")
+            with path.open("r", encoding="utf-8") as handle:
+                matched = any(pattern.search(line) for line in handle)
         except (UnicodeDecodeError, OSError):
             continue
-        if pattern.search(text):
-            hits.append(str(path.relative_to(PROJECT_ROOT)))
+        if matched:
+            try:
+                hits.append(str(path.relative_to(PROJECT_ROOT)))
+            except ValueError:
+                hits.append(str(path))
     return hits
 
 
 def _private_name_scan(paths: list[Path], metadata: Path) -> int:
     inventory = metadata / "private_file_inventory.csv"
     if not inventory.is_file():
-        return 0
-    private_names = {
-        Path(row.get("relative_path") or row.get("path") or row.get("filename") or "").name.casefold()
-        for row in read_csv_rows(inventory)
-    }
+        raise FileNotFoundError("private filename inventory is required for publication scan")
+    private_names: set[str] = set()
+    for row in read_csv_rows(inventory):
+        for key in (
+            "original_filename",
+            "current_relative_path",
+            "original_relative_path",
+            "relative_path",
+            "path",
+            "filename",
+        ):
+            value = str(row.get(key) or "").strip()
+            if value:
+                private_names.add(Path(value).name.casefold())
     private_names.discard("")
+    if not private_names:
+        raise ValueError("private filename inventory contains no usable filename values")
     hits = 0
     for path in paths:
-        if not path.is_file() or path.stat().st_size > 20 * 1024**2:
+        if not path.is_file() or path.stat().st_size > 100 * 1024**2:
             continue
         try:
-            folded = path.read_text(encoding="utf-8").casefold()
+            with path.open("r", encoding="utf-8") as handle:
+                matched = any(
+                    any(name in line.casefold() for name in private_names)
+                    for line in handle
+                )
         except (UnicodeDecodeError, OSError):
             continue
-        if any(name in folded for name in private_names):
+        if matched:
             hits += 1
     return hits
 

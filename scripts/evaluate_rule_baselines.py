@@ -13,6 +13,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from src import config as cfgmod  # noqa: E402
+from src.information_extraction.model_dataset import profile_manifest_path  # noqa: E402
 from src.evaluation.metrics import normalized_text, ocr_text_metrics  # noqa: E402
 from src.information_extraction.rules import extract_rule_fields  # noqa: E402
 from src.rotation_common import atomic_write_json, read_csv_rows  # noqa: E402
@@ -23,7 +24,9 @@ def main() -> int:
     parser.add_argument("--config", default=str(PROJECT_ROOT / "config.yaml"))
     args = parser.parse_args()
     cfg = cfgmod.load_config(args.config)
-    manifest = read_csv_rows(cfgmod.resolve_path(cfg, "metadata") / "model_dataset_manifest.csv")
+    manifest = read_csv_rows(
+        profile_manifest_path(cfgmod.resolve_path(cfg, "metadata"), "smoke")
+    )
     rows = [row for row in manifest if row.get("is_usable") == "true" and row.get("is_private") == "false"]
     ocr_totals: Counter[str] = Counter()
     field_totals: Counter[str] = Counter()

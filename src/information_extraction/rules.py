@@ -10,6 +10,7 @@ from typing import Any
 from src.information_extraction.geometry import bbox_to_polygon
 
 EMAIL_RE = re.compile(r"\b[A-Z0-9._%+\-]+@[A-Z0-9.\-]+\.[A-Z]{2,}\b", re.IGNORECASE)
+WEBSITE_RE = re.compile(r"\b(?:https?://|www\.)[^\s<>()]+", re.IGNORECASE)
 PHONE_RE = re.compile(r"(?<!\w)(?:\+?\d[\d\s().\-]{6,}\d)(?!\w)")
 DATE_RE = re.compile(
     r"\b(?:\d{1,4}[./\-]\d{1,2}[./\-]\d{1,4}|\d{1,2}[\-\s](?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*[\-\s]\d{2,4})\b",
@@ -20,16 +21,28 @@ MONEY_RE = re.compile(
     re.IGNORECASE,
 )
 NUMBER_RE = re.compile(r"[:#]\s*([A-Z0-9][A-Z0-9/_.\-]{2,})", re.IGNORECASE)
+TIME_RE = re.compile(r"\b(?:[01]?\d|2[0-3]):[0-5]\d(?:\s?[AP]M)?\b", re.IGNORECASE)
 
 KEYWORDS = {
     "invoice_number": ("invoice no", "invoice number", "invoice #", "fatura no", "เลขที่ใบแจ้งหนี้"),
     "receipt_number": ("receipt no", "receipt number", "transaction no", "transaction number", "fiş no", "เลขที่ใบเสร็จ"),
-    "reference_number": ("reference no", "reference number", "account no", "account number", "referans no", "เลขอ้างอิง"),
+    "reference_number": ("reference no", "reference number", "referans no", "เลขอ้างอิง"),
     "subtotal": ("subtotal", "sub total", "ara toplam", "ยอดรวมก่อนภาษี"),
+    "discount": ("discount", "indirim", "ส่วนลด"),
+    "service_charge": ("service charge", "hizmet bedeli", "ค่าบริการ"),
     "tax": ("tax", "vat", "kdv", "ภาษี", "ภาษีมูลค่าเพิ่ม"),
     "total_amount": ("grand total", "total amount", "amount due", "total", "genel toplam", "toplam", "ยอดรวม", "รวมทั้งสิ้น"),
+    "paid_amount": ("paid amount", "amount paid", "paid", "ödenen", "ชำระแล้ว", "ยอดชำระ"),
+    "balance": ("balance due", "balance", "remaining", "bakiye", "ยอดคงเหลือ"),
     "payment_method": ("payment method", "paid by", "cash", "credit card", "nakit", "kredi kartı", "ชำระโดย", "เงินสด", "บัตรเครดิต"),
     "address": ("address", "adres", "ที่อยู่"),
+    "tax_identification_number": ("tax id", "tax number", "vat no", "vergi no", "เลขประจำตัวผู้เสียภาษี"),
+    "customer_account_number": ("customer no", "customer number", "account no", "account number", "müşteri no", "เลขที่ลูกค้า"),
+    "vendor_name": ("vendor", "merchant", "seller", "supplier", "satıcı", "ผู้ขาย", "ร้านค้า"),
+    "customer_name": ("customer", "buyer", "client", "müşteri", "ลูกค้า", "ผู้ซื้อ"),
+    "person_name": ("full name", "name", "ad soyad", "ชื่อ-นามสกุล", "ชื่อ"),
+    "bank_name": ("bank name", "bank", "banka", "ธนาคาร"),
+    "account_reference": ("iban", "bank account", "account reference", "hesap", "เลขที่บัญชี"),
 }
 CURRENCY_MAP = {
     "฿": "THB", "thb": "THB", "บาท": "THB",
@@ -50,22 +63,36 @@ def extract_rule_fields(
         confidence = line["confidence"]
         email = EMAIL_RE.search(text)
         if email:
-            candidates["email"].append(_evidence(email.group(0), email.group(0), line, confidence, "rule:email", page_number))
+            candidates["email"].append(_evidence(email.group(0), email.group(0), line, confidence, "rule:email", page_number, "validated"))
+        website = WEBSITE_RE.search(text)
+        if website:
+            value = website.group(0).rstrip(".,;)")
+            candidates["website"].append(_evidence(value, value, line, confidence, "rule:website", page_number, "validated"))
         phone = PHONE_RE.search(text)
         if phone:
             normalized_phone = re.sub(r"[^+\d]", "", phone.group(0))
-            candidates["phone_number"].append(_evidence(normalized_phone, phone.group(0), line, confidence, "rule:phone", page_number))
+            candidates["phone_number"].append(_evidence(normalized_phone, phone.group(0), line, confidence, "rule:phone", page_number, "validated"))
         date = DATE_RE.search(text)
         if date:
-            candidates["date"].append(_evidence(date.group(0), date.group(0), line, confidence, "rule:date", page_number))
+            candidates["date"].append(_evidence(date.group(0), date.group(0), line, confidence, "rule:date", page_number, "validated"))
+        time_match = TIME_RE.search(text)
+        if time_match:
+            candidates["time"].append(_evidence(time_match.group(0), time_match.group(0), line, confidence, "rule:time", page_number, "validated"))
         for field in ("invoice_number", "receipt_number", "reference_number"):
             if _has_keyword(folded, KEYWORDS[field]):
                 number = NUMBER_RE.search(text)
                 if number:
-                    candidates[field].append(_evidence(number.group(1), number.group(0), line, confidence, f"rule:{field}", page_number))
-        for field in ("subtotal", "tax", "total_amount"):
+                    candidates[field].append(_evidence(number.group(1), number.group(0), line, confidence, f"rule:{field}", page_number, "validated"))
+        for field in ("tax_identification_number", "customer_account_number"):
+            if _has_keyword(folded, KEYWORDS[field]):
+                number = NUMBER_RE.search(text)
+                if number:
+                    candidates[field].append(_evidence(number.group(1), number.group(0), line, confidence, f"rule:{field}", page_number, "validated"))
+        for field in ("subtotal", "discount", "service_charge", "tax", "total_amount", "paid_amount", "balance"):
             if _has_keyword(folded, KEYWORDS[field]):
                 if field == "total_amount" and _has_keyword(folded, KEYWORDS["subtotal"]):
+                    continue
+                if field == "tax" and _has_keyword(folded, KEYWORDS["tax_identification_number"]):
                     continue
                 money_matches = list(MONEY_RE.finditer(text))
                 if money_matches:
@@ -73,7 +100,7 @@ def extract_rule_fields(
                     normalized = _normalize_money(raw)
                     if normalized is not None:
                         keyword_bonus = 0.06 if field != "total_amount" or "grand" in folded or "due" in folded else 0.0
-                        candidates[field].append(_evidence(normalized, raw, line, min(1.0, confidence + keyword_bonus), f"rule:{field}", page_number))
+                        candidates[field].append(_evidence(normalized, raw, line, min(1.0, confidence + keyword_bonus), f"rule:{field}", page_number, "validated"))
         if _has_keyword(folded, KEYWORDS["payment_method"]):
             value = _payment_method(text)
             if value:
@@ -82,12 +109,17 @@ def extract_rule_fields(
             value = _after_label(text)
             if value:
                 candidates["address"].append(_evidence(value, text, line, confidence, "rule:address", page_number))
+        for field in ("vendor_name", "customer_name", "person_name", "bank_name", "account_reference"):
+            if _has_keyword(folded, KEYWORDS[field]):
+                value = _after_label(text)
+                if value:
+                    candidates[field].append(_evidence(value, text, line, confidence, f"rule:{field}", page_number))
         currency = _currency(text)
         if currency:
-            candidates["currency"].append(_evidence(currency, text, line, confidence, "rule:currency", page_number))
+            candidates["currency"].append(_evidence(currency, text, line, confidence, "rule:currency", page_number, "validated"))
         title = _document_title(text)
         if title:
-            candidates["document_title"].append(_evidence(title, text, line, confidence, "rule:document_title", page_number))
+            candidates["document_title"].append(_evidence(title, text, line, confidence, "rule:document_title", page_number, "validated"))
 
     organization = _organization_candidate(lines, page_number)
     if organization:
@@ -124,7 +156,7 @@ def _line_records(result: Mapping[str, Any]) -> list[dict[str, Any]]:
 
 def _evidence(
     value: Any, raw_text: str, line: Mapping[str, Any], confidence: float,
-    method: str, page_number: int,
+    method: str, page_number: int, validation_status: str = "unvalidated",
 ) -> dict[str, Any]:
     return {
         "value": value,
@@ -133,6 +165,8 @@ def _evidence(
         "bbox": [float(value) for value in line["bbox"]],
         "confidence": max(0.0, min(1.0, float(confidence))),
         "method": method,
+        "extraction_source": "rule",
+        "validation_status": validation_status,
         "page_number": int(page_number),
     }
 
@@ -217,11 +251,31 @@ def _validate_total_consistency(fields: Mapping[str, Any], warnings: list[str]) 
     try:
         subtotal = Decimal(str(fields["subtotal"]["value"])) if fields.get("subtotal") else None
         tax = Decimal(str(fields["tax"]["value"])) if fields.get("tax") else None
+        discount = Decimal(str(fields["discount"]["value"])) if fields.get("discount") else Decimal("0")
+        service = Decimal(str(fields["service_charge"]["value"])) if fields.get("service_charge") else Decimal("0")
         total = Decimal(str(fields["total_amount"]["value"])) if fields.get("total_amount") else None
+        paid = Decimal(str(fields["paid_amount"]["value"])) if fields.get("paid_amount") else None
+        balance = Decimal(str(fields["balance"]["value"])) if fields.get("balance") else None
     except (InvalidOperation, KeyError):
         return
     if subtotal is not None and total is not None and total < subtotal:
         warnings.append("selected total is lower than subtotal")
+        fields["total_amount"]["validation_status"] = "conflict"
     if subtotal is not None and tax is not None and total is not None:
-        if abs((subtotal + tax) - total) > max(Decimal("0.05"), abs(total) * Decimal("0.02")):
-            warnings.append("subtotal plus tax does not match total within tolerance")
+        expected = subtotal + tax + service - discount
+        tolerance = max(Decimal("0.05"), abs(total) * Decimal("0.02"))
+        if abs(expected - total) > tolerance:
+            warnings.append("subtotal plus tax and service charge minus discount does not match total within tolerance")
+            fields["total_amount"]["validation_status"] = "conflict"
+        else:
+            for name in ("subtotal", "tax", "discount", "service_charge", "total_amount"):
+                if fields.get(name):
+                    fields[name]["validation_status"] = "validated"
+    if total is not None and paid is not None and balance is not None:
+        tolerance = max(Decimal("0.05"), abs(total) * Decimal("0.02"))
+        if abs((total - paid) - balance) > tolerance:
+            warnings.append("total minus paid amount does not match balance within tolerance")
+            fields["balance"]["validation_status"] = "conflict"
+        else:
+            fields["paid_amount"]["validation_status"] = "validated"
+            fields["balance"]["validation_status"] = "validated"

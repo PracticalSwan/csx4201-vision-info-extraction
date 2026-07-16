@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "status": "private_test_aggregate",
+  "attempted_documents": 2,
+  "successful_documents": 2,
+  "failed_documents": 0,
+  "processed_pages": 2,
+  "mean_ocr_words_per_page": 47.5,
+  "mean_entities_per_page": 6.0,
+  "mean_relations_per_page": 1.0,
+  "mean_non_null_fields_per_document": 4.0,
+  "mean_ocr_confidence": 0.9371548137328779,
+  "mean_duration_seconds": 23.76854060000187,
+  "route_counts": {
+    "general": 2
+  },
+  "document_type_counts": {
+    "unknown": 2
+  },
+  "error_type_counts": {},
+  "checkpoint_model_sha256": "34c7a26e78d6285a2739e1b61839eadfd0e686ccbcf57f9cb47997c12cef2189",
+  "gmail_fit_rows": 0,
+  "local_processing_only": true,
+  "contains_filenames": false,
+  "contains_ocr_text": false,
+  "contains_images": false,
+  "contains_per_document_predictions": false,
+  "elapsed_seconds": 49.81405659999291,
+  "limitations": [
+    "No private ground truth is used; this is aggregate operational testing, not an accuracy estimate."
+  ]
+}

@@ -10,6 +10,7 @@ from typing import Any, Protocol
 from PIL import Image
 
 from src.ocr.cache import OCRCache, OCRCacheKey
+from src.ocr.fine_deskew import estimate_residual_deskew
 from src.ocr.language_router import (
     normalize_language_mode,
     route_for_mode,
@@ -19,9 +20,11 @@ from src.ocr.language_router import (
 from src.ocr.model_registry import ModelRegistry
 from src.ocr.orientation_candidates import (
     build_orientation_candidates,
+    make_orientation_candidate,
     restore_original_coordinates,
 )
 from src.ocr.paddleocr_adapter import PaddleOCRAdapter
+from src.ocr.preprocessing import preprocess_for_ocr
 from src.ocr.scoring import score_ocr_candidate
 
 
@@ -43,6 +46,10 @@ class MultilingualOCR:
         adapter_options: Mapping[str, Any] | None = None,
         cache: OCRCache | None = None,
         preprocessing_version: str = "1.0",
+        preprocessing_profile: str = "original",
+        enable_fine_deskew: bool = True,
+        fine_deskew_reliability: float = 0.55,
+        maximum_fine_candidates: int = 2,
     ) -> None:
         options = dict(adapter_options or {})
         if general_backend is None:
@@ -57,6 +64,10 @@ class MultilingualOCR:
         self.cardinal_angles = tuple(float(value) for value in cardinal_angles)
         self.cache = cache
         self.preprocessing_version = preprocessing_version
+        self.preprocessing_profile = preprocessing_profile
+        self.enable_fine_deskew = bool(enable_fine_deskew)
+        self.fine_deskew_reliability = float(fine_deskew_reliability)
+        self.maximum_fine_candidates = int(maximum_fine_candidates)
 
     def extract_path(
         self,
@@ -102,6 +113,7 @@ class MultilingualOCR:
     ) -> dict[str, Any]:
         """Run OCR without any K-Means input or dependency."""
         started = time.perf_counter()
+        image, preprocessing = preprocess_for_ocr(image, self.preprocessing_profile)
         mode = normalize_language_mode(language_mode)
         forced_route = route_for_mode(mode)
         candidates = build_orientation_candidates(
@@ -111,9 +123,9 @@ class MultilingualOCR:
         thai_best = None
         route_reasons: list[str] = []
         if forced_route in {None, "general"}:
-            general_best = self._best_route("general", candidates, image.size)
+            general_best = self._best_route("general", candidates, image)
         if forced_route == "thai":
-            thai_best = self._best_route("thai", candidates, image.size)
+            thai_best = self._best_route("thai", candidates, image)
         elif forced_route is None:
             assert general_best is not None
             run_thai, route_reasons = should_try_thai(
@@ -121,7 +133,7 @@ class MultilingualOCR:
                 language_hint=language_hint, metadata_language=metadata_language,
             )
             if run_thai:
-                thai_best = self._best_route("thai", candidates, image.size)
+                thai_best = self._best_route("thai", candidates, image)
         hints = {str(language_hint or "").lower(), str(metadata_language or "").lower()}
         preferred_route = "thai" if hints & {"th", "thai", "th-th"} else None
         selected, route_decision = select_route_result(
@@ -129,6 +141,7 @@ class MultilingualOCR:
         )
         selected = dict(selected)
         selected["route_decision"] = {**route_decision, "thai_evaluation_reasons": route_reasons}
+        selected["preprocessing"] = preprocessing
         selected["candidate_scores"] = [
             candidate for pair in (general_best, thai_best) if pair is not None
             for candidate in pair[0].get("all_candidate_scores", [])
@@ -137,15 +150,17 @@ class MultilingualOCR:
         return selected
 
     def _best_route(
-        self, route: str, candidates: list, source_size: tuple[int, int]
+        self, route: str, candidates: list, source_image: Image.Image
     ) -> tuple[dict[str, Any], dict[str, float]]:
         backend = self.backends[route]
-        evaluated: list[tuple[dict[str, Any], dict[str, float]]] = []
+        evaluated: list[tuple[dict[str, Any], dict[str, float], Any, dict[str, Any]]] = []
         candidate_scores: list[dict[str, Any]] = []
-        for candidate in candidates:
+        seen_angles = {round(float(candidate.angle), 6) for candidate in candidates}
+
+        def evaluate(candidate: Any, deskew: Mapping[str, Any] | None = None) -> None:
             result = backend.predict(candidate.image, orientation=candidate.angle)
             score = score_ocr_candidate(
-                result, candidate.transform.output_width, candidate.transform.output_height
+                result, source_image.width, source_image.height
             )
             restored = restore_original_coordinates(result, candidate)
             entry = {
@@ -154,13 +169,46 @@ class MultilingualOCR:
                 "candidate_kind": candidate.kind,
                 **score,
             }
+            if deskew is not None:
+                entry["fine_deskew"] = dict(deskew)
+                restored["fine_deskew"] = dict(deskew)
             candidate_scores.append(entry)
-            evaluated.append((restored, score))
-        best_result, best_score = max(
-            evaluated, key=lambda pair: (pair[1]["total"], -float(pair[0]["orientation"]))
+            evaluated.append((restored, score, candidate, result))
+
+        for candidate in candidates:
+            evaluate(candidate)
+        if self.enable_fine_deskew and self.maximum_fine_candidates > 0:
+            initial = sorted(
+                evaluated,
+                key=lambda value: (float(value[1]["total"]), -float(value[0]["orientation"])),
+                reverse=True,
+            )[: self.maximum_fine_candidates]
+            for _, _, candidate, raw_result in initial:
+                estimate = estimate_residual_deskew(raw_result.get("words", []))
+                correction = float(estimate["correction_degrees"])
+                if (
+                    float(estimate["reliability"]) < self.fine_deskew_reliability
+                    or abs(correction) < 0.25
+                    or abs(correction) > 45.0
+                ):
+                    continue
+                refined_angle = (float(candidate.angle) + correction) % 360.0
+                key = round(refined_angle, 6)
+                if key in seen_angles:
+                    continue
+                seen_angles.add(key)
+                evaluate(
+                    make_orientation_candidate(
+                        source_image, refined_angle, kind="fine_deskew"
+                    ),
+                    estimate,
+                )
+        best_result, best_score, _, _ = max(
+            evaluated,
+            key=lambda value: (value[1]["total"], -float(value[0]["orientation"])),
         )
         best_result["all_candidate_scores"] = candidate_scores
-        best_result["source_width"], best_result["source_height"] = source_size
+        best_result["source_width"], best_result["source_height"] = source_image.size
         return best_result, best_score
 
     def _cache_key(self, path: Path, **configuration: Any) -> OCRCacheKey | None:
@@ -182,7 +230,13 @@ class MultilingualOCR:
             recognizer_model=f"{general['recognizer_model']}+{thai['recognizer_model']}",
             recognizer_artifact_hash=recognizer_hash,
             language_route_configuration=configuration,
-            orientation_configuration={"cardinal_angles": self.cardinal_angles},
+            orientation_configuration={
+                "cardinal_angles": self.cardinal_angles,
+                "enable_fine_deskew": self.enable_fine_deskew,
+                "fine_deskew_reliability": self.fine_deskew_reliability,
+                "maximum_fine_candidates": self.maximum_fine_candidates,
+                "preprocessing_profile": self.preprocessing_profile,
+            },
             paddleocr_version=str(general["paddleocr_version"]),
             preprocessing_version=self.preprocessing_version,
         )

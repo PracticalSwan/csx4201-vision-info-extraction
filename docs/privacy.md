@@ -19,6 +19,11 @@ must remain below the ignored D: private root. A committed report may contain
 aggregate counts and timings only and must explicitly declare that it contains
 no filenames, OCR text, images, or per-document predictions.
 
+The general extraction CLI resolves every input against the four configured
+Gmail roots before opening it. A matching input is rejected unless
+`--private-output` is present; that mode then requires the destination to stay
+below the ignored D: private root. The caller cannot opt out of either guard.
+
 ## Before staging or pushing
 
 1. Verify repository visibility and remote ownership.

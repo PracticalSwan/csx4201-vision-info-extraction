@@ -14,6 +14,7 @@ from src.information_extraction.generic_entities import generic_key_value_entiti
 from src.information_extraction.relations import infer_relations
 from src.information_extraction.rules import extract_rule_fields
 from src.information_extraction.schema import build_document_result, validate_document_result
+from src.information_extraction.multitask_inference import reconstruct_ocr_tables
 from src.inference.document_io import DocumentInputError, DocumentPage, load_document_pages
 from src.inference.kmeans_display import KMeansRotationDisplay, safe_kmeans_display
 from src.ocr.cache import OCRCache
@@ -62,7 +63,10 @@ class DocumentPipeline:
         device: str = "cpu",
         model_setup: str | Path = "reports/ocr/model_setup.json",
         layout_checkpoint: str | Path | None = None,
+        calibration_path: str | Path | None = None,
+        confidence_threshold: float | None = None,
         enable_kmeans_display: bool = True,
+        require_layout_model: bool = False,
     ) -> "DocumentPipeline":
         registry = ModelRegistry.from_setup(model_setup)
         cache = OCRCache(cfgmod.resolve_path(cfg, "ocr_cache")) if cfg.get("ocr", {}).get("cache_enabled", True) else None
@@ -78,11 +82,21 @@ class DocumentPipeline:
             adapter_options=options,
             cache=cache,
             preprocessing_version=str(cfg.get("ocr", {}).get("preprocessing_version", "1.0")),
+            preprocessing_profile=str(cfg.get("ocr", {}).get("preprocessing_profile", "original")),
         )
         warnings: list[str] = []
         entity_extractor = None
+        configured_checkpoint = cfg.get("layout_model", {}).get("inference_checkpoint")
         checkpoint = Path(layout_checkpoint) if layout_checkpoint else (
-            cfgmod.resolve_path(cfg, "ie_checkpoints") / "layoutxlm" / "smoke"
+            _resolve_configured_path(cfg, configured_checkpoint)
+            if configured_checkpoint
+            else cfgmod.resolve_path(cfg, "ie_checkpoints") / "layoutxlm_multitask" / "final"
+        )
+        configured_calibration = cfg.get("layout_model", {}).get("calibration")
+        calibration = Path(calibration_path) if calibration_path else (
+            _resolve_configured_path(cfg, configured_calibration)
+            if configured_calibration
+            else cfgmod.project_root(cfg) / "models" / "multitask_calibration.json"
         )
         try:
             from src.information_extraction.entity_worker_client import (
@@ -96,8 +110,14 @@ class DocumentPipeline:
                 device=torch_device,
                 cache_dir=cfgmod.resolve_path(cfg, "layout_models"),
                 max_length=int(cfg.get("layout_model", {}).get("max_length", 512)),
+                calibration_path=calibration,
+                confidence_threshold=confidence_threshold,
             )
         except Exception as exc:
+            if require_layout_model:
+                raise DocumentPipelineError(
+                    f"required final layout model failed to initialize: {type(exc).__name__}: {exc}"
+                ) from exc
             warnings.append(
                 f"layout model unavailable; evidence-only generic/rule fallback active: {type(exc).__name__}: {exc}"
             )
@@ -162,12 +182,13 @@ class DocumentPipeline:
         started = time.perf_counter()
         output_pages: list[dict[str, Any]] = []
         page_fields: list[dict[str, Any]] = []
+        page_document_types: list[dict[str, Any]] = []
         routes: list[str] = []
         confidences: list[float] = []
         warnings = list(self.initialization_warnings)
         for page in pages:
             try:
-                result, fields = self._extract_page(
+                result, fields, document_type = self._extract_page(
                     page,
                     language=language,
                     language_hint=language_hint,
@@ -180,18 +201,21 @@ class DocumentPipeline:
                     ) from exc
                 result = _failed_page(page, exc)
                 fields = {}
+                document_type = {"label": "unknown", "confidence": None}
                 warnings.append(f"page {page.page_number} failed and was retained as an empty result")
             output_pages.append(result)
             page_fields.append(fields)
+            page_document_types.append(document_type)
             routes.append(str(result["ocr"]["language_route"]))
             if result["ocr"]["mean_confidence"] is not None:
                 confidences.append(float(result["ocr"]["mean_confidence"]))
 
-        fields, conflict_warnings = _merge_fields(page_fields)
+        fields, conflict_warnings = merge_document_fields(page_fields)
         warnings.extend(conflict_warnings)
-        title = fields.get("document_title")
-        document_type = str(title["value"]) if title else "unknown"
-        type_confidence = float(title["confidence"]) if title and title["confidence"] is not None else None
+        document_type, type_confidence, type_warnings = _merge_document_types(
+            page_document_types
+        )
+        warnings.extend(type_warnings)
         detected_languages = _detected_languages(output_pages)
         selected_route = routes[0] if routes and len(set(routes)) == 1 else "auto"
         rotation_display = safe_kmeans_display(
@@ -225,7 +249,7 @@ class DocumentPipeline:
         language: str,
         language_hint: str | None,
         deskew_angle: float | None,
-    ) -> tuple[dict[str, Any], dict[str, Any]]:
+    ) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any]]:
         image = page.image
         ocr = self.ocr.extract_page(
             image,
@@ -236,24 +260,51 @@ class DocumentPipeline:
         )
         page_warnings = list(ocr.get("warnings") or [])
         entities: list[dict[str, Any]] = []
+        model_relations: list[dict[str, Any]] = []
+        model_fields: dict[str, Any] = {}
+        model_tables: list[dict[str, Any]] = []
+        document_type = {"label": "unknown", "confidence": None}
         if self.entity_extractor is not None:
             try:
-                entities, model_warnings = self.entity_extractor.extract(
+                model_result = self.entity_extractor.extract(
                     ocr,
                     page_number=page.page_number,
                     width=image.width,
                     height=image.height,
                 )
-                page_warnings.extend(model_warnings)
+                if isinstance(model_result, Mapping):
+                    entities = list(model_result.get("entities") or [])
+                    model_relations = list(model_result.get("relations") or [])
+                    model_fields = dict(model_result.get("canonical_fields") or {})
+                    model_tables = list(model_result.get("tables") or [])
+                    document_type = dict(
+                        model_result.get("document_type")
+                        or {"label": "unknown", "confidence": None}
+                    )
+                    page_warnings.extend(model_result.get("warnings") or [])
+                else:
+                    entities, model_warnings = model_result
+                    page_warnings.extend(model_warnings)
             except Exception as exc:
                 page_warnings.append(
                     f"layout entity inference failed; generic fallback used: {type(exc).__name__}: {exc}"
                 )
+        if not model_tables:
+            try:
+                model_tables = reconstruct_ocr_tables(
+                    ocr.get("words") or [], page_number=page.page_number
+                )
+            except Exception as exc:
+                page_warnings.append(
+                    f"OCR geometry table reconstruction failed independently: {type(exc).__name__}: {exc}"
+                )
         generic = generic_key_value_entities(ocr, page_number=page.page_number)
         entities = _merge_entities(entities, generic)
-        relations = infer_relations(entities)
-        fields, rule_warnings = extract_rule_fields(ocr, page_number=page.page_number)
+        relations = _merge_relations(model_relations, infer_relations(entities))
+        rule_fields, rule_warnings = extract_rule_fields(ocr, page_number=page.page_number)
         page_warnings.extend(rule_warnings)
+        fields, field_warnings = merge_page_fields(model_fields, rule_fields)
+        page_warnings.extend(field_warnings)
         transform = ocr.get("candidate_transform") or _identity_transform(image.width, image.height)
         page_result = {
             "page_number": int(page.page_number),
@@ -274,14 +325,14 @@ class DocumentPipeline:
             },
             "entities": entities,
             "key_value_pairs": relations,
-            "tables": [],
+            "tables": model_tables,
             "warnings": page_warnings,
             "transforms": {
                 "forward": transform["forward"],
                 "inverse": transform["inverse"],
             },
         }
-        return page_result, fields
+        return page_result, fields, document_type
 
 
 def _merge_entities(
@@ -297,7 +348,52 @@ def _merge_entities(
     return result
 
 
-def _merge_fields(values: Sequence[Mapping[str, Any]]) -> tuple[dict[str, Any], list[str]]:
+def merge_page_fields(
+    model_fields: Mapping[str, Any],
+    rule_fields: Mapping[str, Any],
+    *,
+    conflict_margin: float = 0.15,
+) -> tuple[dict[str, Any], list[str]]:
+    """Fuse model/rule evidence and abstain on unresolved disagreement."""
+    merged: dict[str, Any] = {}
+    warnings: list[str] = []
+    for field in sorted(set(model_fields) | set(rule_fields)):
+        model_value = model_fields.get(field)
+        rule_value = rule_fields.get(field)
+        if model_value is None:
+            merged[field] = dict(rule_value)
+            continue
+        if rule_value is None:
+            merged[field] = dict(model_value)
+            continue
+        if _normalized_field_value(model_value.get("value")) == _normalized_field_value(rule_value.get("value")):
+            merged[field] = dict(max(
+                (model_value, rule_value),
+                key=lambda item: float(item.get("confidence") or 0.0),
+            ))
+            continue
+        model_confidence = float(model_value.get("confidence") or 0.0)
+        rule_confidence = float(rule_value.get("confidence") or 0.0)
+        if abs(model_confidence - rule_confidence) >= conflict_margin:
+            merged[field] = dict(
+                model_value if model_confidence > rule_confidence else rule_value
+            )
+            warnings.append(
+                f"model/rule {field} conflict; selected evidence with a calibrated confidence margin"
+            )
+        else:
+            warnings.append(
+                f"model/rule {field} conflict was unresolved; abstained"
+            )
+    return merged, warnings
+
+
+def merge_document_fields(
+    values: Sequence[Mapping[str, Any]],
+    *,
+    conflict_margin: float = 0.10,
+) -> tuple[dict[str, Any], list[str]]:
+    """Aggregate page evidence, deduplicate support, and abstain on close conflicts."""
     grouped: dict[str, list[dict[str, Any]]] = {}
     for page_fields in values:
         for field, evidence in page_fields.items():
@@ -305,11 +401,83 @@ def _merge_fields(values: Sequence[Mapping[str, Any]]) -> tuple[dict[str, Any], 
     merged: dict[str, Any] = {}
     warnings: list[str] = []
     for field, candidates in grouped.items():
-        candidates.sort(key=lambda item: float(item.get("confidence") or 0.0), reverse=True)
-        merged[field] = candidates[0]
-        if len({str(item.get("value")) for item in candidates}) > 1:
-            warnings.append(f"multiple page-level {field} values; selected highest-confidence evidence")
+        by_value: dict[str, list[dict[str, Any]]] = {}
+        for candidate in candidates:
+            by_value.setdefault(
+                _normalized_field_value(candidate.get("value")), []
+            ).append(candidate)
+        ranked = []
+        for normalized, supporting in by_value.items():
+            best = max(
+                supporting,
+                key=lambda item: float(item.get("confidence") or 0.0),
+            )
+            support_bonus = min(0.10, 0.03 * (len(supporting) - 1))
+            score = min(1.0, float(best.get("confidence") or 0.0) + support_bonus)
+            ranked.append((score, normalized, best))
+        ranked.sort(key=lambda item: (item[0], item[1]), reverse=True)
+        if len(ranked) > 1 and ranked[0][0] - ranked[1][0] < conflict_margin:
+            warnings.append(
+                f"conflicting page-level {field} values were too close; abstained"
+            )
+            continue
+        merged[field] = dict(ranked[0][2])
+        if len(ranked) > 1:
+            warnings.append(
+                f"multiple page-level {field} values; selected evidence with a confidence margin"
+            )
     return merged, warnings
+
+
+def _merge_relations(
+    model_relations: Sequence[Mapping[str, Any]],
+    rule_relations: Sequence[Mapping[str, Any]],
+) -> list[dict[str, Any]]:
+    result = [dict(relation) for relation in model_relations]
+    existing = {
+        (relation.get("source_id"), relation.get("target_id"), relation.get("type"))
+        for relation in result
+    }
+    for relation in rule_relations:
+        key = (relation.get("source_id"), relation.get("target_id"), relation.get("type"))
+        if key not in existing:
+            result.append(dict(relation))
+            existing.add(key)
+    return result
+
+
+def _merge_document_types(
+    values: Sequence[Mapping[str, Any]],
+) -> tuple[str, float | None, list[str]]:
+    usable = [
+        value for value in values
+        if value.get("label") not in {None, "", "unknown"}
+        and value.get("confidence") is not None
+    ]
+    if not usable:
+        return "unknown", None, []
+    grouped: dict[str, list[float]] = {}
+    for value in usable:
+        grouped.setdefault(str(value["label"]), []).append(float(value["confidence"]))
+    ranked = sorted(
+        ((statistics.fmean(scores), label) for label, scores in grouped.items()),
+        reverse=True,
+    )
+    if len(ranked) > 1 and ranked[0][0] - ranked[1][0] < 0.10:
+        return "unknown", ranked[0][0], [
+            "page-level document classifications conflicted; abstained"
+        ]
+    warnings = ["page-level document classifications conflicted; selected confidence winner"] if len(ranked) > 1 else []
+    return ranked[0][1], ranked[0][0], warnings
+
+
+def _normalized_field_value(value: Any) -> str:
+    return " ".join(str(value).casefold().split())
+
+
+def _resolve_configured_path(cfg: Mapping[str, Any], value: Any) -> Path:
+    path = Path(str(value))
+    return path if path.is_absolute() else cfgmod.project_root(cfg) / path
 
 
 def _detected_languages(pages: Sequence[Mapping[str, Any]]) -> list[str]:

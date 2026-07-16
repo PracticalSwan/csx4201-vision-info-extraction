@@ -4,6 +4,7 @@ from src.evaluation.metrics import (
     ocr_text_metrics,
     text_detection_metrics,
 )
+from scripts.evaluate_end_to_end_angles import _aggregate_angle
 
 
 def test_edit_distance_and_ocr_metrics() -> None:
@@ -58,3 +59,22 @@ def test_text_detection_without_reference_is_unavailable() -> None:
     assert metrics["precision"] is None
     assert metrics["recall"] is None
     assert metrics["f1"] is None
+
+
+def test_end_to_end_angle_metrics_remain_separate_by_dataset() -> None:
+    def row(dataset: str, coverage: float) -> dict:
+        return {
+            "dataset": dataset, "recognized_text_coverage": coverage,
+            "wer": 1.0 - coverage, "detection_f1": coverage,
+            "entity_f1": coverage, "entity_expected": 1,
+            "relation_f1": coverage, "relation_expected": 1,
+            "field_correct": int(coverage == 1.0), "field_applicable": 1,
+            "nonempty": True, "route": "general", "table_count": 0,
+        }
+
+    metrics = _aggregate_angle(37, [row("fatura", 1.0), row("funsd", 0.5)])
+
+    assert metrics["angle"] == 37
+    assert metrics["recognized_text_coverage"] == 0.75
+    assert metrics["by_dataset"]["fatura"]["recognized_text_coverage"] == 1.0
+    assert metrics["by_dataset"]["funsd"]["recognized_text_coverage"] == 0.5

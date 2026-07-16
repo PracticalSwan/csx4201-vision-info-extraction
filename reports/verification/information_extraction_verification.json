@@ -2,8 +2,8 @@
   "schema_version": "1.0",
   "status": "passed",
   "complete_mode": true,
-  "checks_passed": 29,
-  "checks_total": 29,
+  "checks_passed": 46,
+  "checks_total": 46,
   "checks": [
     {
       "name": "storage_reserve",
@@ -11,10 +11,14 @@
       "detail": {
         "minimum_c_free_gib": 15.0,
         "minimum_asset_free_gib": 15.0,
+        "anticipated_c_gib": 0.0,
+        "anticipated_asset_gib": 0.0,
         "passed": true,
         "errors": [],
-        "c_free_gib": 45.206,
-        "asset_free_gib": 386.118
+        "c_free_gib": 45.11,
+        "projected_c_free_gib": 45.11,
+        "asset_free_gib": 381.98,
+        "projected_asset_free_gib": 381.98
       }
     },
     {
@@ -64,6 +68,21 @@
       "detail": null
     },
     {
+      "name": "final_split_group_leakage_zero",
+      "passed": true,
+      "detail": {
+        "rows": 12433,
+        "identities_checked": 29886,
+        "violation_count": 0,
+        "violation_sample": []
+      }
+    },
+    {
+      "name": "coru_is_wholly_unseen_domain",
+      "passed": true,
+      "detail": null
+    },
+    {
       "name": "private_operational_manifest_ignored",
       "passed": true,
       "detail": null
@@ -71,7 +90,7 @@
     {
       "name": "model_dataset_summary",
       "passed": true,
-      "detail": 9
+      "detail": 11684
     },
     {
       "name": "model_dataset_gmail_fit_zero",
@@ -79,12 +98,26 @@
       "detail": null
     },
     {
-      "name": "model_dataset_has_examples",
+      "name": "model_dataset_has_full_public_corpus",
+      "passed": true,
+      "detail": 11684
+    },
+    {
+      "name": "model_dataset_has_three_labeled_sources",
+      "passed": true,
+      "detail": {
+        "fatura": 10184,
+        "sroie": 1149,
+        "funsd": 351
+      }
+    },
+    {
+      "name": "model_dataset_private_fit_zero",
       "passed": true,
       "detail": null
     },
     {
-      "name": "layout_training_report",
+      "name": "final_multitask_training_report",
       "passed": true,
       "detail": null
     },
@@ -94,12 +127,17 @@
       "detail": null
     },
     {
-      "name": "relation_head_reload",
+      "name": "layout_training_gmail_fit_zero",
       "passed": true,
       "detail": null
     },
     {
-      "name": "layout_training_gmail_fit_zero",
+      "name": "layout_training_public_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "layout_training_profile_final",
       "passed": true,
       "detail": null
     },
@@ -109,12 +147,47 @@
       "detail": null
     },
     {
+      "name": "final_checkpoint_complete",
+      "passed": true,
+      "detail": "D:\\CSX4201\\vision-info-extraction-assets\\checkpoints\\layoutxlm_multitask\\final"
+    },
+    {
+      "name": "final_calibration_report",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "calibration_profile_final",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "calibration_public_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "calibration_private_zero",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "calibration_checkpoint_hash_bound",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "calibration_build_bound",
+      "passed": true,
+      "detail": null
+    },
+    {
       "name": "ocr_model_verification",
       "passed": true,
       "detail": null
     },
     {
-      "name": "public_smoke_evaluation",
+      "name": "locked_public_test_evaluation",
       "passed": true,
       "detail": null
     },
@@ -142,12 +215,37 @@
       "detail": null
     },
     {
+      "name": "layout_angle_grid_evaluation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "end_to_end_angle_grid_evaluation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "public_only_ocr_ablation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "required_final_reports",
+      "passed": true,
+      "detail": []
+    },
+    {
       "name": "private_report_aggregate_only",
       "passed": true,
       "detail": null
     },
     {
       "name": "private_report_gmail_fit_zero",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "private_report_checkpoint_hash_bound",
       "passed": true,
       "detail": null
     },

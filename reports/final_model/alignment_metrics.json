@@ -1,0 +1,120 @@
+{
+  "schema_version": "1.0",
+  "scope": "public OCR-variant examples only; ground-truth stream is immutable",
+  "by_dataset": {
+    "fatura": {
+      "hybrid": {
+        "pages": 92,
+        "source_tokens": 6190,
+        "matched_tokens": 5868,
+        "unmatched_tokens": 322,
+        "unmatched_ocr_tokens": 1619,
+        "mean_alignment_coverage": 0.9469887753481201,
+        "mean_entity_retention_rate": 1.0,
+        "mean_relation_retention_rate": 1.0,
+        "mean_canonical_retention_rate": 1.0,
+        "mean_data_quality_score": 0.7138013810562274,
+        "field_availability": {
+          "address": 81,
+          "date": 92,
+          "document_title": 55,
+          "email": 53,
+          "invoice_number": 87,
+          "organization_name": 78,
+          "subtotal": 58,
+          "tax": 33,
+          "total_amount": 83
+        }
+      },
+      "paddleocr": {
+        "pages": 92,
+        "source_tokens": 6190,
+        "matched_tokens": 5868,
+        "unmatched_tokens": 322,
+        "unmatched_ocr_tokens": 1619,
+        "mean_alignment_coverage": 0.9469887753481201,
+        "mean_entity_retention_rate": 0.7872396323483281,
+        "mean_relation_retention_rate": 1.0,
+        "mean_canonical_retention_rate": 1.0,
+        "mean_data_quality_score": 0.8958359247703341,
+        "field_availability": {
+          "address": 81,
+          "date": 92,
+          "document_title": 55,
+          "email": 53,
+          "invoice_number": 87,
+          "organization_name": 78,
+          "subtotal": 58,
+          "tax": 33,
+          "total_amount": 83
+        }
+      }
+    },
+    "funsd": {
+      "hybrid": {
+        "pages": 76,
+        "source_tokens": 11739,
+        "matched_tokens": 7169,
+        "unmatched_tokens": 4570,
+        "unmatched_ocr_tokens": 64,
+        "mean_alignment_coverage": 0.6233041530746515,
+        "mean_entity_retention_rate": 1.0,
+        "mean_relation_retention_rate": 1.0,
+        "mean_canonical_retention_rate": 1.0,
+        "mean_data_quality_score": 0.6408185129013269,
+        "field_availability": {}
+      },
+      "paddleocr": {
+        "pages": 76,
+        "source_tokens": 11739,
+        "matched_tokens": 7169,
+        "unmatched_tokens": 4570,
+        "unmatched_ocr_tokens": 64,
+        "mean_alignment_coverage": 0.6233041530746515,
+        "mean_entity_retention_rate": 0.9418771733153647,
+        "mean_relation_retention_rate": 0.9069175498287304,
+        "mean_canonical_retention_rate": 1.0,
+        "mean_data_quality_score": 0.8519751151455243,
+        "field_availability": {}
+      }
+    },
+    "sroie": {
+      "hybrid": {
+        "pages": 88,
+        "source_tokens": 4724,
+        "matched_tokens": 4509,
+        "unmatched_tokens": 215,
+        "unmatched_ocr_tokens": 132,
+        "mean_alignment_coverage": 0.9602103979206977,
+        "mean_entity_retention_rate": 1.0,
+        "mean_relation_retention_rate": 1.0,
+        "mean_canonical_retention_rate": 1.0,
+        "mean_data_quality_score": 0.9313367566484602,
+        "field_availability": {
+          "address": 88,
+          "date": 67,
+          "organization_name": 74,
+          "total_amount": 88
+        }
+      },
+      "paddleocr": {
+        "pages": 88,
+        "source_tokens": 4724,
+        "matched_tokens": 4509,
+        "unmatched_tokens": 215,
+        "unmatched_ocr_tokens": 132,
+        "mean_alignment_coverage": 0.9602103979206977,
+        "mean_entity_retention_rate": 0.930871212121212,
+        "mean_relation_retention_rate": 1.0,
+        "mean_canonical_retention_rate": 0.8323863636363636,
+        "mean_data_quality_score": 0.935054480121342,
+        "field_availability": {
+          "address": 88,
+          "date": 55,
+          "organization_name": 64,
+          "total_amount": 86
+        }
+      }
+    }
+  }
+}

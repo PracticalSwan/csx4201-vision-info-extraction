@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify exact OCR artifacts and run general, Thai, and rotated smoke tests."""
+"""Verify exact OCR artifacts plus Thai, cardinal, and arbitrary-angle OCR."""
 from __future__ import annotations
 
 import argparse
@@ -54,6 +54,12 @@ def main() -> int:
                 90, expand=True, fillcolor="white"
             ),
         ),
+        "arbitrary_angle_general": _arbitrary_rotation_smoke(
+            rotation_pipeline,
+            _synthetic("INVOICE TOTAL 123.45").rotate(
+                17, expand=True, fillcolor="white"
+            ),
+        ),
     }
     payload = {
         "schema_version": "1.0", "device": args.device,
@@ -105,6 +111,41 @@ def _rotation_smoke(pipeline: MultilingualOCR, image: Image.Image) -> dict:
             "detector_model": result.get("detector_model"),
             "recognizer_model": result.get("recognizer_model"),
             "selected_orientation": result.get("orientation"),
+            "required_fragments": list(required_fragments),
+            "recognized_text_preview": str(result.get("full_text", ""))[:120],
+        }
+    except Exception as exc:
+        return {"passed": False, "error": f"{type(exc).__name__}: {exc}"}
+
+
+def _arbitrary_rotation_smoke(pipeline: MultilingualOCR, image: Image.Image) -> dict:
+    """Require a polygon-derived fine candidate and real phrase recovery."""
+    try:
+        result = pipeline.extract_page(image, language_mode="general")
+        normalized = " ".join(str(result.get("full_text", "")).upper().split())
+        required_fragments = ("INVOICE", "TOTAL", "123.45")
+        fine_scores = [
+            value
+            for value in result.get("candidate_scores", [])
+            if value.get("candidate_kind") == "fine_deskew"
+        ]
+        valid = (
+            result.get("detector_model") == "PP-OCRv6_medium_det"
+            and result.get("recognizer_model") == "PP-OCRv6_medium_rec"
+            and bool(result.get("words"))
+            and all(fragment in normalized for fragment in required_fragments)
+            and bool(fine_scores)
+            and result.get("fine_deskew") is not None
+        )
+        return {
+            "passed": valid,
+            "word_count": len(result.get("words") or []),
+            "mean_confidence": result.get("mean_confidence"),
+            "detector_model": result.get("detector_model"),
+            "recognizer_model": result.get("recognizer_model"),
+            "selected_orientation": result.get("orientation"),
+            "fine_candidate_count": len(fine_scores),
+            "selected_fine_deskew": result.get("fine_deskew"),
             "required_fragments": list(required_fragments),
             "recognized_text_preview": str(result.get("full_text", ""))[:120],
         }

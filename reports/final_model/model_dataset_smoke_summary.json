@@ -1,0 +1,56 @@
+{
+  "schema_version": "2.0",
+  "profile": "smoke",
+  "build_id": "smoke-5238c95f6033c9cf",
+  "streams": [
+    "ground_truth",
+    "hybrid",
+    "paddleocr"
+  ],
+  "candidate_page_count": 32,
+  "build_provenance": {
+    "preprocessing_version": "2.0-cardinal-polygon-fine",
+    "orientation_policy": {
+      "cardinal_angles": [
+        0,
+        90,
+        180,
+        270
+      ],
+      "polygon_fine_deskew": true,
+      "kmeans_controls_ocr": false
+    },
+    "ocr_model_artifact_hashes": {
+      "PP-OCRv6_medium_det": "393f629d341e6388ca72d19b25983b96cae36dfdf1f7146adf42d6ab68789388",
+      "PP-OCRv6_medium_rec": "666f7c4d6d5c846c7e202f63356b3fc4a7a3d4ff7040e763b93c5771608c7ae0",
+      "th_PP-OCRv5_mobile_rec": "507c659e3abb6c2c7262a07965ec880119751a29e3c8ed7437b337f74b36608d"
+    }
+  },
+  "usable_example_count": 96,
+  "excluded_example_count": 0,
+  "counts_by_dataset": {
+    "fatura": 36,
+    "funsd": 36,
+    "sroie": 24
+  },
+  "counts_by_split": {
+    "dev_calibration": 24,
+    "dev_select": 24,
+    "test_in_domain": 24,
+    "train": 24
+  },
+  "counts_by_stream": {
+    "ground_truth": 32,
+    "hybrid": 32,
+    "paddleocr": 32
+  },
+  "exclusion_counts": {},
+  "minimum_alignment_coverage": null,
+  "whole_page_alignment_rejection_enabled": false,
+  "gmail_fit_rows": 0,
+  "output_root": "D:\\CSX4201\\vision-info-extraction-assets\\data\\model_datasets\\smoke\\smoke-5238c95f6033c9cf",
+  "manifest_path": "C:\\Assumption University\\CSX4201\\Project\\data\\metadata\\model_dataset_smoke_manifest.csv",
+  "manifest_sha256": "97a80e38b6ea8e6f98f1a2d23a9a7964dca7a54c05f62f92b96a31a19d3a7dcf",
+  "split_manifest_path": "C:\\Assumption University\\CSX4201\\Project\\data\\metadata\\information_extraction_split_manifest.csv",
+  "split_manifest_sha256": "8dfe1c09d088ab8562d936fe12367be1f9998b9c2658a2bacf38780a82a75132"
+}

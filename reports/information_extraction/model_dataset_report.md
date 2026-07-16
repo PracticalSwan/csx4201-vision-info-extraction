@@ -1,12 +1,16 @@
 # Model dataset report
 
-Profile: `smoke`.
-Usable PaddleOCR-aligned examples: 9.
-Excluded examples: 7.
-Minimum source-label alignment coverage: 0.70.
-Counts by dataset: `{"fatura": 4, "funsd": 2, "sroie": 3}`.
-Counts by split: `{"test": 4, "train": 3, "validation": 2}`.
-Exclusions: `{"alignment_below_threshold": 1, "requires_ocr_alignment_without_source_token_geometry": 6}`.
+Profile: `final`.
+Build: `final-6be3e0b46b0a4e4c`.
+Streams: `["ground_truth", "hybrid", "paddleocr"]`.
+Candidate source pages: 11172.
+Usable examples: 11684.
+Excluded examples: 0.
+Whole-page alignment rejection: **disabled**; partial targets use explicit masks.
+Counts by dataset: `{"fatura": 10184, "funsd": 351, "sroie": 1149}`.
+Counts by split: `{"dev_calibration": 763, "dev_select": 1243, "test_in_domain": 1896, "train": 7782}`.
+Counts by stream: `{"ground_truth": 11172, "hybrid": 256, "paddleocr": 256}`.
+Exclusions: `{}`.
 Gmail fit rows: **0**.
 
 OCR result cache keys include image and exact model artifact hashes, route/orientation configuration, PaddleOCR version, and preprocessing version.

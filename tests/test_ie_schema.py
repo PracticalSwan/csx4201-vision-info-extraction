@@ -73,3 +73,54 @@ def test_unknown_canonical_field_rejected() -> None:
             device="cpu",
             fields={"invented": None},
         )
+
+
+def test_table_output_has_a_schema_validated_geometry_contract() -> None:
+    page = _page()
+    page["tables"] = [{
+        "id": "table-1",
+        "page_number": 1,
+        "method": "geometry:table_cell_grid",
+        "source": "model_entities",
+        "confidence": 0.9,
+        "row_count": 1,
+        "column_count": 1,
+        "bbox": [0, 0, 20, 10],
+        "cells": [{
+            "row_index": 0,
+            "column_index": 0,
+            "text": "A",
+            "bbox": [0, 0, 20, 10],
+            "polygon": [[0, 0], [20, 0], [20, 10], [0, 10]],
+            "entity_id": "entity-1",
+            "confidence": 0.9,
+            "semantic_type": "unknown",
+        }],
+        "header_row_index": None,
+        "rows": [{
+            "row_index": 0,
+            "row_type": "unknown",
+            "cells": [{
+                "row_index": 0, "column_index": 0, "text": "A",
+                "bbox": [0, 0, 20, 10],
+                "polygon": [[0, 0], [20, 0], [20, 10], [0, 10]],
+                "entity_id": "entity-1", "confidence": 0.9,
+                "semantic_type": "unknown",
+            }],
+        }],
+        "source_polygons": [[[0, 0], [20, 0], [20, 10], [0, 10]]],
+        "warnings": [],
+        "raw_ocr_fallback": "A",
+    }]
+    result = build_document_result(
+        document_id="doc_1",
+        source_type="image",
+        pages=[page],
+        device="cpu",
+    )
+    validate_document_result(result)
+
+    invalid = copy.deepcopy(result)
+    del invalid["pages"][0]["tables"][0]["row_count"]
+    with pytest.raises(OutputValidationError, match="row_count"):
+        validate_document_result(invalid)

@@ -19,17 +19,21 @@ def main() -> int:
     parser.add_argument("--device", choices=("cpu", "cuda"), default="cpu")
     parser.add_argument("--cache-dir")
     parser.add_argument("--max-length", type=int, default=512)
+    parser.add_argument("--calibration")
+    parser.add_argument("--confidence-threshold", type=float)
     args = parser.parse_args()
     sys.stdout.reconfigure(encoding="utf-8")
     sys.stderr.reconfigure(encoding="utf-8")
     configure_external_environment()
-    from src.information_extraction.entity_inference import LayoutEntityExtractor
+    from src.information_extraction.multitask_inference import MultiTaskLayoutExtractor
 
-    extractor = LayoutEntityExtractor(
+    extractor = MultiTaskLayoutExtractor(
         args.checkpoint,
         device=args.device,
         cache_dir=args.cache_dir,
         max_length=args.max_length,
+        calibration_path=args.calibration,
+        confidence_threshold=args.confidence_threshold,
     )
     for line in sys.stdin:
         try:
@@ -38,13 +42,13 @@ def main() -> int:
                 return 0
             if request.get("action") != "extract":
                 raise ValueError("unsupported worker action")
-            entities, warnings = extractor.extract(
+            result = extractor.extract(
                 request["ocr_result"],
                 page_number=int(request["page_number"]),
                 width=int(request["width"]),
                 height=int(request["height"]),
             )
-            response = {"status": "ok", "entities": entities, "warnings": warnings}
+            response = {"status": "ok", **result}
         except Exception as exc:
             response = {"status": "error", "error": f"{type(exc).__name__}: {exc}"}
         print(json.dumps(response, ensure_ascii=False, separators=(",", ":")), flush=True)

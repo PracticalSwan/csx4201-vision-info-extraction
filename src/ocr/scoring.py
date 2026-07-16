@@ -44,7 +44,11 @@ def score_ocr_candidate(
     )
     thai_ratio = thai_chars / max(1, script_chars)
     script_consistency = thai_ratio if route == "thai" else 1.0 - thai_ratio
-    coverage = min(1.0, sum(_box_area(word.get("bbox")) for word in words) / max(1.0, image_width * image_height))
+    coverage = min(
+        1.0,
+        sum(_word_area(word) for word in words)
+        / max(1.0, image_width * image_height),
+    )
     word_count_score = min(1.0, math.log1p(len(texts)) / math.log(41.0))
     empty_line_rate = 0.0 if texts else 1.0
     duplicates = Counter(text.casefold().strip() for text in texts)
@@ -93,6 +97,24 @@ def _box_area(value: Any) -> float:
     except (TypeError, ValueError):
         return 0.0
     return max(0.0, x1 - x0) * max(0.0, y1 - y0)
+
+
+def _word_area(word: Mapping[str, Any]) -> float:
+    polygon = word.get("polygon")
+    try:
+        points = [(float(point[0]), float(point[1])) for point in polygon]
+    except (TypeError, ValueError, IndexError):
+        points = []
+    if len(points) >= 3:
+        area = abs(
+            sum(
+                x0 * y1 - x1 * y0
+                for (x0, y0), (x1, y1) in zip(points, points[1:] + points[:1])
+            )
+        ) / 2.0
+        if area > 0.0:
+            return area
+    return _box_area(word.get("bbox"))
 
 
 def _garbage_ratio(texts: list[str]) -> float:

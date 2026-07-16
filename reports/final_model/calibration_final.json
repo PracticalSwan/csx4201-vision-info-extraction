@@ -1,0 +1,126 @@
+{
+  "schema_version": "1.0",
+  "profile": "final",
+  "split": "dev_calibration",
+  "token_sources": [
+    "ground_truth",
+    "paddleocr"
+  ],
+  "public_only": true,
+  "private_example_count": 0,
+  "gmail_fit_rows": 0,
+  "checkpoint": "D:\\CSX4201\\vision-info-extraction-assets\\checkpoints\\layoutxlm_multitask\\final",
+  "checkpoint_model_sha256": "34c7a26e78d6285a2739e1b61839eadfd0e686ccbcf57f9cb47997c12cef2189",
+  "checkpoint_build_id": "final-6be3e0b46b0a4e4c",
+  "manifest_path": "C:\\Assumption University\\CSX4201\\Project\\data\\metadata\\final_model_dataset_manifest.csv",
+  "manifest_sha256": "448582175cc832f336ee5e2654b7f1f1d417f8d47d8c6a08b2a91cd03334d200",
+  "example_count": 708,
+  "window_count": 708,
+  "temperatures": {
+    "entity": 1.2236554622650146,
+    "canonical": 1.368909239768982,
+    "document": 0.5326269865036011,
+    "relation": 0.7229929566383362
+  },
+  "thresholds": {
+    "entity": 0.5211008191108704,
+    "canonical": 0.9263173937797546,
+    "relation": 0.5719664692878723,
+    "document": 0.9999979734420776
+  },
+  "canonical_field_thresholds": {
+    "organization_name": 0.9454855918884277,
+    "document_title": 0.8902900218963623,
+    "date": 0.9396809339523315,
+    "invoice_number": 0.6942762732505798,
+    "subtotal": 0.9603718519210815,
+    "tax": 0.8013505339622498,
+    "total_amount": 0.6891745924949646,
+    "address": 0.713550865650177,
+    "email": 0.9435495138168335
+  },
+  "metrics": {
+    "entity": {
+      "support": 56141,
+      "temperature": 1.2236554622650146,
+      "threshold": 0.5211008191108704,
+      "nll_before": 0.05977180600166321,
+      "nll_after": 0.05827336013317108,
+      "ece_before": 0.0031689788697419202,
+      "ece_after": 0.003323545283470802,
+      "positive_f1_without_abstention": 0.9741422756348129,
+      "positive_f1_with_abstention": 0.9776827737684343
+    },
+    "canonical": {
+      "support": 50365,
+      "temperature": 1.368909239768982,
+      "threshold": 0.9263173937797546,
+      "nll_before": 0.0890633761882782,
+      "nll_after": 0.08041293174028397,
+      "ece_before": 0.010628900016820469,
+      "ece_after": 0.007311418179152962,
+      "positive_f1_without_abstention": 0.9640441438234247,
+      "positive_f1_with_abstention": 0.9766237216097755
+    },
+    "relation": {
+      "support": 4395,
+      "temperature": 0.7229929566383362,
+      "threshold": 0.5719664692878723,
+      "nll_before": 0.33560431003570557,
+      "nll_after": 0.3299521803855896,
+      "ece_before": 0.030985322774338117,
+      "ece_after": 0.01450558405144901,
+      "positive_f1_without_abstention": 0.47455386649041637,
+      "positive_f1_with_abstention": 0.5029436501261564
+    },
+    "document": {
+      "support": 708,
+      "temperature": 0.5326269865036011,
+      "threshold": 0.9999979734420776,
+      "nll_before": 0.005357906688004732,
+      "nll_after": 0.0037586467806249857,
+      "ece_before": 0.004220776470367569,
+      "ece_after": 0.00235864823147399,
+      "coverage": 0.901129961013794,
+      "selective_accuracy": 1.0,
+      "class_count": 4
+    }
+  },
+  "label_support": {
+    "entity": {
+      "11": 598,
+      "5": 5095,
+      "6": 18276,
+      "0": 30512,
+      "7": 420,
+      "9": 419,
+      "1": 56,
+      "2": 61,
+      "10": 439,
+      "8": 265
+    },
+    "canonical": {
+      "0": 34997,
+      "1": 2090,
+      "13": 638,
+      "3": 1739,
+      "4": 1510,
+      "12": 6527,
+      "2": 196,
+      "9": 1118,
+      "8": 746,
+      "7": 804
+    },
+    "document": {
+      "0": 617,
+      "1": 71,
+      "2": 20
+    },
+    "relation": {
+      "0": 3811,
+      "2": 450,
+      "5": 134
+    }
+  },
+  "device": "cuda"
+}

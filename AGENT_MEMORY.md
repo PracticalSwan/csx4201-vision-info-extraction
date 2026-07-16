@@ -13,14 +13,18 @@
 - The baseline is technically reproducible but performs modestly: public
   validation/test zone accuracy is about 38%, and exact-angle reliability is
   0% at the configured threshold.
-- A rotation-robust OCR/information-extraction inference and smoke-training
-  lifecycle completed on 2026-07-15. It includes exact PaddleOCR general/Thai
-  models, public annotation normalization, a Detectron2-free LayoutXLM text +
-  2D-layout model, relations/fields, schema-valid image/PDF inference, bounded
-  public evaluation, and aggregate-only private testing.
-- This is implementation and smoke-lifecycle completion, not final model
-  quality. The public smoke entity F1 is about 0.01, relation F1 is 0, and the
-  trained checkpoint used three public training examples.
+- A full rotation-robust OCR/information-extraction lifecycle completed on
+  2026-07-17. It includes exact PaddleOCR general/Thai models, public
+  annotation normalization, a Detectron2-free LayoutXLM text + 2D-layout
+  model, calibrated entities/relations/fields, schema-valid image/PDF
+  inference, locked public evaluation, unseen-domain testing, and
+  aggregate-only private operation.
+- Final build `final-6be3e0b46b0a4e4c` contains 11,684 examples and trained
+  four epochs over 7,782 public training examples. Its exact checkpoint hash
+  is `34c7a26e78d6285a2739e1b61839eadfd0e686ccbcf57f9cb47997c12cef2189`.
+  Reference-token entity F1 is 0.9813; bounded end-to-end entity F1 is only
+  0.1314-0.1830 because OCR remains the main bottleneck. Treat it as a final
+  academic pre-model, not a production or high-stakes system.
 - The workspace is a Git repository with an existing GitHub remote. Recheck
   live visibility and staged privacy before every push.
 
@@ -115,25 +119,29 @@
   angle_estimation.py.
 - Main result roots: data/metadata, data/splits, data/processed,
   models/kmeans_rotation, and reports.
-- OCR/IE CLIs: normalize_ie_annotations.py, setup_ie_environment.ps1,
-  download_ocr_models.py, verify_ocr_models.py, prepare_model_dataset.py,
-  train_layout_model.py, extract_document.py, evaluate_information_extraction.py,
-  evaluate_private_gmail.py, verify_ie_annotations.py, and
-  verify_information_extraction.py.
+- OCR/IE CLIs include normalization and verification, environment/model
+  setup, final dataset preparation, multi-task training/calibration,
+  image/PDF inference, locked and angle-grid evaluation, unseen CORU testing,
+  bounded private operation, integration smoke, report compilation, and the
+  complete information-extraction verifier.
 - Large OCR/layout/model/checkpoint/cache assets live below
   D:\CSX4201\vision-info-extraction-assets in isolated Python 3.10 OCR and
   CUDA-layout environments.
 - Required OCR models: PP-OCRv6_medium_det, PP-OCRv6_medium_rec, and
   th_PP-OCRv5_mobile_rec; model hashes and GPU smoke initialization pass.
-- Public annotation normalization produced 12,433 records; the aligned smoke
-  model dataset contains 9 usable examples (3 train, 2 validation, 4 test),
-  with Gmail fit rows 0.
-- Layout smoke training saved/reloaded model and relation-head logits with
-  maximum difference 0.0. Validation loss was 2.3490 and token accuracy 0.1007.
-- Public angle smoke completed 16/16 runs. Private operational inference
-  completed 2/2 pages and published aggregate counts only.
-- Current development suite: 153 tests pass with one environment-dependent
-  skip; OCR-runtime and CUDA-layout partitions pass 50 and 3 tests.
+- Public annotation normalization produced 12,433 authoritative records. The
+  final aligned build contains 11,684 public examples, with Gmail fit rows 0.
+- Final multi-task training saved/reloaded all heads with maximum logit
+  difference 0.0. Public-only calibration is bound to the exact build,
+  manifest, and checkpoint hashes.
+- Locked in-domain calibrated entity/canonical/relation F1 is
+  0.9813/0.9814/0.4632. The 18-angle layout grid retains at least 95.30% of
+  upright entity F1; the 72-case end-to-end grid exposes the weaker real-OCR
+  path while synthetic Thai recovery passes 18/18 angles.
+- Unseen CORU completed 100/100 pages without failures. Private operational
+  inference completed 2/2 pages and published aggregate counts only.
+- Current host suite: 227 tests pass with two environment-dependent skips;
+  OCR-runtime and CUDA-layout partitions pass 122 and 2 tests.
 
 ## Open questions
 
@@ -144,12 +152,14 @@
   four-way orientation method be used?
 - Which angle-estimation approach is expected?
 - What does “pre-model” mean in the final deliverable?
-- What are the official quality thresholds and held-out protocol? Current
-  smoke and natural CORU-holdout results are not final benchmarks.
+- What are the professor's official quality thresholds and held-out protocol?
+  The executed locked and unseen-domain evaluations are project evidence, not
+  an official course benchmark.
 - May any additional derived artifact be produced from the private Gmail set
   beyond ignored local inference and aggregate-only reporting?
 - Is the deliverable a model, notebook, report, or submission?
-- Will a future GitHub repository be public or private?
+- Must the repository remain private for the final course handoff? Recheck
+  live visibility before every publication action.
 
 ## Standing cautions
 
@@ -204,3 +214,19 @@
   three prior blockers, validated 11 integration artifacts plus 13 focused
   regressions, and confirmed all three closed with no reproducible completion
   blocker remaining.
+- 2026-07-17 - Completed the final public multi-task run, public-only
+  calibration, one locked in-domain test, required layout and end-to-end angle
+  grids, exact OCR/integration verification, deterministic 100-page unseen
+  CORU evaluation, and aggregate-only two-page private operation. The final
+  checkpoint reloads exactly; host/OCR/layout test partitions pass
+  227 (2 skipped), 122, and 2 tests. Real OCR remains the documented
+  end-to-end bottleneck, and K-Means remains display-only.
+- 2026-07-17 - Final independent review closed explicit-checkpoint
+  documentation, fail-closed calibration and private-input boundaries,
+  transitive learned-worker integration hashes, locked 100/100 unseen
+  verification, required private-inventory scanning, and exact model-example
+  reuse validation. Fresh integration passes with 17 source hashes, 11
+  external artifacts, four cases, and zero private inputs; complete IE
+  verification passes 46/46. Conservative cleanup removed 19.740 GiB of
+  obsolete development/smoke datasets and checkpoints while preserving and
+  re-hashing the final checkpoint, resume state, and final model dataset.

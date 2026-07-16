@@ -2,52 +2,72 @@
   "schema_version": "1.0",
   "status": "passed",
   "generated_by": "scripts/run_integration_smoke.py",
-  "generated_at_utc": "2026-07-15T16:47:32.427427+00:00",
+  "generated_at_utc": "2026-07-16T20:24:51.680292+00:00",
   "command": [
     "D:\\CSX4201\\vision-info-extraction-assets\\environments\\ie-ocr\\Scripts\\python.exe",
     "scripts/run_integration_smoke.py",
     "--device",
     "gpu:0"
   ],
-  "source_revision": "b5267af00509fa270a3acd3d66788d4dd7f9e6b3",
+  "source_revision": "29d082d36d7119ba1300d2f25eb31e86c7ccb2dc",
   "device": "gpu:0",
   "private_inputs_used": false,
   "source_hashes": {
     "runner": {
       "path": "scripts/run_integration_smoke.py",
-      "sha256": "8dfa9e6aa362b6fc756b19380ffcc886ff3093b5561f6798d712a63b46b5f289"
+      "sha256": "6b3330b08ba813ad7dff01065dcad871a2ad56ab395ef8c23fff92fddcbea41f"
     },
     "integration_verifier": {
       "path": "scripts/verify_information_extraction.py",
-      "sha256": "0f4aa1d07e84da9d4daaf1b318ea060f82becd12d4e71869ccccb0272f023e3e"
+      "sha256": "38a23acae779f948ad9efd45c7b7a893ef5cb3c2743ecafcb06cebccb433b4b9"
     },
     "config": {
       "path": "config.yaml",
-      "sha256": "b38590abbaa836588b5736bedee6376d095502171f0fa86bd14116b98b43623c"
+      "sha256": "e696add4fba5cb6dca752ccd9660fe33d5920e9e5e1c64a231e4cf251cb5b78e"
     },
     "output_schema": {
       "path": "schemas/inference_output.schema.json",
-      "sha256": "c0f83ff506c4d213d6bd8d8c20876485947af4da08f3a429901a75a017c10053"
+      "sha256": "bbc7d64b8dfcd4f6d69ce27024dceb1f8aaed2f1f0e660d35529cc35f6b39103"
     },
     "model_setup": {
       "path": "reports/ocr/model_setup.json",
       "sha256": "1c5d0bea59b95a799a95a1c27bd7a1504c55777645200a09344fceecb13ac2cf"
     },
     "layout_training_report": {
-      "path": "reports/information_extraction/layout_model_training.json",
-      "sha256": "d9be29597adc61621c1f8850612f80de128acaa7e514f1aa70829b5aba839181"
+      "path": "reports/final_model/training_summary.json",
+      "sha256": "907af7be28ef4e691811ed4363a10c1e5c2d5526979f656718121109770c9e45"
+    },
+    "calibration": {
+      "path": "models/multitask_calibration.json",
+      "sha256": "b1c683d3f1e1cfc4b9515bb83cf64ce455343445a553ab7525f845272b902087"
     },
     "document_pipeline": {
       "path": "src/inference/document_pipeline.py",
-      "sha256": "e14c94f6754a2497e6214bea6ca21c467f09444b37c2f098b8395d40bca94f9d"
+      "sha256": "28384bc9791526b006ac1a17cb7991f7424d228715afa183613e1cf2ce729f84"
     },
     "document_io": {
       "path": "src/inference/document_io.py",
       "sha256": "69269354f19ffe4f73480979f7da114c8a6e5dffb64240ab27c95a0473b43bd1"
     },
+    "entity_worker_client": {
+      "path": "src/information_extraction/entity_worker_client.py",
+      "sha256": "90f5e7486115424934dce35f853d296c98969e8b0fc3f7fed91e9f459b18539e"
+    },
+    "layout_entity_worker": {
+      "path": "scripts/layout_entity_worker.py",
+      "sha256": "4997c5679f38edcaf519fa1310ae620315ea21cdc767e4dcb739b220a05d8258"
+    },
+    "multitask_inference": {
+      "path": "src/information_extraction/multitask_inference.py",
+      "sha256": "2f5857e4edae18c18c9df9eb117f7dc546968c8fec4bff2fda1209f4d1f50398"
+    },
+    "layoutxlm_model": {
+      "path": "src/information_extraction/layoutxlm_model.py",
+      "sha256": "6da51b29d3c37243148e3fe66203aa4afd7ee67ffe4b13e694dddde4ff46fd11"
+    },
     "ocr_pipeline": {
       "path": "src/ocr/pipeline.py",
-      "sha256": "afa067ce9add56131153104aa33ab06f94de79802151371c29c0aaf336318f55"
+      "sha256": "9c11c96182cff56ede631e07419757821a940b88ad4ad59dc1e289855df8d10f"
     },
     "ocr_adapter": {
       "path": "src/ocr/paddleocr_adapter.py",
@@ -59,24 +79,24 @@
     },
     "ocr_scoring": {
       "path": "src/ocr/scoring.py",
-      "sha256": "efa80ddde7d3f7f2b8c4335d023dfd927de45d674244bd247165d4e2484d1ea2"
+      "sha256": "00d9c749704ebf45cdca6cf6a8289b9a1dc598321f1206ce1827c4b71df521e7"
     }
   },
   "checkpoint_artifacts": [
     {
-      "path": "D:\\CSX4201\\vision-info-extraction-assets\\checkpoints\\layoutxlm\\smoke\\model.safetensors",
-      "size_bytes": 1111974500,
-      "sha256": "c6a98d3cd5d97922eff808301f5b3303d7b6c39250a36eef2ef3f6836b1d859f"
+      "path": "D:\\CSX4201\\vision-info-extraction-assets\\checkpoints\\layoutxlm_multitask\\final\\model.safetensors",
+      "size_bytes": 1113657488,
+      "sha256": "34c7a26e78d6285a2739e1b61839eadfd0e686ccbcf57f9cb47997c12cef2189"
     },
     {
-      "path": "D:\\CSX4201\\vision-info-extraction-assets\\checkpoints\\layoutxlm\\smoke\\relation_head.pt",
-      "size_bytes": 1623643,
-      "sha256": "d759ae4d0b0a1d3d42358406c0b338bc5904028b8f890d6f52a63789496d7c66"
+      "path": "D:\\CSX4201\\vision-info-extraction-assets\\checkpoints\\layoutxlm_multitask\\final\\config.json",
+      "size_bytes": 5416,
+      "sha256": "68046da6e64032264df40c8110b3b6eeb06fb769f761ad8e02c2bc2627841766"
     },
     {
-      "path": "D:\\CSX4201\\vision-info-extraction-assets\\checkpoints\\layoutxlm\\smoke\\training_state.json",
-      "size_bytes": 306,
-      "sha256": "a57ed334f449dbf53e1759dcec0dbac35829b1d296542df7d9cb84bad27e9f05"
+      "path": "D:\\CSX4201\\vision-info-extraction-assets\\checkpoints\\layoutxlm_multitask\\final\\training_state.json",
+      "size_bytes": 894,
+      "sha256": "57011964b71a49c11bb1ad796f651cb4c737d28e0410a79ee1c75f14aae2ad0f"
     }
   ],
   "fixture_artifacts": {
@@ -93,7 +113,7 @@
     "mixed_language_multipage_pdf": {
       "path": "D:\\CSX4201\\vision-info-extraction-assets\\generated\\integration_smoke\\fixtures\\mixed_language_two_page.pdf",
       "size_bytes": 98605,
-      "sha256": "ce07e3dab441744c5ea150a661ce2c9f88b8626c41043e77de672507e23ca247"
+      "sha256": "c68e389efee6e37f0abcafd923346b5a4258c0646357890a6c56f2b3b43a1031"
     },
     "thai_auto_with_metadata_hint": {
       "path": "D:\\CSX4201\\vision-info-extraction-assets\\generated\\integration_smoke\\fixtures\\thai_receipt.png",
@@ -104,23 +124,23 @@
   "output_artifacts": {
     "unknown_upright_image": {
       "path": "D:\\CSX4201\\vision-info-extraction-assets\\generated\\integration_smoke\\outputs\\unknown_upright_image.json",
-      "size_bytes": 24376,
-      "sha256": "fe7b60d634a16f3e3b3c5d001296626bcbde730db93539f571c9ecd46d3317db"
+      "size_bytes": 24569,
+      "sha256": "35d92a17ae56825395980ba4ffdcc63145289e0ab252256f40c48458102bf517"
     },
     "unknown_45_degree_image": {
       "path": "D:\\CSX4201\\vision-info-extraction-assets\\generated\\integration_smoke\\outputs\\unknown_45_degree_image.json",
-      "size_bytes": 20854,
-      "sha256": "e96c9b69b2896503be9448530a72e5cd645bc33efc82c40ac7f8b9d36aa93e0c"
+      "size_bytes": 23199,
+      "sha256": "f09cc6b9b084c343ecafd26a0bb03ca4c6de21aa807d8a79616d756d96c9d92b"
     },
     "mixed_language_multipage_pdf": {
       "path": "D:\\CSX4201\\vision-info-extraction-assets\\generated\\integration_smoke\\outputs\\mixed_language_multipage_pdf.json",
-      "size_bytes": 40546,
-      "sha256": "a55f67918cb1aaa889f918e5d5ba162232d7b104039f58275f6383500a799187"
+      "size_bytes": 40526,
+      "sha256": "1082d9707d8823cd901949aadb1c6d2fa67f912352f355fcc8fa1202a4d2bc5c"
     },
     "thai_auto_with_metadata_hint": {
       "path": "D:\\CSX4201\\vision-info-extraction-assets\\generated\\integration_smoke\\outputs\\thai_auto_with_metadata_hint.json",
-      "size_bytes": 17679,
-      "sha256": "b23bfb62a8e07827fc4f46170c4e97c1539632540347d2f5de141546ffac07e1"
+      "size_bytes": 20437,
+      "sha256": "679702429aadd34c762bafaa0fbb2388819465910418a9e9b57e8639c0155429"
     }
   },
   "cases": [
@@ -142,17 +162,17 @@
         4
       ],
       "entities": [
-        9
+        8
       ],
       "key_value_pairs": [
-        4
+        3
       ],
       "assertions": {
         "schema_valid": true,
         "display_only_kmeans": true,
         "image_input": true,
         "single_page": true,
-        "unknown_document_type": true,
+        "document_type_present": true,
         "nonempty_ocr": true,
         "nonempty_entities": true,
         "nonempty_key_values": true
@@ -170,23 +190,23 @@
         "PP-OCRv6_medium_rec"
       ],
       "selected_orientations": [
-        0.0
+        315.0
       ],
       "ocr_words": [
         4
       ],
       "entities": [
-        9
+        6
       ],
       "key_value_pairs": [
-        4
+        3
       ],
       "assertions": {
         "schema_valid": true,
         "display_only_kmeans": true,
         "image_input": true,
         "single_page": true,
-        "unknown_document_type": true,
+        "document_type_present": true,
         "nonempty_ocr": true,
         "nonempty_entities": true,
         "nonempty_key_values": true
@@ -196,7 +216,7 @@
       "case": "mixed_language_multipage_pdf",
       "source_type": "pdf",
       "pages": 2,
-      "document_type": "receipt",
+      "document_type": "unknown",
       "routes": [
         "general",
         "thai"
@@ -214,11 +234,11 @@
         2
       ],
       "entities": [
-        9,
-        4
+        8,
+        2
       ],
       "key_value_pairs": [
-        4,
+        3,
         1
       ],
       "assertions": {
@@ -235,7 +255,7 @@
       "case": "thai_auto_with_metadata_hint",
       "source_type": "image",
       "pages": 1,
-      "document_type": "receipt",
+      "document_type": "unknown",
       "routes": [
         "thai"
       ],

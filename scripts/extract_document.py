@@ -10,7 +10,7 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from src import config as cfgmod  # noqa: E402
+from src import config as cfgmod, privacy  # noqa: E402
 from src.inference.document_io import load_document_pages  # noqa: E402
 from src.inference.document_pipeline import DocumentPipeline  # noqa: E402
 from src.inference.output_writer import (  # noqa: E402
@@ -18,6 +18,14 @@ from src.inference.output_writer import (  # noqa: E402
     write_document_outputs,
 )
 from src.ocr.environment import configure_external_environment  # noqa: E402
+
+
+PRIVATE_INPUT_PATH_KEYS = (
+    "gmail_receipts",
+    "gmail_invoices",
+    "gmail_legal_financial",
+    "gmail_unclassified",
+)
 
 
 def main() -> int:
@@ -29,7 +37,10 @@ def main() -> int:
     parser.add_argument("--language-hint")
     parser.add_argument("--device", choices=("cpu", "gpu:0"), default="cpu")
     parser.add_argument("--disable-kmeans-display", action="store_true")
-    parser.add_argument("--save-ocr-visualization", action="store_true")
+    parser.add_argument(
+        "--save-visualization", "--save-ocr-visualization",
+        dest="save_visualization", action="store_true",
+    )
     parser.add_argument("--private-output", action="store_true")
     parser.add_argument("--force", action="store_true")
     parser.add_argument("--max-pages", type=int)
@@ -38,18 +49,37 @@ def main() -> int:
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--pdf-dpi", type=int, default=200)
     parser.add_argument("--deskew-angle", type=float, help="optional evidence-backed correction candidate")
-    parser.add_argument("--layout-checkpoint")
+    parser.add_argument(
+        "--model-checkpoint", "--layout-checkpoint", dest="model_checkpoint"
+    )
+    parser.add_argument(
+        "--confidence-threshold", type=float,
+        help="minimum confidence for emitted learned entities, relations, and canonical fields",
+    )
     parser.add_argument("--model-setup", default=str(PROJECT_ROOT / "reports" / "ocr" / "model_setup.json"))
     parser.add_argument("--log-level", choices=("DEBUG", "INFO", "WARNING", "ERROR"), default="INFO")
     args = parser.parse_args()
     if args.max_pages is not None and args.max_pages < 1:
         parser.error("--max-pages must be positive")
+    if args.confidence_threshold is not None and not 0 <= args.confidence_threshold <= 1:
+        parser.error("--confidence-threshold must be in [0, 1]")
     cfg = cfgmod.load_config(args.config)
-    configure_external_environment(cfgmod.resolve_path(cfg, "external_assets"))
     inputs = [Path(value) for value in args.input]
     output = Path(args.output)
+    private_roots = [
+        cfgmod.resolve_path(cfg, key)
+        for key in PRIVATE_INPUT_PATH_KEYS
+        if key in cfg.get("paths", {})
+    ]
+    try:
+        privacy.require_private_input_mode(
+            inputs, private_roots, private_output=args.private_output
+        )
+    except ValueError as exc:
+        parser.error(str(exc))
     if args.private_output:
         require_private_output_root(output, cfgmod.resolve_path(cfg, "private_outputs"))
+    configure_external_environment(cfgmod.resolve_path(cfg, "external_assets"))
     if args.dry_run:
         checks = []
         for source in inputs:
@@ -63,8 +93,10 @@ def main() -> int:
         cfg,
         device=args.device,
         model_setup=args.model_setup,
-        layout_checkpoint=args.layout_checkpoint,
+        layout_checkpoint=args.model_checkpoint,
+        confidence_threshold=args.confidence_threshold,
         enable_kmeans_display=not args.disable_kmeans_display,
+        require_layout_model=True,
     )
     failures = []
     outputs = []
@@ -90,7 +122,7 @@ def main() -> int:
                     pages,
                     destination,
                     force=args.force,
-                    save_visualization=args.save_ocr_visualization,
+                    save_visualization=args.save_visualization,
                 )
                 outputs.append(str(result_path))
             except Exception as exc:

@@ -8,6 +8,7 @@ scripts.
 from __future__ import annotations
 
 from pathlib import Path
+from collections.abc import Iterable
 from typing import Any, Mapping
 
 # Path fragments that mark a file or tree as private.
@@ -16,6 +17,40 @@ PRIVATE_MARKERS = ("gmail", "private", "legal_financial_docs")
 # Substrings that, if present in a path, indicate the public/private boundary
 # was crossed (a private file landed under a public tree).
 PUBLIC_MARKERS = ("data/raw/public", "public_train")
+
+
+def require_private_input_mode(
+    inputs: Iterable[str | Path],
+    private_roots: Iterable[str | Path],
+    *,
+    private_output: bool,
+) -> bool:
+    """Fail closed when a configured private input is not in private mode.
+
+    Paths are resolved without opening the document, so symlinks and Windows
+    junctions cannot bypass the configured Gmail-root boundary. The error
+    intentionally omits the private filename.
+    """
+    roots = [Path(root).resolve(strict=False) for root in private_roots]
+    has_private_input = any(
+        _is_within(Path(source).resolve(strict=False), root)
+        for source in inputs
+        for root in roots
+    )
+    if has_private_input and not private_output:
+        raise ValueError(
+            "configured private Gmail input requires --private-output and an "
+            "output under the ignored private root"
+        )
+    return has_private_input
+
+
+def _is_within(path: Path, root: Path) -> bool:
+    try:
+        path.relative_to(root)
+    except ValueError:
+        return False
+    return True
 
 
 def is_private(path: str | Path, cfg: Mapping[str, Any] | None = None) -> bool:

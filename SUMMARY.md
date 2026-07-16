@@ -1,120 +1,101 @@
-# Summary — Rotation-Robust Information Extraction
+# Summary — Final Rotation-Robust Information-Extraction Pre-Model
 
-**Project:** vision-info-extraction, CSX4201  
-**Verified through:** 2026-07-15
+**Project:** CSX4201 vision-info-extraction
+**Verified through:** 2026-07-17
 
 ## Outcome
 
-The repository now implements the complete inference and smoke-training
-lifecycle for a rotation-robust document information-extraction pre-model.
-Images and single- or multipage PDFs flow through independent OCR orientation
-selection, PaddleOCR general/Thai routing, layout-aware entity inference,
-key-value relation extraction, canonical field rules, and a versioned JSON
+The workspace now contains a complete working public-trained pre-model, not
+only a smoke lifecycle. Images and multipage PDFs pass through independent OCR
+orientation and fine-deskew selection, exact general/Thai PaddleOCR models, a
+calibrated multi-task LayoutXLM text-and-2D-layout encoder, learned entities,
+document type, canonical evidence, typed relations, evidence/arithmetic
+validation, table and generic key/value fallbacks, and a versioned JSON output
 contract.
 
-The existing K-Means rotation experiment remains preserved as an auxiliary
-quadrant display. Its output never controls OCR or extraction. The unreliable
-exact-angle experiment remains disabled by default.
+The preserved K-Means quadrant experiment remains an auxiliary display branch.
+It never controls OCR or extraction. Its weak mapped accuracy and failed
+exact-angle estimator are reported, not hidden.
 
-Engineering verification is complete for the bounded smoke scope. Model
-quality is not final. The three-example LayoutXLM training run proves GPU
-training, save/reload, subprocess inference, and relation-head lifecycle, but
-its public scores are too low for a production-quality claim.
+## Final evidence snapshot
 
-Two bounded independent reviews were completed. The final review confirmed
-that reproducible integration evidence, real rotated phrase recovery, and the
-required OCR/detection metrics are closed, with no reproducible completion
-blocker remaining.
-
-## Evidence snapshot
-
-| Surface | Verified result |
+| Surface | Result |
 |---|---|
-| Raw integrity | 128,793 files; 35,459,126,772 bytes; deterministic sample hashes unchanged |
-| Preserved rotation run | 8,332 rotations, 20/20 checks, about 38% public held-out zone accuracy |
-| Annotation normalization | 12,433 normalized public pages; 135 source defects classified; Gmail fit rows 0 |
-| Model dataset | 9 usable smoke examples; 3 train, 2 validation, 4 test |
-| Required OCR models | All three exact model artifacts hash-verified and GPU-initialized |
-| OCR smoke | General confidence 0.9998; Thai 0.9549; rotated phrase recovered at orientation 270 with confidence 0.9999 |
-| Layout smoke training | Validation loss 2.3490; token accuracy 0.1007; checkpoint/relation reload max difference 0.0 |
-| Public angle smoke | 16/16 runs completed; recognized-text coverage 0.2503; text-detection P/R/F1 0.5483/0.3333/0.4146 |
-| Extraction quality | Entity F1 0.0096; relation F1 0.0; canonical-field accuracy 0.05 |
-| Private operations | 2/2 pages; aggregate only; no private content or per-document public output |
-| Automated tests | 158 passed, 1 skipped; 53 OCR-runtime tests; 3 CUDA-layout tests |
+| Raw integrity | 128,793 files; 35,459,126,772 bytes; public/private separation retained |
+| Normalized public population | 12,433 pages; zero Gmail fit rows; zero leakage across 29,886 identities |
+| Final model data | 11,684 examples; 7,782 train; 1,243 dev-select; 763 calibration; 1,896 test; 1,261 CORU pages held wholly unseen |
+| Final training | Four epochs; 7,812 optimizer steps; epoch 4 robustness-aware selection score 0.824160; reload max difference 0.0 |
+| Locked layout test | 1,760 examples; calibrated entity/canonical/relation F1 0.9813/0.9814/0.4632; 97.56% document coverage at 100% selective accuracy |
+| Layout rotation | 18 angles; minimum entity/canonical/relation F1 0.7491/0.9360/0.3434; entity retention at least 95.30% |
+| End-to-end rotation | 72/72 nonempty; bounded public OCR coverage 0.4026–0.4368; entity F1 0.1314–0.1830; synthetic Thai 18/18 |
+| Unseen CORU | 100/100 pages; 78.53% QA-answer text recall; 15.68% canonical exact match |
+| Private operation | 2/2 documents; public aggregate only; no private filename/text/image/per-document output |
+| Verification | Final report compilation passed; complete IE verifier 46/46; exact OCR and hash-bound integration passed |
+| Automated tests | Host suite: 227 passed, 2 environment-dependent skips; OCR-runtime partition: 122 passed; CUDA-layout partition: 2 passed |
 
-## Runtime design
+## Model and runtime
 
-Large assets live under:
+The final checkpoint uses `microsoft/layoutxlm-base` multilingual text and
+normalized 2D-layout embeddings with entity, document, canonical-evidence, and
+real relation heads. It omits the Detectron2 visual backbone. Dynamic training
+uses 60% upright and 40% arbitrary-angle examples; checkpoint selection also
+includes a fixed 37° slice.
+
+Checkpoint:
 
 ```text
-D:\CSX4201\vision-info-extraction-assets
+D:\CSX4201\vision-info-extraction-assets\checkpoints\layoutxlm_multitask\final
 ```
 
-Two Python 3.10 environments prevent a Windows CUDA DLL collision:
+Model SHA-256:
 
-- `environments\ie-ocr`: PaddlePaddle GPU 3.3.0, PaddleOCR 3.7.0, and
-  CPU-only PyTorch required by PaddleX;
-- `environments\ie-layout`: PyTorch 2.8.0 + CUDA 12.8 and Transformers
-  4.57.6.
+```text
+34c7a26e78d6285a2739e1b61839eadfd0e686ccbcf57f9cb47997c12cef2189
+```
 
-The executed hardware was an RTX 5050 Laptop GPU with 8,151 MiB. The final
-recorded storage gate had about 45.22 GiB free on C: and 386.12 GiB on D:, so
-the required 15 GiB reserves passed.
+Paddle GPU and CUDA PyTorch run in separate Python 3.10 processes to avoid a
+Windows cuDNN DLL collision. All large environments, caches, datasets,
+checkpoints, generated outputs, and private operational results remain on D:.
+The source and derived checkpoint license is CC-BY-NC-SA-4.0.
 
-## Data and privacy
+## What the scores mean
 
-Public annotation adapters cover SROIE, FUNSD, FATURA, and full-document CORU
-components. They preserve source provenance, clip source boxes to image bounds,
-support Windows-1252 fallback for SROIE, and classify source omissions and
-malformed CORU JSON instead of fabricating labels.
+The layout heads are accurate when evaluated on reference tokens and boxes,
+but the real OCR pipeline substantially limits end-to-end extraction. On the
+three-page angle sample, SROIE OCR is strong while the selected FATURA/FUNSD
+examples are weak; aggregate text coverage stays near 0.4. Sparse FUNSD-only
+relation labels further constrain learned relations. These are current model
+limitations, not verifier failures.
 
-Gmail stayed private-test only. The training manifest contains zero private fit
-rows. The committed private evaluation report contains counts and timings only:
-no filename, path, OCR text, image, identifier, or per-document prediction.
+CORU contributes no fit or selection row. Its 100-page result measures whether
+known answer strings appear in OCR and whether canonical values match exactly;
+it does not invent token-level entity/relation ground truth. Private Gmail
+results prove local operation only and are never accuracy evidence.
 
-## Smoke model and evaluation
-
-The model uses `microsoft/layoutxlm-base` multilingual embeddings and its 2D
-layout-aware encoder without the Detectron2 visual backbone. Dynamic training
-rotations use expanded white canvases and transform polygons/boxes with the
-same homogeneous matrix. The source checkpoint license is
-CC-BY-NC-SA-4.0.
-
-The final smoke evaluation selected one public page per dataset and ran four
-angles. OCR reference coverage was 12/16 runs. Aggregate CER was 0.7497 and WER
-0.8856 only over those referenced runs. Recognized-text coverage was 0.2503;
-polygon-IoU text-detection precision/recall/F1 was 0.5483/0.3333/0.4146.
-Entity F1 was 0.0096; upright and
-rotated entity F1 were 0.0097 and 0.0096, giving rotation retention 0.9856.
-That ratio reflects two equally weak numbers and must not be read as high
-absolute quality.
-
-CORU was a natural unseen-dataset check because it had zero model fit rows.
-All 4 angle runs produced nonempty generic OCR, averaging 29.25 words, 24.25
-entities, and 6.75 key-value pairs. CORU has no usable OCR token reference in
-this smoke protocol, so CER/WER are intentionally `null`.
-
-## What is complete and what is not
+## Complete versus open
 
 Complete:
 
-- reproducible OCR/layout environments and D:-backed caches;
-- exact OCR model download, hashing, initialization, and smoke tests;
-- public annotation schema, adapters, manifests, and verification;
-- dynamic geometry transforms and model data alignment;
-- CUDA smoke training and exact checkpoint reload checks;
-- image/PDF/multipage/Thai/rotated/unknown-type inference;
-- hash-bound, independently revalidated synthetic integration evidence;
-- schema validation, error handling, privacy gates, and bounded evaluation;
-- preserved rotation baseline with display-only failure isolation.
+- public normalization, leakage-safe splits, final multi-stream data build;
+- four-epoch public-only training, resume state, reload check, calibration;
+- exact general/Thai OCR verification and automatic arbitrary-angle deskew;
+- image, PDF, multipage, rotated, unknown-type, and Thai inference;
+- locked in-domain, 18-angle layout, 18-angle end-to-end, and 100-page unseen
+  evaluation;
+- schema validation, private path/cache gates, aggregate-only private testing;
+- cryptographically bound integration evidence and final report bundle;
+- preserved, failure-isolated K-Means display baseline.
 
-Not complete as final research evidence:
+Still open research/product decisions:
 
-- full public OCR alignment and final multi-epoch model training;
-- production-quality entity, relation, field, or orientation accuracy;
-- labeled public Thai benchmark evaluation;
-- separately retrained leave-one-dataset-out studies;
-- professor-approved target fields, thresholds, and final test protocol.
+- professor-approved canonical fields, document types, and official quality
+  thresholds;
+- a compatible labeled public Thai benchmark;
+- broader OCR/domain adaptation and stronger relation supervision;
+- an approved orientation/zone method if the professor requires more than the
+  preserved K-Means diagnostic plus independent OCR correction;
+- final deliverable/weight redistribution protocol under the noncommercial
+  license.
 
-Use the repository as a verified implementation and smoke baseline, not as a
-claim that the research model is finished or accurate.
+The result is a complete working academic pre-model with measured limitations,
+not a claim of production readiness.

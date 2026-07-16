@@ -38,7 +38,7 @@ def main() -> int:
         "--model-setup",
         default=str(PROJECT_ROOT / "reports" / "ocr" / "model_setup.json"),
     )
-    parser.add_argument("--layout-checkpoint")
+    parser.add_argument("--model-checkpoint", "--layout-checkpoint", dest="model_checkpoint")
     parser.add_argument("--artifact-root")
     parser.add_argument("--output", default=str(DEFAULT_REPORT))
     args = parser.parse_args()
@@ -63,9 +63,9 @@ def main() -> int:
     fixtures = _write_fixtures(fixture_root)
 
     checkpoint = (
-        Path(args.layout_checkpoint).resolve()
-        if args.layout_checkpoint
-        else (cfgmod.resolve_path(cfg, "ie_checkpoints") / "layoutxlm" / "smoke").resolve()
+        Path(args.model_checkpoint).resolve()
+        if args.model_checkpoint
+        else (cfgmod.resolve_path(cfg, "ie_checkpoints") / "layoutxlm_multitask" / "final").resolve()
     )
     pipeline = DocumentPipeline.from_config(
         cfg,
@@ -73,6 +73,7 @@ def main() -> int:
         model_setup=model_setup_path,
         layout_checkpoint=checkpoint,
         enable_kmeans_display=True,
+        require_layout_model=True,
     )
     case_specs = (
         ("unknown_upright_image", fixtures["unknown_upright_image"], "auto", None),
@@ -99,11 +100,12 @@ def main() -> int:
     finally:
         pipeline.close()
 
-    training_report = PROJECT_ROOT / "reports" / "information_extraction" / "layout_model_training.json"
+    training_report = PROJECT_ROOT / "reports" / "final_model" / "training_summary.json"
+    calibration_path = PROJECT_ROOT / "models" / "multitask_calibration.json"
     schema_path = (PROJECT_ROOT / str(cfg["information_extraction"]["output_schema"])).resolve()
     checkpoint_files = [
         checkpoint / "model.safetensors",
-        checkpoint / "relation_head.pt",
+        checkpoint / "config.json",
         checkpoint / "training_state.json",
     ]
     required_sources = {
@@ -113,8 +115,22 @@ def main() -> int:
         "output_schema": schema_path,
         "model_setup": model_setup_path,
         "layout_training_report": training_report,
+        "calibration": calibration_path,
         "document_pipeline": PROJECT_ROOT / "src" / "inference" / "document_pipeline.py",
         "document_io": PROJECT_ROOT / "src" / "inference" / "document_io.py",
+        "entity_worker_client": PROJECT_ROOT
+        / "src"
+        / "information_extraction"
+        / "entity_worker_client.py",
+        "layout_entity_worker": PROJECT_ROOT / "scripts" / "layout_entity_worker.py",
+        "multitask_inference": PROJECT_ROOT
+        / "src"
+        / "information_extraction"
+        / "multitask_inference.py",
+        "layoutxlm_model": PROJECT_ROOT
+        / "src"
+        / "information_extraction"
+        / "layoutxlm_model.py",
         "ocr_pipeline": PROJECT_ROOT / "src" / "ocr" / "pipeline.py",
         "ocr_adapter": PROJECT_ROOT / "src" / "ocr" / "paddleocr_adapter.py",
         "language_router": PROJECT_ROOT / "src" / "ocr" / "language_router.py",
@@ -237,7 +253,7 @@ def _case_assertions(case: str, result: dict[str, Any]) -> dict[str, bool]:
             **common,
             "image_input": result.get("source_type") == "image",
             "single_page": len(pages) == 1,
-            "unknown_document_type": result.get("document_type", {}).get("label") == "unknown",
+            "document_type_present": bool(result.get("document_type", {}).get("label")),
             "nonempty_ocr": bool(word_counts and word_counts[0] > 0),
             "nonempty_entities": bool(entity_counts and entity_counts[0] > 0),
             "nonempty_key_values": bool(pair_counts and pair_counts[0] > 0),

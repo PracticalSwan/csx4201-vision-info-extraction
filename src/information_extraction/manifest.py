@@ -92,12 +92,9 @@ def build_information_extraction_manifest(
                 record = normalize_public_page(page, root, project_split)
                 output_rel = Path("data/processed/normalized_ie_annotations") / dataset / f"{page['page_id']}.json"
                 output_path = normalized_root / dataset / f"{page['page_id']}.json"
-                if force or not output_path.is_file():
-                    atomic_write_json(output_path, record)
                 provenance = record["annotation_provenance"]["source_paths"]
                 manifest_row.update({
                     "annotation_path": provenance[0] if provenance else "",
-                    "normalized_annotation_path": output_rel.as_posix(),
                     "has_text_annotation": _flag(bool(record["tokens"] or record["source_qa"])),
                     "has_entity_annotation": _flag(bool(record["entities"])),
                     "has_relation_annotation": _flag(bool(record["relations"] or record["source_qa"])),
@@ -108,6 +105,9 @@ def build_information_extraction_manifest(
                 elif not record["tokens"] and not record["source_qa"]:
                     exclusion = "no_usable_text_annotation"
                 else:
+                    if force or not output_path.is_file():
+                        atomic_write_json(output_path, record)
+                    manifest_row["normalized_annotation_path"] = output_rel.as_posix()
                     manifest_row["is_usable"] = "true"
                     counts["normalized_pages"] += 1
                     split_counts[project_split] += 1

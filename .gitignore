@@ -87,6 +87,7 @@ models/layoutxlm/
 data/processed/model_datasets/
 data/processed/normalized_ie_annotations/
 private_outputs/
+private-evaluation/
 reports/private/
 *.onnx
 *.safetensors

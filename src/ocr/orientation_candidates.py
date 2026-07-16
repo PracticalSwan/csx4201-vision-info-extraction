@@ -52,6 +52,19 @@ def build_orientation_candidates(
     return candidates
 
 
+def make_orientation_candidate(
+    image: Image.Image, angle: float, *, kind: str
+) -> OrientationCandidate:
+    """Create one explicitly typed candidate from the untouched source image."""
+    transform = expanded_rotation_transform(image.width, image.height, angle)
+    return OrientationCandidate(
+        angle=transform.angle,
+        image=rotate_image(image, transform),
+        transform=transform,
+        kind=kind,
+    )
+
+
 def restore_original_coordinates(
     result: dict, candidate: OrientationCandidate
 ) -> dict:

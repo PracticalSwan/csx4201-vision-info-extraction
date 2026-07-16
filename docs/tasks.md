@@ -22,9 +22,10 @@
 - [x] Normalize SROIE, FUNSD, FATURA, and supported CORU annotations.
 - [x] Build public/private-safe information-extraction and model manifests.
 - [x] Implement continuous rotation plus polygon/box transformation.
-- [x] Prepare the aligned public smoke model dataset with Gmail fit rows 0.
+- [x] Prepare the aligned public final model dataset with Gmail fit rows 0.
 - [x] Implement the Detectron2-free LayoutXLM text + 2D-layout model.
-- [x] Smoke-train on CUDA and verify model/tokenizer/relation-head reload.
+- [x] Train the four-epoch final public model on CUDA and verify exact reload.
+- [x] Calibrate temperatures and abstention thresholds on `dev_calibration` only.
 - [x] Implement entity inference, key-value relations, canonical rules, and generic fallback.
 
 ## Inference and evaluation
@@ -32,23 +33,23 @@
 - [x] Implement image, PDF, multipage, rotated, multilingual, and unknown-type CLI inference.
 - [x] Validate and atomically write schema-compliant JSON.
 - [x] Run rule and OCR baselines.
-- [x] Run 16-case public angle smoke evaluation with explicit OCR reference coverage.
+- [x] Run the required 18-angle layout grid and 72-case end-to-end angle grid.
 - [x] Report recognized-text coverage and one-to-one polygon detection precision/recall/F1.
-- [x] Execute a natural zero-fit-row CORU holdout and report its limitations.
+- [x] Execute the fixed 100-page zero-fit-row CORU holdout and report its limitations.
 - [x] Run aggregate-only private Gmail operational inference.
 - [x] Generate and cryptographically revalidate synthetic image/rotation/Thai/multipage evidence.
 - [x] Add unit/regression tests and environment-specific test partitions.
-- [ ] Train a final-quality model over a larger public corpus.
+- [x] Run the locked public in-domain test once without post-test tuning.
+- [x] Train and package the final working academic pre-model over the eligible public corpus.
 - [ ] Run professor-approved labeled Thai and leave-one-dataset-out benchmarks.
 
 ## Finalization
 
 - [x] Update README, summary, requirements, design, setup, IE, evaluation, privacy, memory, and lessons.
-- [x] Run final combined verification after documentation stabilizes.
-- [x] Complete both bounded independent reviews and fix every confirmed finding.
-- [x] Inspect staged content, create the feature branch, commit, and push to the existing safe remote.
+- [x] Run final combined verification after documentation and cleanup stabilize.
+- [x] Complete the independent final review and fix every confirmed finding.
+- [ ] Inspect staged content, commit the feature branch, merge it, and sync GitHub `main`.
 
-The unchecked research items are not hidden implementation failures. They need
-a bounded full-training plan and official evaluation decisions. The unchecked
-finalization items are completed in the same implementation session before
-publication.
+The unchecked research item requires professor-approved data and protocol; it
+is not a hidden implementation failure. The unchecked finalization items must
+be completed in this session before publication.

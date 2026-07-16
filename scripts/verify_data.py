@@ -10,11 +10,13 @@ Checks (per the project plan):
   * no files were lost (re-scan counts match dataset_summary)
   * no raw file contents changed (move_verification sample hashes match)
   * duplicate reports are well-formed
-  * no out-of-scope OCR outputs or neural checkpoints exist outside raw data
+  * no committable OCR outputs or neural checkpoints exist outside raw data
 
 The completed classical rotation stage is legitimate: generated data under
 ``data/processed`` and ``data/splits``, public-safe reports, and artifacts under
-``models/kmeans_rotation`` are allowed.
+``models/kmeans_rotation`` are allowed. Directory links that resolve outside
+the project are not committable repository content and are pruned; the final
+model lifecycle intentionally uses such ignored links to D:-backed assets.
 
 Exit code 0 = all checks passed; 1 = at least one failed.
 
@@ -428,6 +430,12 @@ def _check_forbidden(root: Path) -> tuple[bool, str]:
         retained_dirs: list[str] = []
         for dirname in dirnames:
             child = current / dirname
+            # Windows directory junctions are traversed by ``os.walk`` even
+            # when ``followlinks`` is false. Approved model data lives behind
+            # ignored D:-backed junctions, so restrict this publication check
+            # to directory content that resolves inside the repository.
+            if not _is_within(child, root):
+                continue
             if _is_within(child, raw_root):
                 continue
             if dirname.casefold() in FORBIDDEN_OUTPUT_DIR_NAMES:
@@ -461,7 +469,7 @@ def _check_forbidden(root: Path) -> tuple[bool, str]:
         return False, f"disallowed outside data/raw: {detail}"
     return True, (
         "no OCR outputs or neural checkpoints outside data/raw; "
-        "classical rotation artifacts allowed"
+        "classical rotation artifacts allowed; external directory links pruned"
     )
 
 

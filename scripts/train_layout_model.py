@@ -15,6 +15,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from src import config as cfgmod  # noqa: E402
+from src.information_extraction.model_dataset import profile_manifest_path  # noqa: E402
 from src.information_extraction.layoutxlm_data import (  # noqa: E402
     BIO_LABELS,
     ID_TO_LABEL,
@@ -62,7 +63,10 @@ def main() -> int:
     seed = int(cfg.get("layout_model", {}).get("seed", 42))
     _seed_everything(seed, torch)
     selected_device = _device(args.device, torch)
-    manifest_path = cfgmod.resolve_path(cfg, "metadata") / "model_dataset_manifest.csv"
+    manifest_path = profile_manifest_path(
+        cfgmod.resolve_path(cfg, "metadata"),
+        "smoke" if args.profile == "smoke" else "development" if args.profile == "development" else "final",
+    )
     train_examples = load_model_examples(manifest_path, "train")
     validation_examples = load_model_examples(manifest_path, "validation")
     if not train_examples:

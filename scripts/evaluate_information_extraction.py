@@ -23,6 +23,7 @@ from src.information_extraction.geometry import (  # noqa: E402
     rotate_image,
     transform_annotation,
 )
+from src.information_extraction.model_dataset import profile_manifest_path  # noqa: E402
 from src.inference.document_io import DocumentPage  # noqa: E402
 from src.inference.document_pipeline import DocumentPipeline  # noqa: E402
 from src.ocr.environment import configure_external_environment  # noqa: E402
@@ -34,7 +35,7 @@ SMOKE_ANGLES = [0.0, 45.0, 90.0, 270.0]
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", default=str(PROJECT_ROOT / "config.yaml"))
-    parser.add_argument("--profile", choices=("smoke", "full"), default="smoke")
+    parser.add_argument("--profile", choices=("smoke", "final", "full"), default="smoke")
     parser.add_argument("--angles", help="comma-separated counterclockwise input rotations")
     parser.add_argument("--pages-per-dataset", type=int, default=1)
     parser.add_argument("--device", choices=("cpu", "gpu:0"), default="gpu:0")
@@ -49,7 +50,10 @@ def main() -> int:
         SMOKE_ANGLES if args.profile == "smoke" else [float(value) for value in cfg["augmentation"]["validation_angles"]]
     )
     manifest = read_csv_rows(cfgmod.resolve_path(cfg, "metadata") / "information_extraction_manifest.csv")
-    model_manifest = read_csv_rows(cfgmod.resolve_path(cfg, "metadata") / "model_dataset_manifest.csv")
+    model_profile = "final" if args.profile in {"final", "full"} else "smoke"
+    model_manifest = read_csv_rows(
+        profile_manifest_path(cfgmod.resolve_path(cfg, "metadata"), model_profile)
+    )
     fit_datasets = sorted({
         row["dataset"] for row in model_manifest
         if row.get("is_usable") == "true" and row.get("project_split") == "train"

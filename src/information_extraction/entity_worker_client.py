@@ -21,6 +21,8 @@ class SubprocessLayoutEntityExtractor:
         device: str = "cpu",
         cache_dir: str | Path | None = None,
         max_length: int = 512,
+        calibration_path: str | Path | None = None,
+        confidence_threshold: float | None = None,
         timeout_seconds: float = 300.0,
     ) -> None:
         self.checkpoint = Path(checkpoint)
@@ -32,6 +34,8 @@ class SubprocessLayoutEntityExtractor:
             raise FileNotFoundError(f"layout Python executable is missing: {self.python_executable}")
         self.cache_dir = Path(cache_dir) if cache_dir else None
         self.max_length = int(max_length)
+        self.calibration_path = Path(calibration_path) if calibration_path else None
+        self.confidence_threshold = confidence_threshold
         self.timeout_seconds = float(timeout_seconds)
         self.process: subprocess.Popen[str] | None = None
         self._reader = ThreadPoolExecutor(max_workers=1, thread_name_prefix="layout-worker-read")
@@ -43,7 +47,7 @@ class SubprocessLayoutEntityExtractor:
         page_number: int,
         width: int,
         height: int,
-    ) -> tuple[list[dict[str, Any]], list[str]]:
+    ) -> dict[str, Any]:
         process = self._ensure_process()
         assert process.stdin is not None and process.stdout is not None
         request = {
@@ -69,7 +73,17 @@ class SubprocessLayoutEntityExtractor:
         response = json.loads(line)
         if response.get("status") != "ok":
             raise RuntimeError(str(response.get("error") or "layout worker failed"))
-        return list(response.get("entities") or []), list(response.get("warnings") or [])
+        return {
+            "entities": list(response.get("entities") or []),
+            "relations": list(response.get("relations") or []),
+            "canonical_fields": dict(response.get("canonical_fields") or {}),
+            "tables": list(response.get("tables") or []),
+            "document_type": dict(
+                response.get("document_type")
+                or {"label": "unknown", "confidence": None}
+            ),
+            "warnings": list(response.get("warnings") or []),
+        }
 
     def close(self, *, kill: bool = False) -> None:
         process, self.process = self.process, None
@@ -102,6 +116,10 @@ class SubprocessLayoutEntityExtractor:
         ]
         if self.cache_dir:
             command.extend(["--cache-dir", str(self.cache_dir)])
+        if self.calibration_path:
+            command.extend(["--calibration", str(self.calibration_path)])
+        if self.confidence_threshold is not None:
+            command.extend(["--confidence-threshold", str(self.confidence_threshold)])
         environment = os.environ.copy()
         environment["PYTHONUTF8"] = "1"
         creationflags = getattr(subprocess, "CREATE_NO_WINDOW", 0) if os.name == "nt" else 0

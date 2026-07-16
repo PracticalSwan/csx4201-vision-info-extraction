@@ -11,7 +11,7 @@ class GeometryAwareRelationHead(nn.Module):
     def __init__(
         self,
         hidden_size: int,
-        geometry_size: int = 8,
+        geometry_size: int = 10,
         entity_type_count: int = 10,
         entity_type_embedding_size: int = 16,
         relation_type_count: int = 5,

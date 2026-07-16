@@ -1,0 +1,211 @@
+{
+  "schema_version": "1.0",
+  "split": "test_in_domain",
+  "canonical_evidence_token_f1": 0.9792278412180533,
+  "canonical_macro_f1": 0.9749224666154489,
+  "canonical_counts": {
+    "tp": 36016,
+    "fp": 958,
+    "fn": 570
+  },
+  "canonical_per_class": {
+    "organization_name": {
+      "tp": 3797,
+      "fp": 180,
+      "fn": 105,
+      "f1": 0.9638278969412362,
+      "support": 3902
+    },
+    "document_title": {
+      "tp": 729,
+      "fp": 96,
+      "fn": 1,
+      "f1": 0.9376205787781351,
+      "support": 730
+    },
+    "date": {
+      "tp": 4299,
+      "fp": 69,
+      "fn": 51,
+      "f1": 0.9862353750860289,
+      "support": 4350
+    },
+    "invoice_number": {
+      "tp": 3059,
+      "fn": 39,
+      "fp": 60,
+      "f1": 0.9840759208621521,
+      "support": 3098
+    },
+    "subtotal": {
+      "tp": 2571,
+      "fn": 10,
+      "fp": 15,
+      "f1": 0.9951616024772595,
+      "support": 2581
+    },
+    "tax": {
+      "tp": 2187,
+      "fp": 18,
+      "fn": 5,
+      "f1": 0.9947691607914487,
+      "support": 2192
+    },
+    "total_amount": {
+      "tp": 2953,
+      "fp": 188,
+      "fn": 85,
+      "f1": 0.9558180935426445,
+      "support": 3038
+    },
+    "address": {
+      "fp": 297,
+      "fn": 213,
+      "tp": 14628,
+      "f1": 0.9828663575891957,
+      "support": 14841
+    },
+    "email": {
+      "tp": 1793,
+      "fp": 35,
+      "fn": 61,
+      "f1": 0.9739272134709397,
+      "support": 1854
+    }
+  },
+  "canonical_calibrated_f1": 0.9814241915569551,
+  "canonical_calibrated_macro_f1": 0.9759047129630157,
+  "canonical_calibrated_counts": {
+    "tp": 35372,
+    "fp": 125,
+    "fn": 1214
+  },
+  "canonical_calibrated_per_class": {
+    "organization_name": {
+      "tp": 3729,
+      "fn": 173,
+      "fp": 14,
+      "f1": 0.9755395683453237,
+      "support": 3902
+    },
+    "document_title": {
+      "tp": 717,
+      "fn": 13,
+      "f1": 0.9910158949550795,
+      "support": 730
+    },
+    "date": {
+      "tp": 4168,
+      "fn": 182,
+      "f1": 0.9786334820380371,
+      "support": 4350
+    },
+    "invoice_number": {
+      "tp": 3037,
+      "fn": 61,
+      "fp": 4,
+      "f1": 0.9894119563446816,
+      "support": 3098
+    },
+    "subtotal": {
+      "tp": 2571,
+      "fn": 10,
+      "f1": 0.9980590062111802,
+      "support": 2581
+    },
+    "tax": {
+      "tp": 2184,
+      "fn": 8,
+      "f1": 0.9981718464351006,
+      "support": 2192
+    },
+    "total_amount": {
+      "tp": 2902,
+      "fn": 136,
+      "fp": 55,
+      "f1": 0.9681401167639699,
+      "support": 3038
+    },
+    "address": {
+      "fp": 52,
+      "fn": 280,
+      "tp": 14561,
+      "f1": 0.9887281863244382,
+      "support": 14841
+    },
+    "email": {
+      "tp": 1503,
+      "fn": 351,
+      "f1": 0.8954423592493298,
+      "support": 1854
+    }
+  },
+  "bounded_end_to_end_upright_field_accuracy": 0.4444444444444444,
+  "unseen_coru_canonical_field_accuracy": 0.15678776290630975,
+  "calibration": {
+    "thresholds": {
+      "entity": 0.5211008191108704,
+      "canonical": 0.9263173937797546,
+      "relation": 0.5719664692878723,
+      "document": 0.9999979734420776
+    },
+    "canonical_field_thresholds": {
+      "organization_name": 0.9454855918884277,
+      "document_title": 0.8902900218963623,
+      "date": 0.9396809339523315,
+      "invoice_number": 0.6942762732505798,
+      "subtotal": 0.9603718519210815,
+      "tax": 0.8013505339622498,
+      "total_amount": 0.6891745924949646,
+      "address": 0.713550865650177,
+      "email": 0.9435495138168335
+    },
+    "metrics": {
+      "entity": {
+        "support": 56141,
+        "temperature": 1.2236554622650146,
+        "threshold": 0.5211008191108704,
+        "nll_before": 0.05977180600166321,
+        "nll_after": 0.05827336013317108,
+        "ece_before": 0.0031689788697419202,
+        "ece_after": 0.003323545283470802,
+        "positive_f1_without_abstention": 0.9741422756348129,
+        "positive_f1_with_abstention": 0.9776827737684343
+      },
+      "canonical": {
+        "support": 50365,
+        "temperature": 1.368909239768982,
+        "threshold": 0.9263173937797546,
+        "nll_before": 0.0890633761882782,
+        "nll_after": 0.08041293174028397,
+        "ece_before": 0.010628900016820469,
+        "ece_after": 0.007311418179152962,
+        "positive_f1_without_abstention": 0.9640441438234247,
+        "positive_f1_with_abstention": 0.9766237216097755
+      },
+      "relation": {
+        "support": 4395,
+        "temperature": 0.7229929566383362,
+        "threshold": 0.5719664692878723,
+        "nll_before": 0.33560431003570557,
+        "nll_after": 0.3299521803855896,
+        "ece_before": 0.030985322774338117,
+        "ece_after": 0.01450558405144901,
+        "positive_f1_without_abstention": 0.47455386649041637,
+        "positive_f1_with_abstention": 0.5029436501261564
+      },
+      "document": {
+        "support": 708,
+        "temperature": 0.5326269865036011,
+        "threshold": 0.9999979734420776,
+        "nll_before": 0.005357906688004732,
+        "nll_after": 0.0037586467806249857,
+        "ece_before": 0.004220776470367569,
+        "ece_after": 0.00235864823147399,
+        "coverage": 0.901129961013794,
+        "selective_accuracy": 1.0,
+        "class_count": 4
+      }
+    }
+  }
+}

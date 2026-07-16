@@ -58,9 +58,18 @@ The download report records directories and per-file SHA-256 hashes. Model
 verification re-hashes those files before initializing the routes. A partial,
 missing, or changed artifact fails closed.
 
-The rotated smoke is an end-to-end selector assertion: a 90-degree synthetic
-fixture must return nonempty OCR, select a nonzero cardinal correction, and
-recover `INVOICE`, `TOTAL`, and `123.45`. An empty engine call cannot pass.
+The rotated checks are end-to-end selector assertions. A 90-degree fixture
+must return nonempty OCR, select a nonzero cardinal correction, and recover
+`INVOICE`, `TOTAL`, and `123.45`. A separate 17-degree fixture must recover the
+same phrase through automatic fine deskew with reliable line evidence. An
+empty engine call cannot pass either check.
+
+The final public dev-only preprocessing ablation selected the `original`
+profile. Grayscale normalization and optional Paddle orientation modules tied
+its alignment score but did not improve it; denoising reduced coverage.
+Raster-to-PDF tests tied across 200/250/300 DPI, so 200 DPI remains the lower
+cost default. The locked test and private documents were never used for this
+selection.
 
 ## CPU mode
 

@@ -16,7 +16,7 @@
 - **Workspace:** `c:\Assumption University\CSX4201\Project`
 - **Data root:** `data/raw/` (organized 2026-07-13). The original `vision_info_extraction_data/` is now an empty husk (0 files).
 - **Domain (confirmed by professor, 2026-07-13):** vision information extraction — build a model that extracts information correctly and accurately from images, documents, and any file that contains information. The datasets on disk are scanned forms, receipts, and invoices (OCR + IE + possibly DocVQA).
-- **Status:** Dataset organization and the bounded rotation baseline remain verified. On 2026-07-15 the repository added a complete information-extraction inference and smoke-training lifecycle: D:-backed PaddleOCR/LayoutXLM environments, exact general/Thai OCR models, public annotation normalization, dynamic geometry transforms, public-only layout smoke training, image/PDF/multipage inference, schema validation, bounded evaluation, and aggregate-only private testing. Final-review regressions added real rotated phrase recovery, automatic Thai multipage routing, one-to-one polygon detection metrics, and hash-bound integration evidence. Treat the smoke checkpoint as lifecycle proof, not a final-quality model: public text-detection F1 is 0.4146, entity F1 is about 0.01, and relation F1 is 0. K-Means remains display-only, and the failed exact-angle estimator is disabled for inference.
+- **Status:** Dataset organization and the bounded rotation baseline remain verified. On 2026-07-17 the repository completed the full public information-extraction pre-model lifecycle: a 7,782-example four-epoch final LayoutXLM run, public-only calibration, locked in-domain evaluation, required 18-angle layout and end-to-end grids, a fixed 100-page unseen CORU evaluation, exact general/Thai OCR verification, hash-bound image/rotation/Thai/multipage integration, and aggregate-only private operation. The exact final checkpoint hash is `34c7a26e78d6285a2739e1b61839eadfd0e686ccbcf57f9cb47997c12cef2189`. Reference-token entity F1 is 0.9813, but bounded end-to-end entity F1 is only 0.1314-0.1830 because OCR remains the main bottleneck; relation quality is limited by FUNSD-only supervision. K-Means remains display-only, and the failed exact-angle estimator is disabled for inference.
 
 ## Project goal and model requirements (confirmed by professor, 2026-07-13)
 
@@ -54,9 +54,9 @@ reports/                   # preparation, features, K-Means, angles, verificatio
 schemas/                   # versioned inference-output JSON Schema
 scripts/                   # organization plus rotation-stage CLI entry points
 src/                       # organization, rotation, OCR, IE, inference, evaluation
-tests/                     # synthetic tests; 158 pass, 1 environment-dependent skip
+tests/                     # synthetic/regression tests; 227 pass, 2 environment-dependent skips
 ```
-Large OCR/layout assets live below `D:\CSX4201\vision-info-extraction-assets` in separate Python 3.10 environments. Raw totals remain 128,793 files and 35,459,126,772 bytes. The bounded rotation run generated 8,332 rotations with 0 failures and 2,083 rows per zone. Rotation verification passes 20/20 checks; the expanded development suite passes 158 tests with one skip. OCR-runtime and CUDA-layout partitions pass 53 and 3 tests respectively.
+Large OCR/layout assets live below `D:\CSX4201\vision-info-extraction-assets` in separate Python 3.10 environments. Raw totals remain 128,793 files and 35,459,126,772 bytes. The bounded rotation run generated 8,332 rotations with 0 failures and 2,083 rows per zone. Rotation verification passes 20/20 checks; the host suite passes 227 tests with two environment-dependent skips. The explicit OCR-runtime and CUDA-layout partitions pass 122 and 2 tests respectively.
 
 ---
 
@@ -96,6 +96,6 @@ Large OCR/layout assets live below `D:\CSX4201\vision-info-extraction-assets` in
 - [ ] Is `gmail_private_test` the private leaderboard set? Should derived outputs be derived from it at all?
 - [ ] Target deliverable: final trained model, notebook, report, or competition submission?
 - [x] Repo visibility for GitHub — confirmed private before the 2026-07-15 publication pass; recheck before every future upload.
-- [x] README.md — updated for the implemented information-extraction smoke lifecycle (2026-07-15), while preserving historical rotation metrics and open research decisions.
+- [x] README.md — updated for the final working information-extraction lifecycle (2026-07-17), while preserving historical rotation metrics and open research decisions.
 
 > When the user provides the above, update this section, `AGENT_MEMORY.md`, and then `README.md`.

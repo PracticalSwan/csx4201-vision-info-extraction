@@ -10,6 +10,7 @@ from src.information_extraction.geometry import (
     apply_matrix,
     expanded_rotation_transform,
     polygon_to_bbox,
+    transform_annotation,
 )
 
 BASE_ENTITY_LABELS = ("HEADER", "KEY", "VALUE", "QUESTION", "ANSWER", "TABLE_CELL", "OTHER")
@@ -22,17 +23,27 @@ LABEL_TO_ID = {label: index for index, label in enumerate(BIO_LABELS)}
 ID_TO_LABEL = {index: label for label, index in LABEL_TO_ID.items()}
 
 
-def to_bio_labels(labels: Sequence[str]) -> list[str]:
+def to_bio_labels(
+    labels: Sequence[str], entity_ids: Sequence[str | None] | None = None
+) -> list[str]:
+    if entity_ids is not None and len(entity_ids) != len(labels):
+        raise ValueError("entity_ids and labels must have equal lengths")
     result: list[str] = []
     previous = "OTHER"
-    for label in labels:
+    previous_entity_id: str | None = None
+    for index, label in enumerate(labels):
         normalized = label if label in BASE_ENTITY_LABELS else "OTHER"
+        entity_id = entity_ids[index] if entity_ids is not None else None
         if normalized == "OTHER":
             result.append("O")
         else:
-            prefix = "I-" if normalized == previous else "B-"
+            same_entity = entity_ids is None or (
+                entity_id is not None and entity_id == previous_entity_id
+            )
+            prefix = "I-" if normalized == previous and same_entity else "B-"
             result.append(prefix + normalized)
         previous = normalized
+        previous_entity_id = entity_id
     return result
 
 
@@ -68,6 +79,20 @@ def rotated_word_boxes(
     return boxes, transform.output_width, transform.output_height, transform.as_dict()
 
 
+def rotate_example_geometry(
+    example: Mapping[str, Any],
+    angle: float,
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    """Rotate token and entity geometry while preserving IDs and targets."""
+    transform = expanded_rotation_transform(
+        int(example["width"]), int(example["height"]), angle
+    )
+    rotated = transform_annotation(example, transform)
+    rotated["width"] = transform.output_width
+    rotated["height"] = transform.output_height
+    return rotated, transform.as_dict()
+
+
 def encode_layoutxlm_windows(
     tokenizer: Any,
     words: Sequence[str],
@@ -89,19 +114,63 @@ def encode_layoutxlm_windows(
     return dict(encoding)
 
 
-def load_model_examples(manifest_path: str | Path, split: str) -> list[dict[str, Any]]:
+def load_model_examples(
+    manifest_path: str | Path,
+    split: str,
+    *,
+    expected_profile: str | None = None,
+    expected_build_id: str | None = None,
+    token_sources: set[str] | None = None,
+) -> list[dict[str, Any]]:
     import csv
 
-    rows = []
+    all_rows = []
     with Path(manifest_path).open("r", encoding="utf-8", newline="") as handle:
         for row in csv.DictReader(handle):
-            if row.get("project_split") == split and row.get("is_usable") == "true":
-                rows.append(row)
+            all_rows.append(row)
+    if not all_rows:
+        raise ValueError(f"model manifest is empty: {manifest_path}")
+    if expected_profile is not None:
+        profiles = {row.get("profile", "") for row in all_rows}
+        if profiles != {expected_profile}:
+            raise ValueError(
+                f"model manifest profile mismatch: expected {expected_profile!r}, found {sorted(profiles)!r}"
+            )
+    if expected_build_id is not None:
+        build_ids = {row.get("build_id", "") for row in all_rows}
+        if build_ids != {expected_build_id}:
+            raise ValueError(
+                f"model manifest build mismatch: expected {expected_build_id!r}, found {sorted(build_ids)!r}"
+            )
+    rows = [
+        row
+        for row in all_rows
+        if row.get("project_split") == split
+        and row.get("is_usable") == "true"
+        and (token_sources is None or row.get("token_source") in token_sources)
+    ]
     examples = []
     for row in rows:
+        if row.get("is_private") != "false":
+            raise ValueError("private or unmarked manifest row refused")
         path = Path(row["model_example_path"])
         example = json.loads(path.read_text(encoding="utf-8"))
         if example.get("is_private") is not False:
             raise ValueError(f"private or unmarked model example refused: {path}")
+        expected = {
+            "example_id": row.get("example_id"),
+            "build_id": row.get("build_id"),
+            "profile": row.get("profile"),
+            "project_split": row.get("project_split"),
+            "token_source": row.get("token_source"),
+        }
+        mismatches = {
+            key: (value, example.get(key))
+            for key, value in expected.items()
+            if value and example.get(key) != value
+        }
+        if mismatches:
+            mismatch_keys = ", ".join(sorted(mismatches))
+            raise ValueError(f"model example manifest binding mismatch ({mismatch_keys}): {path}")
         examples.append(example)
     return examples

@@ -3,6 +3,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import pytest
+
 from src import privacy
 
 
@@ -23,7 +25,6 @@ def test_private_path_not_under_public():
 
 def test_private_under_public_raises():
     """A gmail file under the public tree must raise."""
-    import pytest
     with pytest.raises(ValueError):
         privacy.assert_private_not_under_public(
             "data/raw/public/gmail/invoices/x.pdf")
@@ -73,3 +74,18 @@ def test_gmail_files_not_in_public_directory(tmp_path):
     # No gmail file under public/
     for p in public.rglob("*"):
         assert not p.is_file() or not privacy.is_private(p)
+
+
+def test_configured_private_input_requires_private_mode_without_opening_file(tmp_path):
+    root = tmp_path / "data" / "raw" / "private" / "gmail"
+    source = root / "invoices" / "synthetic-private.pdf"
+
+    with pytest.raises(ValueError, match="requires --private-output"):
+        privacy.require_private_input_mode([source], [root], private_output=False)
+
+    assert privacy.require_private_input_mode(
+        [source], [root], private_output=True
+    ) is True
+    assert privacy.require_private_input_mode(
+        [tmp_path / "public.pdf"], [root], private_output=False
+    ) is False

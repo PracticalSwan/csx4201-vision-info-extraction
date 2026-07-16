@@ -9,6 +9,7 @@ from PIL import Image
 
 from src.ocr.cache import OCRCache, OCRCacheKey
 from src.ocr.errors import OCRModelMismatch, OCRModelUnavailable
+from src.ocr.fine_deskew import estimate_residual_deskew
 from src.ocr.language_router import should_try_thai
 from src.ocr.model_registry import REQUIRED_MODEL_NAMES, ModelRegistry
 from src.ocr.pipeline import MultilingualOCR
@@ -73,6 +74,89 @@ def test_cardinal_selection_and_forced_general_route() -> None:
     assert len(result["candidate_scores"]) == 4
 
 
+def test_polygon_baselines_estimate_independent_fine_deskew() -> None:
+    import math
+
+    angle = math.radians(12)
+    words = []
+    for index in range(6):
+        x0, y0, width, height = 10.0, 15.0 + index * 18.0, 80.0, 10.0
+        dx, dy = width * math.cos(angle), width * math.sin(angle)
+        hx, hy = -height * math.sin(angle), height * math.cos(angle)
+        words.append({
+            "text": f"word-{index}",
+            "confidence": 0.95,
+            "polygon": [[x0, y0], [x0 + dx, y0 + dy], [x0 + dx + hx, y0 + dy + hy], [x0 + hx, y0 + hy]],
+        })
+    estimate = estimate_residual_deskew(words)
+    assert estimate["supported_word_count"] == 6
+    assert estimate["text_angle_degrees"] == pytest.approx(12.0, abs=0.2)
+    assert estimate["correction_degrees"] == pytest.approx(12.0, abs=0.2)
+    assert estimate["reliability"] > 0.8
+
+
+def test_pipeline_refines_cardinal_candidate_with_polygon_baseline() -> None:
+    import math
+
+    class TiltedBackend(FakeBackend):
+        def predict(self, image: Image.Image, *, orientation: float = 0.0) -> dict:
+            self.calls.append(orientation)
+            residual = 12.0 if orientation == 0.0 else 0.0
+            confidence = (
+                0.98
+                if abs(orientation - 12.0) < 0.25
+                else 0.75
+                if orientation == 0.0
+                else 0.20
+            )
+            words = []
+            angle = math.radians(residual)
+            for index in range(6):
+                x0, y0, width, height = 5.0, 5.0 + index * 5.0, 30.0, 3.0
+                dx, dy = width * math.cos(angle), width * math.sin(angle)
+                hx, hy = -height * math.sin(angle), height * math.cos(angle)
+                words.append({
+                    "id": f"w-{orientation}-{index}", "text": f"TEXT{index}",
+                    "confidence": confidence,
+                    "polygon": [[x0, y0], [x0 + dx, y0 + dy], [x0 + dx + hx, y0 + dy + hy], [x0 + hx, y0 + hy]],
+                    "bbox": [x0, y0, x0 + width, y0 + height],
+                })
+            return {
+                "full_text": " ".join(word["text"] for word in words),
+                "words": words,
+                "lines": [],
+                "mean_confidence": confidence,
+                "detector_model": "PP-OCRv6_medium_det",
+                "recognizer_model": "PP-OCRv6_medium_rec",
+                "language_route": self.route,
+                "orientation": orientation,
+                "duration_seconds": 0.01,
+                "warnings": [],
+                "provenance_hash": "a" * 64,
+            }
+
+    general = TiltedBackend("general", 0, "TEXT")
+    pipeline = MultilingualOCR(
+        general_backend=general,
+        thai_backend=FakeBackend("thai", 0, "THAI"),
+    )
+    result = pipeline.extract_page(Image.new("RGB", (100, 60), "white"), language_mode="general")
+    assert any(abs(angle - 12.0) < 0.25 for angle in general.calls)
+    assert result["orientation"] == pytest.approx(12.0, abs=0.25)
+    assert any(score["candidate_kind"] == "fine_deskew" for score in result["candidate_scores"])
+    base_score = next(
+        score for score in result["candidate_scores"] if score["orientation"] == 0.0
+    )
+    fine_score = next(
+        score
+        for score in result["candidate_scores"]
+        if score["candidate_kind"] == "fine_deskew"
+    )
+    assert fine_score["text_detection_coverage"] == pytest.approx(
+        base_score["text_detection_coverage"]
+    )
+
+
 def test_auto_route_uses_thai_evidence_and_is_kmeans_independent() -> None:
     general = FakeBackend("general", 90, "INVOICE")
     thai = FakeBackend("thai", 180, "ใบเสร็จรับเงิน")
@@ -134,6 +218,22 @@ def test_thai_script_ratio_is_bounded() -> None:
     }
     score = score_ocr_candidate(result, 200, 100)
     assert 0.0 <= score["thai_script_ratio"] <= 1.0
+
+
+def test_candidate_coverage_uses_polygon_area_instead_of_tilted_bbox() -> None:
+    result = {
+        "language_route": "general",
+        "words": [
+            {
+                "text": "INVOICE",
+                "confidence": 0.99,
+                "bbox": [0, 0, 100, 100],
+                "polygon": [[0, 45], [90, 0], [100, 20], [10, 65]],
+            }
+        ],
+    }
+    score = score_ocr_candidate(result, 100, 100)
+    assert score["text_detection_coverage"] == pytest.approx(0.225)
 
 
 def test_result_normalizer_accepts_paddle_3_mapping() -> None:

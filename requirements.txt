@@ -1,7 +1,8 @@
 # Runtime dependencies shared by dataset preparation, the preserved classical
 # rotation baseline, and lightweight information-extraction utilities. Heavy
-# OCR/training packages are pinned separately in requirements-ie.txt because
-# they run in the dedicated Python 3.10 environment on D:.
+# Shared OCR/layout packages are in requirements-ie.txt; framework-specific
+# packages are pinned in requirements-ocr.txt and requirements-layout.txt for
+# the separate Python 3.10 environments on D:.
 numpy>=1.26
 pandas>=2.0
 Pillow>=10.0

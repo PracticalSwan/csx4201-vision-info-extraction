@@ -110,30 +110,99 @@ def storage_gate(
     *,
     minimum_c_free_gib: float = 15.0,
     minimum_asset_free_gib: float = 15.0,
+    anticipated_c_gib: float = 0.0,
+    anticipated_asset_gib: float = 0.0,
 ) -> dict[str, Any]:
-    """Report whether model work preserves the required system-drive reserve."""
+    """Report whether anticipated model work preserves both drive reserves."""
     root = Path(asset_root)
+    c_free_gib: float | None = None
+    asset_free_gib: float | None = None
+    errors: list[str] = []
+    if Path("C:/").exists():
+        c_free_gib = shutil.disk_usage("C:/").free / 1024**3
+    if not root.drive or not Path(root.anchor).exists():
+        errors.append(f"external asset drive is unavailable: {root}")
+    else:
+        asset_free_gib = shutil.disk_usage(root.anchor).free / 1024**3
+    result = evaluate_storage_reserve(
+        c_free_gib=c_free_gib,
+        asset_free_gib=asset_free_gib,
+        minimum_c_free_gib=minimum_c_free_gib,
+        minimum_asset_free_gib=minimum_asset_free_gib,
+        anticipated_c_gib=anticipated_c_gib,
+        anticipated_asset_gib=anticipated_asset_gib,
+    )
+    result["errors"] = errors + result["errors"]
+    result["passed"] = not result["errors"]
+    return result
+
+
+def evaluate_storage_reserve(
+    *,
+    c_free_gib: float | None,
+    asset_free_gib: float | None,
+    minimum_c_free_gib: float = 15.0,
+    minimum_asset_free_gib: float = 15.0,
+    anticipated_c_gib: float = 0.0,
+    anticipated_asset_gib: float = 0.0,
+) -> dict[str, Any]:
+    """Pure reserve calculation used by the live gate and unit tests."""
+    if min(
+        minimum_c_free_gib,
+        minimum_asset_free_gib,
+        anticipated_c_gib,
+        anticipated_asset_gib,
+    ) < 0:
+        raise ValueError("storage reserve and anticipated-write values must be non-negative")
     result: dict[str, Any] = {
         "minimum_c_free_gib": minimum_c_free_gib,
         "minimum_asset_free_gib": minimum_asset_free_gib,
+        "anticipated_c_gib": anticipated_c_gib,
+        "anticipated_asset_gib": anticipated_asset_gib,
         "passed": True,
         "errors": [],
     }
-    if Path("C:/").exists():
-        c_free = shutil.disk_usage("C:/").free / 1024**3
-        result["c_free_gib"] = round(c_free, 3)
-        if c_free < minimum_c_free_gib:
-            result["passed"] = False
-            result["errors"].append(f"C: free space {c_free:.2f} GiB is below reserve")
-    if not root.drive or not Path(root.anchor).exists():
-        result["passed"] = False
-        result["errors"].append(f"external asset drive is unavailable: {root}")
-    else:
-        asset_free = shutil.disk_usage(root.anchor).free / 1024**3
-        result["asset_free_gib"] = round(asset_free, 3)
-        if asset_free < minimum_asset_free_gib:
-            result["passed"] = False
-            result["errors"].append(f"asset drive free space {asset_free:.2f} GiB is insufficient")
+    if c_free_gib is not None:
+        projected = c_free_gib - anticipated_c_gib
+        result.update({
+            "c_free_gib": round(c_free_gib, 3),
+            "projected_c_free_gib": round(projected, 3),
+        })
+        if projected < minimum_c_free_gib:
+            result["errors"].append(
+                f"C: projected free space {projected:.2f} GiB is below the "
+                f"{minimum_c_free_gib:.2f} GiB reserve"
+            )
+    if asset_free_gib is not None:
+        projected = asset_free_gib - anticipated_asset_gib
+        result.update({
+            "asset_free_gib": round(asset_free_gib, 3),
+            "projected_asset_free_gib": round(projected, 3),
+        })
+        if projected < minimum_asset_free_gib:
+            result["errors"].append(
+                f"asset drive projected free space {projected:.2f} GiB is below the "
+                f"{minimum_asset_free_gib:.2f} GiB reserve"
+            )
+    result["passed"] = not result["errors"]
+    return result
+
+
+def require_storage_gate(
+    asset_root: str | Path = DEFAULT_ASSET_ROOT,
+    *,
+    operation: str,
+    anticipated_c_gib: float = 0.0,
+    anticipated_asset_gib: float = 0.0,
+) -> dict[str, Any]:
+    """Abort a large operation before it can cross a configured reserve."""
+    result = storage_gate(
+        asset_root,
+        anticipated_c_gib=anticipated_c_gib,
+        anticipated_asset_gib=anticipated_asset_gib,
+    )
+    if not result["passed"]:
+        raise RuntimeError(f"storage gate blocked {operation}: {'; '.join(result['errors'])}")
     return result
 
 

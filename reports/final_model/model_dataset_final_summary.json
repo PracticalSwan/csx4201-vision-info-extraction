@@ -1,0 +1,66 @@
+{
+  "schema_version": "2.0",
+  "profile": "final",
+  "build_id": "final-6be3e0b46b0a4e4c",
+  "streams": [
+    "ground_truth",
+    "hybrid",
+    "paddleocr"
+  ],
+  "candidate_page_count": 11172,
+  "ocr_variant_page_count": 256,
+  "build_provenance": {
+    "preprocessing_version": "2.0-cardinal-polygon-fine",
+    "orientation_policy": {
+      "cardinal_angles": [
+        0,
+        90,
+        180,
+        270
+      ],
+      "polygon_fine_deskew": true,
+      "kmeans_controls_ocr": false
+    },
+    "ocr_model_artifact_hashes": {
+      "PP-OCRv6_medium_det": "393f629d341e6388ca72d19b25983b96cae36dfdf1f7146adf42d6ab68789388",
+      "PP-OCRv6_medium_rec": "666f7c4d6d5c846c7e202f63356b3fc4a7a3d4ff7040e763b93c5771608c7ae0",
+      "th_PP-OCRv5_mobile_rec": "507c659e3abb6c2c7262a07965ec880119751a29e3c8ed7437b337f74b36608d"
+    },
+    "ocr_variant_selection": {
+      "requested_limit": 256,
+      "selected_page_count": 256,
+      "page_ids_sha256": "945cdbc8adbee69936a90fd7046e6dc28b0d2605c247a831523e3c2a36bedca8",
+      "balance_keys": [
+        "dataset",
+        "project_split"
+      ]
+    }
+  },
+  "usable_example_count": 11684,
+  "excluded_example_count": 0,
+  "counts_by_dataset": {
+    "fatura": 10184,
+    "sroie": 1149,
+    "funsd": 351
+  },
+  "counts_by_split": {
+    "train": 7782,
+    "dev_select": 1243,
+    "test_in_domain": 1896,
+    "dev_calibration": 763
+  },
+  "counts_by_stream": {
+    "ground_truth": 11172,
+    "hybrid": 256,
+    "paddleocr": 256
+  },
+  "exclusion_counts": {},
+  "minimum_alignment_coverage": null,
+  "whole_page_alignment_rejection_enabled": false,
+  "gmail_fit_rows": 0,
+  "output_root": "D:\\CSX4201\\vision-info-extraction-assets\\data\\model_datasets\\final\\final-6be3e0b46b0a4e4c",
+  "manifest_path": "C:\\Assumption University\\CSX4201\\Project\\data\\metadata\\final_model_dataset_manifest.csv",
+  "manifest_sha256": "448582175cc832f336ee5e2654b7f1f1d417f8d47d8c6a08b2a91cd03334d200",
+  "split_manifest_path": "C:\\Assumption University\\CSX4201\\Project\\data\\metadata\\information_extraction_split_manifest.csv",
+  "split_manifest_sha256": "8dfe1c09d088ab8562d936fe12367be1f9998b9c2658a2bacf38780a82a75132"
+}
