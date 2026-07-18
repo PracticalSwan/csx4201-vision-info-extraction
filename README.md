@@ -19,7 +19,47 @@ not a production or high-stakes decision system: reference-token layout scores
 are strong, but real OCR is the main end-to-end bottleneck and relation quality
 is limited by sparse supervision.
 
-## Verified status (2026-07-17)
+## One-step local use
+
+The July 19 Build Week extension adds a local GUI, one-command CLI, bundled
+model release, Windows setup, Docker-backed macOS path, and an optional
+consent-gated GPT-5.6 review skill. Extraction itself is fully local and uses
+no OpenAI API key.
+
+Current development machine:
+
+```powershell
+python run_ocr.py "path\to\document.pdf"
+python app.py
+```
+
+Shareable release:
+
+```text
+D:\OCR_Model
+D:\OCR_Model.zip
+```
+
+On Windows, recipients run `setup_windows.bat` once and then
+`launch_windows.bat` or `run_cli.bat <document>`. On macOS, the supported path
+is `bash launch_macos.command` through Docker Desktop; no physical Mac test is
+claimed. The release includes the exact final LayoutXLM and three PaddleOCR
+weight sets, a synthetic sample, `MODEL_MANIFEST.json`, and no raw/private
+data. See [portable usage](docs/PORTABLE_USAGE.md).
+
+The optional `$review-ocr-document` repo skill uses the local `ocr_model` STDIO
+MCP server to expose opaque result IDs and only user-selected fields after
+confirmation. OCR text requires separate consent and is capped. GPT-5.6
+returns suggestions without changing the local JSON. It uses the user's
+signed-in Codex session, not an API key. See
+[Codex integration](docs/CODEX_INTEGRATION.md).
+
+Build Week submission materials are under [docs/devpost](docs/devpost).
+Sanitized demo evidence includes the [ready GUI](docs/devpost/assets/ocr-model-ready.png),
+[completed field extraction](docs/devpost/assets/ocr-model-fields-final.png),
+and [visual overlay](docs/devpost/assets/ocr-model-visual-tab-final.png).
+
+## Verified status (2026-07-19)
 
 | Surface | Executed evidence |
 |---|---|
@@ -34,7 +74,9 @@ is limited by sparse supervision.
 | Unseen CORU | 100/100 pages succeeded; 78.53% of 4,001 QA answer strings found in OCR; 15.68% canonical exact match; never used for fitting or selection |
 | Private operation | 2/2 anonymous local documents succeeded; public report is aggregate-only and declares no filenames, OCR text, images, or per-document predictions |
 | Verification | IE verifier 46/46 complete checks; exact OCR model/GPU checks and hash-bound image/rotation/Thai/multipage integration pass |
-| Automated tests | Host suite: 227 passed, 2 environment-dependent skips; OCR-runtime partition: 122 passed; CUDA-layout partition: 2 passed |
+| Automated tests | Host suite: 234 passed, 2 environment-dependent skips; OCR-runtime partition: 122 passed; CUDA-layout partition: 2 passed |
+| Portable release | Windows bundle doctor and exact OCR-model verification passed; native GPU GUI/CLI and `linux/amd64` Docker CPU extractions produced identical field values, OCR text, entity triplets, and relation triplets |
+| Optional GPT-5.6 bridge | Real STDIO MCP client listed both tools; unconfirmed calls exposed no values; confirmed test exposed only the selected synthetic `total_amount` field |
 
 Full reports are under [reports/final_model](reports/final_model), including
 the [model card](reports/final_model/final_model_card.md) and
@@ -151,9 +193,11 @@ $checkpoint = 'D:\CSX4201\vision-info-extraction-assets\checkpoints\layoutxlm_mu
 ```
 
 The 1.1 GB final weight and resumable optimizer state are intentionally not in
-Git. Reproduce them with the commands above or retain the verified local D:
-checkpoint. The repo commits code, manifests, calibration, metrics, hashes,
-and provenance—not private data or large model/cache artifacts.
+Git. Reproduce them with the commands above, retain the verified local D:
+checkpoint, or use the generated `D:\OCR_Model` release. The shareable release
+contains inference weights only, not resumable optimizer state. The repository
+commits code, manifests, calibration, metrics, hashes, and provenance, but no
+private data or large model/cache artifacts.
 
 ## Reproduce evaluation and verification
 
@@ -238,6 +282,9 @@ uses evidence-scored candidates and fine deskew independently.
 - Synthetic Thai text/routing passes every required angle, but no compatible
   labeled public Thai benchmark is available.
 - Layout visual features are omitted on this Windows runtime.
+- Native macOS execution was not tested because no physical Mac was available;
+  the documented macOS route is the validated CPU-only `linux/amd64` Docker
+  package and may be slow under Apple Silicon emulation.
 - CORU has QA answer text but no compatible token polygons; its 78.53% answer
   recall is not entity/relation F1.
 - Canonical fields, document types, official thresholds, and deliverable

@@ -53,3 +53,24 @@
 The only unchecked research item requires professor-approved data and protocol;
 it is not a hidden implementation failure. Final publication completed through
 GitHub PR #1 at merge commit `b38ebc2fc3de8975c03ef9ea5fe66334f40bd137`.
+
+## Portable release and OpenAI Build Week
+
+- [x] Add one-command full-document extraction through CLI and local Gradio GUI.
+- [x] Add a Windows setup/launch path and a Docker-based macOS launch path.
+- [x] Package the exact OCR and LayoutXLM weights into a privacy-audited
+  `D:\OCR_Model.zip` release with a SHA-256 sidecar.
+- [x] Add no-API-key Codex integration through a consent-gated local MCP server
+  and repository skill.
+- [x] Prepare Work & Productivity submission copy, requirements evidence,
+  judge-access guidance, a three-minute video script, and privacy-safe
+  screenshots.
+- [x] Verify native Windows GPU extraction, Docker Linux/AMD64 CPU extraction,
+  and exact output parity on the safe validation document.
+- [x] Complete one independent review, fix all three confirmed findings, and
+  complete the same reviewer's single follow-up with zero remaining findings.
+- [ ] Publish the narrated public demo video of no more than three minutes.
+- [ ] Run the final demonstrated Codex skill flow and save its `/feedback`
+  Session ID.
+- [ ] Confirm both private-repository judge invitations.
+- [ ] Complete and submit the Devpost form before the official deadline.

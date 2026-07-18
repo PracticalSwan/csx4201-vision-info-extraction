@@ -1,0 +1,5 @@
+# Lightweight launcher/UI/MCP environment. The OCR and layout frameworks stay
+# in their isolated environments to avoid Paddle/PyTorch DLL conflicts.
+gradio==6.0.1
+mcp==1.12.4
+PyYAML>=6.0

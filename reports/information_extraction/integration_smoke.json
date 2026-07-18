@@ -2,32 +2,32 @@
   "schema_version": "1.0",
   "status": "passed",
   "generated_by": "scripts/run_integration_smoke.py",
-  "generated_at_utc": "2026-07-16T20:24:51.680292+00:00",
+  "generated_at_utc": "2026-07-18T20:27:27.119054+00:00",
   "command": [
     "D:\\CSX4201\\vision-info-extraction-assets\\environments\\ie-ocr\\Scripts\\python.exe",
     "scripts/run_integration_smoke.py",
     "--device",
     "gpu:0"
   ],
-  "source_revision": "29d082d36d7119ba1300d2f25eb31e86c7ccb2dc",
+  "source_revision": "b314ba7bf25175cb96f8a2e77d86e47d4a1a462e",
   "device": "gpu:0",
   "private_inputs_used": false,
   "source_hashes": {
     "runner": {
       "path": "scripts/run_integration_smoke.py",
-      "sha256": "6b3330b08ba813ad7dff01065dcad871a2ad56ab395ef8c23fff92fddcbea41f"
+      "sha256": "4ff86b9a64a723bda3bef329283177cd028ed3d2fec46c9bfdb504bf78333b66"
     },
     "integration_verifier": {
       "path": "scripts/verify_information_extraction.py",
-      "sha256": "38a23acae779f948ad9efd45c7b7a893ef5cb3c2743ecafcb06cebccb433b4b9"
+      "sha256": "92ecef73a3756a6611964c4b46197889bd5cc7cdcd766055e114fc54664b2fad"
     },
     "config": {
       "path": "config.yaml",
-      "sha256": "e696add4fba5cb6dca752ccd9660fe33d5920e9e5e1c64a231e4cf251cb5b78e"
+      "sha256": "b03d0ae5c8ef56ccf01051f9b0e8dd8a59fd3391235db9b9de16126d61312acd"
     },
     "output_schema": {
       "path": "schemas/inference_output.schema.json",
-      "sha256": "bbc7d64b8dfcd4f6d69ce27024dceb1f8aaed2f1f0e660d35529cc35f6b39103"
+      "sha256": "1781659edabd7e542605bab41832a60a51ab9ee7a8ba1dd05c3c137166792ab9"
     },
     "model_setup": {
       "path": "reports/ocr/model_setup.json",
@@ -43,43 +43,43 @@
     },
     "document_pipeline": {
       "path": "src/inference/document_pipeline.py",
-      "sha256": "28384bc9791526b006ac1a17cb7991f7424d228715afa183613e1cf2ce729f84"
+      "sha256": "300a41ec2382e741738bd360f181c4bb600ed889ca82ea99e4348a995818c4bb"
     },
     "document_io": {
       "path": "src/inference/document_io.py",
-      "sha256": "69269354f19ffe4f73480979f7da114c8a6e5dffb64240ab27c95a0473b43bd1"
+      "sha256": "28852b82e18dd581f84f526b283da0fa7663b6713abd5192244730c7e08bcbc3"
     },
     "entity_worker_client": {
       "path": "src/information_extraction/entity_worker_client.py",
-      "sha256": "90f5e7486115424934dce35f853d296c98969e8b0fc3f7fed91e9f459b18539e"
+      "sha256": "0097f8307e7069a839801a67588c48047fe14da8a2ca7c782dc0b8655cc30fde"
     },
     "layout_entity_worker": {
       "path": "scripts/layout_entity_worker.py",
-      "sha256": "4997c5679f38edcaf519fa1310ae620315ea21cdc767e4dcb739b220a05d8258"
+      "sha256": "dd35cb43d9df0a34b902cdbce6c60fd0a99584b49c05151047c7afbf00b5f283"
     },
     "multitask_inference": {
       "path": "src/information_extraction/multitask_inference.py",
-      "sha256": "2f5857e4edae18c18c9df9eb117f7dc546968c8fec4bff2fda1209f4d1f50398"
+      "sha256": "3385fbb3f4d017bb86dcb57bb245b3a294b2bd2994d736f255b9103b13e8686c"
     },
     "layoutxlm_model": {
       "path": "src/information_extraction/layoutxlm_model.py",
-      "sha256": "6da51b29d3c37243148e3fe66203aa4afd7ee67ffe4b13e694dddde4ff46fd11"
+      "sha256": "68e12a8fdb8ecec44cfab809c3029ea14d51c8c2efd945a4006c02018e0647ec"
     },
     "ocr_pipeline": {
       "path": "src/ocr/pipeline.py",
-      "sha256": "9c11c96182cff56ede631e07419757821a940b88ad4ad59dc1e289855df8d10f"
+      "sha256": "b818a067832322098cf059e88982e2da40b73d722d4f26c42c5f556991c06e42"
     },
     "ocr_adapter": {
       "path": "src/ocr/paddleocr_adapter.py",
-      "sha256": "d210b42d78981d1e950ffdd5634785d82e3166f8bcbe64cf7abe483a3299b7cc"
+      "sha256": "f8ab1fbe29ed44c1c8a6e74f9b30f712ad493daa14379082c714640005ed7815"
     },
     "language_router": {
       "path": "src/ocr/language_router.py",
-      "sha256": "3979f70b0b6c29ded47916baf71916524c84057391d5f4e35f1e372b90640f03"
+      "sha256": "4d65cc0648c4ea578c462f51152d8d5104ac85d06d3ff2709a6512e0de65b200"
     },
     "ocr_scoring": {
       "path": "src/ocr/scoring.py",
-      "sha256": "00d9c749704ebf45cdca6cf6a8289b9a1dc598321f1206ce1827c4b71df521e7"
+      "sha256": "07bb05e4098d694676eae9422be02362c1ca1e141cd7d485d88a8eda8cf2fe01"
     }
   },
   "checkpoint_artifacts": [
@@ -113,7 +113,7 @@
     "mixed_language_multipage_pdf": {
       "path": "D:\\CSX4201\\vision-info-extraction-assets\\generated\\integration_smoke\\fixtures\\mixed_language_two_page.pdf",
       "size_bytes": 98605,
-      "sha256": "c68e389efee6e37f0abcafd923346b5a4258c0646357890a6c56f2b3b43a1031"
+      "sha256": "250994e6d8220afa8e3bbb8ce80c75b1535470e3cb49fb0982f7b281429bc309"
     },
     "thai_auto_with_metadata_hint": {
       "path": "D:\\CSX4201\\vision-info-extraction-assets\\generated\\integration_smoke\\fixtures\\thai_receipt.png",
@@ -124,23 +124,23 @@
   "output_artifacts": {
     "unknown_upright_image": {
       "path": "D:\\CSX4201\\vision-info-extraction-assets\\generated\\integration_smoke\\outputs\\unknown_upright_image.json",
-      "size_bytes": 24569,
-      "sha256": "35d92a17ae56825395980ba4ffdcc63145289e0ab252256f40c48458102bf517"
+      "size_bytes": 24570,
+      "sha256": "d20bcf87d3a11dff8e5d8f5817e4da2fb3194556f00320d133659bd7bef04d55"
     },
     "unknown_45_degree_image": {
       "path": "D:\\CSX4201\\vision-info-extraction-assets\\generated\\integration_smoke\\outputs\\unknown_45_degree_image.json",
-      "size_bytes": 23199,
-      "sha256": "f09cc6b9b084c343ecafd26a0bb03ca4c6de21aa807d8a79616d756d96c9d92b"
+      "size_bytes": 23200,
+      "sha256": "69eb96d7f1b1081fe9a42dab3eafb601199a093b7ac108df0eabf547b0ca2504"
     },
     "mixed_language_multipage_pdf": {
       "path": "D:\\CSX4201\\vision-info-extraction-assets\\generated\\integration_smoke\\outputs\\mixed_language_multipage_pdf.json",
       "size_bytes": 40526,
-      "sha256": "1082d9707d8823cd901949aadb1c6d2fa67f912352f355fcc8fa1202a4d2bc5c"
+      "sha256": "65fd71d2c387121778af917e0d0b5bf76eeecdaeeeeb8b519bda3915a46c08ae"
     },
     "thai_auto_with_metadata_hint": {
       "path": "D:\\CSX4201\\vision-info-extraction-assets\\generated\\integration_smoke\\outputs\\thai_auto_with_metadata_hint.json",
-      "size_bytes": 20437,
-      "sha256": "679702429aadd34c762bafaa0fbb2388819465910418a9e9b57e8639c0155429"
+      "size_bytes": 20435,
+      "sha256": "6f9088585df3fce8d3f373f28f4aab2ef6294682fdc7103f7bd9717bf508c6f1"
     }
   },
   "cases": [

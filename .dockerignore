@@ -1,0 +1,17 @@
+.git
+.serena
+.runtime
+runtime.local.json
+outputs
+data
+vision_info_extraction_data
+reports
+models
+schemas
+src
+scripts
+docs
+assets
+*.zip
+__pycache__
+.pytest_cache

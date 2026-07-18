@@ -1,0 +1,12 @@
+interface:
+  display_name: "Review OCR Document"
+  short_description: "Review local OCR results with GPT-5.6"
+  default_prompt: "Use $review-ocr-document to review a completed local OCR result safely."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "ocr_model"
+      description: "Local consent-gated access to completed OCR result summaries"
+      transport: "stdio"
+policy:
+  allow_implicit_invocation: false

@@ -16,7 +16,7 @@
 - **Workspace:** `c:\Assumption University\CSX4201\Project`
 - **Data root:** `data/raw/` (organized 2026-07-13). The original `vision_info_extraction_data/` is now an empty husk (0 files).
 - **Domain (confirmed by professor, 2026-07-13):** vision information extraction — build a model that extracts information correctly and accurately from images, documents, and any file that contains information. The datasets on disk are scanned forms, receipts, and invoices (OCR + IE + possibly DocVQA).
-- **Status:** Dataset organization and the bounded rotation baseline remain verified. On 2026-07-17 the repository completed the full public information-extraction pre-model lifecycle: a 7,782-example four-epoch final LayoutXLM run, public-only calibration, locked in-domain evaluation, required 18-angle layout and end-to-end grids, a fixed 100-page unseen CORU evaluation, exact general/Thai OCR verification, hash-bound image/rotation/Thai/multipage integration, and aggregate-only private operation. The exact final checkpoint hash is `34c7a26e78d6285a2739e1b61839eadfd0e686ccbcf57f9cb47997c12cef2189`. Reference-token entity F1 is 0.9813, but bounded end-to-end entity F1 is only 0.1314-0.1830 because OCR remains the main bottleneck; relation quality is limited by FUNSD-only supervision. K-Means remains display-only, and the failed exact-angle estimator is disabled for inference.
+- **Status:** Dataset organization and the bounded rotation baseline remain verified. On 2026-07-17 the repository completed the full public information-extraction pre-model lifecycle: a 7,782-example four-epoch final LayoutXLM run, public-only calibration, locked in-domain evaluation, required 18-angle layout and end-to-end grids, a fixed 100-page unseen CORU evaluation, exact general/Thai OCR verification, hash-bound image/rotation/Thai/multipage integration, and aggregate-only private operation. The exact final checkpoint hash is `34c7a26e78d6285a2739e1b61839eadfd0e686ccbcf57f9cb47997c12cef2189`. Reference-token entity F1 is 0.9813, but bounded end-to-end entity F1 is only 0.1314-0.1830 because OCR remains the main bottleneck; relation quality is limited by FUNSD-only supervision. K-Means remains display-only, and the failed exact-angle estimator is disabled for inference. On 2026-07-19 the final model gained a one-command CLI, local GUI, portable Windows setup, Docker-based macOS route, and consent-gated Codex/MCP review workflow that uses no OpenAI API key. The clean weights-included archive is `D:\OCR_Model.zip` with SHA-256 `488348f8e6a1a3acf0545bbbf5ff2b485216a839a7a31b16c9b2726ccfc547cf`. Native Windows GPU and Docker Linux/AMD64 CPU outputs matched exactly on the safe validation document; physical Apple hardware remains untested.
 
 ## Project goal and model requirements (confirmed by professor, 2026-07-13)
 
@@ -54,9 +54,9 @@ reports/                   # preparation, features, K-Means, angles, verificatio
 schemas/                   # versioned inference-output JSON Schema
 scripts/                   # organization plus rotation-stage CLI entry points
 src/                       # organization, rotation, OCR, IE, inference, evaluation
-tests/                     # synthetic/regression tests; 227 pass, 2 environment-dependent skips
+tests/                     # synthetic/regression tests; 234 pass, 2 environment-dependent skips
 ```
-Large OCR/layout assets live below `D:\CSX4201\vision-info-extraction-assets` in separate Python 3.10 environments. Raw totals remain 128,793 files and 35,459,126,772 bytes. The bounded rotation run generated 8,332 rotations with 0 failures and 2,083 rows per zone. Rotation verification passes 20/20 checks; the host suite passes 227 tests with two environment-dependent skips. The explicit OCR-runtime and CUDA-layout partitions pass 122 and 2 tests respectively.
+Large OCR/layout assets live below `D:\CSX4201\vision-info-extraction-assets` in separate Python 3.10 environments. Raw totals remain 128,793 files and 35,459,126,772 bytes. The bounded rotation run generated 8,332 rotations with 0 failures and 2,083 rows per zone. Rotation verification passes 20/20 checks; the host suite passes 234 tests with two environment-dependent skips. The explicit OCR-runtime and CUDA-layout partitions pass 122 and 2 tests respectively.
 
 ---
 
@@ -94,8 +94,8 @@ Large OCR/layout assets live below `D:\CSX4201\vision-info-extraction-assets` in
 - [ ] Rotation-zone open sub-questions (boundary inclusivity; clustering vs classification; angle-estimation source; meaning of "pre-model"). The current baseline uses half-open zones, K-Means, and a zone-guided handcrafted estimator only as provisional implementation choices.
 - [ ] Confirm official quality thresholds and test protocol. Current smoke and natural CORU-holdout results are not final benchmarks.
 - [ ] Is `gmail_private_test` the private leaderboard set? Should derived outputs be derived from it at all?
-- [ ] Target deliverable: final trained model, notebook, report, or competition submission?
+- [x] Target deliverable — confirmed 2026-07-19 as the final trained model plus a portable Windows/macOS share package and an OpenAI Build Week submission package. The owner must still record the public demo, capture the final `/feedback` Session ID, and submit the Devpost form.
 - [x] Repo visibility for GitHub — confirmed private before the 2026-07-15 publication pass; recheck before every future upload.
-- [x] README.md — updated for the final working information-extraction lifecycle (2026-07-17), while preserving historical rotation metrics and open research decisions.
+- [x] README.md — updated for the final working information-extraction and portable-product lifecycle (2026-07-19), while preserving historical metrics, limitations, and open research decisions.
 
 > When the user provides the above, update this section, `AGENT_MEMORY.md`, and then `README.md`.

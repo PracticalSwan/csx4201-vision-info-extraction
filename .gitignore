@@ -61,6 +61,8 @@ __pycache__/
 .venv/
 venv/
 env/
+.runtime/
+runtime.local.json
 .coverage
 htmlcov/
 
@@ -72,6 +74,10 @@ htmlcov/
 # --- IDE / editors ---
 .vscode/
 .idea/
+.serena/
+.playwright-mcp/
+/gui_complete_current.png
+/gui_visual_confirmation.png
 *.swp
 *.log
 

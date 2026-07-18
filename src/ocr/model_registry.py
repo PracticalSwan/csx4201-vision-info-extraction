@@ -61,7 +61,9 @@ class ModelRegistry:
                 raise OCRModelUnavailable(f"required OCR model missing from registry: {expected}")
             if item.get("requested_name") != expected or item.get("resolved_name") != expected:
                 raise OCRModelMismatch(f"model identity mismatch for {expected}")
-            model_path = Path(str(item.get("resolved_path", "")))
+            model_path = Path(str(item.get("resolved_path", ""))).expanduser()
+            if not model_path.is_absolute():
+                model_path = (setup_path.parent / model_path).resolve()
             if not model_path.is_dir():
                 raise OCRModelUnavailable(f"required OCR model directory not found: {model_path}")
             files = item.get("files")

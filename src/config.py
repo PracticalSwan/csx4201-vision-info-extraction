@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import copy
 import logging
+import os
 from pathlib import Path
 from typing import Any, Mapping
 
@@ -23,6 +24,17 @@ GMAIL_KEYS = (
     "gmail_legal_financial",
     "gmail_unclassified",
 )
+
+# Portable launchers can override only runtime/storage locations. Dataset paths
+# intentionally have no environment override so a shared package cannot be
+# pointed at private training data by accident.
+PATH_ENV_OVERRIDES = {
+    "external_assets": "OCR_MODEL_ASSET_ROOT",
+    "layout_python": "OCR_MODEL_LAYOUT_PYTHON",
+    "layout_models": "OCR_MODEL_LAYOUT_MODELS",
+    "ocr_cache": "OCR_MODEL_OCR_CACHE",
+    "private_outputs": "OCR_MODEL_PRIVATE_OUTPUT_ROOT",
+}
 
 
 class ConfigError(Exception):
@@ -106,7 +118,8 @@ def _normalize_config(cfg: dict[str, Any]) -> dict[str, Any]:
 
 def project_root(cfg: Mapping[str, Any]) -> Path:
     """Return the resolved project root Path."""
-    return Path(cfg["paths"]["project_root"]).resolve()
+    override = os.environ.get("OCR_MODEL_HOME")
+    return Path(override or cfg["paths"]["project_root"]).expanduser().resolve()
 
 
 def resolve_path(cfg: Mapping[str, Any], key: str) -> Path:
@@ -116,8 +129,10 @@ def resolve_path(cfg: Mapping[str, Any], key: str) -> Path:
     path string. Absolute paths are returned unchanged.
     """
     paths = cfg.get("paths", {})
-    raw = paths.get(key, key)
-    p = Path(raw)
+    override_name = PATH_ENV_OVERRIDES.get(key)
+    raw = os.environ.get(override_name) if override_name else None
+    raw = raw or paths.get(key, key)
+    p = Path(str(raw)).expanduser()
     if p.is_absolute():
         return p
     return project_root(cfg) / p

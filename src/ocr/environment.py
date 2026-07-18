@@ -17,8 +17,15 @@ DEFAULT_ASSET_ROOT = Path("D:/CSX4201/vision-info-extraction-assets")
 _DLL_HANDLES: list[Any] = []
 
 
-def configure_external_environment(asset_root: str | Path = DEFAULT_ASSET_ROOT) -> dict[str, str]:
-    root = Path(asset_root)
+def configure_external_environment(
+    asset_root: str | Path | None = None,
+) -> dict[str, str]:
+    """Configure caches, honoring the portable runtime override when omitted."""
+    root = Path(
+        asset_root
+        or os.environ.get("OCR_MODEL_ASSET_ROOT")
+        or DEFAULT_ASSET_ROOT
+    )
     values = {
         "PADDLE_PDX_CACHE_HOME": str(root / "cache" / "paddlex"),
         "HF_HOME": str(root / "cache" / "huggingface"),

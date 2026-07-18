@@ -25,6 +25,15 @@
   Reference-token entity F1 is 0.9813; bounded end-to-end entity F1 is only
   0.1314-0.1830 because OCR remains the main bottleneck. Treat it as a final
   academic pre-model, not a production or high-stakes system.
+- On 2026-07-19 the final model gained a one-command CLI, local Gradio GUI,
+  portable Windows installer, Docker-based macOS route, and a consent-gated
+  Codex/MCP review workflow that uses no OpenAI API key. The clean,
+  weights-included share archive is `D:\OCR_Model.zip`; its reviewed SHA-256
+  is `488348f8e6a1a3acf0545bbbf5ff2b485216a839a7a31b16c9b2726ccfc547cf`.
+  Native Windows GPU and Docker Linux/AMD64 CPU extraction produced identical
+  OCR text, field values, entity triplets, and relation triplets on the safe
+  validation document. A physical Mac was not available, so macOS support is
+  verified through the Docker build/run path rather than on Apple hardware.
 - The workspace is a Git repository with an existing GitHub remote. Recheck
   live visibility and staged privacy before every push.
 
@@ -140,7 +149,7 @@
   path while synthetic Thai recovery passes 18/18 angles.
 - Unseen CORU completed 100/100 pages without failures. Private operational
   inference completed 2/2 pages and published aggregate counts only.
-- Current host suite: 227 tests pass with two environment-dependent skips;
+- Current host suite: 234 tests pass with two environment-dependent skips;
   OCR-runtime and CUDA-layout partitions pass 122 and 2 tests.
 
 ## Open questions
@@ -157,7 +166,6 @@
   an official course benchmark.
 - May any additional derived artifact be produced from the private Gmail set
   beyond ignored local inference and aggregate-only reporting?
-- Is the deliverable a model, notebook, report, or submission?
 - Must the repository remain private for the final course handoff? Recheck
   live visibility before every publication action.
 
@@ -235,3 +243,17 @@
   `b38ebc2fc3de8975c03ef9ea5fe66334f40bd137`; the staged publication audit
   found zero private filename, high-confidence secret, forbidden-path, or
   symlink findings.
+- 2026-07-19 - Added the portable product and OpenAI Build Week submission
+  surfaces: one-command CLI and GUI, Windows setup, Docker/macOS setup,
+  bundled weights, runtime diagnostics, reviewed screenshots, a local MCP
+  server, and a consent-gated Codex skill. The extension intentionally uses no
+  OpenAI API key. Native GPU and Docker CPU full extractions match exactly on
+  the safe validation document, and the host suite passes 234 tests with two
+  environment-dependent skips.
+- 2026-07-19 - The one permitted independent reviewer found three packaging
+  issues: the clean ZIP had not yet been sealed, a GUI screenshot exposed an
+  absolute local output path, and temporary browser screenshots were visible
+  at the repository root. The archive was sealed and audited, the GUI now
+  shows a relative output path, and exact temporary filenames are ignored.
+  The same reviewer performed the single follow-up review and reported zero
+  blocker, high, medium, or low findings; the review loop ended.

@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 import json
 from pathlib import Path
+from types import SimpleNamespace
 
 import pytest
 from PIL import Image
@@ -13,6 +14,7 @@ from src.ocr.fine_deskew import estimate_residual_deskew
 from src.ocr.language_router import should_try_thai
 from src.ocr.model_registry import REQUIRED_MODEL_NAMES, ModelRegistry
 from src.ocr.pipeline import MultilingualOCR
+from src.ocr.paddleocr_adapter import PaddleOCRAdapter
 from src.ocr.result_normalizer import normalize_paddle_result
 from src.ocr.scoring import score_ocr_candidate
 from scripts.verify_ocr_models import _rotation_smoke
@@ -313,3 +315,17 @@ def test_registry_requires_exact_names_paths_and_hashes(tmp_path: Path) -> None:
     setup.unlink()
     with pytest.raises(OCRModelUnavailable):
         ModelRegistry.from_setup(setup)
+
+
+def test_paddle_adapter_disables_mkldnn_for_portable_cpu_inference() -> None:
+    class Registry:
+        @staticmethod
+        def route_models(_route: str):
+            return (
+                SimpleNamespace(name="det", path=Path("det"), artifact_hash="det-hash"),
+                SimpleNamespace(name="rec", path=Path("rec"), artifact_hash="rec-hash"),
+            )
+
+    adapter = PaddleOCRAdapter(Registry(), "general", device="cpu")
+
+    assert adapter.options["enable_mkldnn"] is False

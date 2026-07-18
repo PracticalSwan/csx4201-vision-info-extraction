@@ -27,6 +27,7 @@ class PaddleOCRAdapter:
         use_doc_orientation_classify: bool = False,
         use_doc_unwarping: bool = False,
         use_textline_orientation: bool = False,
+        enable_mkldnn: bool | None = None,
     ) -> None:
         self.registry = registry
         self.route = route
@@ -36,6 +37,14 @@ class PaddleOCRAdapter:
             "use_doc_orientation_classify": bool(use_doc_orientation_classify),
             "use_doc_unwarping": bool(use_doc_unwarping),
             "use_textline_orientation": bool(use_textline_orientation),
+            # PaddleOCR enables oneDNN/MKLDNN on CPU by default. PaddlePaddle
+            # 3.3's Linux executor rejects an ArrayAttribute used by the pinned
+            # PP-OCRv6 artifacts, so prefer the portable plain-CPU path.
+            "enable_mkldnn": (
+                not str(device).casefold().startswith("cpu")
+                if enable_mkldnn is None
+                else bool(enable_mkldnn)
+            ),
         }
         self._pipeline: Any = None
 

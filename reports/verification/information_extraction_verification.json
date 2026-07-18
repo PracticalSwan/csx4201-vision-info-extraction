@@ -2,9 +2,18 @@
   "schema_version": "1.0",
   "status": "passed",
   "complete_mode": true,
-  "checks_passed": 46,
-  "checks_total": 46,
+  "checks_passed": 47,
+  "checks_total": 47,
   "checks": [
+    {
+      "name": "integration_runner_execution",
+      "passed": true,
+      "detail": {
+        "returncode": 0,
+        "stdout_tail": "",
+        "stderr_tail": ""
+      }
+    },
     {
       "name": "storage_reserve",
       "passed": true,
@@ -15,10 +24,10 @@
         "anticipated_asset_gib": 0.0,
         "passed": true,
         "errors": [],
-        "c_free_gib": 45.11,
-        "projected_c_free_gib": 45.11,
-        "asset_free_gib": 381.98,
-        "projected_asset_free_gib": 381.98
+        "c_free_gib": 48.68,
+        "projected_c_free_gib": 48.68,
+        "asset_free_gib": 377.273,
+        "projected_asset_free_gib": 377.273
       }
     },
     {

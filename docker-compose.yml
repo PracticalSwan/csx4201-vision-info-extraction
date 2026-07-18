@@ -1,0 +1,25 @@
+services:
+  ocr-model:
+    platform: linux/amd64
+    build:
+      context: .
+    ports:
+      - "127.0.0.1:7860:7860"
+    volumes:
+      - .:/workspace
+    environment:
+      OCR_MODEL_HOME: /workspace
+      OCR_MODEL_CONFIG: /workspace/config.yaml
+      OCR_MODEL_OCR_PYTHON: /opt/venvs/ocr/bin/python
+      OCR_MODEL_LAYOUT_PYTHON: /opt/venvs/layout/bin/python
+      OCR_MODEL_MODEL_SETUP: /workspace/reports/ocr/model_setup.json
+      OCR_MODEL_LAYOUT_CHECKPOINT: /workspace/assets/checkpoints/layoutxlm_multitask/final
+      OCR_MODEL_ASSET_ROOT: /workspace/assets
+      OCR_MODEL_OUTPUT_ROOT: /workspace/outputs
+      OCR_MODEL_DEVICE: cpu
+      OCR_MODEL_HOST: 0.0.0.0
+      OCR_MODEL_PORT: "7860"
+      HF_HUB_OFFLINE: "1"
+      TRANSFORMERS_OFFLINE: "1"
+    init: true
+    stop_grace_period: 20s
