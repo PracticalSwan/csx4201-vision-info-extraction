@@ -9,12 +9,23 @@ Repository:
 
 <https://github.com/PracticalSwan/csx4201-vision-info-extraction>
 
+## Current access state
+
+- `testing@devpost.com`: invitation created on 2026-07-19 for the
+  email-resolved GitHub account `devposttesting`, with **Read** permission.
+  GitHub invitation ID: `326151362`.
+- `build-week-event@openai.com`: pending. GitHub's public user search does not
+  expose an account for this email, and the repository settings page requires
+  the owner to complete passkey/sudo confirmation before GitHub will resolve
+  the address. Do not substitute the similarly named public organization
+  `openai-build-week`; it is not verified as the official judge account.
+
 In GitHub:
 
 1. Open **Settings → Collaborators and teams**.
 2. Choose **Add people**.
-3. Enter the first judge email and grant **Read** access.
-4. Repeat for the second judge email.
+3. Complete GitHub's passkey/sudo confirmation if prompted.
+4. Enter `build-week-event@openai.com` and grant **Read** access.
 5. Confirm both invitations are visible before final submission.
 
 If GitHub does not resolve an email to an account, use the exact alternative

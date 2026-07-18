@@ -257,3 +257,9 @@
   shows a relative output path, and exact temporary filenames are ignored.
   The same reviewer performed the single follow-up review and reported zero
   blocker, high, medium, or low findings; the review loop ended.
+- 2026-07-19 - Published the portable and Build Week package to private GitHub
+  `main` at commit `79d2ad9`. The Devpost judge email resolved to GitHub user
+  `devposttesting`, and read-only invitation `326151362` was created. The
+  OpenAI judge email still requires the repository owner to complete GitHub
+  passkey/sudo confirmation before it can be resolved and invited; no guessed
+  account was substituted.

@@ -1,6 +1,6 @@
 # OpenAI Build Week requirements checklist
 
-Status legend: PASS, OWNER ACTION, or BLOCKED.
+Status legend: PASS, PARTIAL, OWNER ACTION, or BLOCKED.
 
 | Requirement | Status | Evidence/action |
 |---|---|---|
@@ -13,7 +13,7 @@ Status legend: PASS, OWNER ACTION, or BLOCKED.
 | GPT-5.6 used meaningfully | OWNER ACTION | Record final skill review in GPT-5.6 and preserve task evidence |
 | OpenAI API key | NOT REQUIRED | Project and extension intentionally use no API key |
 | Source repository | PASS | Private GitHub repository |
-| Judge repository access | OWNER ACTION | Confirm both invitations in `JUDGE_ACCESS.md` |
+| Judge repository access | PARTIAL | Devpost read invitation verified; OpenAI email awaits GitHub passkey confirmation as recorded in `JUDGE_ACCESS.md` |
 | README setup/testing instructions | PASS | Main and portable README documentation |
 | Explain Codex/GPT-5.6 use | PASS | README, Codex integration guide, submission copy |
 | Public demo video, audio, ≤3 min | OWNER ACTION | Record/publish using `VIDEO_SCRIPT.md` |
