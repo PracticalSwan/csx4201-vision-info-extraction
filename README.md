@@ -38,6 +38,8 @@ Shareable release:
 ```text
 D:\OCR_Model
 D:\OCR_Model.zip
+SHA-256: b8b73db81a9d7751b21fc744c3245dbd95fd8b27deca6cbc1f5383c0bcd8ce83
+Size: 1,153,107,272 bytes
 ```
 
 On Windows, recipients run `setup_windows.bat` once and then

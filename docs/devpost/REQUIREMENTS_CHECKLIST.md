@@ -22,6 +22,7 @@ Status legend: PASS, IN PROGRESS, OWNER ACTION, or BLOCKED.
 | Submission form complete | IN PROGRESS | Connector is waiting for country, public video URL, and Session ID |
 | Final submit | OWNER ACTION | Review those three values; the Devpost connector will submit before the deadline |
 | Private/raw data absent | PASS | Bundle allowlist plus final repository/bundle audit |
+| Weights-included archive | PASS | `D:\OCR_Model.zip`, 1,153,107,272 bytes, SHA-256 `b8b73db81a9d7751b21fc744c3245dbd95fd8b27deca6cbc1f5383c0bcd8ce83` |
 | Accuracy limitations disclosed | PASS | README and submission copy |
 | macOS support | PASS WITH LIMIT | Docker-backed path; no physical Mac test is claimed |
 | Model redistribution terms | PASS WITH LIMIT | Noncommercial notices included; owner should choose a code license for broader publication |

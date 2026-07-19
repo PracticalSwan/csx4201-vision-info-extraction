@@ -71,3 +71,8 @@ Do not present the original model training as Build Week work. Use
 
 The connector can complete the final Devpost submission, but it cannot invent
 the country, `/feedback` Session ID, or public video URL.
+
+If the owner approves publishing the 1.15 GB bundle as a private GitHub
+Release for invited judges, use `GITHUB_RELEASE_HANDOFF.md`. Directly sending
+`D:\OCR_Model.zip` and its `.sha256` sidecar remains the simplest sharing
+route and does not require a GitHub Release.

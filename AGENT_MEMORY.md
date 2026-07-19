@@ -29,7 +29,9 @@
   portable Windows installer, Docker-based macOS route, and a consent-gated
   Codex/MCP review workflow that uses no OpenAI API key. The clean,
   weights-included share archive is `D:\OCR_Model.zip`; its reviewed SHA-256
-  is `488348f8e6a1a3acf0545bbbf5ff2b485216a839a7a31b16c9b2726ccfc547cf`.
+  is `b8b73db81a9d7751b21fc744c3245dbd95fd8b27deca6cbc1f5383c0bcd8ce83`
+  and its exact size is 1,153,107,272 bytes. It was built from clean commit
+  `38b85755e3641d452e5fb9d8e8363815ac581696`.
   Native Windows GPU and Docker Linux/AMD64 CPU extraction produced identical
   OCR text, field values, entity triplets, and relation triplets on the safe
   validation document. A physical Mac was not available, so macOS support is
@@ -270,3 +272,10 @@
   The project is published on Devpost but has not yet been submitted to OpenAI
   Build Week. Submission remains gated only on the owner's country of
   residence, public YouTube URL, and final `/feedback` Session ID.
+- 2026-07-20 - Replaced unsupported scikit-learn 1.8-to-1.7 pickle loading in
+  the display-only inference path with a hash-bound numeric scaler/PCA/K-Means
+  export. Public-only parity covered 7,520 feature rows with zero cluster-label
+  differences. The refreshed clean archive, built from `38b8575`, passed its
+  privacy/root/manifest audit, native Windows GPU extraction, and Docker
+  Linux/AMD64 CPU extraction with identical stable semantic output and no
+  `InconsistentVersionWarning`.

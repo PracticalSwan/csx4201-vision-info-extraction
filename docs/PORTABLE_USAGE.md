@@ -109,7 +109,13 @@ Run framework imports too:
 ```
 
 `MODEL_MANIFEST.json` records the included model filenames, sizes, and SHA-256
-hashes. The final layout checkpoint must have this SHA-256:
+hashes. The current clean archive is 1,153,107,272 bytes and has SHA-256:
+
+```text
+b8b73db81a9d7751b21fc744c3245dbd95fd8b27deca6cbc1f5383c0bcd8ce83
+```
+
+The final layout checkpoint must have this SHA-256:
 
 ```text
 34c7a26e78d6285a2739e1b61839eadfd0e686ccbcf57f9cb47997c12cef2189
