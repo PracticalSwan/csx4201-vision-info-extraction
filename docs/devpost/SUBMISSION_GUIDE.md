@@ -19,6 +19,14 @@ project:
   link, and a privacy-safe GUI thumbnail
 - Hackathon state: registered, but not yet submitted to OpenAI Build Week
 
+The live Devpost editor was rechecked in Chrome on 2026-07-20. The public
+project page is populated, but the Build Week entry still reports **Draft,
+1/5 steps done**. Its Additional info page has no saved submitter type,
+country, category, repository URL, testing instructions, or `/feedback`
+Session ID. Those values will be written together by the Devpost connector
+when the owner supplies the final required inputs. A published Devpost project
+page is not evidence of a submitted hackathon entry.
+
 The remaining flow is:
 
 1. Record and publish a YouTube video no longer than three minutes. Public is

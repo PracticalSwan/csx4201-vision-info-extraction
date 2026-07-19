@@ -279,3 +279,8 @@
   privacy/root/manifest audit, native Windows GPU extraction, and Docker
   Linux/AMD64 CPU extraction with identical stable semantic output and no
   `InconsistentVersionWarning`.
+- 2026-07-20 - A live Chrome audit confirmed the distinction between the
+  populated public Devpost project and the actual Build Week submission. The
+  hackathon editor reports Draft, 1/5 steps, and its Additional info fields are
+  empty. The connector must perform the real submission after the owner
+  supplies country, YouTube URL, and `/feedback` Session ID.

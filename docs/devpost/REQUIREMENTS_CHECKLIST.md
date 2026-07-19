@@ -19,7 +19,7 @@ Status legend: PASS, IN PROGRESS, OWNER ACTION, or BLOCKED.
 | Viewable YouTube demo, audio, ≤3 min | OWNER ACTION | Record/publish Public (recommended) or Unlisted using `VIDEO_SCRIPT.md`; never Private |
 | `/feedback` Session ID | OWNER ACTION | Run in the final demonstrated Codex task |
 | Devpost project content | PASS | Connector populated project `1350784`, repository link, technologies, write-up, and safe thumbnail |
-| Submission form complete | IN PROGRESS | Connector is waiting for country, public video URL, and Session ID |
+| Submission form complete | IN PROGRESS | Live editor reports Draft, 1/5 steps; Additional info is blank and the connector is waiting for country, public video URL, and Session ID |
 | Final submit | OWNER ACTION | Review those three values; the Devpost connector will submit before the deadline |
 | Private/raw data absent | PASS | Bundle allowlist plus final repository/bundle audit |
 | Weights-included archive | PASS | `D:\OCR_Model.zip`, 1,153,107,272 bytes, SHA-256 `b8b73db81a9d7751b21fc744c3245dbd95fd8b27deca6cbc1f5383c0bcd8ce83` |
