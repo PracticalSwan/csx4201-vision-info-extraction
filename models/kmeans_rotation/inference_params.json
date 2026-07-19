@@ -1,0 +1,26 @@
+{
+  "schema_version": "rotation-display-inference-1.0",
+  "parameters_file": "inference_params.npz",
+  "parameters_sha256": "c7a9a5a1d4d29d9d42286b3bfa20da1f34c3972a97ca443126c2ef42e62c0ec6",
+  "exported_at": "2026-07-19T16:40:25.843986+00:00",
+  "source_sklearn_version": "1.8.0",
+  "source_numpy_version": "2.4.0",
+  "source_artifacts": {
+    "scaler.joblib": {
+      "sha256": "31a1c1ce3beff89191dc081432b9b61f6dc41c4d0c6739754f7012c0c7de699b",
+      "size_bytes": 47535
+    },
+    "pca.joblib": {
+      "sha256": "c7c91803e470294b6ece9fa32ba72bd4ac6c33f4c12801e2fcb707a45e980dba",
+      "size_bytes": 1012282
+    },
+    "kmeans.joblib": {
+      "sha256": "0c0abb2f1fccc24935e7b3c5ecc7ca1d691bce43ba7a43f7eb3360f002d97517",
+      "size_bytes": 25175
+    }
+  },
+  "feature_dimension": 1957,
+  "transformed_dimension": 128,
+  "cluster_count": 4,
+  "pca_whiten": false
+}

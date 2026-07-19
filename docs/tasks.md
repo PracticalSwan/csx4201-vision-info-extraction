@@ -67,6 +67,9 @@ GitHub PR #1 at merge commit `b38ebc2fc3de8975c03ef9ea5fe66334f40bd137`.
   screenshots.
 - [x] Verify native Windows GPU extraction, Docker Linux/AMD64 CPU extraction,
   and exact output parity on the safe validation document.
+- [x] Replace cross-version K-Means pickle loading with hash-bound numeric
+  inference parameters and verify zero cluster-label differences over all
+  7,520 public feature rows.
 - [x] Complete one independent review, fix all three confirmed findings, and
   complete the same reviewer's single follow-up with zero remaining findings.
 - [ ] Publish the narrated public demo video of no more than three minutes.

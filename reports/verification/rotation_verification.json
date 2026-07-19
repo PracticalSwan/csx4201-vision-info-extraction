@@ -95,7 +95,7 @@
     {
       "name": "model-artifacts-compatible",
       "passed": true,
-      "detail": "typed artifacts reload; k=4 and one-to-one mapping verified"
+      "detail": "typed maintenance artifacts and version-neutral inference parameters reload; k=4, parity, and one-to-one mapping verified"
     },
     {
       "name": "evaluation-outputs-valid",
@@ -103,5 +103,5 @@
       "detail": "mapped, clustering, boundary, private aggregate, and exact-angle outputs validated"
     }
   ],
-  "checked_at": "2026-07-16T20:20:06Z"
+  "checked_at": "2026-07-19T16:53:20Z"
 }

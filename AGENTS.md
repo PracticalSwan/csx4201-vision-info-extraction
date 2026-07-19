@@ -54,9 +54,9 @@ reports/                   # preparation, features, K-Means, angles, verificatio
 schemas/                   # versioned inference-output JSON Schema
 scripts/                   # organization plus rotation-stage CLI entry points
 src/                       # organization, rotation, OCR, IE, inference, evaluation
-tests/                     # synthetic/regression tests; 234 pass, 2 environment-dependent skips
+tests/                     # synthetic/regression tests; 237 pass, 2 environment-dependent skips
 ```
-Large OCR/layout assets live below `D:\CSX4201\vision-info-extraction-assets` in separate Python 3.10 environments. Raw totals remain 128,793 files and 35,459,126,772 bytes. The bounded rotation run generated 8,332 rotations with 0 failures and 2,083 rows per zone. Rotation verification passes 20/20 checks; the host suite passes 234 tests with two environment-dependent skips. The explicit OCR-runtime and CUDA-layout partitions pass 122 and 2 tests respectively.
+Large OCR/layout assets live below `D:\CSX4201\vision-info-extraction-assets` in separate Python 3.10 environments. Raw totals remain 128,793 files and 35,459,126,772 bytes. The bounded rotation run generated 8,332 rotations with 0 failures and 2,083 rows per zone. Rotation verification passes 20/20 checks; the host suite passes 237 tests with two environment-dependent skips. The explicit OCR-runtime and CUDA-layout partitions pass 122 and 2 tests respectively.
 
 ---
 

@@ -14,11 +14,20 @@ def main() -> int:
         action="store_true",
         help="also verify feature, preprocessing, K-Means, and exact-angle artifacts",
     )
+    ap.add_argument(
+        "--portable",
+        action="store_true",
+        help=(
+            "also require the hash-bound, version-neutral K-Means inference "
+            "parameters and public-only parity report (implies --complete)"
+        ),
+    )
     args = ap.parse_args()
     result = verify_rotation_data(
         load(args),
         profile=args.profile,
-        require_model_artifacts=args.complete,
+        require_model_artifacts=args.complete or args.portable,
+        require_portable_artifacts=args.portable,
     )
     print_result("Rotation verification", result)
     return 0 if result.get("all_passed", False) else 1

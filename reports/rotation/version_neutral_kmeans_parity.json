@@ -1,0 +1,24 @@
+{
+  "status": "pass",
+  "generated_at": "2026-07-19T16:40:26.202625+00:00",
+  "public_only": true,
+  "private_rows": 0,
+  "splits": {
+    "train": 5600,
+    "validation": 976,
+    "test": 944
+  },
+  "rows": 7520,
+  "cluster_label_mismatches": 0,
+  "maximum_transform_absolute_error": 0.0,
+  "maximum_distance_absolute_error": 5.526273909595147e-06,
+  "maximum_confidence_absolute_error": 1.1881108668426732e-07,
+  "tolerances": {
+    "transform_absolute_error": 1e-06,
+    "distance_absolute_error": 1e-05,
+    "confidence_absolute_error": 1e-06
+  },
+  "parameters_sha256": "c7a9a5a1d4d29d9d42286b3bfa20da1f34c3972a97ca443126c2ef42e62c0ec6",
+  "source_sklearn_version": "1.8.0",
+  "source_numpy_version": "2.4.0"
+}

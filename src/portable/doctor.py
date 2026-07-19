@@ -58,6 +58,25 @@ def report(settings: RuntimeSettings, *, probe: bool = False) -> dict[str, Any]:
                 environment=settings.environment(),
             )
         )
+        rotation_probe = (
+            "from src.config import load_config;"
+            "from src.inference.kmeans_display import KMeansRotationDisplay;"
+            f"p=KMeansRotationDisplay(load_config({str(settings.config)!r}));"
+            "assert p.portable_model is not None;"
+            "print('version-neutral K-Means',p.portable_model.n_clusters,'clusters')"
+        )
+        checks.append(
+            _probe(
+                [
+                    str(settings.ocr_python),
+                    "-c",
+                    rotation_probe,
+                ],
+                "rotation display artifacts",
+                cwd=settings.home,
+                environment=settings.environment(),
+            )
+        )
     if probe and settings.layout_python.is_file():
         checks.append(
             _probe(

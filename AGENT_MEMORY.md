@@ -149,7 +149,7 @@
   path while synthetic Thai recovery passes 18/18 angles.
 - Unseen CORU completed 100/100 pages without failures. Private operational
   inference completed 2/2 pages and published aggregate counts only.
-- Current host suite: 234 tests pass with two environment-dependent skips;
+- Current host suite: 237 tests pass with two environment-dependent skips;
   OCR-runtime and CUDA-layout partitions pass 122 and 2 tests.
 
 ## Open questions
@@ -248,7 +248,7 @@
   bundled weights, runtime diagnostics, reviewed screenshots, a local MCP
   server, and a consent-gated Codex skill. The extension intentionally uses no
   OpenAI API key. Native GPU and Docker CPU full extractions match exactly on
-  the safe validation document, and the host suite passes 234 tests with two
+  the safe validation document, and the host suite passes 237 tests with two
   environment-dependent skips.
 - 2026-07-19 - The one permitted independent reviewer found three packaging
   issues: the clean ZIP had not yet been sealed, a GUI screenshot exposed an

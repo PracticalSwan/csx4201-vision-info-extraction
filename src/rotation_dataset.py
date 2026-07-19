@@ -479,6 +479,7 @@ def verify_rotation_data(
     *,
     profile: str | None = None,
     require_model_artifacts: bool = False,
+    require_portable_artifacts: bool = False,
 ) -> dict[str, Any]:
     root = cfgmod.project_root(cfg)
     metadata = cfgmod.resolve_path(cfg, "metadata")
@@ -663,8 +664,14 @@ def verify_rotation_data(
         "passed": not raw_output_hits,
         "detail": f"hits={len(raw_output_hits)}",
     })
-    if require_model_artifacts:
-        checks.extend(_verify_completed_pipeline(cfg, active_profile))
+    if require_model_artifacts or require_portable_artifacts:
+        checks.extend(
+            _verify_completed_pipeline(
+                cfg,
+                active_profile,
+                require_portable_artifacts=require_portable_artifacts,
+            )
+        )
     return _write_verification(cfg, checks, active_profile)
 
 
@@ -1163,7 +1170,12 @@ def _scan_private_name_leaks(cfg):
     }
 
 
-def _verify_completed_pipeline(cfg, active_profile):
+def _verify_completed_pipeline(
+    cfg,
+    active_profile,
+    *,
+    require_portable_artifacts: bool = False,
+):
     """Validate feature, preprocessing, K-Means, and exact-angle artifacts.
 
     This is intentionally separate from the preparation-only verifier so the
@@ -1177,6 +1189,8 @@ def _verify_completed_pipeline(cfg, active_profile):
     from sklearn.cluster import KMeans
     from sklearn.decomposition import PCA
     from sklearn.preprocessing import StandardScaler
+
+    from src.inference.kmeans_display import VersionNeutralKMeans
 
     metadata = cfgmod.resolve_path(cfg, "metadata")
     model_root = cfgmod.resolve_path(cfg, "rotation_models")
@@ -1203,6 +1217,16 @@ def _verify_completed_pipeline(cfg, active_profile):
         report_root / "angle_estimation" / "angle_error_by_angle.csv",
         report_root / "angle_estimation" / "angle_error_histogram.png",
     ]
+    if require_portable_artifacts:
+        required.extend(
+            [
+                model_root / "inference_params.json",
+                model_root / "inference_params.npz",
+                report_root
+                / "rotation"
+                / "version_neutral_kmeans_parity.json",
+            ]
+        )
     missing = [str(path) for path in required if not path.is_file()]
     checks = [{
         "name": "complete-pipeline-artifacts",
@@ -1332,12 +1356,54 @@ def _verify_completed_pipeline(cfg, active_profile):
             clusters = kmeans.predict(transformed_train["X"])
             if set(int(value) for value in np.unique(clusters)) != {0, 1, 2, 3}:
                 artifact_failures.append("training predictions do not use four clusters")
+        if require_portable_artifacts:
+            portable = VersionNeutralKMeans(model_root)
+            if (
+                portable.scaler_mean.shape != (dimension,)
+                or portable.pca_components.shape[0]
+                != int(preprocessing["output_dimension"])
+                or portable.n_clusters != 4
+            ):
+                artifact_failures.append(
+                    "version-neutral inference parameter dimensions mismatch"
+                )
+            parity = _load_json(
+                report_root / "rotation" / "version_neutral_kmeans_parity.json"
+            )
+            expected_public_rows = sum(
+                int(feature_summary["counts_per_split"].get(split, 0))
+                for split in ("train", "validation", "test")
+            )
+            if (
+                parity.get("status") != "pass"
+                or not parity.get("public_only")
+                or int(parity.get("private_rows", -1)) != 0
+                or int(parity.get("rows", -1)) != expected_public_rows
+                or int(parity.get("cluster_label_mismatches", -1)) != 0
+                or parity.get("parameters_sha256")
+                != _load_json(model_root / "inference_params.json").get(
+                    "parameters_sha256"
+                )
+            ):
+                artifact_failures.append(
+                    "version-neutral public inference parity is missing or stale"
+                )
         if not preprocessing.get("artifact_reload_verified") or not training.get("artifact_reload_verified"):
             artifact_failures.append("artifact reload verification flag is false")
         checks.append({
             "name": "model-artifacts-compatible",
             "passed": not artifact_failures,
-            "detail": "typed artifacts reload; k=4 and one-to-one mapping verified" if not artifact_failures else "; ".join(artifact_failures),
+            "detail": (
+                (
+                    "typed maintenance artifacts and version-neutral inference "
+                    "parameters reload; k=4, parity, and one-to-one mapping verified"
+                    if require_portable_artifacts
+                    else "typed maintenance artifacts reload; k=4 and "
+                    "one-to-one mapping verified"
+                )
+                if not artifact_failures
+                else "; ".join(artifact_failures)
+            ),
         })
 
         evaluation_failures = []

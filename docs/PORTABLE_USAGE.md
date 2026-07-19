@@ -115,6 +115,12 @@ hashes. The final layout checkpoint must have this SHA-256:
 34c7a26e78d6285a2739e1b61839eadfd0e686ccbcf57f9cb47997c12cef2189
 ```
 
+The package keeps the original scikit-learn joblib files for provenance, but
+the display-only rotation branch loads `models/kmeans_rotation/inference_params.npz`.
+That hash-bound numeric export avoids unsupported cross-version pickle loading
+and matched the original scaler/PCA/K-Means output on all 7,520 public
+train/validation/test feature rows with zero cluster-label differences.
+
 If Windows blocks a downloaded archive, right-click the ZIP, choose
 **Properties**, select **Unblock**, then extract it again. If port 7860 is in
 use, launch `app.py --port 7861`.

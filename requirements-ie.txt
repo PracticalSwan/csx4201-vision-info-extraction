@@ -10,9 +10,9 @@ Pillow>=10.0
 PyMuPDF>=1.23
 PyYAML>=6.0
 opencv-python-headless==4.10.0.84
-# The preserved display-only K-Means artifacts were serialized with 1.8.0.
-# Python 3.10 is required by the verified OCR/layout runtimes and supports
-# scikit-learn only through 1.7.x, so keep the documented compatibility split.
+# Maintenance tools retain the original scikit-learn artifacts. Portable
+# inference uses hash-bound numeric parameters instead of loading those pickles,
+# so the verified Python 3.10 runtime can remain on its supported 1.7.x line.
 scikit-learn==1.7.2; python_version < "3.11"
 scikit-learn==1.8.0; python_version >= "3.11"
 joblib>=1.3

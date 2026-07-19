@@ -19,7 +19,8 @@ Verified 2026-07-15 before and during information-extraction integration.
   regressions;
 - `verify_data.py` preserved 128,793 files, 35,459,126,772 bytes, and sampled
   raw hashes;
-- `verify_rotation_data.py --profile full --complete` passed 20/20 checks;
+- `verify_rotation_data.py --profile full --complete --portable` passed the
+  full rotation-model and version-neutral release-artifact gate;
 - saved rotation artifacts reloaded; command help and Python compilation
   passed;
 - privacy checks found no known private names in committable surfaces.
@@ -38,10 +39,12 @@ Verified 2026-07-15 before and during information-extraction integration.
    dependency-light.
 4. OpenCV 5.0 shadowed PaddleX's OpenCV 4.10 build and lacked
    `HOGDescriptor`. Requirements now pin 4.10.0.84.
-5. Preserved scikit-learn 1.8 artifacts load under the Python 3.10 maximum of
-   scikit-learn 1.7.2 with a compatibility warning. A public sample produced
-   the same cluster/zone and confidence within 1e-10 across both runtimes. The
-   branch remains display-only and failure-isolated.
+5. The original display-only artifacts remain preserved in scikit-learn 1.8
+   joblib form, but Python 3.10 inference no longer loads them across versions.
+   A hash-bound numeric export reproduces the scaler/PCA/K-Means operations;
+   all 7,520 public train/validation/test rows retained identical cluster
+   labels, with maximum confidence difference below 1.2e-7. The branch remains
+   display-only and failure-isolated.
 6. CORU pages without OCR reference tokens inflated CER when edit insertions
    were divided by one. Evaluation now excludes unavailable references and
    reports coverage.

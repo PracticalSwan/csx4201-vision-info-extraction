@@ -21,5 +21,5 @@ Profile: full
 - [PASS] complete-pipeline-artifacts: all required feature/model/evaluation artifacts exist
 - [PASS] feature-caches-valid: four splits, dimension=1957, finite and hash-matched
 - [PASS] train-only-fit-provenance: scaler, PCA, and K-Means provenance is public train-only
-- [PASS] model-artifacts-compatible: typed artifacts reload; k=4 and one-to-one mapping verified
+- [PASS] model-artifacts-compatible: typed maintenance artifacts and version-neutral inference parameters reload; k=4, parity, and one-to-one mapping verified
 - [PASS] evaluation-outputs-valid: mapped, clustering, boundary, private aggregate, and exact-angle outputs validated

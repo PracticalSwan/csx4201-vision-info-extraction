@@ -45,7 +45,9 @@ On Windows, recipients run `setup_windows.bat` once and then
 is `bash launch_macos.command` through Docker Desktop; no physical Mac test is
 claimed. The release includes the exact final LayoutXLM and three PaddleOCR
 weight sets, a synthetic sample, `MODEL_MANIFEST.json`, and no raw/private
-data. See [portable usage](docs/PORTABLE_USAGE.md).
+data. The display-only rotation branch uses a hash-bound, version-neutral
+numeric export rather than loading scikit-learn 1.8 pickles in the Python 3.10
+runtime. See [portable usage](docs/PORTABLE_USAGE.md).
 
 The optional `$review-ocr-document` repo skill uses the local `ocr_model` STDIO
 MCP server to expose opaque result IDs and only user-selected fields after
@@ -74,8 +76,8 @@ and [visual overlay](docs/devpost/assets/ocr-model-visual-tab-final.png).
 | Unseen CORU | 100/100 pages succeeded; 78.53% of 4,001 QA answer strings found in OCR; 15.68% canonical exact match; never used for fitting or selection |
 | Private operation | 2/2 anonymous local documents succeeded; public report is aggregate-only and declares no filenames, OCR text, images, or per-document predictions |
 | Verification | IE verifier 46/46 complete checks; exact OCR model/GPU checks and hash-bound image/rotation/Thai/multipage integration pass |
-| Automated tests | Host suite: 234 passed, 2 environment-dependent skips; OCR-runtime partition: 122 passed; CUDA-layout partition: 2 passed |
-| Portable release | Windows bundle doctor and exact OCR-model verification passed; native GPU GUI/CLI and `linux/amd64` Docker CPU extractions produced identical field values, OCR text, entity triplets, and relation triplets |
+| Automated tests | Host suite: 237 passed, 2 environment-dependent skips; OCR-runtime partition: 122 passed; CUDA-layout partition: 2 passed |
+| Portable release | Windows bundle doctor and exact OCR-model verification passed; native GPU GUI/CLI and `linux/amd64` Docker CPU extractions produced identical field values, OCR text, entity triplets, and relation triplets; version-neutral K-Means parameters matched all 7,520 public feature rows with zero cluster-label differences |
 | Optional GPT-5.6 bridge | Real STDIO MCP client listed both tools; unconfirmed calls exposed no values; confirmed test exposed only the selected synthetic `total_amount` field |
 
 Full reports are under [reports/final_model](reports/final_model), including
@@ -219,7 +221,7 @@ python scripts/compile_final_reports.py
 python -m pytest -q
 python -m compileall -q src scripts tests
 python scripts/verify_data.py
-python scripts/verify_rotation_data.py --profile full --complete
+python scripts/verify_rotation_data.py --profile full --complete --portable
 python scripts/verify_information_extraction.py --complete
 ```
 
@@ -257,14 +259,26 @@ as the orchestrated equivalent:
 python scripts/prepare_page_images.py
 python scripts/create_rotation_splits.py
 python scripts/generate_rotation_data.py --profile full
-python scripts/verify_rotation_data.py --profile full --complete
+python scripts/verify_rotation_data.py --profile full
 python scripts/extract_rotation_features.py --profile full
 python scripts/fit_rotation_preprocessing.py
 python scripts/train_kmeans_rotation.py
 python scripts/evaluate_kmeans_rotation.py
 python scripts/evaluate_angle_estimation.py --profile full
-python scripts/run_rotation_experiment.py --profile full
 ```
+
+`python scripts/run_rotation_experiment.py --profile full` runs that preserved
+training/evaluation sequence. For the final portable release, export and check
+the version-neutral display parameters after the model run:
+
+```powershell
+python scripts/export_rotation_inference_params.py --verify-feature-root data/processed/features/full/888fb4999c985ba0
+python scripts/verify_rotation_data.py --profile full --complete --portable
+```
+
+The feature-cache suffix is the live `configuration_hash` in
+`models/kmeans_rotation/feature_config.json`; use that value if the feature
+configuration is intentionally changed.
 
 These weak results are retained honestly. K-Means produces only
 `rotation_display`; the failed exact-angle estimator is disabled. The OCR path

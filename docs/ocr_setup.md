@@ -88,6 +88,7 @@ collision.
   unverified partial cache into place.
 - CUDA unavailable: rerun the environment report and inspect driver/runtime
   probes before falling back to CPU.
-- K-Means scikit warning: the preserved artifacts are from scikit-learn 1.8;
-  the Python 3.10 OCR environment uses 1.7.2. The branch is display-only and
-  failure-isolated; see the compatibility report.
+- K-Means maintenance artifacts remain in their original scikit-learn 1.8
+  joblib form. Inference uses the hash-bound `inference_params.npz` numeric
+  export, which was checked against all 7,520 public train/validation/test
+  feature rows and avoids cross-version pickle loading in Python 3.10.

@@ -19,6 +19,9 @@ the submission's post–July 13 extension.
 - Added a reproducible `D:\OCR_Model` builder that copies exact model artifacts,
   rewrites only portable path metadata, generates SHA-256 manifests, and
   excludes private/raw data.
+- Replaced cross-version loading of the display-only scikit-learn pickles with
+  a hash-bound numeric inference artifact; all 7,520 public feature rows kept
+  identical cluster labels.
 - Added the `$review-ocr-document` Codex skill.
 - Added a local read-only STDIO MCP server with opaque IDs, private-result
   exclusion, explicit field selection, confirmation, and separately bounded
