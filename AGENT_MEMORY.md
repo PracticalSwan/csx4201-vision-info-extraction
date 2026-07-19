@@ -259,7 +259,8 @@
   blocker, high, medium, or low findings; the review loop ended.
 - 2026-07-19 - Published the portable and Build Week package to private GitHub
   `main` at commit `79d2ad9`. The Devpost judge email resolved to GitHub user
-  `devposttesting`, and read-only invitation `326151362` was created. The
-  OpenAI judge email still requires the repository owner to complete GitHub
-  passkey/sudo confirmation before it can be resolved and invited; no guessed
-  account was substituted.
+  `devposttesting`; it now has active pull-only access. After owner passkey
+  confirmation, GitHub created OpenAI email invitation `326199273`. The email
+  dialog defaulted to `write`, so the invitation was immediately reduced to
+  `read` and reverified through the authenticated API. Both official judge
+  access paths are now present without making the repository public.

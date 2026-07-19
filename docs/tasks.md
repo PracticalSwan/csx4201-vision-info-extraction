@@ -73,6 +73,6 @@ GitHub PR #1 at merge commit `b38ebc2fc3de8975c03ef9ea5fe66334f40bd137`.
 - [ ] Run the final demonstrated Codex skill flow and save its `/feedback`
   Session ID.
 - [x] Invite the Devpost judge account with read-only repository access.
-- [ ] Complete GitHub passkey confirmation and invite
+- [x] Complete GitHub passkey confirmation and invite
   `build-week-event@openai.com` with read-only access.
 - [ ] Complete and submit the Devpost form before the official deadline.
