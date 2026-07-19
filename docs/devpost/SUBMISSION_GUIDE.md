@@ -10,21 +10,30 @@
 
 ## Registration and submission
 
-1. Sign in at <https://openai.devpost.com/>.
-2. Join the hackathon if the page still shows a **Join hackathon** action.
-3. Open the submission manager:
-   <https://devpost.com/submit-to/30223-openai-build-week/manage/submissions>.
-4. Create a project and use the copy in `SUBMISSION_COPY.md`.
-5. Select exactly **Work & Productivity**.
-6. Add the private GitHub repository and grant repository access to both judge
-   email addresses listed in `JUDGE_ACCESS.md`.
-7. Upload/link a public YouTube video no longer than three minutes. It needs
+The authenticated Devpost connector has already created and populated the live
+project:
+
+- Project ID: `1350784`
+- Project: [OCR Model: Local Document Intelligence](https://devpost.com/software/ocr-model-local-document-intelligence)
+- Saved content: title, tagline, full write-up, technologies, private GitHub
+  link, and a privacy-safe GUI thumbnail
+- Hackathon state: registered, but not yet submitted to OpenAI Build Week
+
+The remaining flow is:
+
+1. Record and publish a YouTube video no longer than three minutes. Public is
+   recommended; the organizer's July 18 update also permits Unlisted. It needs
    audible narration explaining the product and showing how Codex and GPT-5.6
    are used. Follow `VIDEO_SCRIPT.md`.
-8. In the Codex task used for the demo, run `/feedback` and place the returned
-   Session ID in the Devpost field.
-9. Recheck every item in `REQUIREMENTS_CHECKLIST.md`.
-10. Preview the submission, confirm there is no private content, and submit.
+2. In the Codex task used for the demo, run `/feedback` and copy the returned
+   Session ID.
+3. Confirm the entrant's country of residence. Devpost requires this field;
+   it will not be inferred from the project location.
+4. Send the public YouTube URL, country, and `/feedback` Session ID to the
+   Codex task.
+5. Recheck every item in `REQUIREMENTS_CHECKLIST.md`. The connector will use
+   **Individual**, **Work & Productivity**, and the existing private
+   repository URL, then perform the final submission.
 
 The published deadline is **July 21, 2026 at 5:00 PM Pacific Time**, which is
 **July 22, 2026 at 7:00 AM in Bangkok**. Submit earlier so repository access and
@@ -34,6 +43,7 @@ Official references:
 
 - <https://openai.devpost.com/rules>
 - <https://openai.devpost.com/details/faqs>
+- <https://openai.devpost.com/updates/45371-tuesday-last-minute-tips>
 - <https://openai.devpost.com/>
 
 ## Existing-project eligibility
@@ -56,8 +66,8 @@ Do not present the original model training as Build Week work. Use
 
 - Record narration and publish the final YouTube video.
 - Run the final real GPT-5.6 skill demo and `/feedback`.
-- Review the final Devpost preview.
-- Click the irreversible final **Submit** button.
+- Confirm the required country-of-residence answer.
+- Review the final values before the Devpost connector submits them.
 
-Those actions require the owner's voice/account confirmation and should not be
-automated silently.
+The connector can complete the final Devpost submission, but it cannot invent
+the country, `/feedback` Session ID, or public video URL.

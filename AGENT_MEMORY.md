@@ -264,3 +264,9 @@
   dialog defaulted to `write`, so the invitation was immediately reduced to
   `read` and reverified through the authenticated API. Both official judge
   access paths are now present without making the repository public.
+- 2026-07-19 - The authenticated Devpost connector populated project
+  `1350784`, slug `ocr-model-local-document-intelligence`, with the final
+  write-up, stack, private repository link, and privacy-safe GUI thumbnail.
+  The project is published on Devpost but has not yet been submitted to OpenAI
+  Build Week. Submission remains gated only on the owner's country of
+  residence, public YouTube URL, and final `/feedback` Session ID.

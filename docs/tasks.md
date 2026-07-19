@@ -75,4 +75,8 @@ GitHub PR #1 at merge commit `b38ebc2fc3de8975c03ef9ea5fe66334f40bd137`.
 - [x] Invite the Devpost judge account with read-only repository access.
 - [x] Complete GitHub passkey confirmation and invite
   `build-week-event@openai.com` with read-only access.
-- [ ] Complete and submit the Devpost form before the official deadline.
+- [x] Populate Devpost project `1350784` with submission copy, technologies,
+  private repository link, and a privacy-safe thumbnail through the connector.
+- [ ] Provide the country of residence, public YouTube URL, and `/feedback`
+  Session ID, then submit the project through the Devpost connector before the
+  official deadline.

@@ -3,6 +3,17 @@
 Target length: 2:35–2:50. Record at 1080p with audible narration. Use only the
 bundled synthetic sample and the sanitized screenshots in `assets/`.
 
+## Before recording
+
+1. Start the portable GUI with `D:\OCR_Model\launch_windows.bat`.
+2. Load only `D:\OCR_Model\samples\unknown_upright.png`.
+3. Open the Codex task that will demonstrate `$review-ocr-document`, select
+   GPT-5.6, and keep the safe result ready.
+4. Close email, messaging, file explorers showing unrelated folders, password
+   managers, and any private documents. Turn on Windows **Do not disturb**.
+5. Set browser and app zoom so the GUI fields and consent prompt are readable
+   at 1080p.
+
 ## 0:00–0:20 — Problem and promise
 
 Show the title slide, then the local GUI.
@@ -61,9 +72,46 @@ Narration:
 
 End on the GUI/result screenshot with the project name.
 
+## Record and upload on Windows
+
+The recommended built-in workflow is Microsoft Clipchamp:
+
+1. Open Clipchamp and create a new video.
+2. Choose **Record & create** > **Screen**.
+3. Allow microphone access, select the microphone, and choose the entire
+   screen so the recording can move between the GUI and Codex.
+4. Record the timeline above in one take or in short sections. Keep the final
+   edit between 2:35 and 2:50 so there is margin below the 3:00 limit.
+5. Trim pauses and setup time. Do not cut away the consent prompt or the
+   evidence that the local JSON stays unchanged.
+6. Export a 1080p MP4 and play it once from beginning to end. Confirm that
+   narration is audible, all important text is readable, and no notification
+   or private information appears.
+
+Microsoft's current screen-recording instructions are at
+<https://support.microsoft.com/en-US/Clipchamp/how-to-make-a-screen-recording>.
+
+Upload the finished MP4:
+
+1. Open <https://studio.youtube.com/> and choose **Create** > **Upload
+   videos**.
+2. Use the title **OCR Model: Local Document Intelligence | OpenAI Build Week
+   Demo**.
+3. Complete YouTube's audience choice truthfully, then set **Visibility** to
+   **Public** and publish. Public is recommended for sharing the project. The
+   organizer's July 18 update also permits **Unlisted**; never use Private.
+4. Open the resulting URL in a signed-out or InPrivate window and play the
+   first few seconds. The link must work without an account.
+5. Send that public YouTube URL back to the Codex task. It will be attached to
+   Devpost through the Devpost connector.
+
+YouTube's current upload instructions are at
+<https://support.google.com/youtube/answer/57407?hl=en>.
+
 ## Recording checklist
 
-- Video is publicly visible on YouTube; unlisted/private is not sufficient.
+- Video is Public (recommended) or Unlisted, as permitted by the organizer's
+  July 18 update; Private is not sufficient.
 - YouTube URL works in a signed-out/private window.
 - Duration is no more than 3:00.
 - Narration explicitly says **Codex**, **GPT-5.6**, and **no API key**.

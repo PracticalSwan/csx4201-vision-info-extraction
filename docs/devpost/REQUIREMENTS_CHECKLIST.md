@@ -1,6 +1,6 @@
 # OpenAI Build Week requirements checklist
 
-Status legend: PASS, OWNER ACTION, or BLOCKED.
+Status legend: PASS, IN PROGRESS, OWNER ACTION, or BLOCKED.
 
 | Requirement | Status | Evidence/action |
 |---|---|---|
@@ -16,10 +16,11 @@ Status legend: PASS, OWNER ACTION, or BLOCKED.
 | Judge repository access | PASS | Devpost pull-only collaborator and OpenAI read-only pending invitation verified in `JUDGE_ACCESS.md` |
 | README setup/testing instructions | PASS | Main and portable README documentation |
 | Explain Codex/GPT-5.6 use | PASS | README, Codex integration guide, submission copy |
-| Public demo video, audio, ≤3 min | OWNER ACTION | Record/publish using `VIDEO_SCRIPT.md` |
+| Viewable YouTube demo, audio, ≤3 min | OWNER ACTION | Record/publish Public (recommended) or Unlisted using `VIDEO_SCRIPT.md`; never Private |
 | `/feedback` Session ID | OWNER ACTION | Run in the final demonstrated Codex task |
-| Submission form complete | OWNER ACTION | Paste prepared copy, video, repo, and Session ID |
-| Final submit | OWNER ACTION | Preview privacy, then click Submit before deadline |
+| Devpost project content | PASS | Connector populated project `1350784`, repository link, technologies, write-up, and safe thumbnail |
+| Submission form complete | IN PROGRESS | Connector is waiting for country, public video URL, and Session ID |
+| Final submit | OWNER ACTION | Review those three values; the Devpost connector will submit before the deadline |
 | Private/raw data absent | PASS | Bundle allowlist plus final repository/bundle audit |
 | Accuracy limitations disclosed | PASS | README and submission copy |
 | macOS support | PASS WITH LIMIT | Docker-backed path; no physical Mac test is claimed |
