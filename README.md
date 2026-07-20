@@ -24,7 +24,9 @@ is limited by sparse supervision.
 The July 19 Build Week extension adds a local GUI, one-command CLI, bundled
 model release, Windows setup, Docker-backed macOS path, and an optional
 consent-gated GPT-5.6 review skill. Extraction itself is fully local and uses
-no OpenAI API key.
+no OpenAI API key. The GUI previews uploaded images and the first page of
+PDFs, uses one loading indicator, clears stale results when the input changes,
+and keeps overflowing OCR text and run logs independently scrollable.
 
 Current development machine:
 
@@ -60,10 +62,13 @@ signed-in Codex session, not an API key. See
 
 Build Week submission materials are under [docs/devpost](docs/devpost).
 Sanitized demo evidence includes the [ready GUI](docs/devpost/assets/ocr-model-ready.png),
+[single loading indicator](docs/devpost/assets/ocr-model-loading-single.png),
+[scrollable OCR text](docs/devpost/assets/ocr-model-scrollable-ocr.png),
+[PDF preview](docs/devpost/assets/ocr-model-pdf-preview.png),
 [completed field extraction](docs/devpost/assets/ocr-model-fields-final.png),
 and [visual overlay](docs/devpost/assets/ocr-model-visual-tab-final.png).
 
-## Verified status (2026-07-19)
+## Verified status (2026-07-20)
 
 | Surface | Executed evidence |
 |---|---|
@@ -76,9 +81,9 @@ and [visual overlay](docs/devpost/assets/ocr-model-visual-tab-final.png).
 | Layout angle grid | 18 required angles over 30 balanced pages; minimum calibrated entity F1 0.7491 (95.30% upright retention), canonical F1 0.9360, relation F1 0.3434 |
 | End-to-end angle grid | 72/72 public/synthetic cases nonempty; bounded public OCR coverage 0.4026–0.4368 and entity F1 0.1314–0.1830; synthetic Thai text recovery 18/18 |
 | Unseen CORU | 100/100 pages succeeded; 78.53% of 4,001 QA answer strings found in OCR; 15.68% canonical exact match; never used for fitting or selection |
-| Private operation | 2/2 anonymous local documents succeeded; public report is aggregate-only and declares no filenames, OCR text, images, or per-document predictions |
+| Private operation | 26/26 anonymous local documents and 203 pages succeeded; public report is aggregate-only and declares no filenames, OCR text, images, or per-document predictions |
 | Verification | IE verifier 46/46 complete checks; exact OCR model/GPU checks and hash-bound image/rotation/Thai/multipage integration pass |
-| Automated tests | Host suite: 237 passed, 2 environment-dependent skips; OCR-runtime partition: 122 passed; CUDA-layout partition: 2 passed |
+| Automated tests | Host suite: 243 passed, 2 environment-dependent skips; OCR-runtime partition: 122 passed; CUDA-layout partition: 2 passed |
 | Portable release | Windows bundle doctor and exact OCR-model verification passed; native GPU GUI/CLI and `linux/amd64` Docker CPU extractions produced identical field values, OCR text, entity triplets, and relation triplets; version-neutral K-Means parameters matched all 7,520 public feature rows with zero cluster-label differences |
 | Optional GPT-5.6 bridge | Real STDIO MCP client listed both tools; unconfirmed calls exposed no values; confirmed test exposed only the selected synthetic `total_amount` field |
 

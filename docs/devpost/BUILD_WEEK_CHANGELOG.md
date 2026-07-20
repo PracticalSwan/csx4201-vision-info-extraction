@@ -4,6 +4,17 @@ The trained information-extraction model and its final evaluation existed
 before OpenAI Build Week. The following product and GPT-5.6 integration work is
 the submission's post–July 13 extension.
 
+## July 20, 2026
+
+- Repaired the local GUI so image uploads and first PDF pages render in a
+  document-preview panel without changing the extraction input.
+- Replaced stacked output overlays plus callback progress with one compact
+  Gradio-owned loading indicator.
+- Added bounded, independently scrollable OCR-text and run-log panes, removed
+  terminal color escapes, and reset stale outputs whenever the input changes.
+- Added image/PDF preview, overflow, event-configuration, and log-sanitization
+  regressions plus live Chrome screenshots from real GPU extraction.
+
 ## July 19, 2026
 
 - Added a relocatable runtime resolver that reuses the verified pipeline

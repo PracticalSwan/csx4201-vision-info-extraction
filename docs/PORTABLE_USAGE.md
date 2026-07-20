@@ -28,6 +28,11 @@ Run:
 3. Double-click `launch_windows.bat`.
 4. Select an image/PDF and click **Extract document**.
 
+The upload card previews the complete selected image or the first page of a
+PDF before extraction. Selecting a different document clears the previous
+status and results. A run uses one compact loading indicator; it does not cover
+each output tab with separate spinners.
+
 After setup, the model can also be run in one command:
 
 ```powershell
@@ -90,7 +95,9 @@ Every run creates a timestamped folder under `outputs/` containing:
 - `portable_run.log`: local diagnostic log
 
 The GUI shows a field table, combined OCR text, full JSON, page visualizations,
-and a downloadable ZIP of that run.
+and a downloadable ZIP of that run. The OCR text and run-log panes have fixed
+heights with independent vertical scrolling, so long output remains usable.
+Terminal color sequences are removed from the displayed log.
 
 In the GUI, **Maximum PDF pages = 0** means process every page.
 

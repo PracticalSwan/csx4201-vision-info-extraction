@@ -100,8 +100,9 @@ All 100 deterministic CORU pages succeed with nonempty OCR. The model finds
 canonical fields. CORU lacks compatible token polygons, so entity/relation F1
 is undefined.
 
-Two anonymous Gmail documents succeed locally with zero failures. There is no
-private ground truth, so the aggregate is an operation check—not accuracy.
+All 26 anonymous Gmail documents and 203 pages succeed locally with zero
+failures. There is no private ground truth, so the aggregate is an operation
+check—not accuracy.
 
 ## Open acceptance decisions
 

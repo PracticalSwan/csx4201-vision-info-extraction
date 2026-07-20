@@ -1,10 +1,10 @@
-# Optional private GitHub Release handoff
+# Private GitHub Release handoff
 
-This handoff is prepared but has not been published. Creating the release is
-an external upload of a 1.15 GB asset and requires the owner's explicit
-approval.
+The owner explicitly approved the private weights-included Release on
+2026-07-20. Publication remains pending only while the repaired GUI package is
+rebuilt and reverified.
 
-## Proposed release
+## Approved release
 
 - Repository: `PracticalSwan/csx4201-vision-info-extraction` (private)
 - Tag: `v1.0.0-build-week`

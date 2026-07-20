@@ -28,7 +28,9 @@ Narration:
 
 Select `samples/unknown_upright.png` and click **Extract document**. If the live
 run is too slow, start with a completed result, then show a short sped-up clip.
-Open the fields, OCR text, JSON, and visual confirmation tabs.
+Pause briefly on the real image preview and the single loading indicator.
+Open the fields, OCR text, JSON, and visual confirmation tabs. Scroll the OCR
+pane once to show that long text stays inside the result card.
 
 Narration points:
 

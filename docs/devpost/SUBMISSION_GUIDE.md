@@ -4,6 +4,7 @@
 
 - Entrant: solo
 - Track: Work & Productivity
+- Country of residence: Thailand
 - Repository: private
 - OpenAI API key: not used
 - Judge access changes: approved by the owner
@@ -23,9 +24,9 @@ The live Devpost editor was rechecked in Chrome on 2026-07-20. The public
 project page is populated, but the Build Week entry still reports **Draft,
 1/5 steps done**. Its Additional info page has no saved submitter type,
 country, category, repository URL, testing instructions, or `/feedback`
-Session ID. Those values will be written together by the Devpost connector
-when the owner supplies the final required inputs. A published Devpost project
-page is not evidence of a submitted hackathon entry.
+Session ID. Thailand is now owner-confirmed and will be written with the
+remaining values by the Devpost connector. A published Devpost project page is
+not evidence of a submitted hackathon entry.
 
 The remaining flow is:
 
@@ -35,12 +36,10 @@ The remaining flow is:
    are used. Follow `VIDEO_SCRIPT.md`.
 2. In the Codex task used for the demo, run `/feedback` and copy the returned
    Session ID.
-3. Confirm the entrant's country of residence. Devpost requires this field;
-   it will not be inferred from the project location.
-4. Send the public YouTube URL, country, and `/feedback` Session ID to the
+3. Send the public YouTube URL and `/feedback` Session ID to the
    Codex task.
-5. Recheck every item in `REQUIREMENTS_CHECKLIST.md`. The connector will use
-   **Individual**, **Work & Productivity**, and the existing private
+4. Recheck every item in `REQUIREMENTS_CHECKLIST.md`. The connector will use
+   **Individual**, **Thailand**, **Work & Productivity**, and the existing private
    repository URL, then perform the final submission.
 
 The published deadline is **July 21, 2026 at 5:00 PM Pacific Time**, which is
@@ -74,13 +73,12 @@ Do not present the original model training as Build Week work. Use
 
 - Record narration and publish the final YouTube video.
 - Run the final real GPT-5.6 skill demo and `/feedback`.
-- Confirm the required country-of-residence answer.
+- Review the already confirmed Thailand value.
 - Review the final values before the Devpost connector submits them.
 
 The connector can complete the final Devpost submission, but it cannot invent
-the country, `/feedback` Session ID, or public video URL.
+the `/feedback` Session ID or public video URL.
 
-If the owner approves publishing the 1.15 GB bundle as a private GitHub
-Release for invited judges, use `GITHUB_RELEASE_HANDOFF.md`. Directly sending
-`D:\OCR_Model.zip` and its `.sha256` sidecar remains the simplest sharing
-route and does not require a GitHub Release.
+The owner approved publishing the weights-included bundle as a private GitHub
+Release for invited judges. Its build, upload, and verification are tracked in
+`GITHUB_RELEASE_HANDOFF.md`.

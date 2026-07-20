@@ -72,6 +72,11 @@ GitHub PR #1 at merge commit `b38ebc2fc3de8975c03ef9ea5fe66334f40bd137`.
   7,520 public feature rows.
 - [x] Complete one independent review, fix all three confirmed findings, and
   complete the same reviewer's single follow-up with zero remaining findings.
+- [x] Repair the GUI image/PDF preview, duplicate progress surfaces,
+  scrollable OCR/log panes, stale-input state, and terminal log rendering;
+  verify the final behavior with real browser screenshots.
+- [x] Confirm the entrant country as Thailand.
+- [ ] Publish the owner-approved weights-included private GitHub Release.
 - [ ] Publish the narrated public demo video of no more than three minutes.
 - [ ] Run the final demonstrated Codex skill flow and save its `/feedback`
   Session ID.
@@ -80,6 +85,6 @@ GitHub PR #1 at merge commit `b38ebc2fc3de8975c03ef9ea5fe66334f40bd137`.
   `build-week-event@openai.com` with read-only access.
 - [x] Populate Devpost project `1350784` with submission copy, technologies,
   private repository link, and a privacy-safe thumbnail through the connector.
-- [ ] Provide the country of residence, public YouTube URL, and `/feedback`
-  Session ID, then submit the project through the Devpost connector before the
-  official deadline.
+- [ ] Provide the public YouTube URL and `/feedback` Session ID, explicitly
+  agree to the rules/terms, then submit through the Devpost connector before
+  the official deadline.

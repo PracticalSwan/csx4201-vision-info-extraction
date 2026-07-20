@@ -2,4 +2,5 @@
 # in their isolated environments to avoid Paddle/PyTorch DLL conflicts.
 gradio==6.0.1
 mcp==1.12.4
+PyMuPDF==1.28.0
 PyYAML>=6.0

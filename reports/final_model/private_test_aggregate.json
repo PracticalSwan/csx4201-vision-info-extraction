@@ -1,21 +1,23 @@
 {
   "schema_version": "1.0",
   "status": "private_test_aggregate",
-  "attempted_documents": 2,
-  "successful_documents": 2,
+  "attempted_documents": 26,
+  "successful_documents": 26,
   "failed_documents": 0,
-  "processed_pages": 2,
-  "mean_ocr_words_per_page": 47.5,
-  "mean_entities_per_page": 6.0,
-  "mean_relations_per_page": 1.0,
-  "mean_non_null_fields_per_document": 4.0,
-  "mean_ocr_confidence": 0.9371548137328779,
-  "mean_duration_seconds": 23.76854060000187,
+  "processed_pages": 203,
+  "mean_ocr_words_per_page": 51.32512315270936,
+  "mean_entities_per_page": 6.004926108374384,
+  "mean_relations_per_page": 2.2364532019704435,
+  "mean_non_null_fields_per_document": 6.153846153846154,
+  "mean_ocr_confidence": 0.98838861617862,
+  "mean_duration_seconds": 68.98299117307089,
   "route_counts": {
-    "general": 2
+    "general": 199,
+    "thai": 4
   },
   "document_type_counts": {
-    "unknown": 2
+    "invoice": 2,
+    "unknown": 24
   },
   "error_type_counts": {},
   "checkpoint_model_sha256": "34c7a26e78d6285a2739e1b61839eadfd0e686ccbcf57f9cb47997c12cef2189",
@@ -25,7 +27,7 @@
   "contains_ocr_text": false,
   "contains_images": false,
   "contains_per_document_predictions": false,
-  "elapsed_seconds": 49.81405659999291,
+  "elapsed_seconds": 1843.5929977999767,
   "limitations": [
     "No private ground truth is used; this is aggregate operational testing, not an accuracy estimate."
   ]

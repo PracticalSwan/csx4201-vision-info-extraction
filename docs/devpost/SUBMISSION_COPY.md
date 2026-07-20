@@ -37,9 +37,10 @@ runs the fine-tuned LayoutXLM multitask checkpoint, adds evidence-based field
 rules and generic key/value relations, validates the result schema, and writes
 JSON plus page overlays.
 
-The GUI presents extracted fields, OCR text, full JSON, visualizations, and a
-downloadable result archive. The CLI performs the same full extraction in one
-command.
+The GUI previews uploaded images and the first page of PDFs, presents extracted
+fields, OCR text, full JSON, visualizations, and a downloadable result archive.
+It keeps long OCR/log output scrollable and uses one loading indicator. The CLI
+performs the same full extraction in one command.
 
 The optional `$review-ocr-document` skill lists completed results through
 opaque IDs. It asks which fields the user wants reviewed and requests consent
