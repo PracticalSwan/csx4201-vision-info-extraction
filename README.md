@@ -42,7 +42,7 @@ D:\OCR_Model
 D:\OCR_Model.zip
 SHA-256: f6a057e5c37c6036bd1d4ad6c247aa0895e893d87fe17f997fd011e0c5064f9e
 Size: 1,153,302,135 bytes
-Private Release: https://github.com/PracticalSwan/csx4201-vision-info-extraction/releases/tag/v1.0.0-build-week
+Public Release: https://github.com/PracticalSwan/csx4201-vision-info-extraction/releases/tag/v1.0.0-build-week
 ```
 
 On Windows, recipients run `setup_windows.bat` once and then
@@ -318,3 +318,11 @@ Further detail: [requirements](docs/requirements.md),
 [design](docs/design.md),
 [workflow](docs/information_extraction.md), and
 [task status](docs/tasks.md).
+
+## License
+
+Original source code and documentation authored for this project are available
+under the [MIT License](LICENSE), copyright 2026 Sithu Win San. Trained model
+weights and third-party components remain subject to their upstream licenses.
+In particular, the LayoutXLM-derived checkpoint is distributed under
+CC BY-NC-SA 4.0 and is limited to noncommercial use.

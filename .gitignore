@@ -44,6 +44,9 @@ data/metadata/data_sources.csv
 *.tar.gz
 *.gz
 
+# Owner-recorded demo is published through YouTube, not Git.
+/OpenAI_Build_Week_Final.mp4
+
 # --- OS junk ---
 .DS_Store
 **/.DS_Store
