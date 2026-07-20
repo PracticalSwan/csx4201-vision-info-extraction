@@ -93,7 +93,9 @@ The recommended built-in workflow is Microsoft Clipchamp:
 Microsoft's current screen-recording instructions are at
 <https://support.microsoft.com/en-US/Clipchamp/how-to-make-a-screen-recording>.
 
-Upload the finished MP4:
+The final 2:54 recording is published at
+<https://youtu.be/8BV8LnbK1GI> and is attached to Devpost submission
+`1102544`. For a future replacement, upload the finished MP4 as follows:
 
 1. Open <https://studio.youtube.com/> and choose **Create** > **Upload
    videos**.
@@ -104,8 +106,7 @@ Upload the finished MP4:
    organizer's July 18 update also permits **Unlisted**; never use Private.
 4. Open the resulting URL in a signed-out or InPrivate window and play the
    first few seconds. The link must work without an account.
-5. Send that public YouTube URL back to the Codex task. It will be attached to
-   Devpost through the Devpost connector.
+5. Recheck the public URL before replacing it in the Devpost project.
 
 YouTube's current upload instructions are at
 <https://support.google.com/youtube/answer/57407?hl=en>.
@@ -119,4 +120,5 @@ YouTube's current upload instructions are at
 - Narration explicitly says **Codex**, **GPT-5.6**, and **no API key**.
 - No desktop notification, username, absolute path, email, token, or private
   document is visible.
-- `/feedback` is run in the demonstrated Codex task after recording.
+- `/feedback` Session ID matches the demonstrated Codex task. The submitted ID
+  is `019f7669-11fd-7923-ad68-ea1a09bd7d74`.

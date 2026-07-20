@@ -137,7 +137,6 @@ def copy_application(target: Path) -> None:
         "THIRD_PARTY_NOTICES.md",
     ):
         copy_file(PROJECT_ROOT / "docs" / name, target / "docs" / name)
-    copy_tree(PROJECT_ROOT / "docs" / "devpost", target / "docs" / "devpost")
     copy_file(PROJECT_ROOT / "docs" / "PORTABLE_USAGE.md", target / "README.md")
 
 

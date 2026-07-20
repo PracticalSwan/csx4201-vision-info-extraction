@@ -1,48 +1,36 @@
-# Private repository judge access
-
-The official instructions require a private repository to be shared with both:
-
-- `testing@devpost.com`
-- `build-week-event@openai.com`
+# Repository visibility and judge access
 
 Repository:
 
 <https://github.com/PracticalSwan/csx4201-vision-info-extraction>
 
-## Current access state
+## Current state
 
-- `testing@devpost.com`: active as the email-resolved GitHub account
-  `devposttesting`, with pull-only **Read** access. The original GitHub
-  invitation ID was `326151362`.
-- `build-week-event@openai.com`: pending email invitation `326199273`, with
-  **Read** permission, created on 2026-07-19. GitHub initially created the
-  email invitation with `write`; it was immediately reduced to `read` and
-  reverified through the authenticated GitHub API.
+The owner intentionally made the repository public on 2026-07-21. Judges and
+other readers can access the source, README, MIT license, contribution policy,
+and published Release without a GitHub invitation.
 
-To verify the current state:
+Earlier private-repository judge invitations are no longer required for read
+access. Do not describe the repository or Release as private in current
+submission materials.
 
-```powershell
-gh api repos/PracticalSwan/csx4201-vision-info-extraction/collaborators `
-  --jq '.[] | {login,permissions}'
-gh api repos/PracticalSwan/csx4201-vision-info-extraction/invitations `
-  --jq '.[] | {id,permissions,created_at}'
-```
+Public visibility does not weaken the data boundary:
 
-The expected result is `devposttesting` with `pull: true` and `push: false`,
-plus pending invitation `326199273` with `permissions: "read"`.
+- raw/private Gmail documents remain ignored and must never be uploaded;
+- private OCR text, filenames, images, and per-document predictions remain
+  local;
+- `runtime.local.json`, `.runtime`, outputs, caches, and credentials remain
+  excluded; and
+- the public Release is built from an allowlist and must pass its privacy
+  audit before upload.
 
-If GitHub does not resolve an email to an account, use the exact alternative
-judge-access mechanism stated in the current Devpost FAQ or contact the event
-organizers. Do not make the repository public as a workaround: its history and
-project documentation assume a private repository, and private dataset guards
-must still be audited before any visibility change.
-
-Before changing judge access, verify:
+Before any future visibility, access, or Release change, verify:
 
 ```powershell
+gh repo view PracticalSwan/csx4201-vision-info-extraction `
+  --json visibility,url
 git status --short
 git ls-files | rg -i "gmail|private|\.env|token|secret|password"
 ```
 
-Judge access does not authorize uploading raw private data, private filenames,
-private outputs, or local environment files.
+Repository access never authorizes uploading private source or derived data.

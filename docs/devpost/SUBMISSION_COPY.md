@@ -85,7 +85,7 @@ keeps OCR text off by default.
 - No API-key requirement
 - Consent-gated GPT-5.6 assistance with unchanged local results
 - Privacy checks that exclude raw/private datasets from the distributable
-- Private, digest-verified 1.15 GB GitHub Release for invited judges
+- Public, digest-verified 1.15 GB GitHub Release with the trained weights
 
 ## What I learned
 

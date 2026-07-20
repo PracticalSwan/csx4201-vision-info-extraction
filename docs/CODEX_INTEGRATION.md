@@ -78,7 +78,7 @@ For the demo, show:
 4. GPT-5.6 suggestions;
 5. the unchanged local `document_result.json`.
 
-Before the final Devpost submission, run `/feedback` in the Codex task used for
-the demo and copy the returned Session ID into the submission form. Do not put
-an API key, access token, source document, or private OCR text in the video or
-submission.
+The submitted Build Week entry uses `/feedback` Session ID
+`019f7669-11fd-7923-ad68-ea1a09bd7d74`, captured from the demonstrated Codex
+task. Do not put an API key, access token, source document, or private OCR text
+in a future demo or submission update.

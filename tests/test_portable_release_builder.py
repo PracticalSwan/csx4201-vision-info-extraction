@@ -17,3 +17,4 @@ def test_portable_builder_includes_license_and_contribution_policy(
     assert "solo academic project" in contributing_text
     assert "pull requests" in contributing_text
     assert "welcome" in contributing_text
+    assert not (target / "docs" / "devpost").exists()

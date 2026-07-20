@@ -116,14 +116,21 @@ Run framework imports too:
 ```
 
 `MODEL_MANIFEST.json` records the included model filenames, sizes, and SHA-256
-hashes. The current clean archive is 1,153,302,135 bytes and has SHA-256:
+hashes. Every published `OCR_Model.zip` is accompanied by
+`OCR_Model.zip.sha256`. On Windows, recompute and compare the digest before
+extracting:
 
-```text
-f6a057e5c37c6036bd1d4ad6c247aa0895e893d87fe17f997fd011e0c5064f9e
+```powershell
+Get-FileHash .\OCR_Model.zip -Algorithm SHA256
+Get-Content .\OCR_Model.zip.sha256
 ```
 
-Invited judges can download the same archive from the private
+Users and judges can download the archive and checksum from the public
 [`v1.0.0-build-week` Release](https://github.com/PracticalSwan/csx4201-vision-info-extraction/releases/tag/v1.0.0-build-week).
+
+The package includes the project's MIT `LICENSE` and `CONTRIBUTING.md`.
+LayoutXLM-derived weights and other third-party components retain the upstream
+licenses documented in `docs/THIRD_PARTY_NOTICES.md`.
 
 The final layout checkpoint must have this SHA-256:
 

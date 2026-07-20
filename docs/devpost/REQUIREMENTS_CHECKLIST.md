@@ -1,39 +1,36 @@
 # OpenAI Build Week requirements checklist
 
-Status legend: PASS, IN PROGRESS, OWNER ACTION, or BLOCKED.
+Status reflects the submitted entry and public Release verified on 2026-07-21.
 
-| Requirement | Status | Evidence/action |
+| Requirement | Status | Evidence |
 |---|---|---|
-| Registered entrant | PASS | User is signed in and registered on Devpost |
-| Solo/team eligibility | PASS | Solo entrant |
+| Registered entrant | PASS | Signed-in, registered Devpost entrant |
+| Solo/team eligibility | PASS | Individual submission |
+| Country of residence | PASS | Thailand, owner-confirmed |
 | One track selected | PASS | Work & Productivity |
-| Working project | PASS | Existing full model plus portable CLI/GUI |
+| Working project | PASS | Full local CLI/GUI extraction and weights-included package |
 | Meaningful work after July 13 | PASS | `BUILD_WEEK_CHANGELOG.md` and Git history |
-| Codex used meaningfully | PASS | Repo skill, MCP workflow, packaging/review work |
-| GPT-5.6 used meaningfully | OWNER ACTION | Record final skill review in GPT-5.6 and preserve task evidence |
-| OpenAI API key | NOT REQUIRED | Project and extension intentionally use no API key |
-| Source repository | PASS | Private GitHub repository |
-| Judge repository access | PASS | Devpost pull-only collaborator and OpenAI read-only pending invitation verified in `JUDGE_ACCESS.md` |
-| README setup/testing instructions | PASS | Main and portable README documentation |
-| Explain Codex/GPT-5.6 use | PASS | README, Codex integration guide, submission copy |
-| Country of residence | PASS | Owner confirmed Thailand |
-| Viewable YouTube demo, audio, ≤3 min | OWNER ACTION | Record/publish Public (recommended) or Unlisted using `VIDEO_SCRIPT.md`; never Private |
-| `/feedback` Session ID | OWNER ACTION | Run in the final demonstrated Codex task |
-| Devpost project content | PASS | Connector refreshed project `1350784` to version 3 with the repaired-GUI write-up, repository/Release links, technologies, and safe thumbnail |
-| Submission form complete | IN PROGRESS | Live editor reports Draft, 1/5 steps; the connector has Thailand ready and is waiting for the public video URL and Session ID |
-| Private GitHub Release | PASS | Published and remotely verified at `v1.0.0-build-week`; ZIP size and SHA-256 match the local archive |
-| Final submit | OWNER ACTION | Review the video URL, Session ID, and legal agreement; the Devpost connector will submit before the deadline |
-| Private/raw data absent | PASS | Bundle allowlist plus final repository/bundle audit |
-| Weights-included archive | PASS | `D:\OCR_Model.zip`, 1,153,302,135 bytes, SHA-256 `f6a057e5c37c6036bd1d4ad6c247aa0895e893d87fe17f997fd011e0c5064f9e` |
+| Codex used meaningfully | PASS | Repo skill, MCP workflow, packaging, review, and `/feedback` task |
+| GPT-5.6 used meaningfully | PASS | Consent-gated review plus visible GPT-5.6 Sol High final audit |
+| OpenAI API key | NOT REQUIRED | Application intentionally uses none |
+| Public source repository | PASS | GitHub repository is public |
+| README setup/testing instructions | PASS | Root and portable usage guides |
+| Explain Codex/GPT-5.6 use | PASS | README, integration guide, video, and submission copy |
+| Viewable YouTube demo, audio, ≤3 min | PASS | Public 2:54 video at `https://youtu.be/8BV8LnbK1GI` |
+| `/feedback` Session ID | PASS | `019f7669-11fd-7923-ad68-ea1a09bd7d74` |
+| Submission form complete | PASS | Entrant, country, track, repository, testing, and Session ID saved |
+| Rules and terms | PASS | Owner explicitly agreed before submission |
+| Final submit | PASS | Submission `1102544` reports `Submitted` |
+| Public GitHub Release | PASS | `v1.0.0-build-week`, published and digest-verified |
+| Private/raw data absent | PASS | Allowlist, prohibited-path scan, and ZIP audit |
+| Weights-included archive | PASS | 1,153,305,967 bytes; SHA-256 `e8fc8229235c42436a487d687f75888c5f7713a69cd94c95459b55fb0d046dc6` |
 | Accuracy limitations disclosed | PASS | README and submission copy |
-| macOS support | PASS WITH LIMIT | Docker-backed path; no physical Mac test is claimed |
-| Model redistribution terms | PASS WITH LIMIT | Noncommercial notices included; owner should choose a code license for broader publication |
+| macOS support | PASS WITH LIMIT | Docker-backed route; no physical Mac test claimed |
+| Model redistribution terms | PASS WITH LIMIT | MIT for original code/docs; LayoutXLM-derived weights remain CC BY-NC-SA 4.0 |
 
-## Eligibility conclusion
+## Conclusion
 
-The project fits the Work & Productivity track and can satisfy the event's
-existing-project rule because the portable product surface and the
-Codex/GPT-5.6 consent-gated review workflow are meaningful new work. Final
-eligibility still depends on completing the owner actions above and on judges
-accepting the documented no-API-key, signed-in Codex usage as the required
-GPT-5.6 use.
+The submitted project satisfies the documented Work & Productivity entry
+requirements. The main limitations are product disclosures rather than missing
+submission fields: physical macOS hardware was not tested, end-to-end OCR is
+the accuracy bottleneck, and the inherited checkpoint is noncommercial.

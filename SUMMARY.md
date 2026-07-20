@@ -1,7 +1,7 @@
 # Summary — Final Rotation-Robust Information-Extraction Pre-Model
 
 **Project:** CSX4201 vision-info-extraction
-**Verified through:** 2026-07-17
+**Verified through:** 2026-07-21
 
 ## Outcome
 
@@ -29,9 +29,31 @@ exact-angle estimator are reported, not hidden.
 | Layout rotation | 18 angles; minimum entity/canonical/relation F1 0.7491/0.9360/0.3434; entity retention at least 95.30% |
 | End-to-end rotation | 72/72 nonempty; bounded public OCR coverage 0.4026–0.4368; entity F1 0.1314–0.1830; synthetic Thai 18/18 |
 | Unseen CORU | 100/100 pages; 78.53% QA-answer text recall; 15.68% canonical exact match |
-| Private operation | 2/2 documents; public aggregate only; no private filename/text/image/per-document output |
+| Private operation | 26/26 documents and 203/203 pages; public aggregate only; no private filename/text/image/per-document output |
 | Verification | Final report compilation passed; complete IE verifier 46/46; exact OCR and hash-bound integration passed |
-| Automated tests | Host suite: 227 passed, 2 environment-dependent skips; OCR-runtime partition: 122 passed; CUDA-layout partition: 2 passed |
+| Automated tests | Host suite: 243 passed, 2 environment-dependent skips; OCR-runtime partition: 122 passed; CUDA-layout partition: 2 passed |
+
+## Portable product and publication
+
+The final model is available through a one-command CLI and repaired local GUI.
+The GUI previews images and first-page PDF renders, uses one progress surface,
+and keeps long OCR and run-log output independently scrollable. Extraction is
+local and requires no OpenAI API key.
+
+The public `v1.0.0-build-week` Release contains a privacy-audited
+weights-included archive for Windows and a Docker-backed macOS route. The
+1,153,305,967-byte ZIP has SHA-256
+`e8fc8229235c42436a487d687f75888c5f7713a69cd94c95459b55fb0d046dc6`
+and was built from clean commit
+`20739bfb3d6ff4b3b03f973aa8040ca152353a64`. ZIP integrity, model manifests,
+portable doctor probes, and a full CPU sample extraction pass. Windows native
+GPU and Docker Linux/AMD64 CPU output parity was verified earlier; physical
+Apple hardware remains untested.
+
+OpenAI Build Week submission `1102544` is `Submitted` in the Work &
+Productivity track. It uses the public 2:54 demo, public repository, Thailand
+as the owner-confirmed country, and `/feedback` Session ID
+`019f7669-11fd-7923-ad68-ea1a09bd7d74`.
 
 ## Model and runtime
 
@@ -94,8 +116,8 @@ Still open research/product decisions:
 - broader OCR/domain adaptation and stronger relation supervision;
 - an approved orientation/zone method if the professor requires more than the
   preserved K-Means diagnostic plus independent OCR correction;
-- final deliverable/weight redistribution protocol under the noncommercial
-  license.
+- any future commercial redistribution path, because the inherited
+  LayoutXLM-derived checkpoint is CC BY-NC-SA 4.0.
 
 The result is a complete working academic pre-model with measured limitations,
 not a claim of production readiness.

@@ -4,6 +4,19 @@ The trained information-extraction model and its final evaluation existed
 before OpenAI Build Week. The following product and GPT-5.6 integration work is
 the submission's post–July 13 extension.
 
+## July 21, 2026
+
+- Published the corrected 2:54 narrated demo and verified that it plays
+  without authentication.
+- Submitted Devpost entry `1102544` in the Work & Productivity track with
+  Thailand, the public repository, testing instructions, and `/feedback`
+  Session ID.
+- Made the repository public with a reader-first README, MIT license for
+  original code/documentation, and a solo-maintainer contribution policy.
+- Rebuilt the weights-included Release from clean commit `20739bf`, added the
+  license and contribution files, reran the privacy/ZIP/doctor checks, and
+  completed a full CPU extraction with the bundled sample.
+
 ## July 20, 2026
 
 - Repaired the local GUI so image uploads and first PDF pages render in a
