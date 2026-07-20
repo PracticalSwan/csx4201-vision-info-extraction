@@ -101,6 +101,8 @@ def copy_application(target: Path) -> None:
     ):
         copy_file(PROJECT_ROOT / "scripts" / name, scripts_target / name)
     for name in (
+        "LICENSE",
+        "CONTRIBUTING.md",
         "app.py",
         "doctor.py",
         "mcp_server.py",
