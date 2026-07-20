@@ -13,7 +13,7 @@ the submission's post–July 13 extension.
   Session ID.
 - Made the repository public with a reader-first README, MIT license for
   original code/documentation, and a solo-maintainer contribution policy.
-- Rebuilt the weights-included Release from clean commit `20739bf`, added the
+- Rebuilt the weights-included Release from clean commit `e47023d`, added the
   license and contribution files, reran the privacy/ZIP/doctor checks, and
   completed a full CPU extraction with the bundled sample.
 

@@ -17,19 +17,19 @@ This release repairs the local GUI with:
 
 Verified before publication:
 
-- clean 1,153,305,967-byte archive with one `OCR_Model/` root and no raw or
+- clean 1,152,835,265-byte archive with one `OCR_Model/` root and no raw or
   private data;
 - archive SHA-256
-  `e8fc8229235c42436a487d687f75888c5f7713a69cd94c95459b55fb0d046dc6`;
+  `c6c874f5b0879478497c9a33529f6416d48be60d586197fb625540d795f9ec6b`;
 - source commit
-  `20739bfb3d6ff4b3b03f973aa8040ca152353a64`;
+  `e47023de2a201092df6fd3393ec297b2835e0a50`;
 - ZIP CRC, single-root, required-file, and privacy audits;
 - portable doctor with OCR, LayoutXLM, and K-Means import probes;
 - full CPU extraction of the bundled sample with the expected five fields;
 - native Windows GPU doctor, CLI extraction, and packaged-GUI extraction;
 - rebuilt Docker Linux/AMD64 CPU doctor and full extraction with exact field
   values/methods, OCR text, entity/relation triplets, and rotation parity;
-- host test suite: 243 passed and 2 environment-dependent skips; and
+- host test suite: 244 passed and 2 environment-dependent skips; and
 - final LayoutXLM checkpoint SHA-256
   `34c7a26e78d6285a2739e1b61839eadfd0e686ccbcf57f9cb47997c12cef2189`.
 

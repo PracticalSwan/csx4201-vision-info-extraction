@@ -91,3 +91,7 @@ GitHub PR #1 at merge commit `b38ebc2fc3de8975c03ef9ea5fe66334f40bd137`.
 - [x] Submit Devpost entry `1102544` after recording the public video,
   providing the Session ID, and receiving the owner's explicit rules/terms
   agreement. The live manager and connector both report `Submitted`.
+- [x] Complete conservative post-publication cleanup: remove only verified
+  caches, logs, screenshots, local test output, obsolete portable submission
+  docs, the empty legacy tree, and staging copies while preserving the runtime,
+  raw/model data, canonical ZIP, and demo MP4.

@@ -31,7 +31,7 @@ exact-angle estimator are reported, not hidden.
 | Unseen CORU | 100/100 pages; 78.53% QA-answer text recall; 15.68% canonical exact match |
 | Private operation | 26/26 documents and 203/203 pages; public aggregate only; no private filename/text/image/per-document output |
 | Verification | Final report compilation passed; complete IE verifier 46/46; exact OCR and hash-bound integration passed |
-| Automated tests | Host suite: 243 passed, 2 environment-dependent skips; OCR-runtime partition: 122 passed; CUDA-layout partition: 2 passed |
+| Automated tests | Host suite: 244 passed, 2 environment-dependent skips; OCR-runtime partition: 122 passed; CUDA-layout partition: 2 passed |
 
 ## Portable product and publication
 
@@ -42,10 +42,10 @@ local and requires no OpenAI API key.
 
 The public `v1.0.0-build-week` Release contains a privacy-audited
 weights-included archive for Windows and a Docker-backed macOS route. The
-1,153,305,967-byte ZIP has SHA-256
-`e8fc8229235c42436a487d687f75888c5f7713a69cd94c95459b55fb0d046dc6`
+1,152,835,265-byte ZIP has SHA-256
+`c6c874f5b0879478497c9a33529f6416d48be60d586197fb625540d795f9ec6b`
 and was built from clean commit
-`20739bfb3d6ff4b3b03f973aa8040ca152353a64`. ZIP integrity, model manifests,
+`e47023de2a201092df6fd3393ec297b2835e0a50`. ZIP integrity, model manifests,
 portable doctor probes, and a full CPU sample extraction pass. Windows native
 GPU and Docker Linux/AMD64 CPU output parity was verified earlier; physical
 Apple hardware remains untested.
@@ -54,6 +54,12 @@ OpenAI Build Week submission `1102544` is `Submitted` in the Work &
 Productivity track. It uses the public 2:54 demo, public repository, Thailand
 as the owner-confirmed country, and `/feedback` Session ID
 `019f7669-11fd-7923-ad68-ea1a09bd7d74`.
+
+Post-publication cleanup removed 2,443,608,061 bytes of verified generated
+caches, logs, screenshots, local test outputs, obsolete package-only
+submission docs, the empty legacy directory tree, and staging copies. Raw
+data, final model assets, the local runtime, runtime configuration, canonical
+ZIP, and demo MP4 were preserved.
 
 ## Model and runtime
 

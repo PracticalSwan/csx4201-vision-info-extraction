@@ -11,11 +11,11 @@ Release:
 - Title: `OCR Model - OpenAI Build Week portable release`
 - Asset: `OCR_Model.zip`
 - Sidecar: `OCR_Model.zip.sha256`
-- Exact size: 1,153,305,967 bytes
+- Exact size: 1,152,835,265 bytes
 - Archive SHA-256:
-  `e8fc8229235c42436a487d687f75888c5f7713a69cd94c95459b55fb0d046dc6`
+  `c6c874f5b0879478497c9a33529f6416d48be60d586197fb625540d795f9ec6b`
 - Source commit recorded inside the archive:
-  `20739bfb3d6ff4b3b03f973aa8040ca152353a64`
+  `e47023de2a201092df6fd3393ec297b2835e0a50`
 
 The archive contains one `OCR_Model/` root, the trained LayoutXLM and
 PaddleOCR weights, one-step CLI and GUI launchers, a synthetic sample,

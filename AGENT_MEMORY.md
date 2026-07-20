@@ -25,22 +25,23 @@
   Reference-token entity F1 is 0.9813; bounded end-to-end entity F1 is only
   0.1314-0.1830 because OCR remains the main bottleneck. Treat it as a final
   academic pre-model, not a production or high-stakes system.
-- On 2026-07-20 the final model has a one-command CLI, repaired local Gradio GUI,
+- On 2026-07-21 the final model has a one-command CLI, repaired local Gradio GUI,
   portable Windows installer, Docker-based macOS route, and a consent-gated
   Codex/MCP review workflow that uses no OpenAI API key. The clean,
   weights-included share archive is `D:\OCR_Model.zip`; its reviewed SHA-256
-  is `f6a057e5c37c6036bd1d4ad6c247aa0895e893d87fe17f997fd011e0c5064f9e`
-  and its exact size is 1,153,302,135 bytes. It was built from clean commit
-  `5b2c964f0affea209aefc03f6ce03183c7dd88de`.
+  is `c6c874f5b0879478497c9a33529f6416d48be60d586197fb625540d795f9ec6b`
+  and its exact size is 1,152,835,265 bytes. It was built from clean commit
+  `e47023de2a201092df6fd3393ec297b2835e0a50`.
   Native Windows GPU and Docker Linux/AMD64 CPU extraction produced identical
   OCR text, field values, entity triplets, and relation triplets on the safe
   validation document. A physical Mac was not available, so macOS support is
   verified through the Docker build/run path rather than on Apple hardware.
-  The private GitHub Release `v1.0.0-build-week` is published from the exact
-  source commit above; the remote 1,153,302,135-byte ZIP digest matches the
-  local archive.
-- The workspace is a Git repository with an existing GitHub remote. Recheck
-  live visibility and staged privacy before every push.
+  The public GitHub Release `v1.0.0-build-week` is published from the exact
+  source commit above; its remote asset digest matches the local archive.
+  Devpost submission `1102544` is `Submitted` with the public 2:54 video and
+  `/feedback` Session ID `019f7669-11fd-7923-ad68-ea1a09bd7d74`.
+- The workspace is a public Git repository with an existing GitHub remote.
+  Recheck live visibility and staged privacy before every push.
 
 ## Confirmed goal
 
@@ -61,8 +62,8 @@
 - The organization inventory contains 128,793 rows and no walk errors.
 - Known invalid/unreadable/empty count remains 408: FUNSD macOS artifacts,
   six empty CORU text files, and four malformed CORU JSON files.
-- The legacy vision_info_extraction_data directory remains an empty,
-  non-destructively preserved husk.
+- The legacy `vision_info_extraction_data` tree was verified to contain zero
+  files and no reparse points, then removed during cleanup on 2026-07-21.
 
 ## Verified rotation run
 
@@ -155,7 +156,7 @@
 - Unseen CORU completed 100/100 pages without failures. Private operational
   inference completed 26/26 anonymous documents and 203/203 pages, and
   published aggregate counts only.
-- Current host suite: 243 tests pass with two environment-dependent skips;
+- Current host suite: 244 tests pass with two environment-dependent skips;
   OCR-runtime and CUDA-layout partitions pass 122 and 2 tests.
 
 ## Open questions
@@ -172,8 +173,8 @@
   an official course benchmark.
 - May any additional derived artifact be produced from the private Gmail set
   beyond ignored local inference and aggregate-only reporting?
-- Must the repository remain private for the final course handoff? Recheck
-  live visibility before every publication action.
+- The owner intentionally made the repository public on 2026-07-21. Raw and
+  derived private data must remain excluded despite that visibility.
 
 ## Standing cautions
 
@@ -305,3 +306,13 @@
   read-only judge access. Devpost project `1350784` received the repaired
   privacy-safe GUI thumbnail; final hackathon submission still waits for the
   YouTube URL, `/feedback` Session ID, and explicit legal agreement.
+- 2026-07-21 - Published the corrected 2:54 video, submitted OpenAI Build Week
+  entry `1102544`, and verified the live `Submitted` state. The owner made the
+  repository public. Added the MIT license for original code/documentation and
+  a solo-maintainer contribution policy, rebuilt the public Release from clean
+  commit `e47023d`, excluded self-referential submission documents from the
+  runtime bundle, and passed ZIP integrity, privacy, doctor, import, and full
+  CPU sample-extraction checks. Conservative cleanup removed 558 generated
+  cache, log, screenshot, test-output, obsolete-package-doc, empty-legacy-tree,
+  and staging files totaling 2,443,608,061 bytes. It preserved raw/model data,
+  the demo MP4, canonical ZIP, `.runtime`, and `runtime.local.json`.

@@ -23,7 +23,7 @@ Status reflects the submitted entry and public Release verified on 2026-07-21.
 | Final submit | PASS | Submission `1102544` reports `Submitted` |
 | Public GitHub Release | PASS | `v1.0.0-build-week`, published and digest-verified |
 | Private/raw data absent | PASS | Allowlist, prohibited-path scan, and ZIP audit |
-| Weights-included archive | PASS | 1,153,305,967 bytes; SHA-256 `e8fc8229235c42436a487d687f75888c5f7713a69cd94c95459b55fb0d046dc6` |
+| Weights-included archive | PASS | 1,152,835,265 bytes; SHA-256 `c6c874f5b0879478497c9a33529f6416d48be60d586197fb625540d795f9ec6b` |
 | Accuracy limitations disclosed | PASS | README and submission copy |
 | macOS support | PASS WITH LIMIT | Docker-backed route; no physical Mac test claimed |
 | Model redistribution terms | PASS WITH LIMIT | MIT for original code/docs; LayoutXLM-derived weights remain CC BY-NC-SA 4.0 |

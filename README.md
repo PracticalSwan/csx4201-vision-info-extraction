@@ -98,6 +98,27 @@ Every completed run is schema-validated against
 Unsupported or conflicting fields remain `null`; emitted values include
 confidence, evidence, validation status, and extraction source.
 
+### Reproduce the preserved rotation experiment
+
+The historical four-zone experiment remains available for research and
+diagnostics:
+
+```powershell
+python scripts/prepare_page_images.py
+python scripts/create_rotation_splits.py
+python scripts/generate_rotation_data.py --profile full
+python scripts/verify_rotation_data.py --profile full
+python scripts/extract_rotation_features.py --profile full
+python scripts/fit_rotation_preprocessing.py
+python scripts/train_kmeans_rotation.py
+python scripts/evaluate_kmeans_rotation.py
+python scripts/evaluate_angle_estimation.py --profile full
+python scripts/run_rotation_experiment.py --profile full
+```
+
+Its mapped public held-out zone accuracy is about 38%, so the result remains
+display-only and does not steer OCR.
+
 ## How it works
 
 ```text
@@ -138,8 +159,8 @@ one another:
 The final four-epoch model used 7,782 public training examples. The exact
 `model.safetensors` SHA-256 is
 `34c7a26e78d6285a2739e1b61839eadfd0e686ccbcf57f9cb47997c12cef2189`.
-The IE verifier completed 46/46 checks. The host suite previously completed
-243 tests with two environment-dependent skips, and Windows GPU and Docker CPU
+The IE verifier completed 46/46 checks. The host suite completed 244 tests
+with two environment-dependent skips, and Windows GPU and Docker CPU
 extractions matched on the safe validation document.
 
 Full evidence is under [`reports/final_model`](reports/final_model), including
