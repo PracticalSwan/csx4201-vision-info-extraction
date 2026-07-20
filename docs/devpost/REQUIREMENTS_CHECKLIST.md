@@ -19,12 +19,12 @@ Status legend: PASS, IN PROGRESS, OWNER ACTION, or BLOCKED.
 | Country of residence | PASS | Owner confirmed Thailand |
 | Viewable YouTube demo, audio, ≤3 min | OWNER ACTION | Record/publish Public (recommended) or Unlisted using `VIDEO_SCRIPT.md`; never Private |
 | `/feedback` Session ID | OWNER ACTION | Run in the final demonstrated Codex task |
-| Devpost project content | PASS | Connector populated project `1350784`, repository link, technologies, write-up, and safe thumbnail |
+| Devpost project content | PASS | Connector refreshed project `1350784` to version 3 with the repaired-GUI write-up, repository/Release links, technologies, and safe thumbnail |
 | Submission form complete | IN PROGRESS | Live editor reports Draft, 1/5 steps; the connector has Thailand ready and is waiting for the public video URL and Session ID |
-| Private GitHub Release | IN PROGRESS | Owner approved the weights-included upload; final archive rebuild and publication are underway |
+| Private GitHub Release | PASS | Published and remotely verified at `v1.0.0-build-week`; ZIP size and SHA-256 match the local archive |
 | Final submit | OWNER ACTION | Review the video URL, Session ID, and legal agreement; the Devpost connector will submit before the deadline |
 | Private/raw data absent | PASS | Bundle allowlist plus final repository/bundle audit |
-| Weights-included archive | PASS | `D:\OCR_Model.zip`, 1,153,107,272 bytes, SHA-256 `b8b73db81a9d7751b21fc744c3245dbd95fd8b27deca6cbc1f5383c0bcd8ce83` |
+| Weights-included archive | PASS | `D:\OCR_Model.zip`, 1,153,302,135 bytes, SHA-256 `f6a057e5c37c6036bd1d4ad6c247aa0895e893d87fe17f997fd011e0c5064f9e` |
 | Accuracy limitations disclosed | PASS | README and submission copy |
 | macOS support | PASS WITH LIMIT | Docker-backed path; no physical Mac test is claimed |
 | Model redistribution terms | PASS WITH LIMIT | Noncommercial notices included; owner should choose a code license for broader publication |

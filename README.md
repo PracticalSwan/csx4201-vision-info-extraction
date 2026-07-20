@@ -40,8 +40,9 @@ Shareable release:
 ```text
 D:\OCR_Model
 D:\OCR_Model.zip
-SHA-256: b8b73db81a9d7751b21fc744c3245dbd95fd8b27deca6cbc1f5383c0bcd8ce83
-Size: 1,153,107,272 bytes
+SHA-256: f6a057e5c37c6036bd1d4ad6c247aa0895e893d87fe17f997fd011e0c5064f9e
+Size: 1,153,302,135 bytes
+Private Release: https://github.com/PracticalSwan/csx4201-vision-info-extraction/releases/tag/v1.0.0-build-week
 ```
 
 On Windows, recipients run `setup_windows.bat` once and then

@@ -76,15 +76,17 @@ GitHub PR #1 at merge commit `b38ebc2fc3de8975c03ef9ea5fe66334f40bd137`.
   scrollable OCR/log panes, stale-input state, and terminal log rendering;
   verify the final behavior with real browser screenshots.
 - [x] Confirm the entrant country as Thailand.
-- [ ] Publish the owner-approved weights-included private GitHub Release.
+- [x] Publish and remotely verify the owner-approved weights-included private
+  GitHub Release at `v1.0.0-build-week`.
 - [ ] Publish the narrated public demo video of no more than three minutes.
 - [ ] Run the final demonstrated Codex skill flow and save its `/feedback`
   Session ID.
 - [x] Invite the Devpost judge account with read-only repository access.
 - [x] Complete GitHub passkey confirmation and invite
   `build-week-event@openai.com` with read-only access.
-- [x] Populate Devpost project `1350784` with submission copy, technologies,
-  private repository link, and a privacy-safe thumbnail through the connector.
+- [x] Populate and refresh Devpost project `1350784` with repaired-GUI
+  submission copy, technologies, private repository/Release links, and a
+  privacy-safe thumbnail through the connector.
 - [ ] Provide the public YouTube URL and `/feedback` Session ID, explicitly
   agree to the rules/terms, then submit through the Devpost connector before
   the official deadline.

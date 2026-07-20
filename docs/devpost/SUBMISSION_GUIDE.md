@@ -16,8 +16,9 @@ project:
 
 - Project ID: `1350784`
 - Project: [OCR Model: Local Document Intelligence](https://devpost.com/software/ocr-model-local-document-intelligence)
-- Saved content: title, tagline, full write-up, technologies, private GitHub
-  link, and a privacy-safe GUI thumbnail
+- Saved content: title, tagline, refreshed repaired-GUI write-up, technologies,
+  private GitHub repository/Release links, and a refreshed privacy-safe GUI
+  thumbnail
 - Hackathon state: registered, but not yet submitted to OpenAI Build Week
 
 The live Devpost editor was rechecked in Chrome on 2026-07-20. The public
@@ -80,5 +81,7 @@ The connector can complete the final Devpost submission, but it cannot invent
 the `/feedback` Session ID or public video URL.
 
 The owner approved publishing the weights-included bundle as a private GitHub
-Release for invited judges. Its build, upload, and verification are tracked in
+Release for invited judges. It is published at
+<https://github.com/PracticalSwan/csx4201-vision-info-extraction/releases/tag/v1.0.0-build-week>;
+its build, upload, digest, and judge-access verification are tracked in
 `GITHUB_RELEASE_HANDOFF.md`.

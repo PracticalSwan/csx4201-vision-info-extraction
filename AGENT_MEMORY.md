@@ -25,17 +25,20 @@
   Reference-token entity F1 is 0.9813; bounded end-to-end entity F1 is only
   0.1314-0.1830 because OCR remains the main bottleneck. Treat it as a final
   academic pre-model, not a production or high-stakes system.
-- On 2026-07-19 the final model gained a one-command CLI, local Gradio GUI,
+- On 2026-07-20 the final model has a one-command CLI, repaired local Gradio GUI,
   portable Windows installer, Docker-based macOS route, and a consent-gated
   Codex/MCP review workflow that uses no OpenAI API key. The clean,
   weights-included share archive is `D:\OCR_Model.zip`; its reviewed SHA-256
-  is `b8b73db81a9d7751b21fc744c3245dbd95fd8b27deca6cbc1f5383c0bcd8ce83`
-  and its exact size is 1,153,107,272 bytes. It was built from clean commit
-  `38b85755e3641d452e5fb9d8e8363815ac581696`.
+  is `f6a057e5c37c6036bd1d4ad6c247aa0895e893d87fe17f997fd011e0c5064f9e`
+  and its exact size is 1,153,302,135 bytes. It was built from clean commit
+  `5b2c964f0affea209aefc03f6ce03183c7dd88de`.
   Native Windows GPU and Docker Linux/AMD64 CPU extraction produced identical
   OCR text, field values, entity triplets, and relation triplets on the safe
   validation document. A physical Mac was not available, so macOS support is
   verified through the Docker build/run path rather than on Apple hardware.
+  The private GitHub Release `v1.0.0-build-week` is published from the exact
+  source commit above; the remote 1,153,302,135-byte ZIP digest matches the
+  local archive.
 - The workspace is a Git repository with an existing GitHub remote. Recheck
   live visibility and staged privacy before every push.
 
@@ -150,8 +153,9 @@
   upright entity F1; the 72-case end-to-end grid exposes the weaker real-OCR
   path while synthetic Thai recovery passes 18/18 angles.
 - Unseen CORU completed 100/100 pages without failures. Private operational
-  inference completed 2/2 pages and published aggregate counts only.
-- Current host suite: 237 tests pass with two environment-dependent skips;
+  inference completed 26/26 anonymous documents and 203/203 pages, and
+  published aggregate counts only.
+- Current host suite: 243 tests pass with two environment-dependent skips;
   OCR-runtime and CUDA-layout partitions pass 122 and 2 tests.
 
 ## Open questions
@@ -270,8 +274,9 @@
   `1350784`, slug `ocr-model-local-document-intelligence`, with the final
   write-up, stack, private repository link, and privacy-safe GUI thumbnail.
   The project is published on Devpost but has not yet been submitted to OpenAI
-  Build Week. Submission remains gated only on the owner's country of
-  residence, public YouTube URL, and final `/feedback` Session ID.
+  Build Week. Country is confirmed as Thailand. Submission remains gated on
+  the owner's viewable YouTube URL, final `/feedback` Session ID, and explicit
+  legal agreement.
 - 2026-07-20 - Replaced unsupported scikit-learn 1.8-to-1.7 pickle loading in
   the display-only inference path with a hash-bound numeric scaler/PCA/K-Means
   export. Public-only parity covered 7,520 feature rows with zero cluster-label
@@ -282,5 +287,21 @@
 - 2026-07-20 - A live Chrome audit confirmed the distinction between the
   populated public Devpost project and the actual Build Week submission. The
   hackathon editor reports Draft, 1/5 steps, and its Additional info fields are
-  empty. The connector must perform the real submission after the owner
-  supplies country, YouTube URL, and `/feedback` Session ID.
+  empty. Thailand is now confirmed; the connector must perform the real
+  submission after the owner supplies the YouTube URL and `/feedback` Session
+  ID and explicitly accepts the legal agreement.
+- 2026-07-20 - Repaired the portable GUI with image and first-page PDF
+  previews, one Gradio-owned progress surface, bounded independent OCR/log
+  scrolling, ANSI-free logs, and atomic stale-result clearing. The host suite
+  passes 243 tests with two skips; live Chrome checks covered source and
+  packaged GPU execution. The rebuilt clean archive is 1,153,302,135 bytes
+  with SHA-256
+  `f6a057e5c37c6036bd1d4ad6c247aa0895e893d87fe17f997fd011e0c5064f9e`
+  and source commit `5b2c964f0affea209aefc03f6ce03183c7dd88de`.
+- 2026-07-20 - Rebuilt and probed the Docker Linux/AMD64 CPU image, completed
+  one real extraction with exact stable semantic parity against Windows, and
+  published private GitHub Release `v1.0.0-build-week`. GitHub reports the
+  expected 1,153,302,135-byte ZIP, matching SHA-256, exact source tag, and
+  read-only judge access. Devpost project `1350784` received the repaired
+  privacy-safe GUI thumbnail; final hackathon submission still waits for the
+  YouTube URL, `/feedback` Session ID, and explicit legal agreement.

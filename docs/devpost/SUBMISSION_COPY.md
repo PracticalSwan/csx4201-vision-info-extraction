@@ -78,12 +78,14 @@ keeps OCR text off by default.
 ## Accomplishments
 
 - One-command full extraction instead of a multi-step research workflow
-- Local GUI with field, text, JSON, visualization, and archive views
+- Local GUI with image/PDF preview, one progress surface, scrollable output,
+  and field/text/JSON/visualization/archive views
 - Included model weights with SHA-256 manifest
 - Windows native setup and Docker-backed macOS path
 - No API-key requirement
 - Consent-gated GPT-5.6 assistance with unchanged local results
 - Privacy checks that exclude raw/private datasets from the distributable
+- Private, digest-verified 1.15 GB GitHub Release for invited judges
 
 ## What I learned
 
